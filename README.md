@@ -1,98 +1,80 @@
-# Flask React Project
 
-This is the backend for the Flask React project.
+# Return True
 
-## Getting started
+## Table of Contents
 
-1. Clone this repository (only this branch)
+- [Introduction](#introduction)
+- [Dependencies](#dependencies)
+- [Features](#features)
+	- [Register](#register)
+	- [Login](#login)
+	- [User Experience](#user-experience)
+		- [Create Profile](#create-profile)
+		- [Complete survey](#complete-survey)
+		- [Messaging](#messaging)
+		- [View](#view)
+			- [View Personal Profile](#view-personal-profile)
+			- [View Other Users Profiles](#view-other-users)
+			- [View Inbox](#view-inbox)
+	- [Search](#search)
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
 
-2. Install dependencies
+## Introduction
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+Return True is a clone of [OkCupid](http://okcupid.com) that will allow all different types of developers to reach out to each other and connect! The application's main purpose is to help individuals find their coding pair/team based on what they need and if they match based on the results of their survey.
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+## Dependencies
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+- Heroku
+- React / Redux
+- Flask
+- SQL Alchemy
 
-   ```bash
-   pipenv shell
-   ```
+## Features
 
-   ```bash
-   flask db upgrade
-   ```
+ - ### Register
+	 A page where the user will input their information to be registered into our database.
 
-   ```bash
-   flask seed all
-   ```
+- ### Login
+	A function integrated into our homepage that will allow the user to login before they can view any content on the site.
 
-   ```bash
-   flask run
-   ```
+[insert picture of starting page]
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+- ### User Experience
+	A registered user will be able to start their search to look for another developer. They can take a survey that will allow them to find all their matches, set up their own profile to let other users know what they're about, actually reach out to other developers, view other pages and search for someone based on their needs.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+	- #### Create Profile
+		The user will have their own "Profile" page that will allow them to indicate the following -
+		1. What type of developer they are (front-end/back-end/full-stack)
+		2. Indicate their location (optional)
+		3. Types of languages they know
+		4. Indicate the level of experience on the languages.
+		5. Frequency of how much they're coding.
+		6. Coding preference - in-person or online only
+		7. Indicate their type of project preferences / personal interests
+		8. What they're interested in on the site (code review, code along, study buddies, or debugging)
+		9. Biography
+		10. Post profile picture (Bonus)
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+	- #### Complete Survey
+		The user will be able to complete a survey and based on the answers, it will provide back a percentage match with all other active users.
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+	- #### Messaging
+		User will be able to reach out to other users.
 
-## Deploy to Heroku
+	- #### View
+		User will have viewing options to their own personal profile, other users and their inbox of messages.
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+		- ##### View Personal Profile
+			User will have access to view their own profile and make any edits.
 
-   ```bash
-   heroku login
-   ```
+		- ##### View Other Users
+			By a click of the other user's name/picture, the user will be able to view their full profile.
 
-5. Login to the heroku container registry
+		- ##### View Inbox
+			User will be able to click on their inbox and see all the messages they have between other users.
 
-   ```bash
-   heroku container:login
-   ```
+	- #### Search
+		The user will have access to the search bar and filter down what they're looking for.
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-8. Release your docker container to heroku
-
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. set up your database:
-
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
-
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
-
-11. profit
