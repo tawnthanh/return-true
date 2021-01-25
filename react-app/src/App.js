@@ -17,15 +17,15 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(sessionAuthenticate()).then((res) => sessionAuthenticate(true));
-    // (async () => {
-    //   const user = await authenticate();
-    //   if (!user.errors) {
-    //     setAuthenticated(true);
-    //   }
-    //   setLoaded(true);
-    // })();
+    dispatch(sessionAuthenticate())
+    .then((res) => {
+      sessionAuthenticate(true)}
+    ).catch(err=>sessionAuthenticate(false));
   }, [dispatch]);
+
+  useEffect(()=>{
+    setLoaded(true)
+  },[])
 
   if (!loaded) {
     return null;

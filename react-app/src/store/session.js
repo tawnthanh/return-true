@@ -8,9 +8,19 @@ const setSession = (user) => {
 
 export const sessionAuthenticate = () => async (dispatch) => {
   const res = await authenticate();
-  console.log(res);
   if (!res.errors) {
-    dispatch(setSession(res));
+    return dispatch(setSession(res));
+  } else {
+    throw new Error(res.errors)
+  }
+};
+
+export const sessionLogin = (email, password) => async (dispatch) => {
+  const res = await login(email, password);
+  if (!res.errors) {
+    return dispatch(setSession(res));
+  } else {
+    return res
   }
 };
 
