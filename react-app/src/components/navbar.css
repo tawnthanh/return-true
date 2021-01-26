@@ -1,0 +1,79 @@
+* {
+    margin: 0;
+    color: #333;
+    font-family: 'Source Code Pro', monospace;;
+  }
+
+.navbar{
+    /* display: flex;
+    justify-content: space-between;
+    flex-direction: row; */
+    align-items: center;
+    /* margin-left: -40px; */
+    width: 100px;
+    background-color: black;
+    overflow: scroll;
+    overflow: scroll;
+
+
+
+
+  }
+
+  h3 {
+      font-weight: bold;
+      color: white;
+      font-size: small;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 600px;
+    font-weight: bold;
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    width: 30%;
+
+
+
+  }
+
+  li {
+    padding: 40px;
+    color: white;
+    font-family: FontAwesome;
+  }
+  .fa {
+      margin-left: -10px;
+  }
+
+  .fa:hover {
+    color: lightblue;
+    cursor: pointer;
+  }
+
+  .logoutbutton button {
+      border-radius: 6px;
+      border: lightblue;
+      background-color: darkgray;
+      padding: 10px;
+      text-align: center;
+      display: inline-block;
+      font-size: 16px;
+      margin-left: -25px;
+
+  }
+
+  .logoutbutton button:hover {
+    color: lightblue;
+    cursor: pointer;
+  }
+
+  .active {
+      height: 50px;
+      width: 50px;
+  }

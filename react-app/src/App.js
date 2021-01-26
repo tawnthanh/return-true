@@ -6,21 +6,26 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import { authenticate } from "./services/auth";
+import { sessionAuthenticate } from "./store/session";
+import { useSelector, useDispatch } from "react-redux";
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.session.user);
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    (async() => {
-      const user = await authenticate();
-      if (!user.errors) {
-        setAuthenticated(true);
-      }
-      setLoaded(true);
-    })();
-  }, []);
+    dispatch(sessionAuthenticate())
+    .then((res) => {
+      sessionAuthenticate(true)}
+    ).catch(err=>sessionAuthenticate(false));
+  }, [dispatch]);
+
+  useEffect(()=>{
+    setLoaded(true)
+  },[])
 
   if (!loaded) {
     return null;
@@ -28,7 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} icon={faTimes} />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -37,17 +42,32 @@ function App() {
           />
         </Route>
         <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+          <SignUpForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
         </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
+        <ProtectedRoute
+          path="/users"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <UsersList />
         </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+        <ProtectedRoute
+          path="/users/:userId"
+          exact={true}
+          authenticated={authenticated}
+        >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path="/" exact={true}>
+          <a href="/login" className="login">Login</a>
+          <a href="/sign-up" className="signup">Signup</a>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
