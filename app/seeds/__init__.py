@@ -1,7 +1,7 @@
 from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .states import seed_states, undo_states
-from .locations import seed_cities
+from .locations import seed_cities, undo_cities
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -19,6 +19,7 @@ def seed():
 def undo():
     undo_users()
     undo_states()
+    undo_cities()
     # Add other undo functions here
 
 
