@@ -5,26 +5,16 @@
   }
 
 .navbar{
-    /* display: flex;
-    justify-content: space-between;
-    flex-direction: row; */
     align-items: center;
-    /* margin-left: -40px; */
     width: 100px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.726);
     overflow: scroll;
-    overflow: scroll;
-
-
-
-
+    position: fixed;
+    z-index: 100;
+    padding-top: 20px;
   }
 
-  h3 {
-      font-weight: bold;
-      color: white;
-      font-size: small;
-  }
+  
 
   ul {
     display: flex;
@@ -63,7 +53,7 @@
       padding: 10px;
       text-align: center;
       display: inline-block;
-      font-size: 16px;
+      font-size: 15px;
       margin-left: -25px;
 
   }

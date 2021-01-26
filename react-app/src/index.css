@@ -1,2 +1,22 @@
 /* TODO Add site wide styles */
 
+* {
+    background-color: black;
+}
+
+.header {
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    z-index: 101;
+    position: fixed;
+    align-items: center;
+    width: 100%;
+}
+
+.content {
+    position: relative;
+    padding-left: 100px;
+    padding-top: 25px;
+}
