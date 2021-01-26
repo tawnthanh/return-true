@@ -9,7 +9,7 @@ const LogoutButton = ({ setAuthenticated }) => {
 
   const onLogout = async (e) => {
     await dispatch(sessionLogout());
-    setAuthenticated(user !== null);
+    setAuthenticated(user == null);
   };
 
   return <button onClick={onLogout}>Logout</button>;
