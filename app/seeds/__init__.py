@@ -4,6 +4,7 @@ from .states import seed_states, undo_states
 from .locations import seed_cities, undo_cities
 from .expertise import seed_expertise, undo_expertise
 from .questions import seed_questions, undo_questions
+from .profile import seed_languages, seed_frequency, undo_languages, undo_frequency
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -29,3 +30,12 @@ def undo():
     # Add other undo functions here
 
 
+@seed_commands.command('profile')
+def seed_p():
+    seed_frequency()
+    seed_languages()
+
+@seed_commands.command('undo_profile')
+def undo_p():
+    undo_frequency()
+    undo_languages()
