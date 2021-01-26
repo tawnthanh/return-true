@@ -5,6 +5,10 @@ userLanguages = db.Table("userLanguages", db.Model.metadata,
     db.Column("languagesId", db.Integer, db.ForeignKey("languages.id"), primary_key=True),
     )
 
+userExpertise = db.Table("userExpertise", db.Model.metadata,
+    db.Column("profileId", db.Integer, db.ForeignKey("profiles.id"), primary_key=True),
+    db.Column("expertiseId", db.Integer, db.ForeignKey("expertise.id"), primary_key=True),
+    )
 
 class Frequency(db.Model):
     __tablename__ = "frequencies"
@@ -30,14 +34,15 @@ class Profile(db.Model):
     locationId = db.Column(db.Integer, db.ForeignKey("locations.id"))
     inPerson = db.Column(db.Boolean, nullable=False)
     level = db.Column(db.Integer, nullable=False)
+    personality = db.Column(db.Boolean, default=False)
     frequencyId = db.Column(db.Integer, db.ForeignKey("frequencies.id"), nullable=False)
-    projectInterest = db.Column(db.String)
     mentorship = db.Column(db.Boolean, nullable=False, default=False)
     morning = db.Column(db.Boolean, nullable=False, default=False)
     languagesId = db.Column(db.Integer, db.ForeignKey("languages.id"), nullable=False)
 
 
     languages = db.relationship("Languages", secondary=userLanguages, back_populates="profile")
+    expertise = db.relationship("Expertise", secondary=userExpertise, back_populates="profile")
 
 
     def to_dict(self):
@@ -50,7 +55,6 @@ class Profile(db.Model):
         "in_person": self.inPerson,
         "level": self.level,
         "frequency": self.frequency,
-        "project_interest": self.projectInterest,
         "mentorship": self.mentorship,
         "morning": self.morning,
         "languages_id": self.languagesId,

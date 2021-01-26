@@ -11,6 +11,7 @@ class Request(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    title = db.Column(db.String(50), nullable=False)
     active = db.Column(db.Boolean, nullable=False)
     questions = db.relationship("Question", secondary=answers, back_populates="requests")
 
