@@ -14,11 +14,12 @@ class State(db.Model):
           "abbr": self.abbr
         }
 
+
 class Location(db.Model):
     __tablename__ = "locations"
 
     id = db.Column(db.Integer, primary_key=True)
-    stateId = db.Column(db.Integer, db.ForeignKey("locations.id"), nullable=False)
+    stateId = db.Column(db.Integer, db.ForeignKey("states.id"), nullable=False)
     city = db.Column(db.String(150), unique=True)
 
     def to_dict(self):
