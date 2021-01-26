@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../services/auth';
+import './signupform.css';
 
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [username, setUsername] = useState("");
@@ -39,7 +40,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className="signupform">
       <div>
         <label>User Name</label>
         <input
