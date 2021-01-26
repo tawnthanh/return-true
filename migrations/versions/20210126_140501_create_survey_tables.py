@@ -1,8 +1,8 @@
-"""Create Surveys Tables
+"""Create Survey Tables
 
-Revision ID: 19e41e0ddf34
-Revises: e4e02df15d8a
-Create Date: 2021-01-25 20:01:46.168914
+Revision ID: d674c8fcb11e
+Revises: d401cd791909
+Create Date: 2021-01-26 14:05:01.500178
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '19e41e0ddf34'
-down_revision = 'e4e02df15d8a'
+revision = 'd674c8fcb11e'
+down_revision = 'd401cd791909'
 branch_labels = None
 depends_on = None
 

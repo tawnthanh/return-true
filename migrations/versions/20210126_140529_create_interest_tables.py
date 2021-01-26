@@ -1,8 +1,8 @@
-"""Create Interests Table
+"""Create Interest Tables
 
-Revision ID: bafb9e1a4f48
-Revises: 19e41e0ddf34
-Create Date: 2021-01-25 20:05:42.402591
+Revision ID: 52a631f397e9
+Revises: d674c8fcb11e
+Create Date: 2021-01-26 14:05:29.842234
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'bafb9e1a4f48'
-down_revision = '19e41e0ddf34'
+revision = '52a631f397e9'
+down_revision = 'd674c8fcb11e'
 branch_labels = None
 depends_on = None
 

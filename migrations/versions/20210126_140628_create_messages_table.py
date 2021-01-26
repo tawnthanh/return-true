@@ -1,8 +1,8 @@
-"""Create Messages Tables
+"""Create Messages Table
 
-Revision ID: 4cf4dafc6e66
-Revises: bafb9e1a4f48
-Create Date: 2021-01-25 20:07:04.850811
+Revision ID: 708508cd8a0f
+Revises: 52a631f397e9
+Create Date: 2021-01-26 14:06:28.699094
 
 """
 from alembic import op
@@ -10,8 +10,8 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '4cf4dafc6e66'
-down_revision = 'bafb9e1a4f48'
+revision = '708508cd8a0f'
+down_revision = '52a631f397e9'
 branch_labels = None
 depends_on = None
 
@@ -30,6 +30,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('dialogueId', sa.Integer(), nullable=True),
     sa.Column('message', sa.String(), nullable=False),
+    sa.Column('read', sa.Boolean(), nullable=True),
     sa.ForeignKeyConstraint(['dialogueId'], ['dialogues.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

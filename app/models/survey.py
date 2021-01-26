@@ -20,6 +20,7 @@ class Request(db.Model):
             "user_id": self.userId,
             "active": self.active,
         }
+
 class Question(db.Model):
     __tablename__ = "questions"
 

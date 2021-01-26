@@ -28,5 +28,6 @@ class Message(db.Model):
         return {
           "id": self.id,
           "dialogue_id": self.dialogueId,
-          "message": self.message
+          "message": self.message,
+          "read": self.read
         }
