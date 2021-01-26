@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionLogin } from "../../store/session";
 import { useDispatch } from "react-redux"
+import './loginform.css'
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();

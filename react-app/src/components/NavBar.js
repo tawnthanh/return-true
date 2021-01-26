@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const NavBar = ({ setAuthenticated }) => {
   return (
     <nav className='navbar'>
-      <h3>==returnTrue</h3>
       <ul>
         <li>
           <NavLink to="/" exact={true} className="active">
@@ -18,19 +17,19 @@ const NavBar = ({ setAuthenticated }) => {
         </li>
         <li>
           <NavLink to="/login" exact={true} className="active">
-          <i class="fa fa-unlock fa-3x" aria-hidden="true "></i>
+          <i class="fa fa-sign-in fa-3x" aria-hidden="true "></i>
 
           </NavLink>
         </li>
         <li>
           <NavLink to="/sign-up" exact={true} className="active">
-          <i class="fa fa-caret-square-o-down fa-3x" aria-hidden="true"></i>
+          <i class="fa fa-user-plus fa-3x" aria-hidden="true"></i>
 
           </NavLink>
         </li>
         <li>
           <NavLink to="/users" exact={true} className="active">
-          <i class="fa fa-venus-double fa-3x" aria-hidden="true"></i>
+          <i class="fa fa-user fa-3x" aria-hidden="true"></i>
           </NavLink>
         </li>
         <li className="logoutbutton">

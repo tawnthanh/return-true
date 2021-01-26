@@ -33,7 +33,9 @@ function App() {
 
   return (
     <BrowserRouter>
+     <h1 className="header">==returnTrue</h1>
       <NavBar setAuthenticated={setAuthenticated} icon={faTimes} />
+      <div className="content">
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -69,6 +71,7 @@ function App() {
           <a href="/sign-up" className="signup">Signup</a>
         </Route>
       </Switch>
+      </div>
     </BrowserRouter>
   );
 }
