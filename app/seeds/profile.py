@@ -1,11 +1,12 @@
-from app.models import db, Frequency, Language
+from app.models import db, Frequency, Languages
 
 def seed_frequency():
     frequency_list = ["daily", "weekly", "monthly", "yearly"]
     for frequency in frequency_list:
         frequency_type = Frequency(type=frequency)
         db.session.add(frequency_type)
-        db.session.commit()
+
+    db.session.commit()
 
 def undo_frequency():
     db.session.execute('TRUNCATE frequencies;')
@@ -34,9 +35,10 @@ def seed_languages():
       "HTML",
     ]
     for language in languages:
-        language_type = Language(type=language)
+        language_type = Languages(type=language)
         db.session.add(language_type)
-        db.session.commit()
+
+    db.session.commit()
 
 
 def undo_languages():

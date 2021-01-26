@@ -25,11 +25,11 @@ def undo():
 
 
 @seed_commands.command('profile')
-def seed():
+def seed_p():
     seed_frequency()
     seed_languages()
 
 @seed_commands.command('undo_profile')
-def undo():
+def undo_p():
     undo_frequency()
     undo_languages()

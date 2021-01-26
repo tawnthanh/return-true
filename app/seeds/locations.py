@@ -17,7 +17,8 @@ def seed_cities():
         randomCity = Location(stateId=state[0].id, city=location[0])
 
         db.session.add(randomCity)
-        db.session.commit()
+
+    db.session.commit()
 
 
 
