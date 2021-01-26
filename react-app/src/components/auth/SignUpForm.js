@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionSignup } from "../../store/session";
-import { signUp } from "../../services/auth";
 import { useDispatch } from "react-redux";
+import './signupform.css';
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -52,7 +52,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} className="signupform">
       <div>
         <label>User Name</label>
         <input

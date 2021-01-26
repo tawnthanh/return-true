@@ -6,9 +6,9 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
-import { authenticate } from "./services/auth";
 import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
+import { faTimes } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} icon={faTimes} />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -64,6 +64,10 @@ function App() {
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path="/" exact={true}>
+          <a href="/login" className="login">Login</a>
+          <a href="/sign-up" className="signup">Signup</a>
+        </Route>
       </Switch>
     </BrowserRouter>
   );
