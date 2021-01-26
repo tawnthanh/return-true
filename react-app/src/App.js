@@ -9,6 +9,8 @@ import User from "./components/User";
 import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import Profile from "./components/auth/Profile"
+
 
 function App() {
   const dispatch = useDispatch();
@@ -64,6 +66,9 @@ function App() {
         <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
         </ProtectedRoute>
+        <Route path="/edit-profile" exact={true} authenticated={authenticated}>
+          <h1>Hi</h1>
+        </Route>
         <Route path="/" exact={true}>
           <a href="/login" className="login">Login</a>
           <a href="/sign-up" className="signup">Signup</a>
