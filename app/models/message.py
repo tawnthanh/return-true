@@ -22,7 +22,7 @@ class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     dialogueId = db.Column(db.Integer, db.ForeignKey("dialogues.id"))
     message = db.Column(db.String, nullable=False)
-
+    read = db.Column(db.Boolean, default=False)
 
     def to_dict(self):
         return {

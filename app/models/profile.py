@@ -1,5 +1,18 @@
 from .db import db
 
+class Frequency(db.Model):
+    __tablename__: "frequencies"
+
+    id = db.Column(db.Integer, primary_key=True)
+    type = db.Column(db.String, nullable=False, unique=True)
+
+    def to_dict(self):
+        return {
+          "id": self.id,
+          "type": self.type,
+        }
+
+
 class Profile(db.Model):
     __tablename__ = "profiles"
 
@@ -12,7 +25,7 @@ class Profile(db.Model):
     locationId = db.Column(db.Integer, db.ForeignKey("locations.id"))
     inPerson = db.Column(db.Boolean, nullable=False)
     level = db.Column(db.Integer, nullable=False)
-    frequency = db.Column(db.String, nullable=False)
+    frequencyId = db.Column(db.String, db.ForeignKey("frequencies.id"), nullable=False)
     projectInterest = db.Column(db.String)
 
     def to_dict(self):
