@@ -1,9 +1,14 @@
 import { authenticate, login, logout } from "../services/auth.js";
 
 const SET_SESSION = "session/set";
+const CLEAR_SESSION = "session/clear";
 
 const setSession = (user) => {
   return { type: SET_SESSION, user };
+};
+
+const clearSession = () => {
+  return { type: CLEAR_SESSION };
 };
 
 export const sessionAuthenticate = () => async (dispatch) => {
@@ -11,7 +16,7 @@ export const sessionAuthenticate = () => async (dispatch) => {
   if (!res.errors) {
     return dispatch(setSession(res));
   } else {
-    throw new Error(res.errors)
+    throw new Error(res.errors);
   }
 };
 
@@ -20,7 +25,14 @@ export const sessionLogin = (email, password) => async (dispatch) => {
   if (!res.errors) {
     return dispatch(setSession(res));
   } else {
-    return res
+    return res;
+  }
+};
+
+export const sessionLogout = () => async (dispatch) => {
+  const res = await logout();
+  if (res.ok) {
+    dispatch(clearSession());
   }
 };
 
@@ -30,6 +42,9 @@ const reducer = (state = { user: null }, action) => {
       const newState = {};
       newState.user = action.user;
       return newState;
+    }
+    case CLEAR_SESSION: {
+      return { user: null };
     }
     default:
       return state;
