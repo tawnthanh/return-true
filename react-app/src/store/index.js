@@ -11,7 +11,6 @@ import sessionReducer from "./session";
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
     session: sessionReducer,
-  //   instructors: instructorsReducer,
 });
 
 let enhancer;
