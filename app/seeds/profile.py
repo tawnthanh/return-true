@@ -1,7 +1,7 @@
 from app.models import db, Frequency, Languages
 
 def seed_frequency():
-    frequency_list = ["daily", "weekly", "monthly", "yearly"]
+    frequency_list = ["less than 10 hour per week", "10 to 20 hours per week", "20 to 40 hours per week", "more that 40 hours per week"]
     for frequency in frequency_list:
         frequency_type = Frequency(type=frequency)
         db.session.add(frequency_type)
