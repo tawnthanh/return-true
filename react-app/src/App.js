@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import Message from "./components/Message";
 import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
@@ -75,6 +76,13 @@ function App() {
           <a href="/login" className="login">Login</a>
           <a href="/sign-up" className="signup">Signup</a>
         </Route>
+        <ProtectedRoute
+          path="/messages/userId"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Message />
+        </ProtectedRoute>
       </Switch>
       </div>
     </BrowserRouter>
