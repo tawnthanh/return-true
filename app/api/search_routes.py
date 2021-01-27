@@ -5,9 +5,8 @@ search_routes = Blueprint('search', __name__)
 
 
 @search_routes.route('/', methods=["POST", "GET"])
-def search():
-    # users = User.query.filter(User.username.ilike(f'%{word}%').all())
-    users = User.query.filter(User.username.like("%And%")).all()
+def search(word):
+    users = User.query.filter(User.username.like(f'%{word}%')).all()
     profiles = []
     if users:
         for user in users:

@@ -4,15 +4,15 @@ const searchResults = (results) => {
   return {type: SET_SEARCH, results}
 }
 
-export const findResults = () => async (dispatch) => {
-  // const results = await fetch("/api/search", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json"
-  //   },
-  //   body: JSON.stringify(word)
-  // })
-  const res = await fetch("/api/search")
+export const findResults = (word) => async (dispatch) => {
+  const res = await fetch("/api/search", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(word)
+  })
+  // const res = await fetch("/api/search")
   const results = await res.json()
   dispatch(searchResults(results))
 }

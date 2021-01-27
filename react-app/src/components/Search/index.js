@@ -16,19 +16,22 @@ const Search = () => {
         // if (searchResults) {
         //     setResult(searchResults)
         // }
-        console.log(searchResults)
-        setResult(search)
+        // console.log(searchResults)
+        // setResult(search)
     }, [search, dispatch])
 
     return (
         <div className="search-box sidebar">
-            <input
-                name="search"
-                type="text"
-                placeholder="Search"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-            />
+            <form onSubmit={(e) => e.preventDefault()}>
+                <input
+                    name="search"
+                    type="text"
+                    placeholder="Search"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)
+                    }
+                />
+            </form>
             <div className="search-results ">
                 {result}
             </div>
