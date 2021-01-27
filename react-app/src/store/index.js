@@ -7,10 +7,12 @@ import logger from "redux-logger";
 
 //Reducers
 import sessionReducer from "./session";
+import searchReducer from "./search";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
-    session: sessionReducer,
+  session: sessionReducer,
+  search: searchReducer,
 });
 
 let enhancer;

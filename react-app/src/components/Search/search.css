@@ -1,10 +1,10 @@
-.sidebar, .search-box {
+.sidebar {
   width: 200px;
   height: 100vh;
   background-color: rgb(8, 8, 8);
   position: fixed;
   z-index: 200;
-  margin-left: 100px;
+  margin-left: 101px;
   margin-top: 28px;
   box-sizing: border-box;
   padding: 5px;

@@ -1,18 +1,27 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { findResults } from "../../store/search.js";
+
 import "./search.css";
 
 const Search = () => {
-    const [search, setSearch] = useState("")
-    const [result, setResult] = useState("")
+    const dispatch = useDispatch();
+    const [search, setSearch] = useState("");
+    const [result, setResult] = useState("");
+    const searchResults = useSelector(state => state.results);
 
     useEffect(() => {
-        if (search == "hi") {
-            setResult(search)
-        }
-    }, [search])
+        let word = search
+        dispatch(findResults(word))
+        // if (searchResults) {
+        //     setResult(searchResults)
+        // }
+        console.log(searchResults)
+        setResult(search)
+    }, [search, dispatch])
 
     return (
-        <div className="search-box">
+        <div className="search-box sidebar">
             <input
                 name="search"
                 type="text"
@@ -20,7 +29,7 @@ const Search = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <div className="search-results sidebar">
+            <div className="search-results ">
                 {result}
             </div>
         </div>
