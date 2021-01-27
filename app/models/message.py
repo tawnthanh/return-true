@@ -10,9 +10,9 @@ class Dialogue(db.Model):
 
     def to_dict(self):
         return {
-          "id": self.id,
-          "user1": self.user1,
-          "user2": self.user2
+            "id": self.id,
+            "user1": self.user1,
+            "user2": self.user2
         }
 
 
@@ -26,8 +26,8 @@ class Message(db.Model):
 
     def to_dict(self):
         return {
-          "id": self.id,
-          "dialogue_id": self.dialogueId,
-          "message": self.message,
-          "read": self.read
+            "id": self.id,
+            "dialogue_id": self.dialogueId,
+            "message": self.message,
+            "read": self.read
         }
