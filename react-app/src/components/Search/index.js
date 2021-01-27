@@ -10,7 +10,7 @@ const Search = () => {
             setResult(search)
         }
     }, [search])
-    
+
     return (
         <div className="search-box">
             <input
@@ -20,7 +20,7 @@ const Search = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
             />
-            <div className="search-results">
+            <div className="search-results sidebar">
                 {result}
             </div>
         </div>

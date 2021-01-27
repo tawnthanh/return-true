@@ -1,7 +1,7 @@
 const SET_SEARCH = "search/SET_SEARCH"
 
-const findSearch = (search) => {
-  return {type: SET_SEARCH, search}
+const searchResults = (results) => {
+  return {type: SET_SEARCH, results}
 }
 
 export const findResults = (result) => async (dispatch) => {
@@ -11,5 +11,7 @@ export const findResults = (result) => async (dispatch) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(result)
-  }
+  })
+
+  dispatch(searchResults(results))
 }
