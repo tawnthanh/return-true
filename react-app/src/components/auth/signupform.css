@@ -13,31 +13,43 @@
 
 }
 
-form div, label, button {
+.signupform form div, .signupform label, .signupform button {
     color: yellow;
     font-size: 20px;
 }
 
-input{
+.signupform input{
     border: none;
     color: white;
     font-family: monospace;
     font-size: 20px;
+    min-width:50px;
 }
 
-.form-sections{
+.signupform .form-sections{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-button {
+.signupform button {
     text-align: left;
     padding: 5px 0px 0px 0px;
     border: none;
     cursor: pointer;
 }
 
-.quoted::after{
-    content: '" "'
+.quoted::after,.quoted::before{
+    content: '"';
+    color: yellow;
+}
+
+.signupform label::before {
+    content: 'const ';
+    color: rgb(22, 22, 160);
+}
+
+.signupform label::after {
+    content: ' = ';
+    color: white;
 }

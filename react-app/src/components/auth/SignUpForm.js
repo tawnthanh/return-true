@@ -55,43 +55,53 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     <form onSubmit={onSignUp} className="signupform">
       <div className="form-sections">
         <div>
-          <label>const username = </label>
-          "<input
-            type="text"
-            name="username"
-            className={username === ""? " " : "quoted"}
-            onChange={updateUsername}
-            value={username}
-            placeholder="null"
-          ></input>"
+          <label>username</label>
+          <span className={username === ""? " " : "quoted"}>
+            <input
+              type="text"
+              name="username"
+              onChange={updateUsername}
+              value={username}
+              placeholder="null"
+            ></input>
+          </span>
         </div>
         <div>
-          <label>const email = </label>
-          "<input
-            type="text"
-            name="email"
-            onChange={updateEmail}
-            value={email}
-          ></input>"
+          <label>email</label>
+          <span className={email === ""? " " : "quoted"}>
+            <input
+              type="text"
+              name="email"
+              onChange={updateEmail}
+              value={email}
+              placeholder="null"
+            ></input>
+          </span>
         </div>
         <div>
-          <label>const password = </label>
-          "<input
-            type="password"
-            name="password"
-            onChange={updatePassword}
-            value={password}
-          ></input>"
+          <label>password</label>
+            <span className={password === ""? " " : "quoted"}>
+              <input
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
+              placeholder="null"
+            ></input>
+          </span>
         </div>
         <div>
-          <label>const password = </label>
-          "<input
-            type="password"
-            name="repeat_password"
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>"
+          <label>password</label>
+          <span className={repeatPassword === ""? " " : "quoted"}>
+            <input
+              type="password"
+              name="repeat_password"
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+              placeholder="null"
+            ></input>
+          </span>
         </div>
         <button type="submit">signup()</button>
       </div>
