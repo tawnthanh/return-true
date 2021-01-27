@@ -12,9 +12,10 @@
     position: fixed;
     z-index: 100;
     padding-top: 20px;
+    height: 100vh;
   }
 
-  
+
 
   ul {
     display: flex;
