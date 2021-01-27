@@ -17,11 +17,10 @@ const Message = () => {
       }, [dialogueId]);
 
     return (
-        
+
         <div className="chat">
             <h3>returnTrue Chat</h3>
         </div>
-
     );
 }
 
