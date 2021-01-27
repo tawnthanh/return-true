@@ -12,25 +12,13 @@ def seed_users():
     db.session.commit()
 
     fake = Faker()
-    # anna = User(username="", email="", password="")
-    # arjun = User(username="", email="", password="")
-    # mishe = User(username="", email="", password="")
-    # thanh = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
-    # anna = User(username="", email="", password="")
+
     for _ in range(50):
         randomUser = User(username=fake.name().replace(" ", ""), email=fake.email(),
                           password=fake.password())
 
         db.session.add(randomUser)
-        # db.session.commit()
+        db.session.commit()
 
 
 # Uses a raw SQL query to TRUNCATE the users table.

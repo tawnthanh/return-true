@@ -74,7 +74,7 @@ def seed_languages():
     db.session.add(express_lang)
     db.session.add(html_lang)
 
-    anna = Profile(userId=1, firstName="Anna", lastName="Bullard", imageUrl="https://secure.gravatar.com/avatar/e4a93f356f91b40827d7c45367b8f369?secure=true&size=300",
+    anna = Profile(userId=2, firstName="Anna", lastName="Bullard", imageUrl="https://secure.gravatar.com/avatar/e4a93f356f91b40827d7c45367b8f369?secure=true&size=300",
                    bio="app academy student", locationId=1, inPerson=True, level=1, frequencyId=4, mentorship=False, morning=False, personality=True)
     db.session.add(anna)
     anna.languages.append(python_lang)
@@ -88,7 +88,7 @@ def seed_languages():
     anna.languages.append(express_lang)
     anna.languages.append(html_lang)
 
-    arjun = Profile(firstName="Arjun", lastName="Narain", imageUrl="https://ca.slack-edge.com/T03GU501J-U01A6PB6YV6-da16e7c3889a-512", bio="app academy student",
+    arjun = Profile(userId=3, firstName="Arjun", lastName="Narain", imageUrl="https://ca.slack-edge.com/T03GU501J-U01A6PB6YV6-da16e7c3889a-512", bio="app academy student",
                     locationId=2, inPerson=True, level=1, frequencyId=4,  mentorship=False, morning=False,	personality=False)
     db.session.add(arjun)
     arjun.languages.append(python_lang)
@@ -102,7 +102,7 @@ def seed_languages():
     arjun.languages.append(express_lang)
     arjun.languages.append(html_lang)
 
-    mishe = Profile(firstName="Mishe", lastName="Yi", imageUrl="https://ca.slack-edge.com/T03GU501J-U018PAJPU6S-a0efd069413a-512",	bio="app academy student",
+    mishe = Profile(userId=4, firstName="Mishe", lastName="Yi", imageUrl="https://ca.slack-edge.com/T03GU501J-U018PAJPU6S-a0efd069413a-512",	bio="app academy student",
                     locationId=3, inPerson=False, level=1, frequencyId=1, mentorship=False, morning=False,	personality=False)
     db.session.add(mishe)
     mishe.languages.append(python_lang)
@@ -116,7 +116,7 @@ def seed_languages():
     mishe.languages.append(express_lang)
     mishe.languages.append(html_lang)
 
-    thanh = Profile(firstName="Thanh", lastName="Nguyen", imageUrl="https://ca.slack-edge.com/T03GU501J-U017YNCPZGS-8c0b5b57c2eb-512",	bio="app academy student",
+    thanh = Profile(userId=5, firstName="Thanh", lastName="Nguyen", imageUrl="https://ca.slack-edge.com/T03GU501J-U017YNCPZGS-8c0b5b57c2eb-512",	bio="app academy student",
                     locationId=4, inPerson=False, level=1, frequencyId=1, mentorship=False, morning=False,	personality=True)
     db.session.add(thanh)
     thanh.languages.append(python_lang)
@@ -130,7 +130,7 @@ def seed_languages():
     thanh.languages.append(express_lang)
     thanh.languages.append(html_lang)
 
-    joe = Profile(firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512",
+    joe = Profile(userId=6, firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512",
                   bio="PTA at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
     db.session.add(joe)
     joe.languages.append(c_plus_plus_lang)
@@ -152,7 +152,7 @@ def seed_languages():
     joe.languages.append(express_lang)
     joe.languages.append(html_lang)
 
-    jesse = Profile(firstName="Jesse", lastName="Warren", imageUrl="https://ca.slack-edge.com/T03GU501J-UMWJ7RREK-9ed96c27ad42-512",
+    jesse = Profile(userId=7, firstName="Jesse", lastName="Warren", imageUrl="https://ca.slack-edge.com/T03GU501J-UMWJ7RREK-9ed96c27ad42-512",
                     bio="Lead Instructional Assistant at App Academy. If you don't like Python you're  wrong", locationId=6, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=False, personality=False)
     db.session.add(jesse)
     jesse.languages.append(c_plus_plus_lang)
@@ -174,7 +174,7 @@ def seed_languages():
     jesse.languages.append(express_lang)
     jesse.languages.append(html_lang)
 
-    alfredo = Profile(firstName="Alfredo", lastName=None, imageUrl=None, bio=None, locationId=None,
+    alfredo = Profile(userId=8, firstName="Alfredo", lastName=None, imageUrl=None, bio=None, locationId=None,
                       inPerson=False, level=2, frequencyId=2,   mentorship=True, morning=True, personality=None)
     db.session.add(alfredo)
     alfredo.languages.append(c_plus_plus_lang)
@@ -196,7 +196,7 @@ def seed_languages():
     alfredo.languages.append(express_lang)
     alfredo.languages.append(html_lang)
 
-    granof = Profile(firstName="Granof", lastName=None, imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
+    granof = Profile(userId=9, firstName="Granof", lastName=None, imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
                      bio="Bucks && Packers", locationId=None, inPerson=False, level=2, frequencyId=3,  mentorship=True, morning=False, personality=None)
     db.session.add(granof)
     granof.languages.append(ruby_lang)
@@ -211,7 +211,7 @@ def seed_languages():
     granof.languages.append(express_lang)
     granof.languages.append(html_lang)
 
-    juliet = Profile(firstName="Juliet", lastName=None, imageUrl=None, bio=None, locationId=None,
+    juliet = Profile(userId=10, firstName="Juliet", lastName=None, imageUrl=None, bio=None, locationId=None,
                      inPerson=False, level=2, frequencyId=1, mentorship=True, morning=True, personality=None)
     db.session.add(juliet)
     juliet.languages.append(ruby_lang)
@@ -226,7 +226,7 @@ def seed_languages():
     juliet.languages.append(express_lang)
     juliet.languages.append(html_lang)
 
-    tom = Profile(firstName="Tom", lastName=None, imageUrl=None, bio=None, locationId=None,
+    tom = Profile(userId=11, firstName="Tom", lastName=None, imageUrl=None, bio=None, locationId=None,
                   inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
     db.session.add(tom)
     tom.languages.append(ruby_lang)
@@ -240,110 +240,43 @@ def seed_languages():
     tom.languages.append(sql_alchemy_lang)
     tom.languages.append(express_lang)
     tom.languages.append(html_lang)
+
+    prof1 = Profile(userId=12, firstName="Dobby", lastName=None, imageUrl=None, bio=None, locationId=None,
+                    inPerson=False, level=1, frequencyId=1,  mentorship=False, morning=True, personality=None)
+    db.session.add(prof1)
+    prof1.languages.append(javascript_lang)
+
+    prof2 = Profile(userId=13, firstName="Ruth", lastName=None, imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
+    db.session.add(prof2)
+    prof2.languages.append(python_lang)
+    prof2.languages.append(html_lang)
+
+    prof3 = Profile(userId=14, firstName="Arlene", lastName=None, imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
+    db.session.add(prof3)
+    prof3.languages.append(html_lang)
+    prof3.languages.append(css_lang)
+
+    prof4 = Profile(userId=15, firstName="Billie", lastName=None, imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
+    db.session.add(prof4)
+    prof4.languages.append(ruby_lang)
+    prof4.languages.append(python_lang)
+    prof4.languages.append(css_lang)
+
+    prof5 = Profile(userId=15, firstName="Basil", lastName=None, imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
+    db.session.add(prof5)
+    prof5.languages.append(python_lang)
+    prof5.languages.append(javascript_lang)
+    prof5.languages.append(css_lang)
+    prof5.languages.append(react_redux_lang)
+    prof5.languages.append(postgres_psql_lang)
+    prof5.languages.append(sql_alchemy_lang)
     db.session.commit()
 
 
 def undo_languages():
     db.session.execute('TRUNCATE languages;')
     db.session.commit()
-
-
-# def seed_profile():
-    # anna = Profile(firstName="Anna", lastName="Bullard", imageUrl="https://secure.gravatar.com/avatar/e4a93f356f91b40827d7c45367b8f369?secure=true&size=300",	bio="app academy student",
-    #                locationId=1, inPerson=True,     level=1, frequencyId=4, mentorship=False, morning=False, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=True)
-    # arjun = Profile(firstName="Arjun", lastName="Narain", imageUrl="https://ca.slack-edge.com/T03GU501J-U01A6PB6YV6-da16e7c3889a-512", bio="app academy student",
-    #                 locationId=2, inPerson=True, level=1, frequencyId=4,  mentorship=False, morning=False, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=False)
-    # mishe = Profile(firstName="Mishe", lastName="Yi", imageUrl="https://ca.slack-edge.com/T03GU501J-U018PAJPU6S-a0efd069413a-512",	bio="app academy student",
-    #                 locationId=3, inPerson=False, level=1, frequencyId=1,    mentorship=False, morning=False, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=False)
-    # thanh = Profile(firstName="Thanh", lastName="Nguyen", imageUrl="https://ca.slack-edge.com/T03GU501J-U017YNCPZGS-8c0b5b57c2eb-512",	bio="app academy student",
-    #                 locationId=4, inPerson=False, level=1, frequencyId=1,    mentorship=False, morning=False, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=True)
-    # joe = Profile(firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512", bio="PTA at App Academy Sept. cohort. Penny furrever",
-    #               locationId=5, inPerson=True,   level=3, frequencyId=1, mentorship=True, morning=True, languagesId=[1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],	personality=True)
-    # jesse = Profile(firstName="Jesse", lastName="Warren", imageUrl="https://ca.slack-edge.com/T03GU501J-UMWJ7RREK-9ed96c27ad42-512", bio="Lead Instructional Assistant at App Academy. If you don't like Python you're  wrong",
-    #                 locationId=6, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=False, languagesId=[1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],	personality=False)
-    # alfredo = Profile(firstName="Alfredo", lastName=None, imageUrl=None, bio=None, locationId=None, inPerson=False, level=2,
-    #                   frequencyId=2,   mentorship=True, morning=True, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=None)
-    # granof = Profile(firstName="Granof", lastName=None, imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
-    #                  bio="Bucks && Packers", locationId=None, inPerson=False, level=2, frequencyId=3,  mentorship=True, morning=False, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=None)
-    # juliet = Profile(firstName="Juliet", lastName=None, imageUrl=None, bio=None, locationId=None, inPerson=False, level=2,
-    #                  frequencyId=1, mentorship=True, morning=True, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=None)
-    # tom = Profile(firstName="Tom", lastName=None, imageUrl=None, bio=None, locationId=None, inPerson=True, level=2,
-    #               frequencyId=2,  mentorship=True, morning=True, languagesId=[1, 2, 4, 11, 12, 13, 14, 15, 16],	personality=None)
-
-    # db.session.add(anna)
-    # db.session.add(arjun)
-    # db.session.add(mishe)
-    # db.session.add(thanh)
-    # db.session.add(joe)
-    # db.session.add(jesse)
-    # db.session.add(alfredo)
-    # db.session.add(granof)
-    # db.session.add(juliet)
-    # db.session.add(tom)
-    # db.session.commit()
-
-
-# def seed_profile():
-#     profile_list = [
-#         {
-#             "id": 1,
-#             "userId": 1,
-#             "firstName": "Jonni",
-#             "lastName": "Doe",
-#             "imageUrl": "https://cdn-media-1.freecodecamp.org/images/1*zX_jJO9HQX5r3WQzQe6xNQ.png",
-#             "bio": "full-time barista learning javascript in my spare time.",
-#             "locationId": 1,
-#             "inPerson": False,
-#             "level": 1,
-#             "frequencyId": 1,
-#             "mentorship": False,
-#             "morning": False,
-#             "languagesId": 2,
-#             "personality": True
-#         }, {
-#             "id": 1,
-#             "userId": 1,
-#             "firstName": "Jonni",
-#             "lastName": "Doe",
-#             "imageUrl": "https://cdn-media-1.freecodecamp.org/images/1*zX_jJO9HQX5r3WQzQe6xNQ.png",
-#             "bio": "full-time barista learning javascript in my spare time.",
-#             "locationId": 1,
-#             "inPerson": False,
-#             "level": 1,
-#             "frequencyId": 1,
-#             "mentorship": False,
-#             "morning": False,
-#             "languagesId": 2,
-#             "personality": True
-#         }, {
-#             "id": 2,
-#             "userId": 2,
-#             "firstName": "Arlene",
-#             "lastName": "Apple",
-#             "imageUrl": "https://cdn-media-1.freecodecamp.org/images/1*zX_jJO9HQX5r3WQzQe6xNQ.png",
-#             "bio": "tech nerd looking to collab on projects and find like-minds",
-#             "locationId": 2,
-#             "inPerson": True,
-#             "level": 3,
-#             "frequencyId": 4,
-#             "mentorship": True,
-#             "morning": False,
-#             "languagesId": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-#             "personality": False
-#         }, {
-#             "id": 3,
-#             "userId": 3,
-#             "firstName": "Gabe",
-#             "lastName": "Ruth",
-#             "imageUrl": "https://cdn-media-1.freecodecamp.org/images/1*zX_jJO9HQX5r3WQzQe6xNQ.png",
-#             "bio": "CS major here for help with projects",
-#             "locationId": 3,
-#             "inPerson": True,
-#             "level": 3,
-#             "frequencyId": 4,
-#             "mentorship": True,
-#             "morning": False,
-#             "languagesId": [1, 2, 4, 11, 12, 13, 14, 15, 16],
-#             "personality": False
-#         },
-#     ]
