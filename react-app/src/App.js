@@ -35,7 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
-     <h1 className="header">==returnTrue</h1>
+     <h1 className="header">return true;</h1>
       <NavBar setAuthenticated={setAuthenticated} icon={faTimes} />
       <div className="content">
       <Switch>

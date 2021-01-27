@@ -8,13 +8,13 @@
     align-items: center;
     width: 100px;
     background-color: rgba(0, 0, 0, 0.726);
-    overflow: scroll;
     position: fixed;
     z-index: 100;
     padding-top: 20px;
+    height: 100vh
   }
 
-  
+
 
   ul {
     display: flex;

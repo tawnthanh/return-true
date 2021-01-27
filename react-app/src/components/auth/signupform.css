@@ -10,4 +10,34 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+
+}
+
+form div, label, button {
+    color: yellow;
+    font-size: 20px;
+}
+
+input{
+    border: none;
+    color: white;
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.form-sections{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+button {
+    text-align: left;
+    padding: 5px 0px 0px 0px;
+    border: none;
+    cursor: pointer;
+}
+
+.quoted::after{
+    content: '" "'
 }
