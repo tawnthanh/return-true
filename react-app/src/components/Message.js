@@ -7,7 +7,7 @@ const Message = () => {
 
     useEffect(() => {
         if (!userId && !dialogueId) {
-          return 
+          return
         }
         (async () => {
           const response = await fetch(`/api/messages/${userId}`);
@@ -17,7 +17,7 @@ const Message = () => {
       }, [dialogueId]);
 
     return (
-
+        
         <div className="chat">
             <h3>returnTrue Chat</h3>
         </div>
