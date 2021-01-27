@@ -5,7 +5,10 @@ const searchResults = (results) => {
 }
 
 export const findResults = (word) => async (dispatch) => {
-  const res = await fetch("/api/search", {
+  if (word.length === 0) {
+    return
+  }
+  const res = await fetch("/api/search/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -15,6 +18,7 @@ export const findResults = (word) => async (dispatch) => {
   // const res = await fetch("/api/search")
   const results = await res.json()
   dispatch(searchResults(results))
+  // dispatch(searchResults(word))
 }
 
 

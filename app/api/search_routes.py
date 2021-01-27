@@ -4,8 +4,9 @@ from app.models import User
 search_routes = Blueprint('search', __name__)
 
 
-@search_routes.route('/', methods=["POST", "GET"])
-def search(word):
+@search_routes.route('/', methods=["POST"])
+def search():
+    word = request.get_json()
     users = User.query.filter(User.username.like(f'%{word}%')).all()
     profiles = []
     if users:

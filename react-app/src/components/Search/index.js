@@ -8,16 +8,12 @@ const Search = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState("");
     const [result, setResult] = useState("");
-    const searchResults = useSelector(state => state.results);
+    const searchResults = useSelector(state => state.search);
 
     useEffect(() => {
         let word = search
         dispatch(findResults(word))
-        // if (searchResults) {
-        //     setResult(searchResults)
-        // }
-        // console.log(searchResults)
-        // setResult(search)
+        console.log(searchResults)
     }, [search, dispatch])
 
     return (
