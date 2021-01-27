@@ -63,7 +63,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <div className="page-container">
+    <>
       <form onSubmit={onSignUp} className="signupform">
           <div><span style={{color:"#2566ca"}}>const </span><span style={{color:"#2ba2ff"}}>newUser</span> = <span style={{color:"#2566ca"}}>{`{`}</span></div>
           <div>
@@ -123,7 +123,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           <div><span style={{color:"#dcb862"}}>signup</span>(<span style={{color:"#2ba2ff"}}>newUser</span>);</div>
           <button type="submit">{`> `}node signup.js</button>
       </form>
-    </div>
+    </>
   );
 };
 

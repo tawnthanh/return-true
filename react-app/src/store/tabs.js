@@ -39,15 +39,10 @@ export const closeTab = tab_id => dispatch => {
 }
 
 const initialState = {
-  login: {
-    tab_id: "login",
-    title: "login",
-    link: "/login"
-  },
-  signup: {
-    tab_id: "signup",
-    title: "sign-up",
-    link: "/sign-up"
+  home: {
+    tab_id: "home",
+    title: "home",
+    link: "/"
   }
 }
 
@@ -61,7 +56,8 @@ const reducer = (state = initialState, action) => {
     case CLOSE_TAB: {
       let newState = {...state};
       delete newState[action.tab_id];
-      return newState;
+      if (Object.keys(newState).length>0) return newState
+      else return initialState;
     }
     default:
       return state;
