@@ -25,7 +25,9 @@ export const findResults = (word) => async (dispatch) => {
 const reducer = (state = { results: null }, action) => {
   switch (action.type) {
     case SET_SEARCH: {
-      return action.results;
+      let newState = {};
+      newState = action.results;
+      return newState;
     }
     default:
       return state;

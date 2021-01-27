@@ -30,7 +30,6 @@ function App() {
 
   useEffect(()=>{
     setLoaded(true)
-    console.log(user)
   },[user])
 
   if (!loaded) {

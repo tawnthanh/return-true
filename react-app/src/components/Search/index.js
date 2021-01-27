@@ -10,16 +10,17 @@ const Search = () => {
     const [result, setResult] = useState("");
     const searchResults = useSelector(state => state.search);
 
-    const handleDispatch = async () => {
-        let word = search
-        await dispatch(findResults(word))
-    }
+    useEffect(() => {
+        console.log(searchResults)
+
+    }, [searchResults])
 
     useEffect(() => {
-        handleDispatch()
+        // (async () => {
+            let word = search
+            dispatch(findResults(word))
+        // })();
         // setResult("ReferenceError: No results.")
-        // console.log(searchResults)
-
     }, [search])
 
     return (
