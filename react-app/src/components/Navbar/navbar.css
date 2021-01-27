@@ -1,72 +1,80 @@
-* {
-    margin: 0;
-    color: #333;
-    font-family: 'Source Code Pro', monospace;;
-  }
-
 .navbar{
     align-items: center;
     width: 100px;
-    background-color: rgba(0, 0, 0, 0.726);
+    height: 100vh;
+    background-color: #333;
     position: fixed;
     z-index: 100;
-    padding-top: 20px;
-    height: 100vh;
+    padding-top: 35px;
   }
-
-
-
-  ul {
+  
+  .navbar ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     flex-direction: column;
-    height: 600px;
     font-weight: bold;
     text-decoration: none;
     box-sizing: border-box;
     margin: 0px;
     padding: 0px;
-    width: 30%;
-
-
-
+    width: 100%;
+    box-sizing: border-box;
   }
 
-  li {
-    padding: 40px;
-    color: white;
+  .navbar li {
+    margin: 20px auto;
     font-family: FontAwesome;
+    list-style: none;
     height: 100%;
   }
-  .fa {
-      margin-left: -10px;
+  .navbar li a {
+    color: #778585;
   }
 
-  .fa:hover {
-    color: lightblue;
+  .navbar li a:hover,.navbar li i:hover {
+    color: white;
     cursor: pointer;
   }
 
-  .logoutbutton button {
-      border-radius: 6px;
-      border: lightblue;
-      background-color: darkgray;
-      padding: 10px;
-      text-align: center;
-      display: inline-block;
-      font-size: 15px;
-      margin-left: -25px;
 
-  }
-
-  .logoutbutton button:hover {
-    color: lightblue;
-    cursor: pointer;
-  }
-
-  .active {
+  .navbar .active {
       height: 50px;
       width: 50px;
+  }
+
+  .tabbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 5px 0 0 5px;
+  }
+
+  .tab {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color:#2d2d2d;
+    border-right: 1px solid #1e1e1e;
+    font-family: 'Molengo', sans-serif;
+    margin: 0;
+    padding: 5px 25px 5px 7px;
+    position: relative;
+    text-decoration: none;
+    width:auto;
+  }
+
+  .tab.active-tab {
+    background-color: #1e1e1e;
+  }
+
+  .tab i {
+    display:none;
+    position: absolute;
+    right: 7px;
+  }
+
+  .tab:hover i {
+    display: inline;
   }
 
   .search-button{
@@ -74,5 +82,15 @@
     padding: 0px;
     margin-left: -10px;
     text-align: center;
+  }
 
+  .sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: #080808;
+    position: fixed;
+    z-index: 100;
+    margin-left: 100px;
+    box-sizing: border-box;
+    padding: 35px 5px 5px 5px;
   }

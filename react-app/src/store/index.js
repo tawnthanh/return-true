@@ -8,12 +8,15 @@ import logger from "redux-logger";
 //Reducers
 import sessionReducer from "./session";
 import searchReducer from "./search";
+import tabsReducer from "./tabs";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
   session: sessionReducer,
+  tabs: tabsReducer,
   search: searchReducer,
-});
+})
+
 
 let enhancer;
 // Production only needs thunk
