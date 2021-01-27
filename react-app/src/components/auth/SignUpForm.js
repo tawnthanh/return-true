@@ -53,44 +53,48 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
 
   return (
     <form onSubmit={onSignUp} className="signupform">
-      <div>
-        <label>User Name</label>
-        <input
-          type="text"
-          name="username"
-          onChange={updateUsername}
-          value={username}
-        ></input>
+      <div className="form-sections">
+        <div>
+          <label>const username = </label>
+          "<input
+            type="text"
+            name="username"
+            className={username === ""? " " : "quoted"}
+            onChange={updateUsername}
+            value={username}
+            placeholder="null"
+          ></input>"
+        </div>
+        <div>
+          <label>const email = </label>
+          "<input
+            type="text"
+            name="email"
+            onChange={updateEmail}
+            value={email}
+          ></input>"
+        </div>
+        <div>
+          <label>const password = </label>
+          "<input
+            type="password"
+            name="password"
+            onChange={updatePassword}
+            value={password}
+          ></input>"
+        </div>
+        <div>
+          <label>const password = </label>
+          "<input
+            type="password"
+            name="repeat_password"
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+          ></input>"
+        </div>
+        <button type="submit">signup()</button>
       </div>
-      <div>
-        <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          onChange={updateEmail}
-          value={email}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={updatePassword}
-          value={password}
-        ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
-        <input
-          type="password"
-          name="repeat_password"
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div>
-      <button type="submit">Sign Up</button>
     </form>
   );
 };
