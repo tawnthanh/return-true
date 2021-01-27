@@ -30,3 +30,7 @@ body {
     padding-left: 100px;
     padding-top: 35px;
 }
+
+.content.open {
+    padding-left: 300px;
+}

@@ -25,6 +25,7 @@
     margin: 20px auto;
     font-family: FontAwesome;
     list-style: none;
+    height: 100%;
   }
   .navbar li a {
     color: rgb(119,133,133);
@@ -35,22 +36,6 @@
     cursor: pointer;
   }
 
-  .logoutbutton button {
-      border-radius: 6px;
-      border: lightblue;
-      background-color: darkgray;
-      padding: 10px;
-      text-align: center;
-      display: inline-block;
-      font-size: 15px;
-      margin-left: -25px;
-
-  }
-
-  .logoutbutton button:hover {
-    color: lightblue;
-    cursor: pointer;
-  }
 
   .navbar .active {
       height: 50px;
@@ -90,4 +75,22 @@
 
   .tab:hover i {
     display: inline;
+  }
+
+  .search-button{
+    border: none;
+    padding: 0px;
+    margin-left: -10px;
+    text-align: center;
+  }
+
+  .sidebar {
+    width: 200px;
+    height: 100vh;
+    background-color: rgb(8, 8, 8);
+    position: fixed;
+    z-index: 100;
+    margin-left: 100px;
+    box-sizing: border-box;
+    padding: 35px 5px 5px 5px;
   }
