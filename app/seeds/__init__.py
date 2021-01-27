@@ -2,7 +2,6 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .states import seed_states, undo_states
 from .locations import seed_cities, undo_cities
-from .expertise import seed_expertise, undo_expertise
 from .questions import seed_questions, undo_questions
 from .profile import seed_profile, seed_frequency, undo_profile, undo_frequency
 # Creates a seed group to hold our commands
@@ -17,7 +16,6 @@ def seed():
     seed_users()
     seed_states()
     seed_cities()
-    seed_expertise()
     seed_questions()
     # Add other seed functions here
 
@@ -29,14 +27,13 @@ def undo():
     undo_users()
     undo_states()
     undo_cities()
-    undo_expertise()
     undo_questions()
     # Add other undo functions here
 
 
 @seed_commands.command('profile')
 def seed_p():
-    # seed_frequency()
+    seed_frequency()
     seed_profile()
 
 

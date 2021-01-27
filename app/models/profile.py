@@ -48,7 +48,7 @@ class Profile(db.Model):
 
     languages = db.relationship(
         "Languages", secondary=userLanguages, back_populates="profile")
-    expertise = db.relationship(
+    expertises = db.relationship(
         "Expertise", secondary=userExpertise, back_populates="profile")
 
     def to_dict(self):
@@ -63,5 +63,4 @@ class Profile(db.Model):
             "frequency": self.frequency,
             "mentorship": self.mentorship,
             "morning": self.morning,
-            # "languages_id": self.languagesId,
         }

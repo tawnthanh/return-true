@@ -1,5 +1,4 @@
 from app.models import db, Frequency, Languages, Profile, Expertise
-from app.seeds import seed_expertise
 
 
 def seed_frequency():
@@ -20,7 +19,7 @@ def undo_frequency():
 def seed_profile():
 
     expertises = ["Frontend", "Backend", "UX/UI Design", "AI", "Data Analysis"]
-    frontend_expertise = Expertise(type=expertises[0])
+    frontend_expertise = Expertise(type="Frontend")
     backend_expertise = Expertise(type=expertises[1])
     ux_ui_expertise = Expertise(type=expertises[2])
     ai_expertise = Expertise(type=expertises[3])
@@ -333,7 +332,7 @@ def seed_profile():
     prof4.languages.append(python_lang)
     prof4.languages.append(css_lang)
 
-    prof5 = Profile(userId=15, firstName="Basil", lastName=None, imageUrl=None, bio=None, locationId=None,
+    prof5 = Profile(userId=16, firstName="Basil", lastName=None, imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
     db.session.add(prof5)
     prof5.languages.append(python_lang)
