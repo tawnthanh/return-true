@@ -45,8 +45,6 @@ class Profile(db.Model):
         "frequencies.id"), nullable=False)
     mentorship = db.Column(db.Boolean, nullable=False, default=False)
     morning = db.Column(db.Boolean, nullable=False, default=False)
-    # languagesId = db.Column(db.Integer, db.ForeignKey(
-    #     "languages.id"), nullable=False)
 
     languages = db.relationship(
         "Languages", secondary=userLanguages, back_populates="profile")

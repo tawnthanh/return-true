@@ -1,4 +1,5 @@
-from app.models import db, Frequency, Languages, Profile
+from app.models import db, Frequency, Languages, Profile, Expertise
+from app.seeds import seed_expertise
 
 
 def seed_frequency():
@@ -16,7 +17,20 @@ def undo_frequency():
     db.session.commit()
 
 
-def seed_languages():
+def seed_profile():
+
+    expertises = ["Frontend", "Backend", "UX/UI Design", "AI", "Data Analysis"]
+    frontend_expertise = Expertise(type=expertises[0])
+    backend_expertise = Expertise(type=expertises[1])
+    ux_ui_expertise = Expertise(type=expertises[2])
+    ai_expertise = Expertise(type=expertises[3])
+    data_analysis_expertise = Expertise(type=expertises[4])
+    db.session.add(frontend_expertise)
+    db.session.add(backend_expertise)
+    db.session.add(ux_ui_expertise)
+    db.session.add(ai_expertise)
+    db.session.add(data_analysis_expertise)
+
     languages = [
         "Python",
         "Javascript",
@@ -37,6 +51,7 @@ def seed_languages():
         "Express.js",
         "HTML",
     ]
+
     python_lang = Languages(type=languages[0])
     javascript_lang = Languages(type=languages[1])
     c_plus_plus_lang = Languages(type=languages[2])
@@ -87,6 +102,11 @@ def seed_languages():
     anna.languages.append(sql_alchemy_lang)
     anna.languages.append(express_lang)
     anna.languages.append(html_lang)
+    anna.expertises.append(frontend_expertise)
+    anna.expertises.append(backend_expertise)
+    anna.expertises.append(ux_ui_expertise)
+    anna.expertises.append(ai_expertise)
+    anna.expertises.append(data_analysis_expertise)
 
     arjun = Profile(userId=3, firstName="Arjun", lastName="Narain", imageUrl="https://ca.slack-edge.com/T03GU501J-U01A6PB6YV6-da16e7c3889a-512", bio="app academy student",
                     locationId=2, inPerson=True, level=1, frequencyId=4,  mentorship=False, morning=False,	personality=False)
@@ -101,6 +121,11 @@ def seed_languages():
     arjun.languages.append(sql_alchemy_lang)
     arjun.languages.append(express_lang)
     arjun.languages.append(html_lang)
+    arjun.expertises.append(frontend_expertise)
+    arjun.expertises.append(backend_expertise)
+    arjun.expertises.append(ux_ui_expertise)
+    arjun.expertises.append(ai_expertise)
+    arjun.expertises.append(data_analysis_expertise)
 
     mishe = Profile(userId=4, firstName="Mishe", lastName="Yi", imageUrl="https://ca.slack-edge.com/T03GU501J-U018PAJPU6S-a0efd069413a-512",	bio="app academy student",
                     locationId=3, inPerson=False, level=1, frequencyId=1, mentorship=False, morning=False,	personality=False)
@@ -115,6 +140,11 @@ def seed_languages():
     mishe.languages.append(sql_alchemy_lang)
     mishe.languages.append(express_lang)
     mishe.languages.append(html_lang)
+    mishe.expertises.append(frontend_expertise)
+    mishe.expertises.append(backend_expertise)
+    mishe.expertises.append(ux_ui_expertise)
+    mishe.expertises.append(ai_expertise)
+    mishe.expertises.append(data_analysis_expertise)
 
     thanh = Profile(userId=5, firstName="Thanh", lastName="Nguyen", imageUrl="https://ca.slack-edge.com/T03GU501J-U017YNCPZGS-8c0b5b57c2eb-512",	bio="app academy student",
                     locationId=4, inPerson=False, level=1, frequencyId=1, mentorship=False, morning=False,	personality=True)
@@ -129,6 +159,11 @@ def seed_languages():
     thanh.languages.append(sql_alchemy_lang)
     thanh.languages.append(express_lang)
     thanh.languages.append(html_lang)
+    thanh.expertises.append(frontend_expertise)
+    thanh.expertises.append(backend_expertise)
+    thanh.expertises.append(ux_ui_expertise)
+    thanh.expertises.append(ai_expertise)
+    thanh.expertises.append(data_analysis_expertise)
 
     joe = Profile(userId=6, firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512",
                   bio="PTA at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
@@ -151,6 +186,11 @@ def seed_languages():
     joe.languages.append(sql_alchemy_lang)
     joe.languages.append(express_lang)
     joe.languages.append(html_lang)
+    joe.expertises.append(frontend_expertise)
+    joe.expertises.append(backend_expertise)
+    joe.expertises.append(ux_ui_expertise)
+    joe.expertises.append(ai_expertise)
+    joe.expertises.append(data_analysis_expertise)
 
     jesse = Profile(userId=7, firstName="Jesse", lastName="Warren", imageUrl="https://ca.slack-edge.com/T03GU501J-UMWJ7RREK-9ed96c27ad42-512",
                     bio="Lead Instructional Assistant at App Academy. If you don't like Python you're  wrong", locationId=6, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=False, personality=False)
@@ -173,6 +213,11 @@ def seed_languages():
     jesse.languages.append(sql_alchemy_lang)
     jesse.languages.append(express_lang)
     jesse.languages.append(html_lang)
+    jesse.expertises.append(frontend_expertise)
+    jesse.expertises.append(backend_expertise)
+    jesse.expertises.append(ux_ui_expertise)
+    jesse.expertises.append(ai_expertise)
+    jesse.expertises.append(data_analysis_expertise)
 
     alfredo = Profile(userId=8, firstName="Alfredo", lastName=None, imageUrl=None, bio=None, locationId=None,
                       inPerson=False, level=2, frequencyId=2,   mentorship=True, morning=True, personality=None)
@@ -195,6 +240,11 @@ def seed_languages():
     alfredo.languages.append(sql_alchemy_lang)
     alfredo.languages.append(express_lang)
     alfredo.languages.append(html_lang)
+    alfredo.expertises.append(frontend_expertise)
+    alfredo.expertises.append(backend_expertise)
+    alfredo.expertises.append(ux_ui_expertise)
+    alfredo.expertises.append(ai_expertise)
+    alfredo.expertises.append(data_analysis_expertise)
 
     granof = Profile(userId=9, firstName="Granof", lastName=None, imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
                      bio="Bucks && Packers", locationId=None, inPerson=False, level=2, frequencyId=3,  mentorship=True, morning=False, personality=None)
@@ -210,6 +260,11 @@ def seed_languages():
     granof.languages.append(sql_alchemy_lang)
     granof.languages.append(express_lang)
     granof.languages.append(html_lang)
+    granof.expertises.append(frontend_expertise)
+    granof.expertises.append(backend_expertise)
+    granof.expertises.append(ux_ui_expertise)
+    granof.expertises.append(ai_expertise)
+    granof.expertises.append(data_analysis_expertise)
 
     juliet = Profile(userId=10, firstName="Juliet", lastName=None, imageUrl=None, bio=None, locationId=None,
                      inPerson=False, level=2, frequencyId=1, mentorship=True, morning=True, personality=None)
@@ -225,6 +280,11 @@ def seed_languages():
     juliet.languages.append(sql_alchemy_lang)
     juliet.languages.append(express_lang)
     juliet.languages.append(html_lang)
+    juliet.expertises.append(frontend_expertise)
+    juliet.expertises.append(backend_expertise)
+    juliet.expertises.append(ux_ui_expertise)
+    juliet.expertises.append(ai_expertise)
+    juliet.expertises.append(data_analysis_expertise)
 
     tom = Profile(userId=11, firstName="Tom", lastName=None, imageUrl=None, bio=None, locationId=None,
                   inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
@@ -240,23 +300,31 @@ def seed_languages():
     tom.languages.append(sql_alchemy_lang)
     tom.languages.append(express_lang)
     tom.languages.append(html_lang)
+    tom.expertises.append(frontend_expertise)
+    tom.expertises.append(backend_expertise)
+    tom.expertises.append(ux_ui_expertise)
+    tom.expertises.append(ai_expertise)
+    tom.expertises.append(data_analysis_expertise)
 
     prof1 = Profile(userId=12, firstName="Dobby", lastName=None, imageUrl=None, bio=None, locationId=None,
                     inPerson=False, level=1, frequencyId=1,  mentorship=False, morning=True, personality=None)
     db.session.add(prof1)
     prof1.languages.append(javascript_lang)
+    prof1.expertises.append(data_analysis_expertise)
 
     prof2 = Profile(userId=13, firstName="Ruth", lastName=None, imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
     db.session.add(prof2)
     prof2.languages.append(python_lang)
     prof2.languages.append(html_lang)
+    prof2.expertises.append(ai_expertise)
 
     prof3 = Profile(userId=14, firstName="Arlene", lastName=None, imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
     db.session.add(prof3)
     prof3.languages.append(html_lang)
     prof3.languages.append(css_lang)
+    prof3.expertises.append(frontend_expertise)
 
     prof4 = Profile(userId=15, firstName="Billie", lastName=None, imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
@@ -274,9 +342,10 @@ def seed_languages():
     prof5.languages.append(react_redux_lang)
     prof5.languages.append(postgres_psql_lang)
     prof5.languages.append(sql_alchemy_lang)
+    prof5.expertises.append(backend_expertise)
     db.session.commit()
 
 
-def undo_languages():
-    db.session.execute('TRUNCATE languages;')
+def undo_profile():
+    db.session.execute('TRUNCATE profiles;')
     db.session.commit()
