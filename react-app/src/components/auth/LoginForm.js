@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionLogin } from "../../store/session";
-import { useDispatch } from "react-redux"
-import './loginform.css'
+import { useDispatch } from "react-redux";
+import './loginform.css';
+import {openTab, closeTab} from "../../store/tabs";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -16,6 +17,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
       .then(res => {
         if (!res.errors) {
           setAuthenticated(true);
+          dispatch(closeTab("login"));
+          dispatch(closeTab("signup"))
         } else {
           setErrors(res.errors);
         }
@@ -29,6 +32,16 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
+
+  useEffect(()=>{
+    if (!authenticated)
+      dispatch(openTab({
+        tab_id:"login",
+        title: "login",
+        link: "/login"
+      }))
+    else dispatch(closeTab("login"))
+  },[authenticated])
 
   if (authenticated) {
     return <Redirect to="/" />;

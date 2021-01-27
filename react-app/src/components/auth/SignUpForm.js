@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionSignup } from "../../store/session";
 import { useDispatch } from "react-redux";
 import './signupform.css';
+import {openTab, closeTab} from "../../store/tabs";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -46,6 +47,16 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
   };
+
+  useEffect(()=>{
+    if (!authenticated)
+      dispatch(openTab({
+        tab_id:"signup",
+        title: "sign-up",
+        link: "/sign-up"
+      }))
+    else dispatch(closeTab("signup"))
+  },[authenticated])
 
   if (authenticated) {
     return <Redirect to="/" />;

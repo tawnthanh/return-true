@@ -10,6 +10,7 @@ import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import Profile from "./components/auth/Profile"
+import TabBar from "./components/TabBar";
 
 
 function App() {
@@ -21,8 +22,8 @@ function App() {
   useEffect(() => {
     dispatch(sessionAuthenticate())
     .then((res) => {
-      sessionAuthenticate(true)}
-    ).catch(err=>sessionAuthenticate(false));
+      setAuthenticated(true)}
+    ).catch(err=>setAuthenticated(false));
   }, [dispatch]);
 
   useEffect(()=>{
@@ -35,9 +36,10 @@ function App() {
 
   return (
     <BrowserRouter>
-     <h1 className="header">==returnTrue</h1>
-      <NavBar setAuthenticated={setAuthenticated} icon={faTimes} />
+     <h1 className="header"> <span style={{color:"#bb86c0"}}>return</span> <span style={{color:"rgb(37,102,202)"}}>true</span>;</h1>
+      <NavBar setAuthenticated={setAuthenticated} icon={faTimes} authenticated={authenticated} />
       <div className="content">
+      <TabBar />
       <Switch>
         <Route path="/login" exact={true}>
           <LoginForm
