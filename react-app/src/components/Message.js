@@ -1,4 +1,5 @@
-import React, {useState, useEffect, useParams} from 'react';
+import React, {useState, useEffect, } from 'react';
+import {useParams} from 'react-router-dom';
 
 
 const Message = () => {
@@ -17,7 +18,6 @@ const Message = () => {
       }, [dialogueId]);
 
     return (
-
         <div className="chat">
             <h3>returnTrue Chat</h3>
         </div>

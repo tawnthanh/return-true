@@ -58,6 +58,9 @@ function App() {
                 setAuthenticated={setAuthenticated}
               />
             </Route>
+            <Route path="/messages">
+              <Message />
+            </Route>
             <ProtectedRoute
               path="/users"
               exact={true}
