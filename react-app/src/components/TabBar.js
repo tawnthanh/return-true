@@ -8,11 +8,12 @@ function Tab ({tab}) {
   let history = useHistory();
   const dispatch = useDispatch();
 
+  console.log("tab-history", history)
+
   return <NavLink exact to={tab.link} style={{color:"#fff"}} activeClassName="active-tab" className="tab">
           <span alt={tab.title}>{tab.title}</span>
-          <i className="fa fa-times" onClick={()=>{
-            const nextLink = dispatch(closeTab(tab.tab_id))
-            console.log("Redirect to: ", nextLink);
+          <i className="fa fa-times" onClick={async () => {
+            const nextLink = await dispatch(closeTab(tab.tab_id))
             history.push(nextLink);
           }}></i>
   </NavLink>
@@ -34,7 +35,7 @@ export default function TabBar () {
         dispatch(openTab(tab3))
         setIsLoaded(true)
     },[])
-
+    
     return (isLoaded && <div className="tabbar">
         {Object.entries(tabs).map((tab)=>{
           return <Tab tab={tab[1]} key={tab[0]}/>

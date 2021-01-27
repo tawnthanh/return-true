@@ -3,11 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Molengo&display=swap');
 
 body {
-    background-color: rgb(30,30,30);
+    background-color: #1e1e1e;
     margin: 0;
-    color: rgb(119,133,133);
+    color: #778585;
     font-family: 'Source Code Pro', monospace;
 }
+
+button:focus, input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: none;
+  }
 
 .header {
     /* font-family: 'PT Sans', sans-serif; */

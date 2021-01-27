@@ -1,0 +1,103 @@
+.page-container {
+    display: block;
+    box-sizing: border-box;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 18px;
+    width:100%;
+    padding-top: 15px;
+}
+
+.loginform, .signupform {
+
+}
+
+@-webkit-keyframes borderBlink {    
+    from, to {    
+        border-color: transparent    
+    }    
+    50% {    
+        border-color: #fff    
+    }    
+}    
+@keyframes borderBlink {    
+    from, to {    
+        border-color: transparent    
+    }    
+    50% {    
+        border-color: #fff    
+    }    
+}
+.loginform div, .signupform div {
+    margin-left: 15px;
+}
+
+.loginform input, .signupform input {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 18px;
+    background-color: #1e1e1e;
+    color: rgb(206,145,120);
+    border: none;
+    border-left: 2px solid white;
+    -webkit-animation: borderBlink 1s step-end infinite;    
+    animation: borderBlink 1s step-end infinite;
+} 
+
+.loginform input::placeholder, .signupform input::placeholder {
+    color: #bb86c0;
+}
+
+.loginform label {
+    color: #dcb862;
+}
+
+.signupform label {
+    color: rgb(123,220,254);
+}
+
+.loginform label::before {
+    content: 'const ';
+    color: #2566ca;
+}
+.signupform label {
+    margin-left: 20px;
+}
+
+.loginform label::after {
+    content: ' = ';
+    color: white;
+}
+.signupform label::after {
+    content: ' : ';
+    color: white;
+}
+
+.quoted::after,.quoted::before{
+    content: '"';
+    color: rgb(206,145,120);
+}
+
+.quoted input {
+    border: none;
+}
+
+.loginform button, .signupform button {
+    width: 100%;
+    background-color: #1e1e1e;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 18px;
+    color: #ccc;
+    text-align: left;
+    border:none;
+    border-top: 1px solid #ccc;
+    margin-top: 15px;
+}
+
+.loginform button:hover, .signupform button:hover {
+    color: #fff
+}
+.errorsLog div {
+    color: #f14c4c;
+}
+.errorsLog div::before {
+    content: "!> ";
+}

@@ -19,6 +19,15 @@
 }
 
 .login-form label{
-
     color: yellow;
+}
+
+.signupform label::before {
+    content: 'const ';
+    color: rgb(22, 22, 160);
+}
+
+.signupform label::after {
+    content: ' = ';
+    color: white;
 }

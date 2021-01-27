@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionSignup } from "../../store/session";
 import { useDispatch } from "react-redux";
-import './signupform.css';
+import './authforms.css';
 import {openTab, closeTab} from "../../store/tabs";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
@@ -63,60 +63,67 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onSignUp} className="signupform">
-      <div className="form-sections">
-        <div>
-          <label>username</label>
-          <span className={username === ""? " " : "quoted"}>
-            <input
-              type="text"
-              name="username"
-              onChange={updateUsername}
-              value={username}
-              placeholder="null"
-            ></input>
-          </span>
-        </div>
-        <div>
-          <label>email</label>
-          <span className={email === ""? " " : "quoted"}>
-            <input
-              type="text"
-              name="email"
-              onChange={updateEmail}
-              value={email}
-              placeholder="null"
-            ></input>
-          </span>
-        </div>
-        <div>
-          <label>password</label>
-            <span className={password === ""? " " : "quoted"}>
+    <div className="page-container">
+      <form onSubmit={onSignUp} className="signupform">
+          <div><span style={{color:"#2566ca"}}>const </span><span style={{color:"#2ba2ff"}}>newUser</span> = <span style={{color:"#2566ca"}}>{`{`}</span></div>
+          <div>
+            <label>username</label>
+            <span className={username === ""? " " : "quoted"}>
               <input
-              type="password"
-              name="password"
-              onChange={updatePassword}
-              value={password}
-              placeholder="null"
-            ></input>
-          </span>
-        </div>
-        <div>
-          <label>password</label>
-          <span className={repeatPassword === ""? " " : "quoted"}>
-            <input
-              type="password"
-              name="repeat_password"
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-              placeholder="null"
-            ></input>
-          </span>
-        </div>
-        <button type="submit">signup()</button>
-      </div>
-    </form>
+                type="text"
+                name="username"
+                onChange={updateUsername}
+                value={username}
+                placeholder="null"
+                size={username.length}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <label>email</label>
+            <span className={email === ""? " " : "quoted"}>
+              <input
+                type="text"
+                name="email"
+                onChange={updateEmail}
+                value={email}
+                placeholder="null"
+                size={email.length}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <label>password</label>
+              <span className={password === ""? " " : "quoted"}>
+                <input
+                type="password"
+                name="password"
+                onChange={updatePassword}
+                value={password}
+                placeholder="null"
+                size={password.length}
+              ></input>
+            </span>
+          </div>
+          <div>
+            <label>password</label>
+            <span className={repeatPassword === ""? " " : "quoted"}>
+              <input
+                type="password"
+                name="repeat_password"
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+                placeholder="null"
+                size={repeatPassword.length}
+              ></input>
+            </span>
+          </div>
+          <div><span style={{color:"#2566ca"}}>{`}`}</span>{`;`}</div>
+          <div><span style={{color:"#dcb862"}}>signup</span>(<span style={{color:"#2ba2ff"}}>newUser</span>);</div>
+          <button type="submit">{`> `}node signup.js</button>
+      </form>
+    </div>
   );
 };
 
