@@ -7,20 +7,31 @@ import "./search.css";
 const Search = () => {
     const dispatch = useDispatch();
     const [search, setSearch] = useState("");
-    const [result, setResult] = useState("");
+    const [result, setResult] = useState([]);
     const searchResults = useSelector(state => state.search);
+    const [error, setError] = useState("")
 
     useEffect(() => {
         console.log(searchResults)
-
-    }, [searchResults])
+        if (Array.isArray(searchResults)) {
+            setResult(searchResults)
+        } else if (searchResults.errors){
+            // setResult(searchResults.errors)
+            setError(searchResults.errors)
+            setError(searchResults.errors[0])
+            console.log(searchResults.errors)
+        } else {
+            setResult([])
+        }
+    }, [searchResults, error])
 
     useEffect(() => {
-        // (async () => {
+        if (search.length) {
             let word = search
             dispatch(findResults(word))
-        // })();
-        // setResult("ReferenceError: No results.")
+        } else {
+            setResult([])
+        }
     }, [search])
 
     return (
@@ -36,7 +47,16 @@ const Search = () => {
                 />
             </form>
             <div className="search-results ">
-                {result}
+                { error.length ?
+                    <p >{error}</p>
+                    :
+                    ""
+                }
+                { result.map((person, idx) => (
+                        <p key={idx}>{person.username}</p>
+                    ))
+                }
+
             </div>
         </div>
     )
