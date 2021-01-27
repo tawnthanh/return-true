@@ -1,0 +1,22 @@
+.search-box {
+  width: 200px;
+  height: 100vh;
+  background-color: rgb(8, 8, 8);
+  position: fixed;
+  z-index: 200;
+  margin-left: 100px;
+  margin-top: 30px;
+  box-sizing: border-box;
+  padding: 5px;
+}
+
+.search-box input {
+  color: yellow;
+  width: 180px;
+  margin-top: 10px;
+}
+
+.search-results{
+  border-radius: 2px;
+  color: yellow;
+}

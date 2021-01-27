@@ -1,5 +1,5 @@
 import React from "react";
-import { logout } from "../../services/auth";
+// import { logout } from "../../services/auth";
 import { sessionLogout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 

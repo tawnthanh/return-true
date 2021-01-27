@@ -11,7 +11,7 @@
     position: fixed;
     z-index: 100;
     padding-top: 20px;
-    height: 100vh
+    height: 100vh;
   }
 
 
@@ -36,6 +36,7 @@
     padding: 40px;
     color: white;
     font-family: FontAwesome;
+    height: 100%;
   }
   .fa {
       margin-left: -10px;
@@ -66,4 +67,12 @@
   .active {
       height: 50px;
       width: 50px;
+  }
+
+  .search-button{
+    border: none;
+    padding: 0px;
+    margin-left: -10px;
+    text-align: center;
+
   }

@@ -11,3 +11,14 @@
     flex-direction: column;
 
 }
+
+
+.quoted::after,.quoted::before{
+    content: '"';
+    color: yellow;
+}
+
+.login-form label{
+
+    color: yellow;
+}
