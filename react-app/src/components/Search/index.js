@@ -10,11 +10,17 @@ const Search = () => {
     const [result, setResult] = useState("");
     const searchResults = useSelector(state => state.search);
 
-    useEffect(() => {
+    const handleDispatch = async () => {
         let word = search
-        dispatch(findResults(word))
-        console.log(searchResults)
-    }, [search, dispatch])
+        await dispatch(findResults(word))
+    }
+
+    useEffect(() => {
+        handleDispatch()
+        // setResult("ReferenceError: No results.")
+        // console.log(searchResults)
+
+    }, [search])
 
     return (
         <div className="search-box sidebar">
