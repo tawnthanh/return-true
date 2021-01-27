@@ -2,7 +2,7 @@
 
 const Message = () => {
     return (
-        
+        <h1>Hi!!</h1>
     );
 }
 

@@ -1,0 +1,10 @@
+.search-box input {
+  color: yellow;
+  width: 180px;
+  margin-top: 10px;
+}
+
+.search-results{
+  border-radius: 2px;
+  color: yellow;
+}

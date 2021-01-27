@@ -10,6 +10,7 @@ userExpertise = db.Table("userExpertise", db.Model.metadata,
     db.Column("expertiseId", db.Integer, db.ForeignKey("expertise.id"), primary_key=True),
     )
 
+
 class Frequency(db.Model):
     __tablename__ = "frequencies"
 
@@ -21,6 +22,7 @@ class Frequency(db.Model):
           "id": self.id,
           "type": self.type,
         }
+
 
 class Profile(db.Model):
     __tablename__ = "profiles"
@@ -40,22 +42,20 @@ class Profile(db.Model):
     morning = db.Column(db.Boolean, nullable=False, default=False)
     languagesId = db.Column(db.Integer, db.ForeignKey("languages.id"), nullable=False)
 
-
     languages = db.relationship("Languages", secondary=userLanguages, back_populates="profile")
     expertise = db.relationship("Expertise", secondary=userExpertise, back_populates="profile")
 
-
     def to_dict(self):
-      return {
-        "id": self.id,
-        "first_name": self.firstName,
-        "last_name": self.lastName[0],
-        "bio": self.bio,
-        "location_id": self.locationId,
-        "in_person": self.inPerson,
-        "level": self.level,
-        "frequency": self.frequency,
-        "mentorship": self.mentorship,
-        "morning": self.morning,
-        "languages_id": self.languagesId,
-      }
+        return {
+          "id": self.id,
+          "first_name": self.firstName,
+          "last_name": self.lastName[0],
+          "bio": self.bio,
+          "location_id": self.locationId,
+          "in_person": self.inPerson,
+          "level": self.level,
+          "frequency": self.frequency,
+          "mentorship": self.mentorship,
+          "morning": self.morning,
+          "languages_id": self.languagesId,
+        }

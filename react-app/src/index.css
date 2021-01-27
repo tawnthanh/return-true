@@ -1,11 +1,23 @@
 /* TODO Add site wide styles */
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Molengo&display=swap');
 
-* {
-    background-color: black;
+body {
+    background-color: #1e1e1e;
+    margin: 0;
+    color: #778585;
+    font-family: 'Source Code Pro', monospace;
 }
 
+button:focus, input:focus, select:focus, textarea:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
 .header {
-    font-weight: bold;
+    /* font-family: 'PT Sans', sans-serif; */
+    font-family: 'Molengo', sans-serif;
+    font-weight: 400;
     color: white;
     font-size: 20px;
     text-align: center;
@@ -13,10 +25,17 @@
     position: fixed;
     align-items: center;
     width: 100%;
+    background-color: #3c3c3c;
+    margin: 0;
+    padding: 5px;
 }
 
 .content {
     position: relative;
     padding-left: 100px;
-    padding-top: 25px;
+    padding-top: 35px;
+}
+
+.content.open {
+    padding-left: 300px;
 }
