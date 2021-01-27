@@ -1,11 +1,14 @@
+import React, {useState, useEffect} from 'react';
 
 
 const Message = () => {
-    return (
 
+
+    return (
+        
         <div className="chat">
-        <h3>returnTrue Chat</h3>
-        <Input onSend={} />
+            <h3>returnTrue Chat</h3>
+            <Input onSend={} />
         </div>
 
     );
