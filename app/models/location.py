@@ -1,5 +1,6 @@
 from .db import db
 
+
 class State(db.Model):
     __tablename__ = "states"
 
@@ -9,9 +10,9 @@ class State(db.Model):
 
     def to_dict(self):
         return {
-          "id": self.id,
-          "state": self.state,
-          "abbr": self.abbr
+            "id": self.id,
+            "state": self.state,
+            "abbr": self.abbr
         }
 
 
@@ -24,7 +25,7 @@ class Location(db.Model):
 
     def to_dict(self):
         return {
-          "id": self.id,
-          "state_id": self.stateId,
-          "city": self.city
+            "id": self.id,
+            "state_id": self.stateId,
+            "city": self.city
         }
