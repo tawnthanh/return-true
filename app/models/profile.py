@@ -54,7 +54,7 @@ class Profile(db.Model):
           "location_id": self.locationId,
           "in_person": self.inPerson,
           "level": self.level,
-          "frequency": self.frequency,
+          "frequency": self.frequencyId,
           "mentorship": self.mentorship,
           "morning": self.morning,
           "languages_id": self.languagesId,

@@ -9,12 +9,14 @@ import logger from "redux-logger";
 import sessionReducer from "./session";
 import tabsReducer from "./tabs";
 import requestsReducer from "./requests";
+import questionsReducer from "./questions";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
     session: sessionReducer,
     tabs: tabsReducer,
     requests: requestsReducer,
+    questions: questionsReducer,
 });
 
 let enhancer;
