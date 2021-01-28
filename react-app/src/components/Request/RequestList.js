@@ -2,6 +2,7 @@ import {Link} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import {createRequest, getRequests, destroyRequest} from "../../store/requests";
+import {openTab} from "../../store/tabs";
 import "./request.css";
 
 export default function RequestList () {
@@ -17,6 +18,12 @@ export default function RequestList () {
         if (!res.errors) {
             setTitle("");
             setIsOpen(false);
+            const new_request = res.request;
+            dispatch(openTab({
+                tab_id: `request-${new_request.id}`,
+                title: `request-${new_request.title}`,
+                link: `/request/${new_request.id}`,
+            }))
         } else {
             setErrors(res.errors);
         }

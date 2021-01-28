@@ -85,7 +85,7 @@ def all_requests():
         user = current_user.to_dict()
 
     result = db.session.query(Request) \
-                       .join(Answer)  \
+                       .join(Answer, isouter=True)  \
                        .filter(Request.userId==user["id"]).all()
     
     requests = [r.to_dict() for r in result]
