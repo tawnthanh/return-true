@@ -41,7 +41,7 @@ const Search = () => {
         } else {
             setResult([])
         }
-    }, [search])
+    }, [search, error])
 
     return (
         <div className="search-box sidebar">
@@ -60,12 +60,17 @@ const Search = () => {
                     <div className="user-results">
                         Users:
                         { error &&
-                            <p>{result[0]}</p>
+                            <p key={1}>{result[0]}</p>
                         }
                         { result.map((person, idx) => (
-                                <p>
+                                <p key={idx+1}>
                                     <NavLink to={`/users/${person.id}`} key={idx} className="user-link">
                                         {person.username}
+                                        <div key={person.id} className="user-details">
+                                            Name: {person.first_name}
+                                            <br />
+                                            Bio: {person.bio}
+                                        </div>
                                     </NavLink>
                                 </p>
                             ))
