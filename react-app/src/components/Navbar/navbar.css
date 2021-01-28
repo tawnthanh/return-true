@@ -7,10 +7,10 @@
     z-index: 100;
     padding-top: 35px;
   }
-  
+
   .navbar ul {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
     font-weight: bold;
     text-decoration: none;

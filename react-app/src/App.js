@@ -15,7 +15,7 @@ import TabBar from "./components/TabBar";
 
 function App() {
   const dispatch = useDispatch();
-  // const user = useSelector((store) => store.session.user);
+  const user = useSelector((store) => store.session.user);
 
   const [isOpen, setIsOpen] = useState(false)
   const [authenticated, setAuthenticated] = useState(false);
@@ -30,16 +30,16 @@ function App() {
 
   useEffect(()=>{
     setLoaded(true)
-  },[])
+  },[user])
 
   if (!loaded) {
     return null;
   }
-  
+
   return (
     <BrowserRouter>
      <h1 className="header"> <span style={{color:"#bb86c0"}}>return</span> <span style={{color:"#2566ca"}}>true</span>;</h1>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} icon={faTimes}  
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} icon={faTimes}
               isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={`content${isOpen?" open":""}`}>
       <TabBar/>

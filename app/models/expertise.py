@@ -7,8 +7,8 @@ class Expertise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String, nullable=False, unique=True)
 
-    profile = db.relationship("Profile", secondary="userExpertise", back_populates="expertise")
-
+    profile = db.relationship(
+        "Profile", secondary="userExpertise", back_populates="expertises")
 
     def to_dict(self):
         return {
