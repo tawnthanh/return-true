@@ -58,9 +58,9 @@ function App() {
                 setAuthenticated={setAuthenticated}
               />
             </Route>
-            <Route path="/messages/:dialogueId" exact={true} authenticated={authenticated}>
+            <ProtectedRoute path="/messages/:dialogueId" exact={true} authenticated={authenticated}>
               <Message />
-            </Route>
+            </ProtectedRoute>
             <ProtectedRoute
               path="/users"
               exact={true}

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User
+from app.models import db, User, Message
 
 user_routes = Blueprint('users', __name__)
 
@@ -17,4 +17,9 @@ def users():
 def user(id):
     user = User.query.get(id)
     return user.to_dict()
-    
+
+@user_routes.route('/messages/<int:dialogueId>', methods=['GET', 'POST'])
+@login_required
+def messages(dialogueId):
+    messages = Message.query.all(dialogueId)
+    return {"messages": [messages.to_dict() for message in messages]}
