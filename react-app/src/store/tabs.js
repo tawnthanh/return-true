@@ -2,6 +2,7 @@ import {store} from "../index"
 
 const OPEN_TAB = "tab/open";
 const CLOSE_TAB = "tabs/close";
+const RESET_HOME = "tabs/reset";
 
 export const openTab = (tab) => {
   return { 
@@ -14,6 +15,12 @@ export const closeTabAction = (tab_id) => {
   return { 
     type: CLOSE_TAB, 
     tab_id 
+  };
+};
+
+export const resetTabs = () => {  
+  return { 
+    type: RESET_HOME
   };
 };
 
@@ -58,6 +65,9 @@ const reducer = (state = initialState, action) => {
       delete newState[action.tab_id];
       if (Object.keys(newState).length>0) return newState
       else return initialState;
+    }
+    case RESET_HOME: {
+      return initialState;
     }
     default:
       return state;
