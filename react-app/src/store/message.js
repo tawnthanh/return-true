@@ -32,7 +32,7 @@ export const postMessages = (message, dialogueId) => async (dispatch) => {
     let response = await results.json()
     console.log(response)
     const {dialogueId, message} = message
-    dispatch(postMessages(response))
+    dispatch(addMessages(response))
   }
 
   export const removeMessages = (message) => async (dispatch) => {
@@ -45,7 +45,7 @@ export const postMessages = (message, dialogueId) => async (dispatch) => {
     })
     const messages = await results.json()
 
-    dispatch(removeMessages(messages))
+    dispatch(deleteMessages(messages))
   }
 
   const messageReducer = (state={}, action) => {

@@ -6,7 +6,7 @@ import { postMessages, removeMessages} from '../../store/message'
 
 const Message = () => {
     const [message, setMessage] = useState("");
-    const { userId, dialogueId }  = useParams();
+    const { dialogueId }  = useParams();
     const dispatch = useDispatch();
 
     // const {message} = useSelector(state => state.message)
@@ -14,11 +14,12 @@ const Message = () => {
     console.log(message)
 
     const fullStore = useSelector(state => {
-      return state.dialogueId
+      return state.messages
     })
 
+
     useEffect(() => {
-        if (!userId && !dialogueId) {
+        if ( !dialogueId) {
           return
         }
         // (async () => {
@@ -26,25 +27,27 @@ const Message = () => {
         //   const user = await response.json();
         //   setMessage(user);
         // })();
-        dispatch(postMessages())
+        dispatch(postMessages('rose', dialogueId))
       }, [dispatch]);
 
     return (
       <div className="messagebox">
-      <input
-          name="message"
-          type="text"
-          placeholder="Message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-      />
-      <button onClick={() => {
-        dispatch(postMessages(message, dialogueId))
-      }}>Send Message</button>
+        <form>
+          <input
+              name="message"
+              type="text"
+              placeholder="Message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+          />
+          <button onClick={() => {
+            dispatch(postMessages(message, dialogueId))
+          }}>Send Message</button>
 
-     <button onClick={() => {
-        dispatch(removeMessages())
-      }}>Delete Message</button>
+          <button onClick={() => {
+            dispatch(removeMessages())
+          }}>Delete Message</button>
+        </form>
       {/* <input
           name="message"
           type="text"
@@ -63,7 +66,7 @@ const Message = () => {
       <div className="message-result">
           {message}
       </div>
-  </div>
+    </div>
     );
 }
 
