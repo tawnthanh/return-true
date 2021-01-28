@@ -4,6 +4,7 @@ import LogoutButton from '../auth/LogoutButton';
 import './navbar.css';
 import 'font-awesome/css/font-awesome.min.css';
 import Search from "../Search";
+import RequestList from "../Request/RequestList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
   const [search, setSearch] = useState(false)
@@ -28,11 +29,12 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
     }
   }
 
-  useEffect(()=>{
-    if (!authenticated){
+  useEffect(() => {
+    if (!authenticated) {
       setIsOpen(false)
     }
-  },[authenticated])
+    // },[authenticated])
+  })
 
   return (
     <>
@@ -44,28 +46,28 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             </NavLink>
           </li>
           {authenticated && <li>
-            <a onClick={() => switchSideBar("search")} className="active search-button">
-            <i className="fa fa-search fa-3x"></i>
-            </a>
+            <div onClick={() => switchSideBar("search")} className="active search-button">
+              <i className="fa fa-search fa-3x"></i>
+            </div>
           </li>}
           {authenticated && <li>
-            <a onClick={() => switchSideBar("requests")} className="active search-button">
-            <i className="fa fa-handshake fa-3x"></i>
-            </a>
+            <div onClick={() => switchSideBar("requests")} className="active search-button">
+              <i className="fa fa-handshake fa-3x"></i>
+            </div>
           </li>}
           {!authenticated && <li>
             <NavLink to="/login" exact={true} className="active">
-              <i class="fa fa-sign-in fa-3x" aria-hidden="true"></i>
+              <i className="fa fa-sign-in fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
           {!authenticated && <li>
             <NavLink to="/sign-up" exact={true} className="active">
-              <i class="fa fa-user-plus fa-3x" aria-hidden="true"></i>
+              <i className="fa fa-user-plus fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
           {authenticated && <li>
             <NavLink to="/users" exact={true} className="active">
-              <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+              <i className="fa fa-user fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
           {authenticated && <li className="logoutbutton">
@@ -77,7 +79,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
         <Search />
       }
       { isOpen && requests &&
-        <h1 className="sidebar">Requests</h1>
+        <RequestList />
       }
     </>
   );
