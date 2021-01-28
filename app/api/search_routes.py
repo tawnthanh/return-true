@@ -26,8 +26,8 @@ def search():
 
 # THIS IS TO TEST THE RESPONSE FROM THE MODEL'S BUILT IN FUNCTIONS
 
-# @search_routes.route("/test")
-# def test():
+@search_routes.route("/test")
+def test():
     # profiles = Profile.query.all()
     # profile_list = []
     # for profile in profiles:
@@ -42,12 +42,12 @@ def search():
     # print(list)
     # return jsonify(*list)
 
-    # locations = Location.query.all()
-    # loc_list = []
-    # for loc in locations:
-    #     loc_list.append(loc.get_state())
-    # print(loc_list)
-    # return jsonify(loc_list)
+    locations = Location.query.all()
+    loc_list = []
+    for loc in locations:
+        loc_list.append(loc.get_state())
+    print(loc_list)
+    return jsonify(loc_list)
 
     # states = State.query.all()
     # state_list = []
