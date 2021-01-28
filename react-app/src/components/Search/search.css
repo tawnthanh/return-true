@@ -1,7 +1,7 @@
 .search-box input {
-  color: yellow;
   width: 180px;
   margin-top: 10px;
+  font-size: 16px;
 }
 
 .search-results{
@@ -15,4 +15,9 @@
 
 .user-results p:hover{
   background-color: rgb(32, 32, 32);
+}
+
+.user-link{
+  text-decoration: none;
+  color: yellow;
 }
