@@ -6,7 +6,7 @@ const setProfile = (payload) => ({
 });
 
 export const getProfile = () => async (dispatch) => {
-  const res = await fetch(`/api/profiles/`);
+  const res = await fetch(`/api/profiles`);
   if (res.ok) {
     let response = await res.json();
     dispatch(setProfile(response));
