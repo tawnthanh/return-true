@@ -15,11 +15,11 @@ const Search = () => {
         console.log(searchResults)
         if (Array.isArray(searchResults)) {
             setResult(searchResults)
-        } else if (searchResults.errors){
-            // setResult(searchResults.errors)
-            setError(searchResults.errors)
-            setError(searchResults.errors[0])
-            console.log(searchResults.errors)
+        // } else if (searchResults.errors){
+        //     // setResult(searchResults.errors)
+        //     setError(searchResults.errors)
+        //     setError(searchResults.errors[0])
+        //     console.log(searchResults.errors)
         } else {
             setResult([])
         }
@@ -47,16 +47,18 @@ const Search = () => {
                 />
             </form>
             <div className="search-results ">
-                { error.length ?
-                    <p >{error}</p>
-                    :
-                    ""
-                }
-                { result.map((person, idx) => (
-                        <p key={idx}>{person.username}</p>
-                    ))
-                }
+                {result.length > 1 && (
+                    <div className="user-results">
+                        Users:
+                        { result.map((person, idx) => (
+                                <p>
+                                    <a key={idx}>{person.username}</a>
+                                </p>
+                            ))
+                        }
+                    </div>
 
+                )}
             </div>
         </div>
     )

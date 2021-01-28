@@ -8,3 +8,11 @@
   border-radius: 2px;
   color: yellow;
 }
+
+.user-results p{
+  padding-left: 30px;
+}
+
+.user-results p:hover{
+  background-color: rgb(32, 32, 32);
+}
