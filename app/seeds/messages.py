@@ -8,12 +8,12 @@ def create_dialogue():
     # db.session.commit()
 
     messages = [
-        ["Violets are BLUEE!!",True,1],
-        ["Roses are red",False,1],
+        ["Violets are BLUEE!!",True,1, 1],
+        ["Roses are red",False,1, 2],
+
     ]
 
     for message in messages:
-        message1 = Message(message=message[0],dialogueId=message[2],read=message[1])
+        message1 = Message(message=message[0],dialogueId=message[2],read=message[1], sender=message[3])
         db.session.add(message1)
     db.session.commit()
-    
