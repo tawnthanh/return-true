@@ -65,12 +65,13 @@ def all_requests():
     if current_user.is_authenticated:
         user = current_user.to_dict()
 
-    reqs = answers.query.join(Request) \ 
-    .add_columns(Request.id, Request.userId, Request.title, Request.active,
-    answers.answer,answers.questionId)
-    .filter(Request.userId==user["id"]).all()
+    result = Request.query.filter(Request.userId==user["id"]).all()
+    requests = []
 
+    for single_request in result:
+        single_request = single_request.to_dict()
+        answers_for_request = db.session.query(answers).join(Request).filter(Request.id==single_request["id"]).all()
+        single_request["answers"] = [{"questionId": a[1],"answer": a[2]} for a in answers_for_request]
+        requests.append(single_request)
     
-    {"requestId": reqs[1]}
-    
-    return {"requests": [req.to_dict() for req in reqs]}
+    return {"requests": requests}
