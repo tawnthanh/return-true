@@ -2,6 +2,7 @@ import {store} from "../index"
 
 const ADD_REQUEST = "request/add";
 const REMOVE_REQUEST = "request/remove";
+const EDIT_REQUEST = "request/edit";
 const GETALL_REQUEST = "request/get_all"
 
 const addRequest = (request) => {
@@ -22,6 +23,13 @@ const getAllRequest = (requests) => {
   return { 
     type: GETALL_REQUEST, 
     requests
+  };
+};
+
+const editRequest = (request) => {
+  return { 
+    type: EDIT_REQUEST, 
+    request
   };
 };
 
@@ -51,6 +59,24 @@ export const destroyRequest = id => async dispatch => {
   if (res.ok) {
     return dispatch(removeRequest(id));
   }
+}
+
+export const updateRequest = request => async dispatch => {
+  let res = await fetch(`/api/request/${request.id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(request)
+  });
+
+  res = await res.json();
+  if (!res.errors) {
+    return dispatch(editRequest(res));
+  } else {
+    return res;
+  }
+
 }
 
 export const getRequests = () => async dispatch => {
@@ -83,6 +109,21 @@ const reducer = (state = initialState, action) => {
           newState.push(state[i])
         }
       }
+      return newState;
+    }
+    case EDIT_REQUEST: {
+      const newState = [];
+      for (let i = 0; i < state.length; i++) {
+        if (state[i].id !== action.request.id) {
+          newState.push(state[i])
+        } else {
+          newState.push(action.request)
+        }
+      }
+      newState.sort((a,b)=>{
+        if (a.title < b.title) return -1
+        else return 1
+      })
       return newState;
     }
     case GETALL_REQUEST: {

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import Request, db, answers,Question
-from app.forms import RequestForm
+from app.forms import RequestForm, RequestEditForm
 from flask_login import current_user
 
 request_routes = Blueprint('request', __name__)
@@ -40,6 +40,25 @@ def new_request():
         db.session.commit()
         return new_request.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@request_routes.route('/<int:id>', methods=['PATCH'])
+def edit_request(id):
+    """
+    Create new request
+    """
+    form = RequestEditForm()
+    data = request.get_json()
+
+    # user = None
+    if current_user.is_authenticated:
+        user = current_user.to_dict()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        req = Request.query.get(id)
+        req.title=data["title"]
+        req.active=data["active"]
+        db.session.commit()
+    return data
 
 @request_routes.route('/<int:id>', methods=['DELETE'])
 def remove_request(id):
