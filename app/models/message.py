@@ -18,6 +18,7 @@ class Dialogue(db.Model):
             "user2_id": self.user2
         }
 
+    
 
 class Message(db.Model):
     __tablename__ = "messages"

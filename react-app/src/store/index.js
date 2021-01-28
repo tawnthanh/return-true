@@ -9,22 +9,16 @@ import logger from "redux-logger";
 import sessionReducer from "./session";
 import searchReducer from "./search";
 import tabsReducer from "./tabs";
-<<<<<<< HEAD
 import messageReducer from "./message";
-=======
 import requestsReducer from "./requests";
 
->>>>>>> main
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
     session: sessionReducer,
     tabs: tabsReducer,
-<<<<<<< HEAD
-    message: messageReducer
-=======
+    message: messageReducer,
     requests: requestsReducer,
     search: searchReducer,
->>>>>>> main
 });
 
 let enhancer;
