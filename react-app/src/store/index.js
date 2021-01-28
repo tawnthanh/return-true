@@ -8,11 +8,12 @@ import logger from "redux-logger";
 //Reducers
 import sessionReducer from "./session";
 import tabsReducer from "./tabs";
-
+import messageReducer from "./message";
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
     session: sessionReducer,
-    tabs: tabsReducer
+    tabs: tabsReducer,
+    message: messageReducer
 });
 
 let enhancer;
