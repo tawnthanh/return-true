@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     profile = db.relationship("Profile", back_populates="user")
+    
 
     @property
     def password(self):
@@ -35,4 +36,10 @@ class User(db.Model, UserMixin):
         return {
             "id": self.id,
             "profile": [profile.to_dict() for profile in self.profiles]
+        }
+
+    def show_dialogues(self):
+        return {
+            "id": self.id,
+            "dialogues": [c.to_dict() for c in self.convo]
         }

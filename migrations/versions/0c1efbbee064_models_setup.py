@@ -1,8 +1,8 @@
-"""relationship update to profile, frequency, user, languages and expertise
+"""Models setup
 
-Revision ID: 66328ff1d037
+Revision ID: 0c1efbbee064
 Revises: 
-Create Date: 2021-01-28 13:48:17.332310
+Create Date: 2021-01-28 15:37:13.108960
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '66328ff1d037'
+revision = '0c1efbbee064'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -77,10 +77,9 @@ def upgrade():
     op.create_table('locations',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('stateId', sa.Integer(), nullable=False),
-    sa.Column('city', sa.String(length=150), nullable=True),
+    sa.Column('city', sa.String(length=150), nullable=False),
     sa.ForeignKeyConstraint(['stateId'], ['states.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('city')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('requests',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -117,7 +116,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
     sa.Column('firstName', sa.String(), nullable=False),
-    sa.Column('lastName', sa.String(), nullable=True),
+    sa.Column('lastName', sa.String(), nullable=False),
     sa.Column('imageUrl', sa.String(), nullable=True),
     sa.Column('bio', sa.String(length=2000), nullable=True),
     sa.Column('locationId', sa.Integer(), nullable=True),
