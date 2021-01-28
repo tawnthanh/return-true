@@ -20,6 +20,7 @@ class Request(db.Model):
             "id": self.id,
             "user_id": self.userId,
             "active": self.active,
+            "title": self.title
         }
 
 class Question(db.Model):
