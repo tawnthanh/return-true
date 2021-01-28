@@ -218,7 +218,7 @@ def seed_profile():
     jesse.expertises.append(ai_expertise)
     jesse.expertises.append(data_analysis_expertise)
 
-    alfredo = Profile(userId=8, firstName="Alfredo", lastName=None, imageUrl=None, bio=None, locationId=None,
+    alfredo = Profile(userId=8, firstName="Alfredo", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                       inPerson=False, level=2, frequencyId=2,   mentorship=True, morning=True, personality=None)
     db.session.add(alfredo)
     alfredo.languages.append(c_plus_plus_lang)
@@ -245,7 +245,7 @@ def seed_profile():
     alfredo.expertises.append(ai_expertise)
     alfredo.expertises.append(data_analysis_expertise)
 
-    granof = Profile(userId=9, firstName="Granof", lastName=None, imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
+    granof = Profile(userId=9, firstName="Granof", lastName="Johnson", imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
                      bio="Bucks && Packers", locationId=None, inPerson=False, level=2, frequencyId=3,  mentorship=True, morning=False, personality=None)
     db.session.add(granof)
     granof.languages.append(ruby_lang)
@@ -265,7 +265,7 @@ def seed_profile():
     granof.expertises.append(ai_expertise)
     granof.expertises.append(data_analysis_expertise)
 
-    juliet = Profile(userId=10, firstName="Juliet", lastName=None, imageUrl=None, bio=None, locationId=None,
+    juliet = Profile(userId=10, firstName="Juliet", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                      inPerson=False, level=2, frequencyId=1, mentorship=True, morning=True, personality=None)
     db.session.add(juliet)
     juliet.languages.append(ruby_lang)
@@ -285,7 +285,7 @@ def seed_profile():
     juliet.expertises.append(ai_expertise)
     juliet.expertises.append(data_analysis_expertise)
 
-    tom = Profile(userId=11, firstName="Tom", lastName=None, imageUrl=None, bio=None, locationId=None,
+    tom = Profile(userId=11, firstName="Tom", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                   inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
     db.session.add(tom)
     tom.languages.append(ruby_lang)
@@ -305,34 +305,34 @@ def seed_profile():
     tom.expertises.append(ai_expertise)
     tom.expertises.append(data_analysis_expertise)
 
-    prof1 = Profile(userId=12, firstName="Dobby", lastName=None, imageUrl=None, bio=None, locationId=None,
+    prof1 = Profile(userId=12, firstName="Dobby", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                     inPerson=False, level=1, frequencyId=1,  mentorship=False, morning=True, personality=None)
     db.session.add(prof1)
     prof1.languages.append(javascript_lang)
     prof1.expertises.append(data_analysis_expertise)
 
-    prof2 = Profile(userId=13, firstName="Ruth", lastName=None, imageUrl=None, bio=None, locationId=None,
+    prof2 = Profile(userId=13, firstName="Ruth", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
     db.session.add(prof2)
     prof2.languages.append(python_lang)
     prof2.languages.append(html_lang)
     prof2.expertises.append(ai_expertise)
 
-    prof3 = Profile(userId=14, firstName="Arlene", lastName=None, imageUrl=None, bio=None, locationId=None,
+    prof3 = Profile(userId=14, firstName="Arlene", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
     db.session.add(prof3)
     prof3.languages.append(html_lang)
     prof3.languages.append(css_lang)
     prof3.expertises.append(frontend_expertise)
 
-    prof4 = Profile(userId=15, firstName="Billie", lastName=None, imageUrl=None, bio=None, locationId=None,
+    prof4 = Profile(userId=15, firstName="Billie", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
     db.session.add(prof4)
     prof4.languages.append(ruby_lang)
     prof4.languages.append(python_lang)
     prof4.languages.append(css_lang)
 
-    prof5 = Profile(userId=16, firstName="Basil", lastName=None, imageUrl=None, bio=None, locationId=None,
+    prof5 = Profile(userId=16, firstName="Basil", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
                     inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
     db.session.add(prof5)
     prof5.languages.append(python_lang)

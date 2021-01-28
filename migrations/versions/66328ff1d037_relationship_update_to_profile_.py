@@ -1,8 +1,8 @@
-"""profiles
+"""relationship update to profile, frequency, user, languages and expertise
 
-Revision ID: 0d8e607e96b1
+Revision ID: 66328ff1d037
 Revises: 
-Create Date: 2021-01-27 18:13:06.240512
+Create Date: 2021-01-28 13:48:17.332310
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0d8e607e96b1'
+revision = '66328ff1d037'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -97,12 +97,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['userId'], ['users.id'], )
     )
     op.create_table('answers',
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('requestId', sa.Integer(), nullable=False),
     sa.Column('questionId', sa.Integer(), nullable=False),
-    sa.Column('answer', sa.String(), nullable=False),
+    sa.Column('answer', sa.String(length=50), nullable=False),
     sa.ForeignKeyConstraint(['questionId'], ['questions.id'], ),
     sa.ForeignKeyConstraint(['requestId'], ['requests.id'], ),
-    sa.PrimaryKeyConstraint('requestId', 'questionId')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('messages',
     sa.Column('id', sa.Integer(), nullable=False),

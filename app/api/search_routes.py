@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, Profile
+from app.models import User, Profile, Frequency
 
 search_routes = Blueprint('search', __name__)
 
@@ -23,3 +23,20 @@ def search():
             })
         return jsonify(*profiles)
     return {'errors': ['ReferenceError: No Results Found']}, 404
+
+
+@search_routes.route("/test")
+def test():
+    profiles = Profile.query.all()
+    profile_list = []
+    for profile in profiles:
+        profile_list.append(profile.to_dict())
+    print(profile_list)
+    return jsonify(profile_list)
+
+    # frequency = Frequency.query.all()
+    # list = []
+    # for freq in frequency:
+    #     list.append(freq.to_dict())
+    # print(list)
+    # return jsonify(*list)

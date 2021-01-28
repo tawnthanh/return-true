@@ -57,8 +57,6 @@ class Question(db.Model):
     options = db.Column(db.String, nullable=False)
     questionType = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Integer)
-    requests = db.relationship(
-        "Request", secondary=answers, back_populates="questions")
 
     answers = db.relationship("Answer", back_populates="question")
 

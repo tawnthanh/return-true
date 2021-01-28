@@ -11,6 +11,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    profile = db.relationship("Profile", back_populates="user")
+
     @property
     def password(self):
         return self.hashed_password
@@ -26,5 +28,11 @@ class User(db.Model, UserMixin):
         return {
             "id": self.id,
             "username": self.username,
-            "email": self.email
+            "email": self.email,
+        }
+
+    def get_profiles(self):
+        return {
+            "id": self.id,
+            "profile": [profile.to_dict() for profile in self.profiles]
         }
