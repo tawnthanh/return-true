@@ -6,12 +6,15 @@ from .db import db
 #     db.Column("questionId", db.Integer, db.ForeignKey("questions.id"), primary_key=True),
 #     db.Column("answer", db.String, nullable=False))
 
+
 class Answer(db.Model):
     __tablename__ = "answers"
 
     id = db.Column(db.Integer, primary_key=True)
-    requestId = db.Column(db.Integer, db.ForeignKey("requests.id"), nullable=False)
-    questionId = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
+    requestId = db.Column(db.Integer, db.ForeignKey("requests.id"),
+                          nullable=False)
+    questionId = db.Column(db.Integer, db.ForeignKey("questions.id"),
+                           nullable=False)
     answer = db.Column(db.String(50), nullable=False)
 
     request = db.relationship("Request", back_populates="answers")
@@ -25,6 +28,7 @@ class Answer(db.Model):
             "answer": self.answer
         }
 
+
 class Request(db.Model):
     __tablename__ = "requests"
 
@@ -32,13 +36,8 @@ class Request(db.Model):
     userId = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     title = db.Column(db.String(50), nullable=False)
     active = db.Column(db.Boolean, nullable=False)
-<<<<<<< HEAD
-    questions = db.relationship(
-        "Question", secondary=answers, back_populates="requests")
-=======
 
     answers = db.relationship("Answer", back_populates="request")
->>>>>>> requests
 
     def to_dict(self):
         return {
@@ -58,13 +57,10 @@ class Question(db.Model):
     options = db.Column(db.String, nullable=False)
     questionType = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Integer)
-<<<<<<< HEAD
     requests = db.relationship(
         "Request", secondary=answers, back_populates="questions")
-=======
 
     answers = db.relationship("Answer", back_populates="question")
->>>>>>> requests
 
     def to_dict(self):
         return {
