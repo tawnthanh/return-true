@@ -67,12 +67,12 @@ const Search = () => {
                                 <p key={idx+1}>
                                     <NavLink to={`/users/${person.id}`} key={idx} className="user-link">
                                         {person.username}
+                                        <div key={person.id} className="user-details">
+                                            Name: {person.first_name}
+                                            <br />
+                                            {person.bio}
+                                        </div>
                                     </NavLink>
-                                    <div key={person.id} className="user-details">
-                                        Name: {person.first_name}
-                                        <br />
-                                        {person.bio}
-                                    </div>
                                 </p>
                             ))
                         }
