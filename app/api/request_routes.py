@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import Request, db, answers,Question
+from app.models import Request, db, Answer,Question
 from app.forms import RequestForm, RequestEditForm
 from flask_login import current_user
 
@@ -84,13 +84,10 @@ def all_requests():
     if current_user.is_authenticated:
         user = current_user.to_dict()
 
-    result = Request.query.filter(Request.userId==user["id"]).all()
-    requests = []
-
-    for single_request in result:
-        single_request = single_request.to_dict()
-        answers_for_request = db.session.query(answers).join(Request).filter(Request.id==single_request["id"]).all()
-        single_request["answers"] = [{"questionId": a[1],"answer": a[2]} for a in answers_for_request]
-        requests.append(single_request)
+    result = db.session.query(Request) \
+                       .join(Answer)  \
+                       .filter(Request.userId==user["id"]).all()
+    
+    requests = [r.to_dict() for r in result]
     
     return {"requests": requests}

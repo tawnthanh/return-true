@@ -34,12 +34,13 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('answers',
+    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('requestId', sa.Integer(), nullable=False),
     sa.Column('questionId', sa.Integer(), nullable=False),
     sa.Column('answer', sa.String(), nullable=False),
     sa.ForeignKeyConstraint(['questionId'], ['questions.id'], ),
     sa.ForeignKeyConstraint(['requestId'], ['requests.id'], ),
-    sa.PrimaryKeyConstraint('requestId', 'questionId')
+    sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###
 
