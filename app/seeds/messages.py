@@ -1,11 +1,13 @@
 from app.models import db, Dialogue, Message
 
-
-
 def create_dialogue():
-    # dialogues = Dialogue(user1=1, user2=2)
-    # db.session.add(dialogues)
-    # db.session.commit()
+    dialogues = Dialogue(user1=1, user2=2)
+    db.session.add(dialogues)
+    db.session.commit()
+
+
+def create_message():
+
 
     messages = [
         ["Violets are BLUEE!!",True,1, 1],
