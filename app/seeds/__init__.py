@@ -17,6 +17,8 @@ def seed():
     seed_states()
     seed_cities()
     seed_questions()
+    seed_frequency()
+    seed_profile()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -28,16 +30,6 @@ def undo():
     undo_states()
     undo_cities()
     undo_questions()
-    # Add other undo functions here
-
-
-@seed_commands.command('profile')
-def seed_p():
-    seed_frequency()
-    seed_profile()
-
-
-@seed_commands.command('undo_profile')
-def undo_p():
     undo_frequency()
     undo_profile()
+    # Add other undo functions here

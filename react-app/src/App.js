@@ -11,6 +11,8 @@ import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import TabBar from "./components/TabBar";
+import Request from "./components/Request";
+import {resetTabs} from "./store/tabs";
 
 
 function App() {
@@ -31,6 +33,12 @@ function App() {
   useEffect(()=>{
     setLoaded(true)
   },[user])
+
+  useEffect(()=>{
+    if (!authenticated){
+      dispatch(resetTabs())
+    }
+  },[authenticated])
 
   if (!loaded) {
     return null;
@@ -70,6 +78,13 @@ function App() {
               authenticated={authenticated}
             >
               <User />
+            </ProtectedRoute>
+            <ProtectedRoute
+              path="/request/:id"
+              exact={true}
+              authenticated={authenticated}
+            >
+              <Request authenticated={authenticated}/>
             </ProtectedRoute>
             <Route path="/" exact={true}>
               <HomePage />
