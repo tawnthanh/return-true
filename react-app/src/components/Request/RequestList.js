@@ -2,7 +2,7 @@ import {Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import {createRequest, getRequests, destroyRequest} from "../../store/requests";
-import {openTab} from "../../store/tabs";
+import {openTab, closeTab} from "../../store/tabs";
 import "./request.css";
 
 export default function RequestList () {
@@ -51,7 +51,11 @@ export default function RequestList () {
                             <i className="fas fa-database list-marker"></i> 
                             <Link to={`/request/${request.id}`}> {request.title}</Link>
                         </span>
-                        <i className="fas fa-trash" onClick={()=>{dispatch(destroyRequest(request.id))}}></i>
+                        <i className="fas fa-trash" 
+                        onClick={()=>{
+                            dispatch(destroyRequest(request.id))
+                            dispatch(closeTab(`request-${request.id}`))
+                            }}></i>
                     </li>
                 })}
             </ul>

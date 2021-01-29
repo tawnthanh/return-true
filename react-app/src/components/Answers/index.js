@@ -9,14 +9,8 @@ export default function Answer () {
     let questions = useSelector(state => state.questions)
     
     if (answers.length > 0) {
-        return <>
-            <h2>Answers</h2>
-            <AnswerList />
-        </>
+        return <AnswerList />
     } else {
-        return <>
-            <h2>Answers</h2>
-            <QuestionForm />
-        </>
+        return <QuestionForm />
     }
 }

@@ -5,17 +5,18 @@ Question Types:
 2= multiple choice, all checked - 100%, each is 100/n
 3=radio
 4=toggle
+5=reversed toggle (as toggle, neededfor rendering)
 """
 
 questions = [
-    {"question":"Who are you looking for", "options":"teacher,partner,friend,study buddy,code review", "questionType": 1, "weight": 10},
-    {"question":"languages", "options": "languages", "questionType":2, "weight": 10},
-    {"question":"experience level", "options":"beginner,provicient,expert", "questionType":3, "weight": 10},
-    {"question":"area of expertise", "options":"expertise", "questionType":2, "weight": 10},
+    {"question":"role", "options":"teacher,partner,friend,study buddy,code review", "questionType": 1, "weight": 10},
+    {"question":"known_languages", "options": "languages", "questionType":2, "weight": 10},
+    {"question":"experience_level", "options":"beginner,provicient,expert", "questionType":3, "weight": 10},
+    {"question":"area_of_expertise", "options":"expertise", "questionType":2, "weight": 10},
     {"question":"personality", "options":"introvert,extrovert", "questionType":4, "weight": 10},
-    {"question":"filter by state", "options": "", "questionType": 4, "weight": 10},
-    {"question":"filter by city", "options": "", "questionType": 4, "weight": 10},
-    {"question":"availability", "options": "morning,night", "questionType": 4, "weight": 10},
+    {"question":"state = $MyState", "options": "", "questionType": 4, "weight": 10},
+    {"question":"city = $MyCity", "options": "", "questionType": 4, "weight": 10},
+    {"question":"day_time_preference", "options": "morning,night", "questionType": 5, "weight": 10},
     {"question":"frequency", "options":"frequencies", "questionType": 3, "weight": 10}
 ]
 

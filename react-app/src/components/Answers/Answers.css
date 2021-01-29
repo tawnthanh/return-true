@@ -31,3 +31,22 @@
 .toggle.toggle-on span {
     background-color:lightgreen;
 }
+
+.answers-query span{
+    display:block;
+}
+
+.answers-query > span:first-child{
+    margin-left: 20px;
+}
+.answers-query > span:nth-child(2),
+.answers-query > span:nth-child(3) {
+    margin-left: 30px;
+}
+
+.answers-list  > span:not(:first-child)::before {
+    content: "AND "
+}
+.answers-list  > span:first-child::before {
+    content: "WHERE "
+}

@@ -65,10 +65,10 @@ export default function QuestionForm () {
             if (q.question_type === 3) {
                 return <QuestionRadiobutton question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
             }
-            else if (q.question_type === 4 && q.id===8) {
+            else if (q.question_type === 4) {
                 return <QuestionReversedToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]} />
             }
-            else if (q.question_type === 4 && q.id!==8) {
+            else if (q.question_type === 5) {
                 return <QuestionToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
             }
             else return <QuestionMultipleChoice question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
