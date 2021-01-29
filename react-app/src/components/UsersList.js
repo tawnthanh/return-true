@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile } from "../store/profile";
 
 function UsersList() {
   const [users, setUsers] = useState([]);
+  const dispatch = useDispatch();
+  const { userId } = useParams();
+
+  const profiles = useSelector((state) => state.profile);
+  console.log(profiles);
+
+  useEffect(() => {
+    dispatch(getProfile(userId));
+  }, [dispatch]);
 
   useEffect(() => {
     async function fetchData() {
