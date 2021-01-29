@@ -1,8 +1,7 @@
 import React from "react"
-import {useSelector, useDispatch} from "react-redux"
+import {useSelector} from "react-redux"
 
 export default function AnswerList () {
-    const dispatch = useDispatch()
     let answers = useSelector(state => state.currentRequest.answers)
     let questions = useSelector(state => state.fixed.questions)
     let languages = useSelector(state => state.fixed.languages)
@@ -26,32 +25,32 @@ export default function AnswerList () {
                             return options.split(",")[parseInt(item)]
                         }
                     })
-                    return  <span>
+                    return  <span key={`answer-list-item${a.id}`}>
                                 {q.question} IN [{aArr.join(", ")}]
                             </span>
                 } else if ([4,5,6].includes(q.question_type)) {
                     let aArr = q.options.split(",")
                     
                     if (aArr.length<2){
-                        return  <span>
+                        return  <span key={`answer-list-item${a.id}`}>
                                     {q.question}
                                 </span>
                     } else {
                         console.log(">=2",aArr, a)
-                        if (q.question_type==5) aArr.reverse()
-                        return  <span>
+                        if (q.question_type===5) aArr.reverse()
+                        return  <span key={`answer-list-item${a.id}`}>
                                     {q.question} = {aArr[parseInt(a.answer)]}
                                 </span>
                         
                     }
                 } else {
                     if (options==="frequencies"){
-                        return <span>
+                        return <span key={`answer-list-item${a.id}`}>
                                     {q.question} = {frequencies[parseInt(a.answer)].type}
                                 </span>
                     } else {
                         let aArr = q.options.split(",")
-                        return  <span>
+                        return  <span key={`answer-list-item${a.id}`}>
                                     {q.question} = {aArr[parseInt(a.answer)]}
                                 </span>
                     }

@@ -1,5 +1,3 @@
-import {store} from "../index"
-
 const GET_CURRENT = "request/current";
 
 export const getCurrent = (request) => {

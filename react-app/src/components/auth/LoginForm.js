@@ -41,7 +41,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         link: "/login"
       }))
     else dispatch(closeTab("login"))
-  },[authenticated])
+  },[authenticated,dispatch])
 
   if (authenticated) {
     return <Redirect to="/" />;

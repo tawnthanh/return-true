@@ -46,7 +46,7 @@ export default function RequestList () {
         <div className="sidebar-list">
             <ul>
                 {requests.map(request => {
-                    return <li className={request.active?"active":""}>
+                    return <li className={request.active?"active":""} key={`request-list-item-${request.id}`}>
                         <span>
                             <i className="fas fa-database list-marker"></i> 
                             <Link to={`/request/${request.id}`}> {request.title}</Link>

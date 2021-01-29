@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import {openTab} from "../../store/tabs";
 
 export default function HomePage () {
@@ -12,7 +12,7 @@ export default function HomePage () {
             link: "/"
           }
         dispatch(openTab(tab));
-    },[])
+    },[dispatch])
 
     return <>
         <h1>My Home Page</h1>

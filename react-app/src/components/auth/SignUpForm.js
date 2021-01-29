@@ -25,12 +25,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       });
     }
   };
-  // if (password === repeatPassword) {
-  //   const user = await signUp(username, email, password);
-  //   if (!user.errors) {
-  //     setAuthenticated(true);
-  //   }
-  // }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -56,7 +50,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
         link: "/sign-up"
       }))
     else dispatch(closeTab("signup"))
-  },[authenticated])
+  },[authenticated,dispatch])
 
   if (authenticated) {
     return <Redirect to="/" />;
@@ -123,6 +117,11 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           <div><span style={{color:"#dcb862"}}>signup</span>(<span style={{color:"#2ba2ff"}}>newUser</span>);</div>
           <button type="submit">{`> `}node signup.js</button>
       </form>
+      <div className="errorsLog" >
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
     </>
   );
 };

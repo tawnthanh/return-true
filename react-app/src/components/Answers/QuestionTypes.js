@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector} from "react-redux";
 import "./Answers.css";
 
 export function QuestionMultipleChoice ({question, setAnswers, answers}) {
@@ -22,12 +22,15 @@ export function QuestionMultipleChoice ({question, setAnswers, answers}) {
             setOptions(customOptions)
         }
         setIsLoaded(true)
-    },[])
+    },[expertise_list, languages_list, question.options])
 
     return isLoaded && <span className="question-multiple-choice">
         {question.question} IN [ <span className="select-grid">
             {Object.values(options).map(o=>{
-                return <label htmlFor={`q${question.id}-o${o.id}`} className="checkbox-container">
+                return <label 
+                            htmlFor={`q${question.id}-o${o.id}`} 
+                            className="checkbox-container" 
+                            key={`q${question.id}-o${o.id}-multichoice`}>
                     {o.type}
                     <input type="checkbox" 
                         onChange={e=>{
@@ -43,7 +46,7 @@ export function QuestionMultipleChoice ({question, setAnswers, answers}) {
                         id={`q${question.id}-o${o.id}`}
                         name={`q${question.id}`}
                     />
-                    <span class="checkmark"></span>
+                    <span className="checkmark"></span>
                 </label>
             })}]
         </span> 
@@ -67,11 +70,11 @@ export function QuestionRadiobutton ({question, setAnswers, answers}) {
             setOptions(customOptions)
         }
         setIsLoaded(true)
-    },[])
+    },[frequencies_list,question.options])
 
     useEffect(()=>{
         console.log(question.question,": ",answers)
-    },[answers])
+    },[answers,question.question])
 
     return isLoaded && <span className="question-radiobutton">
         {question.question} = 
@@ -79,7 +82,7 @@ export function QuestionRadiobutton ({question, setAnswers, answers}) {
                     onChange={e=>{setAnswers(e.target.value)}}>
                        <option value={undefined} ></option> 
             {Object.values(options).map(o=>{
-                return <option value={o.id} key={`q${question.id}-o${o.id}`} >{o.type}</option>
+                return <option value={o.id} key={`q${question.id}-o${o.id}-select`} >{o.type}</option>
             })}
             </select>
     </span>
@@ -95,9 +98,9 @@ export function QuestionToggle ({question, setAnswers, answers}) {
             setOptions(options_list)
         }
         setIsLoaded(true)
-    },[])
+    },[question.options])
     
-    if (question.question_type==6){
+    if (question.question_type===6){
         return isLoaded && <span className={"question-simple-toggle"+(!answers?" commented":"")}>
             {question.question} 
             <Toggle options={options} isOn={answers} onSwitch={()=>{answers===undefined?setAnswers(true):setAnswers(!answers)}}/>
@@ -120,7 +123,7 @@ export function QuestionReversedToggle ({question, setAnswers, answers}) {
             setOptions(options_list)
         } 
         setIsLoaded(true)
-    },[])
+    },[question.options])
 
 
     return isLoaded && <span className="question-toggle">

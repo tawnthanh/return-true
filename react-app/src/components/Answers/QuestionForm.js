@@ -28,7 +28,7 @@ export default function QuestionForm () {
         9: [answer9, setAnswer9],
     }
 
-    const onSubmit = e => {
+    const onSubmit = async e => {
         e.preventDefault();
         
         const request_answers = []
@@ -56,7 +56,7 @@ export default function QuestionForm () {
                 })
             }
         }
-        dispatch(saveAnswers(currentRequest.id, request_answers))
+        await dispatch(saveAnswers(currentRequest.id, request_answers))
     }
 
     const onReset = () => {
@@ -79,20 +79,36 @@ export default function QuestionForm () {
             {Object.entries(questions).map(item=>{
                 const q = item[1];
                 if (q.question_type === 3) {
-                    return <QuestionRadiobutton question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
+                    return <QuestionRadiobutton 
+                                question={q} 
+                                setAnswers={state_list[q.id][1]} 
+                                answers={state_list[q.id][0]} 
+                                key={`question-list-request${currentRequest.id}-item${q.id}`}/>
                 }
                 else if (q.question_type === 4 || q.question_type === 6) {
-                    return <QuestionToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]} />
+                    return <QuestionToggle 
+                                question={q} 
+                                setAnswers={state_list[q.id][1]} 
+                                answers={state_list[q.id][0]} 
+                                key={`question-list-request${currentRequest.id}-item${q.id}`} />
                 }
                 else if (q.question_type === 5) {
-                    return <QuestionReversedToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
+                    return <QuestionReversedToggle 
+                                question={q} 
+                                setAnswers={state_list[q.id][1]} 
+                                answers={state_list[q.id][0]} 
+                                key={`question-list-request${currentRequest.id}-item${q.id}`}/>
                 }
-                else return <QuestionMultipleChoice question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
+                else return <QuestionMultipleChoice 
+                                question={q} 
+                                setAnswers={state_list[q.id][1]} 
+                                answers={state_list[q.id][0]} 
+                                key={`question-list-request${currentRequest.id}-item${q.id}`}/>
             })}
         </span>
         <div className="answers-controls">
             <button type="submit">RUN THE QUERY</button>
-            <a onClick={onReset}>RESET QUERY</a>
+            <button onClick={onReset}>RESET QUERY</button>
         </div>
     </form>
     </>

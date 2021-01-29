@@ -33,7 +33,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
     if (!authenticated){
       setIsOpen(false)
     }
-  },[authenticated])
+  },[authenticated,setIsOpen])
 
   return (
     <>

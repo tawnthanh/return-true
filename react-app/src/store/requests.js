@@ -1,5 +1,3 @@
-import {store} from "../index"
-
 const ADD_REQUEST = "request/add";
 const REMOVE_REQUEST = "request/remove";
 const EDIT_REQUEST = "request/edit";
@@ -160,9 +158,10 @@ const reducer = (state = initialState, action) => {
     case START_REQUEST: {
       const newState = [];
       for (let i = 0; i < state.length; i++) {
-        let req = {... state[i]};
+        let req = {...state[i]};
         if (state[i].id === action.requestId) {
-          req.answers=action.answers
+          req.answers=action.answers;
+          req.active=true;
         }
         newState.push(req)
       }

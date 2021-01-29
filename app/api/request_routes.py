@@ -99,10 +99,7 @@ def save_answers(id):
     """
     print(request.get_json())
 
-
-
     for a in request.get_json():
-        print("==============",a)
         new_answer = Answer(
             requestId=id,
             questionId=a["questionId"],
@@ -110,6 +107,11 @@ def save_answers(id):
             )
         db.session.add(new_answer)
 
+    r = Request.query.get(id)
+    r.active=True
+
+    db.session.add(r)
+    
     db.session.commit()
 
     request_answers = Answer.query.filter(Answer.requestId==id).all()

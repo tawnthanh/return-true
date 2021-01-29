@@ -1,5 +1,3 @@
-import {store} from "../index"
-
 const GET_ALL = "fixed/get_all";
 
 const getQuestions = (questions, languages, frequencies, expertise) => {

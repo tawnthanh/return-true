@@ -34,7 +34,7 @@ export default function Request () {
         } else {
             setIsLoaded(false)
         }
-    },[requests,id])
+    },[requests,id,dispatch])
 
     useEffect(()=>{
         if (Object.keys(request).length > 0) {
@@ -47,12 +47,17 @@ export default function Request () {
             setTitle(request.title)
             dispatch(openTab(tab))
         }
-    },[request])
+    },[request,dispatch,id])
 
     return isLoaded && <>
     {!editMode && <div className="h1 with-edit">
         <h1>{request.title}</h1>
         <i className="fas fa-edit" onClick={()=>{setEditMode(true)}}></i>
+        {request.answers.length > 0 &&
+        <Toggle isOn={request.active}  onSwitch={()=>{
+            const editedRequest = {...request,active: !request.active}
+            dispatch(updateRequest(editedRequest));
+        }} />}
     </div>}
     {editMode && <form onSubmit={onSubmitEditTitle}>
         <input 
@@ -62,11 +67,7 @@ export default function Request () {
             onChange={e=>{setTitle(e.target.value)}}
         />
     </form>}
-    {request.answers.length > 0 &&
-        <Toggle isOn={request.active}  onSwitch={()=>{
-            const editedRequest = {...request,active: !request.active}
-            dispatch(updateRequest(editedRequest));
-        }} />}
+    
         <Answer/>
     </>
 }
