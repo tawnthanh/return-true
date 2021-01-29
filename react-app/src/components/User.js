@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { getProfile } from "../store/profile";
 
 function User() {
+  const dispatch = useDispatch();
   const [user, setUser] = useState({});
-  // Notice we use useParams here instead of getting the params
-  // From props.
-  const { userId }  = useParams();
+  const { userId } = useParams();
+
+  const profiles = useSelector((state) => state.profile);
+  console.log(profiles);
+
+  useEffect(() => {
+    dispatch(getProfile(userId));
+  }, [dispatch]);
 
   useEffect(() => {
     if (!userId) {
-      return
+      return;
     }
     (async () => {
       const response = await fetch(`/api/users/${userId}`);

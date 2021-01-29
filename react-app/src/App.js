@@ -10,7 +10,7 @@ import Message from "./components/Message";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import TabBar from "./components/TabBar";
 import ProfileForm from "./components/ProfileForm";
 import Request from "./components/Request";
@@ -41,28 +41,36 @@ function App() {
 
 
 
-  useEffect(()=>{
-    if (!authenticated){
-      dispatch(resetTabs())
+  useEffect(() => {
+    if (!authenticated) {
+      dispatch(resetTabs());
     }
-  },[authenticated])
-  console.log('authenticated', authenticated)
-  console.log('loaded', loaded)
+  }, [authenticated]);
+
   if (!loaded) {
     return null;
   }
 
   return (
     <BrowserRouter>
-     <h1 className="header"> <span style={{color:"#bb86c0"}}>return</span> <span style={{color:"#2566ca"}}>true</span>;</h1>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} icon={faTimes}
-              isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className={`content${isOpen?" open":""}`}>
-      <TabBar/>
-      <div className="page-container">
-        <Switch>
-          <Route path="/login" exact={true}>
-            <LoginForm
+      <h1 className="header">
+        {" "}
+        <span style={{ color: "#bb86c0" }}>return</span>{" "}
+        <span style={{ color: "#2566ca" }}>true</span>;
+      </h1>
+      <NavBar
+        setAuthenticated={setAuthenticated}
+        authenticated={authenticated}
+        icon={faTimes}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+      <div className={`content${isOpen ? " open" : ""}`}>
+        <TabBar />
+        <div className="page-container">
+          <Switch>
+            <Route path="/login" exact={true}>
+              <LoginForm
                 authenticated={authenticated}
                 setAuthenticated={setAuthenticated}
               />
@@ -95,7 +103,7 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <Request authenticated={authenticated}/>
+              <Request authenticated={authenticated} />
             </ProtectedRoute>
             <Route path="/" exact={true}>
               <HomePage />

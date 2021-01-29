@@ -14,7 +14,7 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
   const [location, updateLocation] = useState(0)
   const [inPerson, updateInPerson] = useState(null)
   const [level, updateLevel] = useState(0)
-  const [personality, updatePersonality] = useState(null)
+  const [personality, updatePersonality] = useState(0)
   const [frequency, updateFrequency] = useState(0)
   const [mentorship, updateMentorship] = useState(null)
   const [morning, updateMorning] = useState(null)
@@ -184,6 +184,15 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
                 <option value="3" >20-40hrs/week</option>
                 <option value="4" >40hrs+/week</option>
               </select>
+            </span>
+        </div>
+        <div>
+            <label>My_personality_type</label>
+            <span className={frequency === 0? " " : "quoted"}>
+              <input type="radio" id="introvert" name="personality" required={true} value={true} onClick={(e)=>updatePersonality(e.target.value) }/>
+              <label id="radio" for="introvert">introvert</label>
+              <input type="radio" id="extrovert" name="personality" required={true} value={false} onClick={(e) => updatePersonality(e.target.value)}/>
+              <label id="radio" for="extrovert">extrovert</label>
             </span>
         </div>
         <div>
