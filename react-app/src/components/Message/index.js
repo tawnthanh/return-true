@@ -1,7 +1,7 @@
 import React, {useState, useEffect,  } from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import { postMessages, removeMessages, getMessages } from '../../store/message';
+import {  getMessages } from '../../store/message';
 
 
 const Message = () => {
@@ -19,14 +19,14 @@ const Message = () => {
     const fullStore = useSelector(state => {
       return state.messages
     })
-    const handleSubmit = (e) => {
-      e.preventDefault()
-      dispatch(postMessages(message, dialogueId))
-    }
+    // const handleSubmit = (e) => {
+    //   e.preventDefault()
+    //   dispatch(postMessages(message, dialogueId))
+    // }
 
     return (
       <div className="messagebox">
-        <form onSubmit={handleSubmit}>
+        <form >
           <input
               name="message"
               type="text"
@@ -35,11 +35,11 @@ const Message = () => {
               onChange={(e) => setMessage(e.target.value)}
           />
           <button onClick={() => {
-            dispatch(postMessages(message, dialogueId))
+            // dispatch(postMessages(message, dialogueId))
           }}>Send Message</button>
 
           <button onClick={() => {
-            dispatch(removeMessages())
+            // dispatch(removeMessages())
           }}>Delete Message</button>
         </form>
 

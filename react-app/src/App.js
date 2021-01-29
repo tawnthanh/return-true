@@ -14,6 +14,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import TabBar from "./components/TabBar";
 import Request from "./components/Request";
 import {resetTabs} from "./store/tabs";
+import { authenticate } from "./services/auth";
 
 
 function App() {
@@ -21,26 +22,33 @@ function App() {
   const user = useSelector((store) => store.session.user);
 
   const [isOpen, setIsOpen] = useState(false)
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(sessionAuthenticate())
     .then((res) => {
-      setAuthenticated(true)}
-    ).catch(err=>setAuthenticated(false));
+      console.log("hi!!!!!!!!!!!!!!")
+      setAuthenticated(true)
+      setLoaded(true)
+      }
+    ).catch((err)=>{
+      console.log('catch statement!!!!!')
+      setAuthenticated(false)
+      setLoaded(true)
+    });
+
   }, [dispatch]);
 
-  useEffect(()=>{
-    setLoaded(true)
-  },[user])
+
 
   useEffect(()=>{
     if (!authenticated){
       dispatch(resetTabs())
     }
   },[authenticated])
-
+  console.log('authenticated', authenticated)
+  console.log('loaded', loaded)
   if (!loaded) {
     return null;
   }
