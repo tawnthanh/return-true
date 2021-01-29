@@ -23,6 +23,12 @@ function User() {
     return null;
   }
 
-  return <div></div>;
+  return (
+    <div>
+      {!!profiles.expertises &&
+        Object.values(profiles.expertises).map((expertise) => expertise.type)}
+    </div>
+  );
 }
+
 export default User;
