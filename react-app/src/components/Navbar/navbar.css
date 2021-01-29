@@ -7,10 +7,10 @@
     z-index: 100;
     padding-top: 35px;
   }
-  
+
   .navbar ul {
     display: flex;
-    justify-content: start;
+    justify-content: flex-start;
     flex-direction: column;
     font-weight: bold;
     text-decoration: none;
@@ -87,7 +87,7 @@
   .sidebar {
     width: 200px;
     height: 100vh;
-    background-color: #080808;
+    background-color:#252526;
     position: fixed;
     z-index: 100;
     margin-left: 100px;

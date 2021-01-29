@@ -7,12 +7,18 @@ import logger from "redux-logger";
 
 //Reducers
 import sessionReducer from "./session";
+import searchReducer from "./search";
 import tabsReducer from "./tabs";
+import messageReducer from "./message";
+import requestsReducer from "./requests";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
     session: sessionReducer,
-    tabs: tabsReducer
+    tabs: tabsReducer,
+    message: messageReducer,
+    requests: requestsReducer,
+    search: searchReducer,
 });
 
 let enhancer;
