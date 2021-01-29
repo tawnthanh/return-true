@@ -85,9 +85,35 @@ def all_requests():
         user = current_user.to_dict()
 
     result = db.session.query(Request) \
-                       .join(Answer)  \
+                       .join(Answer, isouter=True)  \
                        .filter(Request.userId==user["id"]).all()
     
     requests = [r.to_dict() for r in result]
     
     return {"requests": requests}
+
+@request_routes.route('/<int:id>/answers', methods=['POST'])
+def save_answers(id):
+    """
+    Save answers
+    """
+    print(request.get_json())
+
+    for a in request.get_json():
+        new_answer = Answer(
+            requestId=id,
+            questionId=a["questionId"],
+            answer=a["answer"]
+            )
+        db.session.add(new_answer)
+
+    r = Request.query.get(id)
+    r.active=True
+
+    db.session.add(r)
+    
+    db.session.commit()
+
+    request_answers = Answer.query.filter(Answer.requestId==id).all()
+    request_answers = [a.to_dict() for a in request_answers]
+    return {"answers": request_answers}

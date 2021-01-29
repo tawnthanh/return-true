@@ -11,6 +11,8 @@ import searchReducer from "./search";
 import tabsReducer from "./tabs";
 import profileReducer from "./profile";
 import requestsReducer from "./requests";
+import currentRequestsReducer from "./currentRequest";
+import fixedReducer from "./fixed";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
   requests: requestsReducer,
   search: searchReducer,
   profile: profileReducer,
+  fixed: fixedReducer,
+  currentRequest: currentRequestsReducer,
 });
 
 let enhancer;

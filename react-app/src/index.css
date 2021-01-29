@@ -39,3 +39,10 @@ button:focus, input:focus, select:focus, textarea:focus {
 .content.open {
     padding-left: 300px;
 }
+
+.page-container h1 {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 25px;
+    font-weight: 400;
+    padding-left: 20px;
+}

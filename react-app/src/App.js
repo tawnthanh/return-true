@@ -8,8 +8,9 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
+import { pullFixed } from "./store/fixed";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from "react-redux";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import TabBar from "./components/TabBar";
 import Request from "./components/Request";
 import { resetTabs } from "./store/tabs";
@@ -28,6 +29,7 @@ function App() {
         setAuthenticated(true);
       })
       .catch((err) => setAuthenticated(false));
+      dispatch(pullFixed());
   }, [dispatch]);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ function App() {
     if (!authenticated) {
       dispatch(resetTabs());
     }
-  }, [authenticated]);
+  },[authenticated,dispatch])
 
   if (!loaded) {
     return null;
