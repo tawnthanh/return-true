@@ -29,12 +29,12 @@ def search():
 
 @search_routes.route("/test")
 def test():
-    profiles = Profile.query.all()
-    profile_list = []
-    for profile in profiles:
-        profile_list.append(profile.to_dict())
-    print(profile_list)
-    return jsonify(profile_list)
+    # profiles = Profile.query.all()
+    # profile_list = []
+    # for profile in profiles:
+    #     profile_list.append(profile.to_dict())
+    # print(profile_list)
+    # return jsonify(profile_list)
 
     # frequency = Frequency.query.all()
     # list = []

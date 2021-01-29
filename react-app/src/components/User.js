@@ -7,14 +7,9 @@ function User() {
   const dispatch = useDispatch();
   const [user, setUser] = useState({});
   const { userId } = useParams();
-  // const userId = Number.parseInt(useParams().userId);
 
   const profiles = useSelector((state) => state.profile);
   console.log(profiles);
-  // const profiles = useSelector(({ profiles }) =>
-  //   Object.values(profiles).filter((profile) => profile.userId === userId)
-  // );
-  // console.log(profiles);
 
   useEffect(() => {
     dispatch(getProfile(userId));

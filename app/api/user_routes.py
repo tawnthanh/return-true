@@ -22,15 +22,12 @@ def user(id):
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
-    # print("!!!!!!!!!")
     profiles = Profile.query.all()
     profile_list = []
     for profile in profiles:
         profile_list.append(profile.to_dict())
     print(profile_list)
     return jsonify(profile_list)
-    # profiles = Profile.query.all()
-    # return {"profiles": [profile.to_dict() for profile in profiles]}
 
 
 # @user_routes.route('/<int:id>/profiles')

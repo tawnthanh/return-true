@@ -6,9 +6,8 @@ const setProfile = (payload) => ({
 });
 
 export const getProfile = (userId) => async (dispatch) => {
-  console.log(userId)
+  console.log(userId);
   const res = await fetch(`/api/users/${userId}/profiles`);
-  // const res = await fetch(`/api/search/test`);
   if (res.ok) {
     let response = await res.json();
     dispatch(setProfile(response));
