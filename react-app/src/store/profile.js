@@ -1,9 +1,15 @@
 const SET_PROFILE = "profile/set";
+const GET_FORM_DETAILS = "profile_form/get"
 
 const setProfile = (payload) => ({
   type: SET_PROFILE,
   payload,
 });
+
+const getProfileFields = (formDetails) => ({
+  type: GET_FORM_DETAILS,
+  formDetails
+})
 
 export const getProfile = (userId) => async (dispatch) => {
   console.log(userId);
@@ -15,6 +21,16 @@ export const getProfile = (userId) => async (dispatch) => {
   }
 };
 
+export const getProfileFields = (username) => async (dispatch) => {
+  const res = await fetch(`/api/users/${username}/edit-profile`)
+  if (res.ok) {
+    const profile_fields = res.json()
+    dispatch(getProfile(profile_fields))
+  }
+  return console.log("error with fetch")
+}
+
+
 const initState = {};
 const profileReducer = (state = initState, action) => {
   const newState = Object.assign({}, state);
@@ -24,6 +40,8 @@ const profileReducer = (state = initState, action) => {
         newState[profile.id] = profile;
       }
       return newState;
+    // case GET_FORM_DETAILS:
+    //   newState
     default:
       return state;
   }

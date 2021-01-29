@@ -49,10 +49,39 @@ def profiles(id):
 #     profile = Profile.query.filter_by(id=id).one()
 #     return profile.to_dict()
 
-@user_routes.route('/edit-profile')
+# @user_routes.route('/edit-profile')
+# # @login_required
+# def profile_form():
+#     profile = Profile.query.filter(Profile.username.like("Demo")).first()
+#     if profile:
+#         return jsonify(profile)
+#     return "hi"
+
+@user_routes.route('/<username>/edit-profile')
 # @login_required
-def profile_form():
-    profile = Profile.query.filter(Profile.username.like("Demo")).first()
+def profile_form(username):
+    profile = Profile.query.join(User).filter(User.username == username).first()
     if profile:
-        return jsonify(profile)
-    return "hi"
+        return profile.to_dict()
+    else:
+        user_info_response = User.query.filter(User.username == username).first()
+        user_info = user_info_response.to_dict()
+        return {
+            "user_id": user_info["id"],
+            "username": user_info["username"],
+            "first_name": None,
+            "last_name": None,
+            "image_url": None,
+            "bio": None,
+            "location_id": 0,
+            "in_person": None,
+            "level": 0,
+            "personality": 0,
+            "frequency_id": 0,
+            "frequency": [],
+            "mentorship": None,
+            "morning": None,
+            "languages": [],
+            "expertises": [],
+            }
+        # return jsonify(user_info["id"])
