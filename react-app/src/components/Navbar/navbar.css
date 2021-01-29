@@ -27,11 +27,17 @@
     list-style: none;
     height: 100%;
   }
-  .navbar li a {
+  .navbar li a, .navbar li button{
     color: #778585;
+    background: transparent;
+    outline: none;
+    border: none;
+  }
+  .navbar li i {
+    font-size: 48px;
   }
 
-  .navbar li a:hover,.navbar li i:hover {
+  .navbar li button:hover,.navbar li i:hover {
     color: white;
     cursor: pointer;
   }

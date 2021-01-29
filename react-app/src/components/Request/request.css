@@ -39,34 +39,4 @@
     content: ".sql"
 }
 
-.toggle {
-    display: flex;
-    flex-direction: row;
-    width:70px;
-    height:40px;
-    background-color: #000;
-    border-radius: 20px;
-    padding: 0;
-    align-items: center;
-}
 
-.toggle span {
-    box-sizing: border-box;
-    width: 38px;
-    height: 38px;
-    border-radius: 19px;
-}
-.toggle.toggle-off{
-    justify-content: flex-start;
-}
-.toggle.toggle-on{
-    justify-content: flex-end;
-}
-
-.toggle-off span {
-    background-color: lightcoral;
-}
-
-.toggle-on span {
-    background-color:lightgreen;
-}

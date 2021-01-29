@@ -9,8 +9,9 @@ import User from "./components/User";
 import Message from "./components/Message";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
+import { pullFixed } from "./store/fixed";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from "react-redux";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import TabBar from "./components/TabBar";
 import ProfileForm from "./components/ProfileForm";
 import Request from "./components/Request";
@@ -37,6 +38,8 @@ function App() {
       setLoaded(true)
     });
 
+    dispatch(pullFixed())
+
   }, [dispatch]);
 
 
@@ -45,7 +48,7 @@ function App() {
     if (!authenticated) {
       dispatch(resetTabs());
     }
-  }, [authenticated]);
+  },[authenticated,dispatch])
 
   if (!loaded) {
     return null;
