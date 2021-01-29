@@ -23,28 +23,6 @@ function User() {
     return null;
   }
 
-  return (
-    <div>
-      <ul>
-        <li>
-          <strong>User</strong> {profiles.first_name}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul>
-      <div>
-        <img className="profile-pictures" src={profiles.image_url} />
-        <p>{profiles.bio}</p>
-        <p>{profiles.expertises}</p>
-        {/* <p>{profiles.frequency}</p> */}
-        <p>{profiles.in_person}</p>
-        {/* <p>{profiles.languages}</p> */}
-      </div>
-    </div>
-  );
+  return <div></div>;
 }
 export default User;

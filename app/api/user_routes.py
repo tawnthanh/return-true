@@ -19,27 +19,9 @@ def user(id):
     return user.to_dict()
 
 
-# @user_routes.route('/<id>/profiles')
-# @login_required
-# def profiles(id):
-#     profiles = Profile.query.all()
-#     profile_list = []
-#     for profile in profiles:
-#         profile_list.append(profile.to_dict())
-#     print(profile_list)
-#     return jsonify(profile_list)
-
-
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
     profiles = Profile.query.get(id)
     print(profiles)
     return {"profile": profiles.to_dict()}
-
-
-# @user_routes.route('/<int:id>/profiles')
-# @login_required
-# def profile(id):
-#     profile = Profile.query.filter_by(id=id).one()
-#     return profile.to_dict()
