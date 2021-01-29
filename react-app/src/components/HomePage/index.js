@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import {openTab} from "../../store/tabs";
 
 export default function HomePage () {

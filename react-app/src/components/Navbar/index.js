@@ -29,8 +29,8 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
     }
   }
 
-  useEffect(()=>{
-    if (!authenticated){
+  useEffect(() => {
+    if (!authenticated) {
       setIsOpen(false)
     }
   },[authenticated,setIsOpen])
@@ -45,14 +45,14 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             </NavLink>
           </li>
           {authenticated && <li>
-            <a onClick={() => switchSideBar("search")} className="active search-button">
-            <i className="fa fa-search fa-3x"></i>
-            </a>
+            <div onClick={() => switchSideBar("search")} className="active search-button">
+              <i className="fa fa-search fa-3x"></i>
+            </div>
           </li>}
           {authenticated && <li>
-            <a onClick={() => switchSideBar("requests")} className="active search-button">
-            <i className="fa fa-handshake fa-3x"></i>
-            </a>
+            <div onClick={() => switchSideBar("requests")} className="active search-button">
+              <i className="fa fa-handshake fa-3x"></i>
+            </div>
           </li>}
           {!authenticated && <li>
             <NavLink to="/login" exact={true} className="active">

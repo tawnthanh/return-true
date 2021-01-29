@@ -12,12 +12,16 @@ const LogoutButton = ({ setAuthenticated }) => {
     setAuthenticated(user == null);
   };
 
-  return <>
-    <button onClick={onLogout}>
-    <i className="fa fa-sign-out fa-3x" aria-hidden={true}></i>
-    </button>
-    </>
+  // return <>
+  //   <button onClick={onLogout}>
+  //   <i className="fa fa-sign-out fa-3x" aria-hidden={true}></i>
+  //   </button>
+  //   </>
     
+  return (
+    <div onClick={onLogout}>
+      <i className="fa fa-sign-out fa-3x" aria-hidden="true"></i>
+    </div>);
 };
 
 export default LogoutButton;

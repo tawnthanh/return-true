@@ -6,12 +6,15 @@ from .db import db
 #     db.Column("questionId", db.Integer, db.ForeignKey("questions.id"), primary_key=True),
 #     db.Column("answer", db.String, nullable=False))
 
+
 class Answer(db.Model):
     __tablename__ = "answers"
 
     id = db.Column(db.Integer, primary_key=True)
-    requestId = db.Column(db.Integer, db.ForeignKey("requests.id"), nullable=False)
-    questionId = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
+    requestId = db.Column(db.Integer, db.ForeignKey("requests.id"),
+                          nullable=False)
+    questionId = db.Column(db.Integer, db.ForeignKey("questions.id"),
+                           nullable=False)
     answer = db.Column(db.String(50), nullable=False)
 
     request = db.relationship("Request", back_populates="answers")
@@ -24,6 +27,7 @@ class Answer(db.Model):
             "questionId": self.questionId,
             "answer": self.answer
         }
+
 
 class Request(db.Model):
     __tablename__ = "requests"
@@ -43,6 +47,7 @@ class Request(db.Model):
             "title": self.title,
             "answers": [a.to_dict() for a in self.answers]
         }
+
 
 class Question(db.Model):
     __tablename__ = "questions"

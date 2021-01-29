@@ -10,7 +10,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  
+
   const onLogin = (e) => {
     e.preventDefault();
     dispatch(sessionLogin(email, password))
@@ -41,7 +41,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         link: "/login"
       }))
     else dispatch(closeTab("login"))
-  },[authenticated,dispatch])
+  },[authenticated, dispatch])
 
   if (authenticated) {
     return <Redirect to="/" />;
