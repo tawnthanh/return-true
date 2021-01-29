@@ -46,6 +46,6 @@ class Message(db.Model):
             "id": self.id,
             "dialogue_id": self.dialogueId,
             "message": self.message,
-            "sender": self.from_sender,
-            "convo": [c.to_dict() for c in self.convo]
+            "sender": self.from_sender.to_dict(),
+            "convo": self.convo.to_dict()
         }
