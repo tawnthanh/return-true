@@ -11,7 +11,7 @@ import { sessionAuthenticate } from "./store/session";
 import { useSelector, useDispatch } from "react-redux";
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import TabBar from "./components/TabBar";
-
+import ProfileForm from "./components/ProfileForm";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,11 +35,11 @@ function App() {
   if (!loaded) {
     return null;
   }
-  
+
   return (
     <BrowserRouter>
      <h1 className="header"> <span style={{color:"#bb86c0"}}>return</span> <span style={{color:"#2566ca"}}>true</span>;</h1>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} icon={faTimes}  
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} icon={faTimes}
               isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className={`content${isOpen?" open":""}`}>
       <TabBar/>
@@ -75,7 +75,7 @@ function App() {
               <HomePage />
             </Route>
             <Route path="/edit-profile" exact={true} authenticated={authenticated}>
-              <h1>Hi</h1>
+              <ProfileForm />
             </Route>
           </Switch>
         </div>

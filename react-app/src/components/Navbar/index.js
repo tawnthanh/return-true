@@ -68,6 +68,11 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               <i class="fa fa-user fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
+          {authenticated && <li>
+            <NavLink to="/edit-profile" exact={true} className="active">
+              Edit Profile
+            </NavLink>
+          </li>}
           {authenticated && <li className="logoutbutton">
             <LogoutButton setAuthenticated={setAuthenticated}/>
           </li>}
