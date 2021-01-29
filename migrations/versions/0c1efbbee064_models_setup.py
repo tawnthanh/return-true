@@ -1,7 +1,7 @@
 """Models setup
 
 Revision ID: 0c1efbbee064
-Revises: 
+Revises:
 Create Date: 2021-01-28 15:37:13.108960
 
 """
@@ -109,7 +109,9 @@ def upgrade():
     sa.Column('dialogueId', sa.Integer(), nullable=True),
     sa.Column('message', sa.String(), nullable=False),
     sa.Column('read', sa.Boolean(), nullable=True),
+    sa.Column('senderId', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['dialogueId'], ['dialogues.id'], ),
+    sa.ForeignKeyConstraint(['senderId'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('profiles',

@@ -18,13 +18,14 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/messages/<int:dialogueId>', methods=['GET', 'POST'])
+@user_routes.route('/messages/<int:dialogueId>', methods=['GET'])
 @login_required
 def messages(dialogueId):
     messages = Message.query.filter(Message.dialogueId==dialogueId).all()
     print(messages)
     msg = []
     for m in messages:
-        msg.append(m.to_dict())
+        msg.append(m.msg())
+    print(msg)
     return jsonify(msg)
     # return {"messages": [messages.to_dict() for message in messages]}

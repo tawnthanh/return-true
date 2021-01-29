@@ -27,12 +27,12 @@ class Message(db.Model):
     dialogueId = db.Column(db.Integer, db.ForeignKey("dialogues.id"))
     message = db.Column(db.String, nullable=False)
     read = db.Column(db.Boolean, default=False)
-    sender = db.Column(db.Integer, db.ForeignKey("users.id"))
+    senderId = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     convo = db.relationship("Dialogue",
                             back_populates="messages", cascade="all")
 
-    # from_sender = db.relationship("User", back_populates="msg_sender" )
+    from_sender = db.relationship("User", back_populates="msg_sender" )
 
     def to_dict(self):
         return {
@@ -47,6 +47,6 @@ class Message(db.Model):
             "id": self.id,
             "dialogue_id": self.dialogueId,
             "message": self.message,
-            "sender": self.from_sender,
-            "convo": [c.to_dict() for c in self.convo]
+            "sender": self.from_sender.to_dict(),
+            "convo": self.convo.to_dict()
         }

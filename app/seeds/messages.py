@@ -16,6 +16,6 @@ def create_message():
     ]
 
     for message in messages:
-        message1 = Message(message=message[0],dialogueId=message[2],read=message[1], sender=message[3])
+        message1 = Message(message=message[0],dialogueId=message[2],read=message[1], senderId=message[3])
         db.session.add(message1)
     db.session.commit()
