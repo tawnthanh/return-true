@@ -50,12 +50,13 @@ export default function Request () {
     },[request])
 
     return isLoaded && <>
-    {!editMode && <div>
+    {!editMode && <div className="h1 with-edit">
         <h1>{request.title}</h1>
         <i className="fas fa-edit" onClick={()=>{setEditMode(true)}}></i>
     </div>}
     {editMode && <form onSubmit={onSubmitEditTitle}>
         <input 
+            className="code-edit h1"
             type="text"
             value={title}
             onChange={e=>{setTitle(e.target.value)}}

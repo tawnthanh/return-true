@@ -12,8 +12,8 @@ export default function QuestionForm () {
     const [answer3, setAnswer3] = useState();
     const [answer4, setAnswer4] = useState(new Set());
     const [answer5, setAnswer5] = useState();
-    const [answer6, setAnswer6] = useState();
-    const [answer7, setAnswer7] = useState();
+    const [answer6, setAnswer6] = useState(false);
+    const [answer7, setAnswer7] = useState(false);
     const [answer8, setAnswer8] = useState();
     const [answer9, setAnswer9] = useState();
     const state_list = {
@@ -43,10 +43,12 @@ export default function QuestionForm () {
                     "answer": Array.from(item[0]).join(",")
                 })
             } else if (typeof item[0] === "boolean"){
-                request_answers.push({
-                    "questionId": parseInt(key),
-                    "answer": item[0]?"1":"0"
-                })
+                //6 and 7 - question_type==6
+                if (item[0] || ![6,7].includes(parseInt(key)))
+                    request_answers.push({
+                        "questionId": parseInt(key),
+                        "answer": item[0]?"1":"0"
+                    })
             } else if (typeof item[0] !== "undefined" && typeof item[0] !== "object"){
                 request_answers.push({
                     "questionId": parseInt(key),
@@ -57,23 +59,41 @@ export default function QuestionForm () {
         dispatch(saveAnswers(currentRequest.id, request_answers))
     }
 
+    const onReset = () => {
+        setAnswer1(new Set());
+        setAnswer2(new Set());
+        setAnswer3();
+        setAnswer4(new Set());
+        setAnswer5();
+        setAnswer6(false);
+        setAnswer7(false);
+        setAnswer8();
+        setAnswer9();
+    }
 
     return <>
-    <form onSubmit={onSubmit}>
-        {Object.entries(questions).map(item=>{
-            const q = item[1];
-            if (q.question_type === 3) {
-                return <QuestionRadiobutton question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
-            }
-            else if (q.question_type === 4) {
-                return <QuestionReversedToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]} />
-            }
-            else if (q.question_type === 5) {
-                return <QuestionToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
-            }
-            else return <QuestionMultipleChoice question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
-        })}
-        <button type="submit">Open search</button>
+    <form onSubmit={onSubmit} className="answers-query">
+        <span>SELECT * </span>
+        <span>FROM Users</span>
+        <span className="answers-list question-list">
+            {Object.entries(questions).map(item=>{
+                const q = item[1];
+                if (q.question_type === 3) {
+                    return <QuestionRadiobutton question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
+                }
+                else if (q.question_type === 4 || q.question_type === 6) {
+                    return <QuestionToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]} />
+                }
+                else if (q.question_type === 5) {
+                    return <QuestionReversedToggle question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
+                }
+                else return <QuestionMultipleChoice question={q} setAnswers={state_list[q.id][1]} answers={state_list[q.id][0]}/>
+            })}
+        </span>
+        <div className="answers-controls">
+            <button type="submit">RUN THE QUERY</button>
+            <a onClick={onReset}>RESET QUERY</a>
+        </div>
     </form>
     </>
 }

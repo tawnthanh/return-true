@@ -29,7 +29,7 @@ export default function AnswerList () {
                     return  <span>
                                 {q.question} IN [{aArr.join(", ")}]
                             </span>
-                } else if ([4,5].includes(q.question_type)) {
+                } else if ([4,5,6].includes(q.question_type)) {
                     let aArr = q.options.split(",")
                     
                     if (aArr.length<2){

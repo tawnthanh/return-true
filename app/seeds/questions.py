@@ -6,6 +6,7 @@ Question Types:
 3=radio
 4=toggle
 5=reversed toggle (as toggle, neededfor rendering)
+6=toggle without options, save onlyif true
 """
 
 questions = [
@@ -14,8 +15,8 @@ questions = [
     {"question":"experience_level", "options":"beginner,provicient,expert", "questionType":3, "weight": 10},
     {"question":"area_of_expertise", "options":"expertise", "questionType":2, "weight": 10},
     {"question":"personality", "options":"introvert,extrovert", "questionType":4, "weight": 10},
-    {"question":"state = $MyState", "options": "", "questionType": 4, "weight": 10},
-    {"question":"city = $MyCity", "options": "", "questionType": 4, "weight": 10},
+    {"question":"state = $MyState", "options": "", "questionType": 6, "weight": 10},
+    {"question":"city = $MyCity", "options": "", "questionType": 6, "weight": 10},
     {"question":"day_time_preference", "options": "morning,night", "questionType": 5, "weight": 10},
     {"question":"frequency", "options":"frequencies", "questionType": 3, "weight": 10}
 ]
