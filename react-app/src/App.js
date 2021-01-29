@@ -29,12 +29,10 @@ function App() {
   useEffect(() => {
     dispatch(sessionAuthenticate())
     .then((res) => {
-      console.log("hi!!!!!!!!!!!!!!")
       setAuthenticated(true)
       setLoaded(true)
       }
     ).catch((err)=>{
-      console.log('catch statement!!!!!')
       setAuthenticated(false)
       setLoaded(true)
     });

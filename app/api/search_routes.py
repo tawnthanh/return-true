@@ -1,9 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-<<<<<<< HEAD
-from app.models import User, Profile
-=======
 from app.models import User, Profile, Frequency, Location, State, Languages
->>>>>>> cssupdates
 
 search_routes = Blueprint('search', __name__)
 
@@ -27,10 +23,9 @@ def search():
             })
         return jsonify(*profiles)
     return {'errors': ['ReferenceError: No Results Found']}, 404
-<<<<<<< HEAD
-=======
 
 # THIS IS TO TEST THE RESPONSE FROM THE MODEL'S BUILT IN FUNCTIONS
+
 
 @search_routes.route("/test")
 def test():
@@ -68,4 +63,3 @@ def test():
     # #     l_list.append(l.get_all_profiles())
     # print(languages.get_all_profiles())
     # return languages.get_all_profiles()
->>>>>>> cssupdates
