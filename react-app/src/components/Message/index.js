@@ -1,7 +1,8 @@
 import React, {useState, useEffect,  } from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {  getMessages } from '../../store/message';
+import {  getMessages, addMessage } from '../../store/message';
+
 
 
 const Message = () => {
@@ -10,11 +11,13 @@ const Message = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(getMessages(dialogueId))
+      // setInterval(() => {
+        dispatch(getMessages(dialogueId))
+      // }, 30000)
+
     }, [dispatch])
     // const {message} = useSelector(state => state.message)
 
-    console.log(message)
 
     const fullStore = useSelector(state => {
       return state.messages
@@ -34,18 +37,23 @@ const Message = () => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
           />
-          <button onClick={() => {
-            // dispatch(postMessages(message, dialogueId))
+          <button onClick={(e) => {
+            e.preventDefault()
+
+            dispatch(addMessage(dialogueId,message))
           }}>Send Message</button>
 
-          <button onClick={() => {
-            // dispatch(removeMessages())
-          }}>Delete Message</button>
         </form>
 
 
       <div className="message-result">
           {message}
+
+      </div>
+      <div>
+       { fullStore.map((msg)=> {
+          return msg.message
+        })}
       </div>
     </div>
     )

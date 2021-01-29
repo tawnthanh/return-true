@@ -39,7 +39,8 @@ class Message(db.Model):
             "id": self.id,
             "dialogue_id": self.dialogueId,
             "message": self.message,
-            "read": self.read
+            "read": self.read,
+            "senderId": self.senderId
         }
 
     def msg(self):

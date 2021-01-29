@@ -16,7 +16,7 @@ import requestsReducer from "./requests";
 const rootReducer = combineReducers({
     session: sessionReducer,
     tabs: tabsReducer,
-    message: messageReducer,
+    messages: messageReducer,
     requests: requestsReducer,
     search: searchReducer,
 });
