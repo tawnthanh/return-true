@@ -26,6 +26,7 @@ def search():
 
 # THIS IS TO TEST THE RESPONSE FROM THE MODEL'S BUILT IN FUNCTIONS
 
+
 @search_routes.route("/test")
 def test():
     # profiles = Profile.query.all()

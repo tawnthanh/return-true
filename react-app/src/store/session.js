@@ -25,7 +25,9 @@ export const sessionAuthenticate = () => async (dispatch) => {
   }
 };
 
-export const sessionSignup = (username, email, password) => async (dispatch) => {
+export const sessionSignup = (username, email, password) => async (
+  dispatch
+) => {
   const res = await signUp(username, email, password);
   if (!res.errors) {
     return dispatch(newSession(res));
