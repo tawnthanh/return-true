@@ -91,3 +91,27 @@ def all_requests():
     requests = [r.to_dict() for r in result]
     
     return {"requests": requests}
+
+@request_routes.route('/<int:id>/answers', methods=['POST'])
+def save_answers(id):
+    """
+    Save answers
+    """
+    print(request.get_json())
+
+
+
+    for a in request.get_json():
+        print("==============",a)
+        new_answer = Answer(
+            requestId=id,
+            questionId=a["questionId"],
+            answer=a["answer"]
+            )
+        db.session.add(new_answer)
+
+    db.session.commit()
+
+    request_answers = Answer.query.filter(Answer.requestId==id).all()
+    request_answers = [a.to_dict() for a in request_answers]
+    return {"answers": request_answers}

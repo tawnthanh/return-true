@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import {createRequest, getRequests, destroyRequest} from "../../store/requests";
@@ -7,6 +7,7 @@ import "./request.css";
 
 export default function RequestList () {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [isOpen, setIsOpen] = useState(false)
     const [title, setTitle] = useState("");
     const [errors, setErrors] = useState([]);
@@ -19,11 +20,12 @@ export default function RequestList () {
             setTitle("");
             setIsOpen(false);
             const new_request = res.request;
-            dispatch(openTab({
+            await dispatch(openTab({
                 tab_id: `request-${new_request.id}`,
-                title: `request-${new_request.title}`,
+                title: `${new_request.title}`,
                 link: `/request/${new_request.id}`,
             }))
+            history.push(`/request/${new_request.id}`)
         } else {
             setErrors(res.errors);
         }

@@ -11,7 +11,7 @@ questions = [
     {"question":"Who are you looking for", "options":"teacher,partner,friend,study buddy,code review", "questionType": 1, "weight": 10},
     {"question":"languages", "options": "languages", "questionType":2, "weight": 10},
     {"question":"experience level", "options":"beginner,provicient,expert", "questionType":3, "weight": 10},
-    {"question":"area of expertise", "options":"backend,frontend,UX/UI design,AI,Data analysis", "questionType":3, "weight": 10},
+    {"question":"area of expertise", "options":"expertise", "questionType":2, "weight": 10},
     {"question":"personality", "options":"introvert,extrovert", "questionType":4, "weight": 10},
     {"question":"filter by state", "options": "", "questionType": 4, "weight": 10},
     {"question":"filter by city", "options": "", "questionType": 4, "weight": 10},

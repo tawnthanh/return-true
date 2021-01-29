@@ -33,7 +33,7 @@ class Request(db.Model):
     title = db.Column(db.String(50), nullable=False)
     active = db.Column(db.Boolean, nullable=False)
 
-    answers = db.relationship("Answer", back_populates="request")
+    answers = db.relationship("Answer", back_populates="request", cascade="all")
 
     def to_dict(self):
         return {

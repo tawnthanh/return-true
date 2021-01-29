@@ -3,16 +3,21 @@ import {useParams} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {openTab} from "../../store/tabs";
 import {updateRequest} from "../../store/requests";
+import {getCurrent} from "../../store/currentRequest";
+import Answer from "../Answers/";
+import {Toggle} from "../Answers/QuestionTypes";
 
 export default function Request () {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("")
-    const [request, setRequest] = useState({});
+    // const [request, setRequest] = useState({});
     let {id} = useParams();
     id = parseInt(id);
+
     const requests = useSelector(state => state.requests)
+    const request = useSelector(state=> state.currentRequest)
 
     const onSubmitEditTitle = e => {
         e.preventDefault();
@@ -22,8 +27,12 @@ export default function Request () {
     }
 
     useEffect(()=>{
-        if (requests.length > 0){
-            setRequest(requests.find(item => item.id===id));
+        let curr = requests.find(item => item.id===id)
+        if (curr){
+            if (requests.length>0) dispatch(getCurrent(curr))
+            setIsLoaded(true)
+        } else {
+            setIsLoaded(false)
         }
     },[requests,id])
 
@@ -43,7 +52,7 @@ export default function Request () {
     return isLoaded && <>
     {!editMode && <div>
         <h1>{request.title}</h1>
-        <i class="fas fa-edit" onClick={()=>{setEditMode(true)}}></i>
+        <i className="fas fa-edit" onClick={()=>{setEditMode(true)}}></i>
     </div>}
     {editMode && <form onSubmit={onSubmitEditTitle}>
         <input 
@@ -52,10 +61,11 @@ export default function Request () {
             onChange={e=>{setTitle(e.target.value)}}
         />
     </form>}
-    {request.answers.length>0 && <span className={"toggle toggle-"+(request.active?"on":"off")} 
-    onClick={()=>{
-        const editedRequest = {...request,active: !request.active}
-        dispatch(updateRequest(editedRequest));
-    }} ><span></span></span>}
+    {request.answers.length > 0 &&
+        <Toggle isOn={request.active}  onSwitch={()=>{
+            const editedRequest = {...request,active: !request.active}
+            dispatch(updateRequest(editedRequest));
+        }} />}
+        <Answer/>
     </>
 }
