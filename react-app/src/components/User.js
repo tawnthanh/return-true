@@ -24,25 +24,29 @@ function User() {
   }
 
   return (
-    <div>
+    <div className="profile">
       <div>
-        <img className="profile-picture" src={profiles.image_url} />
+        <img id="profile-picture" src={profiles.image_url} />
       </div>
-      <div>
+      <div className="profile-details">
         <h1>
-          Const {profiles.first_name}(){"{"}
+          Const {profiles.first_name} = {"{"}
         </h1>
-      </div>
-      <div>
-        <p>
-          Expertise(s):{" "}
-          {!!profiles.expertises &&
-            Object.values(profiles.expertises).map(
-              (expertise) => expertise.type
-            )}
-        </p>
-
-        <div>Level === {profiles.level}</div>
+        <ul>
+          <div>Expertise(s): {"{"}</div>
+          <ul>
+            {/* how do i make this part look intented in browser */}
+            <div>
+              {!!profiles.expertises &&
+                Object.values(profiles.expertises).map((expertise) => (
+                  <li id="expertise-type">{expertise.type},</li>
+                ))}
+              {"},"}
+            </div>
+          </ul>
+          <br />
+          <div>Level: {profiles.level},</div>
+        </ul>
       </div>
     </div>
   );
