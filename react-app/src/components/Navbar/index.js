@@ -59,6 +59,11 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               <i className="fa fa-sign-in fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
+          <li>
+            <NavLink to="/messages/1" exact={true} className="message">
+              message
+            </NavLink>
+            </li>
           {!authenticated && <li>
             <NavLink to="/sign-up" exact={true} className="active">
               <i className="fa fa-user-plus fa-3x" aria-hidden="true"></i>

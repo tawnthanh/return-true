@@ -9,6 +9,7 @@ import logger from "redux-logger";
 import sessionReducer from "./session";
 import searchReducer from "./search";
 import tabsReducer from "./tabs";
+import messageReducer from "./message";
 import profileReducer from "./profile";
 import requestsReducer from "./requests";
 import currentRequestsReducer from "./currentRequest";
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   fixed: fixedReducer,
   currentRequest: currentRequestsReducer,
+  messages: messageReducer,
 });
 
 let enhancer;

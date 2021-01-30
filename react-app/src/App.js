@@ -6,6 +6,7 @@ import NavBar from "./components/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import Message from "./components/Message";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
 import { pullFixed } from "./store/fixed";
@@ -13,29 +14,36 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
 import TabBar from "./components/TabBar";
 import Request from "./components/Request";
-import { resetTabs } from "./store/tabs";
+import {resetTabs} from "./store/tabs";
+import { authenticate } from "./services/auth";
+
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.session.user);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
   const [authenticated, setAuthenticated] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(sessionAuthenticate())
-      .then((res) => {
-        console.log("hi!!!!!!!!!!!!!!");
-        setAuthenticated(true);
-        setLoaded(true);
-      })
-      .catch((err) => {
-        console.log("catch statement!!!!!");
-        setAuthenticated(false);
-        setLoaded(true);
-      });
+    .then((res) => {
+      console.log("hi!!!!!!!!!!!!!!")
+      setAuthenticated(true)
+      setLoaded(true)
+      dispatch(pullFixed());
+      }
+    ).catch((err)=>{
+      console.log('catch statement!!!!!')
+      setAuthenticated(false)
+      setLoaded(true)
+
+    });
+
   }, [dispatch]);
+
+
 
   useEffect(() => {
     if (!authenticated) {
@@ -77,6 +85,9 @@ function App() {
                 setAuthenticated={setAuthenticated}
               />
             </Route>
+            <ProtectedRoute path="/messages/:dialogueId" exact={true} authenticated={authenticated}>
+              <Message />
+            </ProtectedRoute>
             <ProtectedRoute
               path="/users"
               exact={true}
