@@ -25,8 +25,25 @@ function User() {
 
   return (
     <div>
-      {!!profiles.expertises &&
-        Object.values(profiles.expertises).map((expertise) => expertise.type)}
+      <div>
+        <img className="profile-picture" src={profiles.image_url} />
+      </div>
+      <div>
+        <h1>
+          Const {profiles.first_name}(){"{"}
+        </h1>
+      </div>
+      <div>
+        <p>
+          Expertise(s):{" "}
+          {!!profiles.expertises &&
+            Object.values(profiles.expertises).map(
+              (expertise) => expertise.type
+            )}
+        </p>
+
+        <div>Level === {profiles.level}</div>
+      </div>
     </div>
   );
 }
