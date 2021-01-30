@@ -14,7 +14,6 @@ const Message = () => {
     }, [dispatch])
     // const {message} = useSelector(state => state.message)
 
-    console.log(message)
 
     const fullStore = useSelector(state => {
       return state.messages

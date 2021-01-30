@@ -111,9 +111,9 @@ function App() {
             <Route path="/" exact={true}>
               <HomePage />
             </Route>
-            <Route path="/edit-profile" exact={true} authenticated={authenticated}>
+            <ProtectedRoute path="/:username/edit-profile" exact={true} authenticated={authenticated}>
               <ProfileForm />
-            </Route>
+            </ProtectedRoute>
           </Switch>
         </div>
       </div>

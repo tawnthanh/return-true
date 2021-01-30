@@ -35,12 +35,9 @@ def messages(dialogueId):
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
-    profiles = Profile.query.all()
-    profile_list = []
-    for profile in profiles:
-        profile_list.append(profile.to_dict())
-    print(profile_list)
-    return jsonify(profile_list)
+    profiles = Profile.query.get(id)
+    print(profiles)
+    return {"profile": profiles.to_dict()}
 
 
 # @user_routes.route('/<int:id>/profiles')
@@ -62,19 +59,19 @@ def profiles(id):
 def profile_form(username):
     profile = Profile.query.join(User).filter(User.username == username).first()
     if profile:
-        return profile.to_dict()
+        return {"profile": profile.to_dict()}
     else:
         user_info_response = User.query.filter(User.username == username).first()
         user_info = user_info_response.to_dict()
-        return {
+        default_info = {
             "user_id": user_info["id"],
             "username": user_info["username"],
-            "first_name": None,
-            "last_name": None,
-            "image_url": None,
-            "bio": None,
+            "first_name": "",
+            "last_name": "",
+            "image_url": "",
+            "bio": "",
             "location_id": 0,
-            "in_person": None,
+            "inPerson": None,
             "level": 0,
             "personality": 0,
             "frequency_id": 0,
@@ -84,4 +81,4 @@ def profile_form(username):
             "languages": [],
             "expertises": [],
             }
-        # return jsonify(user_info["id"])
+        return {"profile": default_info}
