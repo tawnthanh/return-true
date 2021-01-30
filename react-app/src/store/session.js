@@ -19,7 +19,8 @@ const clearSession = () => {
 export const sessionAuthenticate = () => async (dispatch) => {
   const res = await authenticate();
   if (!res.errors) {
-    return dispatch(setSession(res));
+    dispatch(setSession(res));
+    return
   } else {
     throw new Error(res.errors);
   }
