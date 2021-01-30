@@ -1,11 +1,13 @@
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import {createRequest, getRequests, destroyRequest} from "../../store/requests";
+import {openTab, closeTab} from "../../store/tabs";
 import "./request.css";
 
 export default function RequestList () {
     const dispatch = useDispatch();
+    const history = useHistory();
     const [isOpen, setIsOpen] = useState(false)
     const [title, setTitle] = useState("");
     const [errors, setErrors] = useState([]);
@@ -17,6 +19,13 @@ export default function RequestList () {
         if (!res.errors) {
             setTitle("");
             setIsOpen(false);
+            const new_request = res.request;
+            await dispatch(openTab({
+                tab_id: `request-${new_request.id}`,
+                title: `${new_request.title}`,
+                link: `/request/${new_request.id}`,
+            }))
+            history.push(`/request/${new_request.id}`)
         } else {
             setErrors(res.errors);
         }
@@ -37,12 +46,16 @@ export default function RequestList () {
         <div className="sidebar-list">
             <ul>
                 {requests.map(request => {
-                    return <li className={request.active?"active":""}>
+                    return <li className={request.active?"active":""} key={`request-list-item-${request.id}`}>
                         <span>
                             <i className="fas fa-database list-marker"></i> 
                             <Link to={`/request/${request.id}`}> {request.title}</Link>
                         </span>
-                        <i className="fas fa-trash" onClick={()=>{dispatch(destroyRequest(request.id))}}></i>
+                        <i className="fas fa-trash" 
+                        onClick={()=>{
+                            dispatch(destroyRequest(request.id))
+                            dispatch(closeTab(`request-${request.id}`))
+                            }}></i>
                     </li>
                 })}
             </ul>

@@ -1,9 +1,8 @@
-import {store} from "../index"
-
 const ADD_REQUEST = "request/add";
 const REMOVE_REQUEST = "request/remove";
 const EDIT_REQUEST = "request/edit";
-const GETALL_REQUEST = "request/get_all"
+const GETALL_REQUEST = "request/get_all";
+const START_REQUEST = "request/start";
 
 const addRequest = (request) => {
   return { 
@@ -32,6 +31,14 @@ const editRequest = (request) => {
     request
   };
 };
+
+const addAnswers = (answers, requestId) => {
+  return {
+    type: START_REQUEST,
+    answers,
+    requestId
+  }
+}
 
 export const createRequest = title => async dispatch => {
   let res = await fetch('/api/request/', {
@@ -89,6 +96,20 @@ export const getRequests = () => async dispatch => {
   }
 }
 
+export const saveAnswers = (requestId, answersArray) => async dispatch => {
+  let res = await fetch(`/api/request/${requestId}/answers`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(answersArray)
+  });
+  if (res.ok) {
+    res = await res.json()
+    return dispatch(addAnswers(res.answers, requestId));
+  }
+}
+
 const initialState = []
 
 const reducer = (state = initialState, action) => {
@@ -132,6 +153,18 @@ const reducer = (state = initialState, action) => {
         if (a.title < b.title) return -1
         else return 1
       })
+      return newState;
+    }
+    case START_REQUEST: {
+      const newState = [];
+      for (let i = 0; i < state.length; i++) {
+        let req = {...state[i]};
+        if (state[i].id === action.requestId) {
+          req.answers=action.answers;
+          req.active=true;
+        }
+        newState.push(req)
+      }
       return newState;
     }
     default:

@@ -9,8 +9,9 @@ import User from "./components/User";
 import Message from "./components/Message";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
-import { useSelector, useDispatch } from "react-redux";
+import { pullFixed } from "./store/fixed";
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useSelector, useDispatch } from "react-redux";
 import TabBar from "./components/TabBar";
 import Request from "./components/Request";
 import {resetTabs} from "./store/tabs";
@@ -31,39 +32,49 @@ function App() {
       console.log("hi!!!!!!!!!!!!!!")
       setAuthenticated(true)
       setLoaded(true)
+      dispatch(pullFixed());
       }
     ).catch((err)=>{
       console.log('catch statement!!!!!')
       setAuthenticated(false)
       setLoaded(true)
+
     });
 
   }, [dispatch]);
 
 
 
-  useEffect(()=>{
-    if (!authenticated){
-      dispatch(resetTabs())
+  useEffect(() => {
+    if (!authenticated) {
+      dispatch(resetTabs());
     }
-  },[authenticated])
-  console.log('authenticated', authenticated)
-  console.log('loaded', loaded)
+  },[authenticated,dispatch])
+
   if (!loaded) {
     return null;
   }
 
   return (
     <BrowserRouter>
-     <h1 className="header"> <span style={{color:"#bb86c0"}}>return</span> <span style={{color:"#2566ca"}}>true</span>;</h1>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} icon={faTimes}
-              isOpen={isOpen} setIsOpen={setIsOpen} />
-      <div className={`content${isOpen?" open":""}`}>
-      <TabBar/>
-      <div className="page-container">
-        <Switch>
-          <Route path="/login" exact={true}>
-            <LoginForm
+      <h1 className="header">
+        {" "}
+        <span style={{ color: "#bb86c0" }}>return</span>{" "}
+        <span style={{ color: "#2566ca" }}>true</span>;
+      </h1>
+      <NavBar
+        setAuthenticated={setAuthenticated}
+        authenticated={authenticated}
+        icon={faTimes}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+      />
+      <div className={`content${isOpen ? " open" : ""}`}>
+        <TabBar />
+        <div className="page-container">
+          <Switch>
+            <Route path="/login" exact={true}>
+              <LoginForm
                 authenticated={authenticated}
                 setAuthenticated={setAuthenticated}
               />
@@ -96,12 +107,16 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <Request authenticated={authenticated}/>
+              <Request authenticated={authenticated} />
             </ProtectedRoute>
             <Route path="/" exact={true}>
               <HomePage />
             </Route>
-            <Route path="/edit-profile" exact={true} authenticated={authenticated}>
+            <Route
+              path="/edit-profile"
+              exact={true}
+              authenticated={authenticated}
+            >
               <h1>Hi</h1>
             </Route>
           </Switch>

@@ -10,15 +10,21 @@ import sessionReducer from "./session";
 import searchReducer from "./search";
 import tabsReducer from "./tabs";
 import messageReducer from "./message";
+import profileReducer from "./profile";
 import requestsReducer from "./requests";
+import currentRequestsReducer from "./currentRequest";
+import fixedReducer from "./fixed";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
-    session: sessionReducer,
-    tabs: tabsReducer,
-    messages: messageReducer,
-    requests: requestsReducer,
-    search: searchReducer,
+  session: sessionReducer,
+  tabs: tabsReducer,
+  requests: requestsReducer,
+  search: searchReducer,
+  profile: profileReducer,
+  fixed: fixedReducer,
+  currentRequest: currentRequestsReducer,
+  messages: messageReducer,
 });
 
 let enhancer;
