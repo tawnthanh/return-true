@@ -3,7 +3,7 @@ from app.models import db, Frequency, Languages, Profile, Expertise
 
 def seed_frequency():
     frequency_list = ["less than 10 hour per week", "10 to 20 hours per week",
-                      "20 to 40 hours per week", "more that 40 hours per week"]
+                      "20 to 40 hours per week", "more than 40 hours per week"]
     for frequency in frequency_list:
         frequency_type = Frequency(type=frequency)
         db.session.add(frequency_type)
@@ -165,7 +165,7 @@ def seed_profile():
     thanh.expertises.append(data_analysis_expertise)
 
     joe = Profile(userId=6, firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512",
-                  bio="PTA at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
+                  bio="PTM at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
     db.session.add(joe)
     joe.languages.append(c_plus_plus_lang)
     joe.languages.append(ruby_lang)

@@ -28,8 +28,8 @@ function User() {
       <div>
         <img id="profile-picture" src={profiles.image_url} />
       </div>
-      <div>
-        <div className="profile-details">
+      <div className="profile-details">
+        <div>
           <h1>
             const {profiles.first_name} = {"{"}
           </h1>
@@ -38,9 +38,11 @@ function User() {
             <div>
               frequency: "{!!profiles.frequency && profiles.frequency.type}",
             </div>
-            {/* <div>
-            introvert?: {!!profiles.personality && profiles.personality},
-          </div> */}
+            <br />
+            <div>
+              introvert:{" "}
+              {!!profiles.personality && profiles.personality.toString()},
+            </div>
             <p>bio: "{profiles.bio}",</p>
             <p>languages: {"{"}</p>
             <ul>
