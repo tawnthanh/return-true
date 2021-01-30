@@ -12,7 +12,7 @@ Question Types:
 questions = [
     {"question":"role", "options":"teacher,partner,friend,study buddy,code review", "questionType": 1, "weight": 10},
     {"question":"known_languages", "options": "languages", "questionType":2, "weight": 10},
-    {"question":"experience_level", "options":"beginner,provicient,expert", "questionType":3, "weight": 10},
+    {"question":"experience_level", "options":"beginner,proficient,expert", "questionType":3, "weight": 10},
     {"question":"area_of_expertise", "options":"expertise", "questionType":2, "weight": 10},
     {"question":"personality", "options":"introvert,extrovert", "questionType":4, "weight": 10},
     {"question":"state = $MyState", "options": "", "questionType": 6, "weight": 10},

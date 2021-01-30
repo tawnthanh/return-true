@@ -24,27 +24,52 @@ function User() {
   }
 
   return (
-    <div>
-      <ul>
-        <li>
-          <strong>User</strong> {profiles.first_name}
-        </li>
-        <li>
-          <strong>Username</strong> {user.username}
-        </li>
-        <li>
-          <strong>Email</strong> {user.email}
-        </li>
-      </ul>
+    <div className="profile">
       <div>
-        <img className="profile-pictures" src={profiles.image_url} />
-        <p>{profiles.bio}</p>
-        <p>{profiles.expertises}</p>
-        {/* <p>{profiles.frequency}</p> */}
-        <p>{profiles.in_person}</p>
-        {/* <p>{profiles.languages}</p> */}
+        <img id="profile-picture" src={profiles.image_url} />
+      </div>
+      <div>
+        <div className="profile-details">
+          <h1>
+            const {profiles.first_name} = {"{"}
+          </h1>
+          <ul>
+            <p>level: {profiles.level},</p>
+            <div>
+              frequency: "{!!profiles.frequency && profiles.frequency.type}",
+            </div>
+            {/* <div>
+            introvert?: {!!profiles.personality && profiles.personality},
+          </div> */}
+            <p>bio: "{profiles.bio}",</p>
+            <p>languages: {"{"}</p>
+            <ul>
+              <div>
+                {!!profiles.languages &&
+                  Object.values(profiles.languages).map((language) => (
+                    <li className="profile-list">{language.type},</li>
+                  ))}
+              </div>
+            </ul>
+            {"},"}
+            <p>expertises: {"{"}</p>
+            <ul>
+              <div>
+                {!!profiles.expertises &&
+                  Object.values(profiles.expertises).map((expertise) => (
+                    <li className="profile-list">{expertise.type},</li>
+                  ))}
+              </div>
+            </ul>
+            {"},"}
+          </ul>
+        </div>
+        <div>
+          <h1>{"};"}</h1>
+        </div>
       </div>
     </div>
   );
 }
+
 export default User;
