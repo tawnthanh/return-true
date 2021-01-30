@@ -28,25 +28,45 @@ function User() {
       <div>
         <img id="profile-picture" src={profiles.image_url} />
       </div>
-      <div className="profile-details">
-        <h1>
-          Const {profiles.first_name} = {"{"}
-        </h1>
-        <ul>
-          <div>Expertise(s): {"{"}</div>
+      <div>
+        <div className="profile-details">
+          <h1>
+            const {profiles.first_name} = {"{"}
+          </h1>
           <ul>
-            {/* how do i make this part look intented in browser */}
+            <p>level: {profiles.level},</p>
             <div>
-              {!!profiles.expertises &&
-                Object.values(profiles.expertises).map((expertise) => (
-                  <li id="expertise-type">{expertise.type},</li>
-                ))}
-              {"},"}
+              frequency: "{!!profiles.frequency && profiles.frequency.type}",
             </div>
+            {/* <div>
+            introvert?: {!!profiles.personality && profiles.personality},
+          </div> */}
+            <p>bio: "{profiles.bio}",</p>
+            <p>languages: {"{"}</p>
+            <ul>
+              <div>
+                {!!profiles.languages &&
+                  Object.values(profiles.languages).map((language) => (
+                    <li className="profile-list">{language.type},</li>
+                  ))}
+              </div>
+            </ul>
+            {"},"}
+            <p>expertises: {"{"}</p>
+            <ul>
+              <div>
+                {!!profiles.expertises &&
+                  Object.values(profiles.expertises).map((expertise) => (
+                    <li className="profile-list">{expertise.type},</li>
+                  ))}
+              </div>
+            </ul>
+            {"},"}
           </ul>
-          <br />
-          <div>Level: {profiles.level},</div>
-        </ul>
+        </div>
+        <div>
+          <h1>{"};"}</h1>
+        </div>
       </div>
     </div>
   );
