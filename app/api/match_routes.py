@@ -157,6 +157,139 @@ def compare_request_bothway(user1, user2):
         total_match += frequency_matched / total_frequency_needed * frequency_question["weight"]
 
     # end of frequency
+    # print(user2["firstName"],": total_weight=",total_weight,", total_match=", total_match)
+    total_weight = total_weight if total_weight>0 else 1
+    result = total_match / total_weight
+
+    return result
+
+def compare_request_oneway(user1, user2):
+    total_weight = 0
+    total_match = 0
+    questions_query = Question.query.order_by(Question.id.asc()).all()
+    questions = [q.to_dict() for q in questions_query]
+    # 1 role
+    role_question = questions[0]
+
+    need_mentor1 = user1["needMentor"]
+    need_roles1 = set(user1["q1_role"]) if user1["q1_role"] else set()
+    need_roles1.discard(0)
+    is_mentor2 = user2["mentorship"]
+    need_roles2 = set(user2["q1_role"]) if user2["q1_role"] else set()
+    need_roles2.discard(0)
+
+    if (need_mentor1 or len(need_roles1)):
+        total_weight += role_question["weight"]
+        if ((is_mentor2 == need_mentor1 == True) or len(need_roles1 & need_roles2) > 0):
+            total_match += role_question["weight"]
+    
+    # end of role
+
+    # 2 languages
+    lang_question = questions[1]
+
+    lang_need1 = set(user1["q2_languages"]) if user1["q2_languages"] else set()
+    lang_owned2 = set(user2["languages"]) if user2["languages"] else set ()
+
+    total_lang_needed = len(lang_need1)
+    fufilled_for1 = lang_need1 & lang_owned2
+
+    if total_lang_needed > 0:
+        total_weight += lang_question["weight"]
+        total_match += len(fufilled_for1) / total_lang_needed * lang_question["weight"]
+
+    # end of languages
+
+    # 3 level
+    level_question = questions[2]
+
+    lvl_need1 = int(user1["q3_level"]) if user1["q3_level"] else None
+    lvl2 = user2["level"]
+
+    if lvl_need1:
+        total_weight += level_question["weight"]
+        if int(lvl_need1) <= lvl2:
+            total_match += level_question["weight"]
+
+    # end of level
+
+    # 4 expertise
+    expertise_question = questions[3]
+
+    expertise_need1 = set(user1["q4_expertise"]) if user1["q4_expertise"] else set()
+    expertise_owned2 = set(user2["expertise"]) if user2["expertise"] else set ()
+    
+    total_expertise_needed = len(expertise_need1)
+    fufilled_expertise_for1 = expertise_need1 & expertise_owned2
+
+    if total_expertise_needed > 0:
+        total_weight += expertise_question["weight"]
+        total_match += len(fufilled_expertise_for1) / total_expertise_needed * expertise_question["weight"]
+    # end of expertise
+
+    # 5 personality
+    personality_question = questions[4]
+
+    personality_need1 = user1["q5_personality"]
+    personality2 = user2["personality"]
+
+    if personality_need1 != None:
+        total_weight += personality_question["weight"]
+        if personality_need1 == personality2:
+            total_match += personality_question["weight"]
+    # end of personality
+
+    # 6 state
+    state_question = questions[5]
+
+    state1 = user1["stateId"]
+    state_filter1 = user1["q6_filterByState"]
+    state2 = user2["stateId"]
+
+    if state_filter1:
+        total_weight += state_question["weight"]
+        if state1 == state2:
+            total_match += state_question["weight"]
+
+    # end of state
+
+    # 7 city
+    city_question = questions[6]
+
+    city1 = user1["locationId"]
+    city_filter1 = user1["q7_filterByCity"]
+    city2 = user2["locationId"]
+
+    if city_filter1:
+        total_weight += city_question["weight"]
+        if city1 == city2:
+            total_match += city_question["weight"]
+    # end of city
+
+    # 8 morning
+    morning_question = questions[7]
+
+    morning_need1 = user1["q8_morning"]
+    morning2 = user2["morning"]
+
+    if morning_need1 != None:
+        total_weight += morning_question["weight"]
+        if morning_need1==morning2:
+            total_match += morning_question["weight"]
+    # end of morning
+
+    # 9 frequency
+    frequency_question = questions[8]
+
+    frequency_need1 = int(user1["q9_frequency"]) if user1["q9_frequency"] else None
+    frequency2 = user2["frequencyId"]
+
+    if frequency_need1:
+        total_weight += frequency_question["weight"]
+        if frequency_need1 <= frequency2:
+            total_match += frequency_question["weight"]
+
+    # end of frequency
     print(user2["firstName"],": total_weight=",total_weight,", total_match=", total_match)
     total_weight = total_weight if total_weight>0 else 1
     result = total_match / total_weight
@@ -187,8 +320,11 @@ def detailed_user_request (id = 0):
     (SELECT answer FROM answers AS a WHERE a."requestId" = r."id" AND a."questionId" = 8) as "q8",
     (SELECT answer FROM answers AS a WHERE a."requestId" = r."id" AND a."questionId" = 9) as "q9",
     (SELECT array_agg("languagesId") FROM "userLanguages" AS l WHERE l."profileId" = p."id" GROUP BY l."profileId") as "languages",
-    (SELECT array_agg("expertiseId") FROM "userExpertise" AS e WHERE e."profileId" = p."id" GROUP BY e."profileId") as "expertise"
+    (SELECT array_agg("expertiseId") FROM "userExpertise" AS e WHERE e."profileId" = p."id" GROUP BY e."profileId") as "expertise",
+    u."username",
+    p."imageUrl"
     FROM profiles AS p 
+    INNER JOIN users AS u ON p."userId"=u."id"
     LEFT JOIN requests AS r ON p."userId"=r."userId"
     INNER JOIN locations AS l ON p."locationId"=l."id"
     '''
@@ -228,6 +364,8 @@ def detailed_user_request (id = 0):
             "q9_frequency": item[20],
             "languages": item[21],
             "expertise": item[22],
+            "username": item[23],
+            "imageUrl":item[24]
         }
         list_of_users_requests.append(user_request)
     
@@ -250,10 +388,10 @@ def match(id):
         if this_user["userId"] != single_user["userId"]:
             match_table.append({
                 "userId": single_user["userId"],
-                "match_percent": compare_request_bothway(this_user,single_user)
+                "username": single_user["username"],
+                "imageUrl": single_user["imageUrl"],
+                "both_match": compare_request_bothway(this_user,single_user),
+                "solo_match": compare_request_oneway(this_user,single_user)
             })
 
-    return {
-        "matches": match_table,
-        "all_users": all_users,
-        "this_user": this_user}
+    return {"matches": match_table}

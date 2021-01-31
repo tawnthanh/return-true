@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {useParams} from "react-router-dom";
+import {useParams, useHistory} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {openTab} from "../../store/tabs";
 import {updateRequest, getRequests} from "../../store/requests";
@@ -12,6 +12,7 @@ export default function Request () {
     const [isLoaded, setIsLoaded] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("")
+    const history = useHistory();
     let {id} = useParams();
     id = parseInt(id);
 
@@ -26,11 +27,15 @@ export default function Request () {
     }
 
     useEffect(()=>{
-        dispatch(getRequests())
+        dispatch(getRequests());
     },[])
 
     useEffect(()=>{
             let curr = requests.find(item => item.id===id)
+            console.log(requests.length, curr)
+            if (requests.length>0 && !curr) {
+                history.push("/")
+            }
             if (curr){
                 if (requests.length>0) {
                     dispatch(getCurrent(curr))
