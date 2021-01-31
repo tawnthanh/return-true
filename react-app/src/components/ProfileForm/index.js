@@ -115,7 +115,7 @@ const ProfileForm = () => {
       "languages": languages,
       "expertises": expertises,
     }
-    dispatch(updateProfile(profile, { "user": confirmedUser }))
+    dispatch(updateProfile(profile, {"user": confirmedUser} ))
     return
   }
 

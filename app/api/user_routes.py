@@ -98,10 +98,26 @@ def profile_form(username):
         return {"profile": default_info}
 
 
-@user_routes.route('/<username>/edit-profile', methods=["POST"])
+@user_routes.route('/<int:id>/edit-profile', methods=["POST"])
 # @login_required
-def profile_update(username):
+def profile_update(id):
     profile = request.get_json()
+    # profiles = Profile.query.filter(Profile.userId == 2).first()
+    # if profiles != []:
+    #     profiles.userId = profile["user_id"],
+    #     profiles.firstName = profile["first_name"],
+    #     profiles.lastName = profile["last_name"],
+    #     profiles.imageUrl = profile["image_url"],
+    #     profiles.bio = profile["bio"],
+    #     profiles.locationId = None,
+    #     profiles.level = profile["level"],
+    #     profiles.inPerson = profile["inPerson"],
+    #     profiles.personality = profile["personality"],
+    #     profiles.frequencyId = profile["frequency_id"],
+    #     profiles.mentorship=profile["mentorship"],
+    #     profiles.morning=profile["morning"],
+
+
     new_profile = Profile(
         userId=profile["user_id"],
         firstName=profile["first_name"],
@@ -116,5 +132,7 @@ def profile_update(username):
         mentorship=profile["mentorship"],
         morning=profile["morning"],
     )
+    db.session.add(new_profile)
+    db.session.commit()
     print(new_profile.to_dict())
     return "hi"

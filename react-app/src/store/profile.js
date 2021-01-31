@@ -55,14 +55,15 @@ export const getProfileFields = (username) => async (dispatch) => {
 
 export const updateProfile = (profileObj, user) => async (dispatch) => {
   // const res = await fetch(`/api/users/Demo/edit-profile`, {
-    const res = await fetch(`/api/users/${user.username}/edit-profile`, {
+    // let profile = {...profileObj,...user}
+    const res = await fetch(`/api/users/${profileObj.user_id}/edit-profile`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({...profileObj,...user})
+    body: JSON.stringify(profileObj)
   })
-  console.log("hi", {...profileObj,...user})
+  // console.log(profile.user)
   return "hi"
 }
 

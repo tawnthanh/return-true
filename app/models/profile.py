@@ -92,3 +92,24 @@ class Profile(db.Model):
             "expertises": [expert.to_dict() for expert in self.expertises],
             "users": self.user.to_dict(),
         }
+
+        def info(self):
+            return {
+                "id": self.id,
+                "user_id": self.userId,
+                "first_name": self.firstName,
+                "last_name": self.lastName,
+                "image_url": self.imageUrl,
+                "bio": self.bio,
+                "location_id": self.locationId,
+                "in_person": self.inPerson,
+                "level": self.level,
+                "personality": self.personality,
+                "frequency_id": self.frequencyId,
+                "frequency": self.frequency.to_dict(),
+                "mentorship": self.mentorship,
+                "morning": self.morning,
+                "languages": [la.to_dict() for la in self.languages],
+                "expertises": [e.to_dict() for e in self.expertises],
+                "users": self.user.to_dict(),
+            }
