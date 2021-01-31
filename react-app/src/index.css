@@ -72,21 +72,21 @@ textarea:focus {
 .profile-ul {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
-.const {
+.const-color {
   color: steelblue;
 }
-.prof-name {
+.prof-name-color {
   color: cornflowerblue;
 }
-.brackets {
+.brackets-color {
   color: rgb(255, 255, 0);
 }
-.values {
+.values-color {
   color: rgba(223, 145, 221, 0.858);
 }
-.keys {
+.keys-color {
   color: skyblue;
 }
-.booleans {
+.booleans-color {
   color: rgba(165, 247, 124, 0.742);
 }
