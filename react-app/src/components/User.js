@@ -25,49 +25,56 @@ function User() {
 
   return (
     <div className="profile">
-      <div>
+      <div className="prof-pic">
         <img id="profile-picture" src={profiles.image_url} />
       </div>
-      <div className="profile-details">
+      <div>
         <div>
-          <h1>
+          <p>
             const {profiles.first_name} = {"{"}
-          </h1>
-          <ul>
-            <p>level: {profiles.level},</p>
-            <div>
-              frequency: "{!!profiles.frequency && profiles.frequency.type}",
-            </div>
-            <br />
-            <div>
-              introvert:{" "}
-              {!!profiles.personality && profiles.personality.toString()},
-            </div>
-            <p>bio: "{profiles.bio}",</p>
-            <p>languages: {"{"}</p>
+          </p>
+          <div className="profile-details">
             <ul>
+              <p>level: {profiles.level},</p>
               <div>
-                {!!profiles.languages &&
-                  Object.values(profiles.languages).map((language) => (
-                    <li className="profile-list">{language.type},</li>
-                  ))}
+                frequency: "{!!profiles.frequency && profiles.frequency.type}",
               </div>
-            </ul>
-            {"},"}
-            <p>expertises: {"{"}</p>
-            <ul>
+              <br />
               <div>
-                {!!profiles.expertises &&
-                  Object.values(profiles.expertises).map((expertise) => (
-                    <li className="profile-list">{expertise.type},</li>
-                  ))}
+                introvert:{" "}
+                {!!profiles.personality && profiles.personality.toString()},
               </div>
+              <br />
+              <div>
+                mentor:{" "}
+                {!!profiles.mentorship && profiles.mentorship.toString()},
+              </div>
+              <p>bio: "{profiles.bio}",</p>
+              <p>languages: {"["}</p>
+              <ul className="profile-ul">
+                <div>
+                  {!!profiles.languages &&
+                    Object.values(profiles.languages).map((language) => (
+                      <li className="profile-list">{language.type},</li>
+                    ))}
+                </div>
+              </ul>
+              {"],"}
+              <p>expertises: {"["}</p>
+              <ul className="profile-ul">
+                <div>
+                  {!!profiles.expertises &&
+                    Object.values(profiles.expertises).map((expertise) => (
+                      <li className="profile-list">{expertise.type},</li>
+                    ))}
+                </div>
+              </ul>
+              {"],"}
             </ul>
-            {"},"}
-          </ul>
+          </div>
         </div>
         <div>
-          <h1>{"};"}</h1>
+          <p>{"};"}</p>
         </div>
       </div>
     </div>
