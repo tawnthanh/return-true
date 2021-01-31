@@ -61,7 +61,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
           </li>}
           <li>
             <NavLink to="/messages/1" exact={true} className="message">
-              message
+            <i class="fa fa-comment fa-3x" aria-hidden="true"></i>
             </NavLink>
             </li>
           {!authenticated && <li>
