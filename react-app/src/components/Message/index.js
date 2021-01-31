@@ -19,6 +19,9 @@ const Message = () => {
     }, [dispatch])
     // const {message} = useSelector(state => state.message)
 
+    const user = useSelector(state => {
+      return state.session.user
+    })
 
     const fullStore = useSelector(state => {
       return state.messages
@@ -56,7 +59,7 @@ const Message = () => {
       <div>
        { fullStore.map((msg)=> {
 
-          return <div className="text">{msg.message}</div>
+          return <div className={`${(user.id === msg.senderId)? "mymessage" : "othersMessage"}`}>{msg.message}</div>
 
         })}
       </div>

@@ -28,7 +28,12 @@
   font: 18px "Source Code Pro", monospace;
 }
 
-.text {
+.mymessage {
     color: yellow;
+    font: 18px "Source Code Pro", monospace;
+}
+
+.othersMessage {
+    color: blue;
     font: 18px "Source Code Pro", monospace;
 }
