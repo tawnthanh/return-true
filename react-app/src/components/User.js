@@ -40,18 +40,17 @@ function User() {
           <div className="profile-details">
             <ul>
               {profiles.bio && (
-                <p>
+                <>
                   <span className="red">bio:</span>{" "}
                   <span className="green">
                     "{!!profiles.bio && profiles.bio}"
                   </span>
                   ,
-                </p>
+                </>
               )}
-              <p>
-                <span className="red">level: </span>
-                <span className="orange">{profiles.level}</span>,
-              </p>
+              <br />
+              <span className="red">level: </span>
+              <span className="orange">{profiles.level}</span>,
               <div>
                 <span className="red">frequency: </span>
                 <span className="green">
@@ -59,7 +58,6 @@ function User() {
                 </span>
                 ,
               </div>
-              <br />
               <div>
                 <span className="red">introvert: </span>
                 {profiles.personality == true && (
@@ -73,7 +71,6 @@ function User() {
                   </span>
                 )}
               </div>
-              <br />
               <div>
                 <span className="red">mentor: </span>
                 <span className="orange">
@@ -84,7 +81,6 @@ function User() {
                 </span>
                 ,
               </div>
-              <br />
               <div>
                 <span className="red">inPerson: </span>
                 <span className="orange">
@@ -96,7 +92,6 @@ function User() {
                 </span>
                 ,
               </div>
-              <br />
               <div>
                 <span className="red">morning: </span>
                 <span className="orange">
@@ -107,10 +102,8 @@ function User() {
                 </span>
                 ,
               </div>
-              <p>
-                <span className="red">languages: </span>
-                <span className="yellow">{"["}</span>
-              </p>
+              <span className="red">languages: </span>
+              <span className="yellow">{"["}</span>
               <ul className="profile-ul">
                 <div>
                   {!!profiles.languages &&
@@ -122,11 +115,9 @@ function User() {
                 </div>
               </ul>
               <span className="yellow">{"]"}</span>,
-              <span className="red"></span>
-              <p>
-                <span className="red">expertises: </span>
-                <span className="yellow">{"["}</span>
-              </p>
+              <br />
+              <span className="red">expertises: </span>
+              <span className="yellow">{"["}</span>
               <ul className="profile-ul">
                 <div>
                   {!!profiles.expertises &&

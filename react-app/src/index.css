@@ -77,20 +77,20 @@ textarea:focus {
   border-left: 1px solid rgba(255, 255, 0, 0.2);
 }
 .purple {
-  color: rgb(244, 154, 250);
+  color: rgb(53, 129, 191);
 }
 .blue {
-  color: cyan;
+  color: rgb(0, 152, 247);
 }
 .yellow {
   color: rgb(255, 255, 0);
 }
 .green {
-  color: rgba(127, 255, 0, 0.8);
+  color: rgba(244, 154, 250, 0.755);
 }
 .red {
-  color: rgb(201, 24, 77);
+  color: rgba(0, 255, 255, 0.838);
 }
 .orange {
-  color: orange;
+  color: rgb(255, 204, 0);
 }
