@@ -9,7 +9,6 @@ function User() {
   const { userId } = useParams();
 
   const profiles = useSelector((state) => state.profile);
-  console.log(profiles);
 
   useEffect(() => {
     if (!userId) {

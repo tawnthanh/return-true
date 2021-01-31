@@ -1,0 +1,78 @@
+.match-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 260px;
+    height: 70px;
+    border: 1px solid #2196F3;
+    margin: 5px;
+    box-sizing: border-box;
+    padding: 5px;
+    padding-left: 60px;
+}
+
+.match-card a img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+.match-card a {
+    text-decoration: none;
+    color: #778585;
+}
+.match-card a:hover {
+    color:#fff
+}
+
+.match-card .image-link {
+    position: absolute;
+    top:5px;
+    left:5px;
+}
+.match-card .match-block {
+    display: flex;
+    flex-direction: row;
+}
+
+.match-card .percentage-bloc {
+    display: block;
+    width: 130px;
+    height: 25px;
+    border: none;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, #002448, #2196F3);
+    position:relative;
+    margin-right: 10px;
+}
+
+.match-card .percentage-bloc .inactive-percent {
+    display: block;
+    height: 100%;
+    background-color: #333;
+    position: absolute;
+    right:0;
+}
+
+.cell-blocks {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(10, 1fr);
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.cell-blocks > span {
+    background: transparent;
+    border: 1px solid #1e1e1e;
+    height: 100%;
+    box-sizing: border-box;
+    z-index: 100;
+}
+
+.matches-contaier {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 270px);
+    padding: 20px;
+    margin: 0;
+}

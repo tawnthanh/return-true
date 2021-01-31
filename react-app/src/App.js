@@ -44,8 +44,6 @@ function App() {
 
   }, [dispatch]);
 
-
-
   useEffect(() => {
     if (!authenticated) {
       dispatch(resetTabs());
@@ -107,7 +105,7 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <Request authenticated={authenticated} />
+              <Request />
             </ProtectedRoute>
             <Route path="/" exact={true}>
               <HomePage />

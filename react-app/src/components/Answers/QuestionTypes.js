@@ -38,8 +38,7 @@ export function QuestionMultipleChoice ({question, setAnswers, answers}) {
                             if (new_answers.has(e.target.value))
                                 new_answers.delete(e.target.value)
                             else new_answers.add(e.target.value)
-                                
-                            // console.log(new_answers)
+                            
                             setAnswers(new_answers)
                         }} 
                         value={o.id} 
@@ -73,7 +72,6 @@ export function QuestionRadiobutton ({question, setAnswers, answers}) {
     },[frequencies_list,question.options])
 
     useEffect(()=>{
-        console.log(question.question,": ",answers)
     },[answers,question.question])
 
     return isLoaded && <span className="question-radiobutton">
@@ -136,7 +134,6 @@ export function Toggle({isOn, onSwitch}){
     const [stateClass, setStateClass] = useState("")
 
      useEffect(()=>{
-         console.log(isOn)
          if (isOn!==undefined) setStateClass(" toggle-"+(isOn?"on":"off"))
      },[isOn])
 
