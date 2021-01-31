@@ -318,16 +318,17 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
             {expertises_list && Object.values(expertises_list).map(e => {
                 return(
                   <label
-                    htmlFor={`q${e.o}-${e.id}`}
+                    htmlFor={`q${e.type}-${e.id}`}
                     className="checkbox-container"
-                    key={`q${e.type}-{e.id}-multichoice`}>
+                    key={`q${e.type}-${e.id}-multichoice`}>
+                      {e.type}
                   <input type="checkbox"
                       onChange={handleExpertise}
                       value={e.id}
                       id={`o${e.id}`}
                       name={`o${e.type}`}
                     />
-                    {e.type}
+
                     <span className="checkmark"></span>
                 </label>)
               })}
