@@ -3,7 +3,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import {openTab, closeTab} from "../../store/tabs";
 import './ProfileForm.css';
-import { getProfileFields } from "../../store/profile";
+import { getProfileFields, updateProfile } from "../../store/profile";
 import { QuestionReversedToggleProfile } from "./FormFields";
 import {openTab} from "../../store/tabs";
 
@@ -100,7 +100,6 @@ const ProfileForm = () => {
     // if()
     const profile = {
       "user_id": confirmedUser.id,
-      "username": username,
       "first_name": firstName,
       "last_name": lastName,
       "image_url": imageUrl,
@@ -116,7 +115,7 @@ const ProfileForm = () => {
       "languages": languages,
       "expertises": expertises,
     }
-    console.log(profile)
+    dispatch(updateProfile(profile, { "user": confirmedUser }))
     return
   }
 
