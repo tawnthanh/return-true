@@ -12,8 +12,7 @@ export const getMatches = (id) => async dispatch => {
   let res = await fetch(`/api/match/${id}`)
   if (res.ok) {
     res = await res.json();
-    console.log("matches: ", res.matches)
-    console.log("this_user: ", res.this_user)
+    console.log("matches: ", res)
   }
   // if (!res.errors) {
   //   questions = res.questions

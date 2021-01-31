@@ -1,13 +1,22 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import {useSelector} from "react-redux"
 
 export default function AnswerList () {
+    const [isLoaded, setIsLoaded] = useState(false);
+
     let answers = useSelector(state => state.currentRequest.answers)
     let questions = useSelector(state => state.fixed.questions)
     let languages = useSelector(state => state.fixed.languages)
     let frequencies = useSelector(state => state.fixed.frequencies)
     let expertise = useSelector(state => state.fixed.expertise)
-    return <div className="answers-query">
+
+    useEffect(()=>{
+        if (answers && questions && Object.keys(questions).length>0) {
+            setIsLoaded(true);
+        }
+    },[answers,questions])
+
+    return isLoaded && <div className="answers-query">
         <span>SELECT * </span>
         <span>FROM Users</span>
         <span className="answers-list">

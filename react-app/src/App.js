@@ -25,16 +25,20 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionAuthenticate())
-      .then((res) => {
-        setAuthenticated(true);
-      })
-      .catch((err) => setAuthenticated(false));
+    .then((res) => {
+      console.log("hi!!!!!!!!!!!!!!")
+      setAuthenticated(true)
+      setLoaded(true)
       dispatch(pullFixed());
-  }, [dispatch]);
+      }
+    ).catch((err)=>{
+      console.log('catch statement!!!!!')
+      setAuthenticated(false)
+      setLoaded(true)
 
-  useEffect(() => {
-    setLoaded(true);
-  }, [user]);
+    });
+
+  }, [dispatch]);
 
   useEffect(() => {
     if (!authenticated) {
@@ -95,7 +99,7 @@ function App() {
               exact={true}
               authenticated={authenticated}
             >
-              <Request authenticated={authenticated} />
+              <Request />
             </ProtectedRoute>
             <Route path="/" exact={true}>
               <HomePage />

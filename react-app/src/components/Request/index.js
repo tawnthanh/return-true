@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import {openTab} from "../../store/tabs";
-import {updateRequest} from "../../store/requests";
+import {updateRequest, getRequests} from "../../store/requests";
 import {getCurrent} from "../../store/currentRequest";
 import Answer from "../Answers/";
 import {Toggle} from "../Answers/QuestionTypes";
@@ -12,7 +12,6 @@ export default function Request () {
     const [isLoaded, setIsLoaded] = useState(false);
     const [editMode, setEditMode] = useState(false);
     const [title, setTitle] = useState("")
-    // const [request, setRequest] = useState({});
     let {id} = useParams();
     id = parseInt(id);
 
@@ -27,18 +26,23 @@ export default function Request () {
     }
 
     useEffect(()=>{
-        let curr = requests.find(item => item.id===id)
-        if (curr){
-            if (requests.length>0) dispatch(getCurrent(curr))
-            setIsLoaded(true)
-        } else {
-            setIsLoaded(false)
-        }
+        dispatch(getRequests())
+    },[])
+
+    useEffect(()=>{
+            let curr = requests.find(item => item.id===id)
+            if (curr){
+                if (requests.length>0) {
+                    dispatch(getCurrent(curr))
+                    setIsLoaded(true)
+                }
+            } else {
+                setIsLoaded(false)
+            }
     },[requests,id,dispatch])
 
     useEffect(()=>{
         if (Object.keys(request).length > 0) {
-            setIsLoaded(true)
             let tab = {
                 tab_id: `request-${id}`,
                 title: request.title,
