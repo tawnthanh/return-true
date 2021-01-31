@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from app.models import message
 
 
 class User(db.Model, UserMixin):
@@ -12,7 +13,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     profile = db.relationship("Profile", back_populates="user")
-    
+    msg_sender = db.relationship("Message", back_populates="from_sender")
+
 
     @property
     def password(self):
