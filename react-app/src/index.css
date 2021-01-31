@@ -51,16 +51,19 @@ textarea:focus {
 }
 
 .profile {
-  padding-left: 50px;
+  padding-left: 60px;
   display: flex;
-  flex-direction: column;
-  font-size: 20px;
+  /* flex-direction: column; */
+  /* font-size: 20px; */
 }
 .profile-details {
-  border-left: 1px solid rgba(255, 255, 0, 0.6);
+  border-left: 1px solid rgba(255, 255, 0, 0.2);
 }
 .prof-pic {
-  padding: 20px;
+  padding-top: 20px;
+  padding-right: 60px;
+  /* display: flex;
+  justify-content: center; */
 }
 #profile-picture {
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.7);
@@ -71,5 +74,23 @@ textarea:focus {
   list-style-type: none;
 }
 .profile-ul {
-  border-left: 1px solid rgba(0, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 0, 0.2);
+}
+.purple {
+  color: rgb(244, 154, 250);
+}
+.blue {
+  color: cyan;
+}
+.yellow {
+  color: rgb(255, 255, 0);
+}
+.green {
+  color: rgba(127, 255, 0, 0.8);
+}
+.red {
+  color: rgb(201, 24, 77);
+}
+.orange {
+  color: orange;
 }

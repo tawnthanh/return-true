@@ -33,68 +33,118 @@ function User() {
       <div>
         <div>
           <p>
-            const {profiles.first_name} = {"{"}
+            <span className="purple">const</span>{" "}
+            <span className="blue">{profiles.first_name}</span> =
+            <span className="yellow">{" {"}</span>
           </p>
           <div className="profile-details">
             <ul>
-              {profiles.bio && <p>bio: "{!!profiles.bio && profiles.bio}",</p>}
-
-              <p>level: {profiles.level},</p>
+              {profiles.bio && (
+                <p>
+                  <span className="red">bio:</span>{" "}
+                  <span className="green">
+                    "{!!profiles.bio && profiles.bio}"
+                  </span>
+                  ,
+                </p>
+              )}
+              <p>
+                <span className="red">level: </span>
+                <span className="orange">{profiles.level}</span>,
+              </p>
               <div>
-                frequency: "{!!profiles.frequency && profiles.frequency.type}",
-              </div>
-              <br />
-              <div>
-                {profiles.personality !== undefined &&
-                  `personalityType: ${
-                    profiles.personality ? "introvert" : "extrovert"
-                  },`}
-              </div>
-              <br />
-              <div>
-                mentor:{" "}
-                {profiles.mentorship === true && profiles.mentorship.toString()}
-                {profiles.mentorship === false &&
-                  profiles.mentorship.toString()}
+                <span className="red">frequency: </span>
+                <span className="green">
+                  "{!!profiles.frequency && profiles.frequency.type}"
+                </span>
                 ,
               </div>
               <br />
               <div>
-                inPerson:{" "}
-                {profiles.in_person === true && profiles.in_person.toString()}
-                {profiles.in_person === false && profiles.in_person.toString()},
+                <span className="red">introvert: </span>
+                {profiles.personality == true && (
+                  <span className="orange">
+                    {profiles.personality.toString()}
+                  </span>
+                )}
+                {profiles.personality == false && (
+                  <span className="orange">
+                    {profiles.personality.toString()}
+                  </span>
+                )}
               </div>
               <br />
               <div>
-                morning:{" "}
-                {profiles.morning === true && profiles.morning.toString()}
-                {profiles.morning === false && profiles.morning.toString()},
+                <span className="red">mentor: </span>
+                <span className="orange">
+                  {profiles.mentorship === true &&
+                    profiles.mentorship.toString()}
+                  {profiles.mentorship === false &&
+                    profiles.mentorship.toString()}
+                </span>
+                ,
               </div>
-              <p>languages: {"["}</p>
+              <br />
+              <div>
+                <span className="red">inPerson: </span>
+                <span className="orange">
+                  {profiles.in_person === true && profiles.in_person.toString()}
+                </span>
+                <span className="orange">
+                  {profiles.in_person === false &&
+                    profiles.in_person.toString()}
+                </span>
+                ,
+              </div>
+              <br />
+              <div>
+                <span className="red">morning: </span>
+                <span className="orange">
+                  {profiles.morning === true && profiles.morning.toString()}
+                </span>
+                <span className="orange">
+                  {profiles.morning === false && profiles.morning.toString()}
+                </span>
+                ,
+              </div>
+              <p>
+                <span className="red">languages: </span>
+                <span className="yellow">{"["}</span>
+              </p>
               <ul className="profile-ul">
                 <div>
                   {!!profiles.languages &&
                     Object.values(profiles.languages).map((language) => (
-                      <li className="profile-list">{language.type},</li>
+                      <li className="profile-list">
+                        <span className="green">"{language.type}"</span>,
+                      </li>
                     ))}
                 </div>
               </ul>
-              {"],"}
-              <p>expertises: {"["}</p>
+              <span className="yellow">{"]"}</span>,
+              <span className="red"></span>
+              <p>
+                <span className="red">expertises: </span>
+                <span className="yellow">{"["}</span>
+              </p>
               <ul className="profile-ul">
                 <div>
                   {!!profiles.expertises &&
                     Object.values(profiles.expertises).map((expertise) => (
-                      <li className="profile-list">{expertise.type},</li>
+                      <li className="profile-list">
+                        <span className="green">"{expertise.type}"</span>,
+                      </li>
                     ))}
                 </div>
               </ul>
-              {"],"}
+              <span className="yellow">{"]"}</span>,
             </ul>
           </div>
         </div>
         <div>
-          <p>{"};"}</p>
+          <p>
+            <span className="yellow">{"}"}</span>;
+          </p>
         </div>
       </div>
     </div>
