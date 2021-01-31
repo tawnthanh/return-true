@@ -5,11 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import './ProfileForm.css';
 import { getProfileFields } from "../../store/profile";
 import { QuestionReversedToggleProfile } from "./FormFields";
+import {openTab} from "../../store/tabs";
 
-const ProfileForm = ({ authenticated, setAuthenticated }) => {
+const ProfileForm = () => {
   const dispatch = useDispatch();
   const { username } = useParams()
-  const confirmedUser = useSelector(state => state.session.user.username)
+  const confirmedUser = useSelector(state => state.session.user)
   const profile = useSelector(state => state.profile)
   const languages_list = useSelector(state => state.fixed.languages)
   const expertises_list = useSelector(state => state.fixed.expertise)
@@ -18,8 +19,8 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
 
   const [firstName, updateFirstName] = useState("")
   const [lastName, updateLastName] = useState("")
-  const [imageUrl, updateImgUrl] = useState("")
-  const [bio, updateBio] = useState("")
+  const [imageUrl, updateImgUrl] = useState(null)
+  const [bio, updateBio] = useState(null)
   const [state, updateState] = useState(0)
   const [city, updateCity] = useState("")
   const [inPerson, updateInPerson] = useState(false)
@@ -41,7 +42,13 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
     {"id": 3, "name": "Expert"},
   ]
 
-  useEffect(()=>{
+  useEffect(() => {
+    let tab = {
+      tab_id: `edit-profile`,
+      title: "edit profile",
+      link: `/${username}/edit-profile`
+    }
+    dispatch(openTab(tab))
     dispatch(getProfileFields(username))
     setIsLoaded(true)
   }, [dispatch])
@@ -91,7 +98,25 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
   const editProfile = (e) => {
     e.preventDefault();
     // if()
-
+    const profile = {
+      "user_id": confirmedUser.id,
+      "username": username,
+      "first_name": firstName,
+      "last_name": lastName,
+      "image_url": imageUrl,
+      "bio": bio,
+      "city": city,
+      "state": state,
+      "inPerson": inPerson,
+      "level": level,
+      "personality": personality,
+      "frequency_id": frequency,
+      "mentorship": mentorship,
+      "morning": morning,
+      "languages": languages,
+      "expertises": expertises,
+    }
+    console.log(profile)
     return
   }
 
@@ -164,7 +189,7 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
         </div>
         <div>
           <label>imageUrl</label>
-            <span className={imageUrl === ""? " " : "quoted"}>
+            <span className={!imageUrl? " " : "quoted"}>
               <input
               type="imageUrl"
               name="imageUrl"
@@ -204,7 +229,7 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
         </div>
         <div>
           <label>bio</label>
-          <span className={bio === ""? " " : "quoted"}>
+          <span className={bio === null? " " : "quoted"}>
             <textarea
               name="bio"
               onChange={(e) => updateBio(e.target.value)}

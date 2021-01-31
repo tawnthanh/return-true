@@ -1,6 +1,7 @@
 const SET_PROFILE = "profile/set";
 const SET_USER = "user/set";
 const GET_FORM_DETAILS = "profile_form/GET_FORM_DETAILS"
+const EDIT_PROFILE = "profile_form/EDIT_PROFILE"
 
 const setProfile = (payload) => ({
   type: SET_PROFILE,
@@ -15,6 +16,11 @@ const setProfileFields = (payload) => ({
   type: GET_FORM_DETAILS,
   payload
 });
+
+const editProfile = (payload) => ({
+  type: EDIT_PROFILE,
+  payload
+})
 
 export const getProfile = (userId) => async (dispatch) => {
   console.log(userId);
@@ -53,6 +59,20 @@ export const getProfileFields = (username) => async (dispatch) => {
   }
 }
 
+export const createProfile = (profileObj) => async (dispatch) => {
+  const res = await fetch(`/api/users/${profileObj.username}/edit-profile`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(profileObj)
+  });
+  if (res.ok) {
+    console.log("Post went through ok");
+    dispatch(editProfile(profileObj))
+    return profileObj;
+  }
+}
 
 const initState = {};
 const profileReducer = (state = initState, action) => {
@@ -69,6 +89,11 @@ const profileReducer = (state = initState, action) => {
       };
       return newState;
     case GET_FORM_DETAILS:
+      newState = {
+        ...action.payload,
+      };
+      return newState;
+    case EDIT_PROFILE:
       newState = {
         ...action.payload,
       };

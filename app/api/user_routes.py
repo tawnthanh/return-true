@@ -91,3 +91,11 @@ def profile_form(username):
             "expertises": [],
             }
         return {"profile": default_info}
+
+
+@user_routes.route('/<username>/edit-profile', methods=["POST"])
+# @login_required
+def profile_form(username):
+    profile = request.get_json()
+    print(profile)
+    return profile

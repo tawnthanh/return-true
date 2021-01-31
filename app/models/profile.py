@@ -48,8 +48,8 @@ class Profile(db.Model):
     imageUrl = db.Column(db.String)
     bio = db.Column(db.String(2000))
     locationId = db.Column(db.Integer, db.ForeignKey("locations.id"))
-    inPerson = db.Column(db.Boolean, nullable=False)
     level = db.Column(db.Integer, nullable=False)
+    inPerson = db.Column(db.Boolean, nullable=False)
     personality = db.Column(db.Boolean, default=False)
     frequencyId = db.Column(db.Integer, db.ForeignKey(
         "frequencies.id"), nullable=False)
