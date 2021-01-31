@@ -60,12 +60,12 @@ function User() {
               </div>
               <div>
                 <span className="red">introvert: </span>
-                {profiles.personality == true && (
+                {profiles.personality === true && (
                   <span className="orange">
                     {profiles.personality.toString()}
                   </span>
                 )}
-                {profiles.personality == false && (
+                {profiles.personality === false && (
                   <span className="orange">
                     {profiles.personality.toString()}
                   </span>
