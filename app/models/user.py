@@ -15,7 +15,6 @@ class User(db.Model, UserMixin):
     profile = db.relationship("Profile", back_populates="user")
     msg_sender = db.relationship("Message", back_populates="from_sender")
 
-
     @property
     def password(self):
         return self.hashed_password

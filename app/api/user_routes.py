@@ -21,7 +21,7 @@ def user(id):
 @user_routes.route('/messages/<int:dialogueId>', methods=['GET'])
 @login_required
 def messages(dialogueId):
-    messages = Message.query.filter(Message.dialogueId==dialogueId).all()
+    messages = Message.query.filter(Message.dialogueId == dialogueId).all()
     print(messages)
     msg = []
     for m in messages:
@@ -44,11 +44,53 @@ def addMessages(dialogueId):
     return messages.to_dict()
 
 
-    # return {"messages": [messages.to_dict() for message in messages]}
-
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
     profiles = Profile.query.get(id)
     print(profiles)
     return {"profile": profiles.to_dict()}
+
+
+# @user_routes.route('/<int:id>/profiles')
+# @login_required
+# def profile(id):
+#     profile = Profile.query.filter_by(id=id).one()
+#     return profile.to_dict()
+
+# @user_routes.route('/edit-profile')
+# # @login_required
+# def profile_form():
+#     profile = Profile.query.filter(Profile.username.like("Demo")).first()
+#     if profile:
+#         return jsonify(profile)
+#     return "hi"
+
+@user_routes.route('/<username>/edit-profile')
+# @login_required
+def profile_form(username):
+    profile = Profile.query.join(User).filter(User.username == username).first()
+    if profile:
+        return {"profile": profile.to_dict()}
+    else:
+        user_info_response = User.query.filter(User.username == username).first()
+        user_info = user_info_response.to_dict()
+        default_info = {
+            "user_id": user_info["id"],
+            "username": user_info["username"],
+            "first_name": "",
+            "last_name": "",
+            "image_url": "",
+            "bio": "",
+            "location_id": 0,
+            "inPerson": None,
+            "level": 0,
+            "personality": 0,
+            "frequency_id": 0,
+            "frequency": [],
+            "mentorship": None,
+            "morning": None,
+            "languages": [],
+            "expertises": [],
+            }
+        return {"profile": default_info}

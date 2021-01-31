@@ -8,7 +8,6 @@ def create_dialogue():
 
 
 def create_message():
-
     messages = [
         ["Violets are BLUEE!!", True, 1, 1],
         ["Roses are red", False, 1, 2],
@@ -16,7 +15,7 @@ def create_message():
     ]
 
     for message in messages:
-        message1 = Message(
-            message=message[0], dialogueId=message[2], read=message[1], senderId=message[3])
+        message1 = Message(message=message[0], dialogueId=message[2],
+                           read=message[1], senderId=message[3])
         db.session.add(message1)
     db.session.commit()

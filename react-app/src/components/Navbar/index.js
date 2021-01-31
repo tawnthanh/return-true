@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector } from "react-redux";
 import LogoutButton from '../auth/LogoutButton';
 import './navbar.css';
 import 'font-awesome/css/font-awesome.min.css';
@@ -7,6 +8,7 @@ import Search from "../Search";
 import RequestList from "../Request/RequestList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
+  const username = useSelector(state => state.session.user.username)
   const [search, setSearch] = useState(false)
   const [requests, setRequests] = useState(false)
 
@@ -73,6 +75,11 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             <NavLink to="/users" exact={true} className="active">
               <i className="fa fa-user fa-3x" aria-hidden="true"></i>
             </NavLink>
+          </li>}
+          {authenticated && <li>
+            <a href={`/${username}/edit-profile`} exact={true} className="active">
+              <div onClick={()=>console.log(username)}>Edit Profile</div>
+            </a>
           </li>}
           {authenticated && <li className="logoutbutton">
             <LogoutButton setAuthenticated={setAuthenticated}/>

@@ -60,14 +60,14 @@ export default function Request () {
         }} />}
     </div>}
     {editMode && <form onSubmit={onSubmitEditTitle}>
-        <input 
+        <input
             className="code-edit h1"
             type="text"
             value={title}
             onChange={e=>{setTitle(e.target.value)}}
         />
     </form>}
-    
+
         <Answer/>
     </>
 }

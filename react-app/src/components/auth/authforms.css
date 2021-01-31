@@ -7,38 +7,40 @@
     padding-top: 15px;
 }
 
-@-webkit-keyframes borderBlink {    
-    from, to {    
-        border-color: transparent    
-    }    
-    50% {    
-        border-color: #fff    
-    }    
-}    
-@keyframes borderBlink {    
-    from, to {    
-        border-color: transparent    
-    }    
-    50% {    
-        border-color: #fff    
-    }    
+@-webkit-keyframes borderBlink {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: #fff
+    }
 }
-.loginform div, .signupform div {
+@keyframes borderBlink {
+    from, to {
+        border-color: transparent
+    }
+    50% {
+        border-color: #fff
+    }
+}
+.loginform div, .signupform div, .profile-form div {
     margin-left: 15px;
 }
 
-.loginform input, .signupform input {
+.loginform input, .signupform input, .profile-form input {
     font-family: 'Source Code Pro', monospace;
     font-size: 18px;
     background-color: #1e1e1e;
     color: rgb(206,145,120);
     border: none;
     border-left: 2px solid white;
-    -webkit-animation: borderBlink 1s step-end infinite;    
+    -webkit-animation: borderBlink 1s step-end infinite;
     animation: borderBlink 1s step-end infinite;
-} 
+}
 
-.loginform input::placeholder, .signupform input::placeholder {
+.loginform input::placeholder,
+.signupform input::placeholder,
+.profile-form input::placeholder {
     color: #bb86c0;
 }
 
@@ -46,7 +48,7 @@
     color: #dcb862;
 }
 
-.signupform label {
+.signupform label, .profile-form label {
     color: rgb(123,220,254);
 }
 
@@ -54,7 +56,7 @@
     content: 'const ';
     color: #2566ca;
 }
-.signupform label {
+.signupform label, .profile-form label {
     margin-left: 20px;
 }
 
@@ -62,7 +64,8 @@
     content: ' = ';
     color: white;
 }
-.signupform label::after {
+.signupform label::after,
+.profile-form label::after {
     content: ' : ';
     color: white;
 }
@@ -76,7 +79,7 @@
     border: none;
 }
 
-.loginform button, .signupform button {
+.loginform button, .signupform button, .profile-form button {
     width: 100%;
     background-color: #1e1e1e;
     font-family: 'Source Code Pro', monospace;
@@ -88,7 +91,9 @@
     margin-top: 15px;
 }
 
-.loginform button:hover, .signupform button:hover {
+.loginform button:hover,
+.signupform button:hover,
+.profile-form button:hover {
     color: #fff
 }
 .errorsLog div {

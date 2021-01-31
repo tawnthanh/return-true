@@ -19,9 +19,7 @@ const Message = () => {
     // const {message} = useSelector(state => state.message)
 
 
-    const fullStore = useSelector(state => {
-      return state.messages
-    })
+    const fullStore = useSelector(state => state.message)
     // const handleSubmit = (e) => {
     //   e.preventDefault()
     //   dispatch(postMessages(message, dialogueId))
@@ -51,9 +49,9 @@ const Message = () => {
 
       </div>
       <div>
-       { fullStore.map((msg)=> {
-          return msg.message
-        })}
+        { fullStore.map((msg)=> {
+          return <div>{msg.message}</div>
+          })}
       </div>
     </div>
     )
