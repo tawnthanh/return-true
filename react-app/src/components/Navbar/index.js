@@ -8,7 +8,7 @@ import Search from "../Search";
 import RequestList from "../Request/RequestList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
-  const username = useSelector(state => state.session.user.username)
+  const user = useSelector(state => state.session.user)
   const [search, setSearch] = useState(false)
   const [requests, setRequests] = useState(false)
 
@@ -76,10 +76,10 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               <i className="fa fa-user fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
-          {authenticated && <li>
-            <NavLink to={`/${username}/edit-profile`} exact={true} className="active">
+          {authenticated && user.username !== null && <li>
+            {<NavLink to={`/${user.username}/edit-profile`} exact={true} className="active">
               <div>Edit Profile</div>
-            </NavLink>
+            </NavLink>}
           </li>}
           {authenticated && <li className="logoutbutton">
             <LogoutButton setAuthenticated={setAuthenticated}/>

@@ -11,36 +11,45 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
   const { username } = useParams()
   const confirmedUser = useSelector(state => state.session.user.username)
   const profile = useSelector(state => state.profile)
-  const languages_list = useSelector(state=>state.fixed.languages)
+  const languages_list = useSelector(state => state.fixed.languages)
   const expertises_list = useSelector(state => state.fixed.expertise)
   const states_list = useSelector(state => state.fixed.states)
+  const frequency_list = useSelector(state => state.fixed.frequencies)
 
-  const [field, setField] = useState(false)
   const [firstName, updateFirstName] = useState("")
   const [lastName, updateLastName] = useState("")
   const [imageUrl, updateImgUrl] = useState("")
   const [bio, updateBio] = useState("")
   const [state, updateState] = useState(0)
   const [city, updateCity] = useState("")
-  const [inPerson, updateInPerson] = useState(null)
+  const [inPerson, updateInPerson] = useState(false)
   const [level, updateLevel] = useState(0)
-  const [personality, updatePersonality] = useState(0)
+  const [personality, updatePersonality] = useState(false)
   const [frequency, updateFrequency] = useState(0)
-  const [mentorship, updateMentorship] = useState(null)
-  const [morning, updateMorning] = useState(null)
+  const [mentorship, updateMentorship] = useState(false)
+  const [morning, updateMorning] = useState(false)
   const [languages, setLanguages] = useState([])
   const [expertises, updateExpertises] = useState([])
   const [isLoaded, setIsLoaded] = useState(false)
   const [stateName, updateStateName] = useState(null)
+  const [defaultLevel, setDefaultLevel] = useState({})
+  const [defaultFrequency, setDefaultFrequency] = useState({})
+
+  const levelArray = [
+    {"id": 1, "name": "Beginner"},
+    {"id": 2, "name": "Proficient"},
+    {"id": 3, "name": "Expert"},
+  ]
 
   useEffect(()=>{
     dispatch(getProfileFields(username))
-    setField(true)
     setIsLoaded(true)
   }, [dispatch])
 
   useEffect(() => {
     if (profile.state) {
+      let expertiseId = profile.expertises.map(e => e.id)
+      let languagesId = profile.languages.map(l => l.id)
       updateFirstName(profile.first_name)
       updateLastName(profile.last_name)
       updateImgUrl(profile.image_url)
@@ -53,44 +62,46 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
       updateFrequency(profile.frequency_id)
       updateMentorship(profile.mentorship)
       updateMorning(profile.morning)
-      setLanguages(profile.language)
-      updateExpertises(profile.expertises)
+      setLanguages(languagesId)
+      updateExpertises(expertiseId)
     }
+
   }, [profile])
 
   useEffect(() => {
     if (states_list) {
-      updateStateName(Object.values(states_list)[state-1])
+      updateStateName(Object.values(states_list)[state - 1])
     }
   }, [state,states_list])
 
+  useEffect(() => {
+    if (level !== 0) {
+      let defaultLevelObj = levelArray.filter(l => l.id === level)
+      setDefaultLevel(...defaultLevelObj)
+    }
+  },[level])
 
-    const editProfile = (e) => {
+  useEffect(() => {
+    if (frequency_list && frequency) {
+      let freqObj = Object.values(frequency_list).filter(f => f.id === frequency)
+      setDefaultFrequency(...freqObj)
+    }
+  }, [frequency, frequency_list])
+
+  const editProfile = (e) => {
     e.preventDefault();
-    console.log(firstName)
-    console.log(lastName)
-    console.log(imageUrl)
-    console.log(bio)
-    console.log(city)
-    console.log(state)
-    console.log(inPerson)
-    console.log(level)
-    console.log(personality)
-    console.log(frequency)
-    console.log(mentorship)
-    console.log(morning)
-    console.log(languages)
-    console.log(expertises)
+    // if()
 
     return
   }
 
   const handleLanguages = (e) => {
-    if (!languages.includes(e.target.value)) {
-      setLanguages([...languages, e.target.value]);
-    } else if (languages.includes(e.target.value)) {
+    let targetVal = parseInt(e.target.value)
+    if (!languages.includes(targetVal)) {
+      setLanguages([...languages, targetVal]);
+    } else if (languages.includes(targetVal)) {
       if (languages.length > 1){
-        let targetIdx = languages.indexOf(e.target.value);
+        let targetIdx = languages.indexOf(targetVal);
         let newLang = [...languages.slice(0, targetIdx), ...languages.slice(targetIdx + 1)];
         setLanguages(newLang);
       } else if (languages.length === 1){
@@ -99,19 +110,19 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
     }
   }
 
-  const handleExpertise = (e) => {
-  if (!expertises.includes(e.target.value)) {
-    updateExpertises([...expertises, e.target.value]);
-  } else if (expertises.includes(e.target.value)) {
-    if (expertises.length > 1){
-      let targetIdx = expertises.indexOf(e.target.value);
-      let newLang = [...expertises.slice(0, targetIdx), ...expertises.slice(targetIdx + 1)];
-      updateExpertises(newLang);
-    } else if (expertises.length === 1){
-      updateExpertises([])
+  const handleExpertise = e => {
+    let targetVal = parseInt(e.target.value)
+    if (!expertises.includes(targetVal)) {
+      updateExpertises([...expertises, targetVal]);
+    } else if (expertises.includes(targetVal)) {
+      if (expertises.length > 1){
+        let targetIdx = expertises.indexOf(targetVal);
+        let newLang = [...expertises.slice(0, targetIdx), ...expertises.slice(targetIdx + 1)];
+        updateExpertises(newLang);
+      } else if (expertises.length === 1){
+        updateExpertises([])
+      }
     }
-  }
-
   }
 
   // if (confirmedUser !== username) {
@@ -163,36 +174,33 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
             ></input>
           </span>
         </div>
-      <div>
+        <div>
+          <label>location</label>
+          <span className={state === 0 ? " " : "quoted"}>
+            <input
+              type="text"
+              name="location"
+              value={city}
+              placeholder="null"
+              onChange={(e) => updateCity(e.target.value)}></input>,
+              <select
+                name="state"
+                required={true}
+                onChange={(e)=>updateState(e.target.value)}
+              >
+              {stateName?
+                <option value={stateName.id}>{stateName.state}</option>
+                :
+                <option>Select State</option>
+              }
+              {states_list &&
+                Object.values(states_list).map(s => {
 
-        <label>location</label>
-        <span className={state === 0 ? " " : "quoted"}>
-          <input
-            type="text"
-            name="location"
-            value={city}
-            placeholder="null"
-            onChange={(e) => updateCity(e.target.value)}></input>,
-            <select
-              name="state"
-              required={true}
-              onChange={(e)=>updateState(e.target.value)}
-            >
-            {stateName?
-              <option value={stateName.id}>{stateName.state}</option>
-              :
-              <option>Select State</option>
-            }
-            {states_list &&
-              Object.values(states_list).map(s => {
+                  return <option key={s.id} value={s.id}>{s.state}</option>;
 
-                return <option key={s.id} value={s.id}>{s.state}</option>;
-
-                })}
-            </select>
-          </span>,
-
-
+                  })}
+              </select>
+            </span>,
         </div>
         <div>
           <label>bio</label>
@@ -201,7 +209,6 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
               name="bio"
               onChange={(e) => updateBio(e.target.value)}
               value={bio}
-              required={true}
               placeholder="null- please keep it under 2000 characters,"
             ></textarea>
           </span>
@@ -214,10 +221,14 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
                 required={true}
                 onChange={(e)=>updateLevel(e.target.value)}
               >
-                <option></option>
-                <option value="1" >Beginner</option>
-                <option value="2" >Intermediate</option>
-                <option value="3" >Expert</option>
+            { !!defaultLevel && defaultLevel.id ?
+              <option value={defaultLevel.id}>{defaultLevel.name}</option>
+              :
+              <option>Select Level</option>
+            }
+              {levelArray.map(l => {
+                return <option key={`o-${l.name}` }value={l.id}>{l.name}</option>
+                })}
               </select>,
             </span>
         </div>
@@ -229,11 +240,17 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
                 required={true}
                 onChange={(e)=>updateFrequency(e.target.value)}
               >
-                <option></option>
-                <option value="1" >{" < 10hrs/week"}</option>
-                <option value="2" >10-20hrs/week</option>
-                <option value="3" >20-40hrs/week</option>
-                <option value="4" >40hrs+/week</option>
+            {!!defaultFrequency && defaultFrequency.id ?
+              <option value={defaultFrequency.id}>{defaultFrequency.type}</option>
+            :
+              <option>Select How Often</option>
+            }
+            {!!frequency_list &&
+              Object.values(frequency_list).map(f => {
+                return <option key={`o-${f.type}` }value={f.id}>{f.type}</option>
+              })
+
+                }
               </select>,
             </span>
         </div>
@@ -303,6 +320,8 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
                     value={language.id}
                     id={`o${language.id}`}
                     name={`o${language.type}`}
+                    checked={languages.includes(language.id)? "checked": null}
+
                   />
                   {language.type}
                   <span className="checkmark"></span>
@@ -314,24 +333,23 @@ const ProfileForm = ({ authenticated, setAuthenticated }) => {
         <div>
           <label>{"My_expertise(s)"}</label>
           {"["}
-          <span className="select-grid">
-            {expertises_list && Object.values(expertises_list).map(e => {
-                return(
-                  <label
-                    htmlFor={`q${e.type}-${e.id}`}
-                    className="checkbox-container"
-                    key={`q${e.type}-${e.id}-multichoice`}>
-                      {e.type}
+            <span className="select-grid">
+            {expertises_list && Object.values(expertises_list).map(e=>{
+                return <label
+                            htmlFor={`q${e.type}-o${e.id}`}
+                            className="checkbox-container"
+                            key={`q${e.type}-o${e.id}-multichoice`}>
+                    {e.type}
                   <input type="checkbox"
-                      onChange={handleExpertise}
-                      value={e.id}
-                      id={`o${e.id}`}
-                      name={`o${e.type}`}
+                    onChange={handleExpertise}
+                    value={e.id}
+                    id={`q${e.type}-o${e.id}`}
+                    name={`q${e.id}`}
+                    checked={expertises.includes(e.id)? "checked": null}
                     />
-
                     <span className="checkmark"></span>
-                </label>)
-              })}
+                </label>
+            })}
             {"],"}
           </span>
         </div>
