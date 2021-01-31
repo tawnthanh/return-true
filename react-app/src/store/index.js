@@ -13,6 +13,7 @@ import profileReducer from "./profile";
 import requestsReducer from "./requests";
 import currentRequestsReducer from "./currentRequest";
 import fixedReducer from "./fixed";
+import matchesReducer from "./matches";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   profile: profileReducer,
   fixed: fixedReducer,
   currentRequest: currentRequestsReducer,
+  matches: matchesReducer,
 });
 
 let enhancer;

@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.search_routes import search_routes
 from .api.request_routes import request_routes
 from .api.option_routes import option_routes
+from .api.match_routes import match_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(search_routes, url_prefix='/api/search')
 app.register_blueprint(request_routes, url_prefix='/api/request')
 app.register_blueprint(option_routes, url_prefix='/api/options')
+app.register_blueprint(match_routes, url_prefix='/api/match')
 
 db.init_app(app)
 Migrate(app, db)

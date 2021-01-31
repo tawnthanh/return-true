@@ -36,7 +36,6 @@ export default function AnswerList () {
                                     {q.question}
                                 </span>
                     } else {
-                        console.log(">=2",aArr, a)
                         if (q.question_type===5) aArr.reverse()
                         return  <span key={`answer-list-item${a.id}`}>
                                     {q.question} = {aArr[parseInt(a.answer)]}
