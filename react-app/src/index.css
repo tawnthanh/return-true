@@ -57,7 +57,7 @@ textarea:focus {
   font-size: 20px;
 }
 .profile-details {
-  border-left: 1px solid rgba(255, 255, 0, 0.5);
+  border-left: 1px solid rgba(255, 255, 0, 0.6);
 }
 .prof-pic {
   padding: 20px;
@@ -71,5 +71,5 @@ textarea:focus {
   list-style-type: none;
 }
 .profile-ul {
-  border-left: 1px solid rgba(0, 255, 255, 0.5);
+  border-left: 1px solid rgba(0, 255, 255, 0.6);
 }

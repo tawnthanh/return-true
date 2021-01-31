@@ -26,7 +26,9 @@ function User() {
   return (
     <div className="profile">
       <div className="prof-pic">
-        <img id="profile-picture" src={profiles.image_url} />
+        {profiles.image_url && (
+          <img id="profile-picture" src={profiles.image_url} />
+        )}
       </div>
       <div>
         <div>
@@ -35,6 +37,8 @@ function User() {
           </p>
           <div className="profile-details">
             <ul>
+              {profiles.bio && <p>bio: "{!!profiles.bio && profiles.bio}",</p>}
+
               <p>level: {profiles.level},</p>
               <div>
                 frequency: "{!!profiles.frequency && profiles.frequency.type}",
@@ -42,14 +46,31 @@ function User() {
               <br />
               <div>
                 introvert:{" "}
-                {!!profiles.personality && profiles.personality.toString()},
+                {profiles.personality == true &&
+                  profiles.personality.toString()}
+                {profiles.personality == false &&
+                  profiles.personality.toString()}
+                ,
               </div>
               <br />
               <div>
                 mentor:{" "}
-                {!!profiles.mentorship && profiles.mentorship.toString()},
+                {profiles.mentorship == true && profiles.mentorship.toString()}
+                {profiles.mentorship == false && profiles.mentorship.toString()}
+                ,
               </div>
-              <p>bio: "{profiles.bio}",</p>
+              <br />
+              <div>
+                in_person:{" "}
+                {profiles.in_person == true && profiles.in_person.toString()}
+                {profiles.in_person == false && profiles.in_person.toString()},
+              </div>
+              <br />
+              <div>
+                morning:{" "}
+                {profiles.morning == true && profiles.morning.toString()}
+                {profiles.morning == false && profiles.morning.toString()},
+              </div>
               <p>languages: {"["}</p>
               <ul className="profile-ul">
                 <div>
