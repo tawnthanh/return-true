@@ -53,8 +53,6 @@ textarea:focus {
 .profile {
   padding-left: 60px;
   display: flex;
-  /* flex-direction: column; */
-  /* font-size: 20px; */
 }
 .profile-details {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
@@ -62,11 +60,9 @@ textarea:focus {
 .prof-pic {
   padding-top: 20px;
   padding-right: 60px;
-  /* display: flex;
-  justify-content: center; */
 }
 #profile-picture {
-  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.7);
   width: 300px;
   border-radius: 50%;
 }
@@ -76,21 +72,21 @@ textarea:focus {
 .profile-ul {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
-.purple {
-  color: rgb(73, 173, 255);
+.const {
+  color: steelblue;
 }
-.blue {
-  color: rgb(0, 255, 251);
+.prof-name {
+  color: cornflowerblue;
 }
-.yellow {
+.brackets {
   color: rgb(255, 255, 0);
 }
-.green {
-  color: rgba(250, 184, 255, 0.755);
+.values {
+  color: rgba(223, 145, 221, 0.858);
 }
-.red {
-  color: rgb(152, 223, 223);
+.keys {
+  color: skyblue;
 }
-.orange {
-  color: rgb(255, 229, 125);
+.booleans {
+  color: rgba(165, 247, 124, 0.742);
 }

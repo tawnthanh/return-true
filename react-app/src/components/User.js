@@ -33,47 +33,47 @@ function User() {
       <div>
         <div>
           <p>
-            <span className="purple">const</span>{" "}
-            <span className="blue">{profiles.first_name}</span> =
-            <span className="yellow">{" {"}</span>
+            <span className="const">const</span>{" "}
+            <span className="prof-name">{profiles.first_name}</span> =
+            <span className="brackets">{" {"}</span>
           </p>
           <div className="profile-details">
             <ul>
               {profiles.bio && (
                 <>
-                  <span className="red">bio:</span>{" "}
-                  <span className="green">
+                  <span className="keys">bio:</span>{" "}
+                  <span className="values">
                     "{!!profiles.bio && profiles.bio}"
                   </span>
                   ,
                 </>
               )}
               <br />
-              <span className="red">level: </span>
-              <span className="orange">{profiles.level}</span>,
+              <span className="keys">level: </span>
+              <span className="booleans">{profiles.level}</span>,
               <div>
-                <span className="red">frequency: </span>
-                <span className="green">
+                <span className="keys">frequency: </span>
+                <span className="values">
                   "{!!profiles.frequency && profiles.frequency.type}"
                 </span>
                 ,
               </div>
               <div>
-                <span className="red">introvert: </span>
+                <span className="keys">introvert: </span>
                 {profiles.personality === true && (
-                  <span className="orange">
+                  <span className="booleans">
                     {profiles.personality.toString()}
                   </span>
                 )}
                 {profiles.personality === false && (
-                  <span className="orange">
+                  <span className="booleans">
                     {profiles.personality.toString()}
                   </span>
                 )}
               </div>
               <div>
-                <span className="red">mentor: </span>
-                <span className="orange">
+                <span className="keys">mentor: </span>
+                <span className="booleans">
                   {profiles.mentorship === true &&
                     profiles.mentorship.toString()}
                   {profiles.mentorship === false &&
@@ -82,59 +82,59 @@ function User() {
                 ,
               </div>
               <div>
-                <span className="red">inPerson: </span>
-                <span className="orange">
+                <span className="keys">inPerson: </span>
+                <span className="booleans">
                   {profiles.in_person === true && profiles.in_person.toString()}
                 </span>
-                <span className="orange">
+                <span className="booleans">
                   {profiles.in_person === false &&
                     profiles.in_person.toString()}
                 </span>
                 ,
               </div>
               <div>
-                <span className="red">morning: </span>
-                <span className="orange">
+                <span className="keys">morning: </span>
+                <span className="booleans">
                   {profiles.morning === true && profiles.morning.toString()}
                 </span>
-                <span className="orange">
+                <span className="booleans">
                   {profiles.morning === false && profiles.morning.toString()}
                 </span>
                 ,
               </div>
-              <span className="red">languages: </span>
-              <span className="yellow">{"["}</span>
+              <span className="keys">languages: </span>
+              <span className="brackets">{"["}</span>
               <ul className="profile-ul">
                 <div>
                   {!!profiles.languages &&
                     Object.values(profiles.languages).map((language) => (
                       <li className="profile-list">
-                        <span className="green">"{language.type}"</span>,
+                        <span className="values">"{language.type}"</span>,
                       </li>
                     ))}
                 </div>
               </ul>
-              <span className="yellow">{"]"}</span>,
+              <span className="brackets">{"]"}</span>,
               <br />
-              <span className="red">expertises: </span>
-              <span className="yellow">{"["}</span>
+              <span className="keys">expertises: </span>
+              <span className="brackets">{"["}</span>
               <ul className="profile-ul">
                 <div>
                   {!!profiles.expertises &&
                     Object.values(profiles.expertises).map((expertise) => (
                       <li className="profile-list">
-                        <span className="green">"{expertise.type}"</span>,
+                        <span className="values">"{expertise.type}"</span>,
                       </li>
                     ))}
                 </div>
               </ul>
-              <span className="yellow">{"]"}</span>,
+              <span className="brackets">{"]"}</span>,
             </ul>
           </div>
         </div>
         <div>
           <p>
-            <span className="yellow">{"}"}</span>;
+            <span className="brackets">{"}"}</span>;
           </p>
         </div>
       </div>
