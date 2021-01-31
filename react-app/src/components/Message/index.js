@@ -2,6 +2,7 @@ import React, {useState, useEffect,  } from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {  getMessages, addMessage } from '../../store/message';
+import './message.css'
 
 
 
@@ -29,18 +30,20 @@ const Message = () => {
 
     return (
       <div className="messagebox">
-        <form >
-          <input
+        <form className="messages">
+          <input className="inputbox"
               name="message"
               type="text"
               placeholder="Message"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
           />
-          <button onClick={(e) => {
-            e.preventDefault()
+          <button className="messagebutton" onClick={(e) => {
 
+            e.preventDefault()
             dispatch(addMessage(dialogueId,message))
+
+
           }}>Send Message</button>
 
         </form>
@@ -52,7 +55,9 @@ const Message = () => {
       </div>
       <div>
        { fullStore.map((msg)=> {
-          return msg.message
+
+          return <div className="text">{msg.message}</div>
+
         })}
       </div>
     </div>
