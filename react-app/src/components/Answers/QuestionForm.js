@@ -36,7 +36,6 @@ export default function QuestionForm () {
         for (let key in state_list) {
             let item = state_list[key]
 
-            // console.log(typeof item[0] === "object", (typeof item[0] === "object")?item[0].size:typeof item[0])
             if (typeof item[0] === "object" && item[0].size > 0){
                 request_answers.push({
                     "questionId": parseInt(key),

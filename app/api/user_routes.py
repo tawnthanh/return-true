@@ -36,8 +36,8 @@ def messages(dialogueId):
 def addMessages(dialogueId):
     data = request.get_json()
     user = current_user.to_dict()
-    messages = Message(dialogueId=dialogueId, message=data['text'],
-                       read=False, senderId=user['id'])
+    messages = Message(dialogueId=dialogueId,
+                       message=data['text'], read=False, senderId=user['id'])
     db.session.add(messages)
     db.session.commit()
     return messages.to_dict()
@@ -51,31 +51,17 @@ def profiles(id):
     return {"profile": profiles.to_dict()}
 
 
-# @user_routes.route('/<int:id>/profiles')
-# @login_required
-# def profile(id):
-#     profile = Profile.query.filter_by(id=id).one()
-#     return profile.to_dict()
-
-# @user_routes.route('/edit-profile')
-# # @login_required
-# def profile_form():
-#     profile = Profile.query.filter(Profile.username.like("Demo")).first()
-#     if profile:
-#         return jsonify(profile)
-#     return "hi"
-
 @user_routes.route('/<username>/edit-profile')
 # @login_required
 def profile_form(username):
-    profile = Profile.query.join(User).filter(User.username == username)\
-                    .first()
+    profile = Profile.query.join(User).filter(
+        User.username == username).first()
     if profile:
         profile = profile.to_dict()
         return {"profile": profile}
     else:
-        user_info_response = User.query.filter(User.username == username)\
-                            .first()
+        user_info_response = User.query.filter(
+            User.username == username).first()
         user_info = user_info_response.to_dict()
         default_info = {
             "user_id": user_info["id"],
@@ -94,7 +80,7 @@ def profile_form(username):
             "morning": None,
             "languages": [],
             "expertises": [],
-            }
+        }
         return {"profile": default_info}
 
 
@@ -116,7 +102,6 @@ def profile_update(id):
     #     profiles.frequencyId = profile["frequency_id"],
     #     profiles.mentorship=profile["mentorship"],
     #     profiles.morning=profile["morning"],
-
 
     new_profile = Profile(
         userId=profile["user_id"],

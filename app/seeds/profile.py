@@ -3,7 +3,7 @@ from app.models import db, Frequency, Languages, Profile, Expertise
 
 def seed_frequency():
     frequency_list = ["less than 10 hour per week", "10 to 20 hours per week",
-                      "20 to 40 hours per week", "more that 40 hours per week"]
+                      "20 to 40 hours per week", "more than 40 hours per week"]
     for frequency in frequency_list:
         frequency_type = Frequency(type=frequency)
         db.session.add(frequency_type)
@@ -49,6 +49,8 @@ def seed_profile():
         "SQL Alchemy",
         "Express.js",
         "HTML",
+        "Dothraki",
+        "Valyrian"
     ]
 
     python_lang = Languages(type=languages[0])
@@ -69,6 +71,9 @@ def seed_profile():
     sql_alchemy_lang = Languages(type=languages[15])
     express_lang = Languages(type=languages[16])
     html_lang = Languages(type=languages[17])
+    dothraki_lang = Languages(type=languages[18])
+    valyrian_lang = Languages(type=languages[19])
+
     db.session.add(python_lang)
     db.session.add(javascript_lang)
     db.session.add(c_plus_plus_lang)
@@ -87,6 +92,15 @@ def seed_profile():
     db.session.add(sql_alchemy_lang)
     db.session.add(express_lang)
     db.session.add(html_lang)
+    db.session.add(dothraki_lang)
+    db.session.add(valyrian_lang)
+
+    daenerys = Profile(userId=1, firstName="Daenerys", lastName="Targaryen", imageUrl="https://s2.r29static.com/bin/entry/3a8/720x864,85/2170880/image.webp",
+                   bio="Daenerys Stormborn of House Targaryen, the First of Her Name, Queen of the Andals and the First Men, Protector of the Seven Kingdoms, the Mother of Dragons, the Khaleesi of the Great Grass Sea, the Unburnt, the Breaker of Chains", 
+                   locationId=1, inPerson=True, level=1, frequencyId=1, mentorship=True, morning=False, personality=True)
+    db.session.add(daenerys)
+    daenerys.languages.append(dothraki_lang)
+    daenerys.languages.append(valyrian_lang)
 
     anna = Profile(userId=2, firstName="Anna", lastName="Bullard", imageUrl="https://secure.gravatar.com/avatar/e4a93f356f91b40827d7c45367b8f369?secure=true&size=300",
                    bio="app academy student", locationId=1, inPerson=True, level=1, frequencyId=4, mentorship=False, morning=False, personality=True)
@@ -165,7 +179,7 @@ def seed_profile():
     thanh.expertises.append(data_analysis_expertise)
 
     joe = Profile(userId=6, firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512",
-                  bio="PTA at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
+                  bio="PTM at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
     db.session.add(joe)
     joe.languages.append(c_plus_plus_lang)
     joe.languages.append(ruby_lang)
@@ -245,7 +259,7 @@ def seed_profile():
     alfredo.expertises.append(ai_expertise)
     alfredo.expertises.append(data_analysis_expertise)
 
-    granof = Profile(userId=9, firstName="Granof", lastName="Johnson", imageUrl="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGreen_Bay_Packers_logo.svg&psig=AOvVaw26qbBomLC-Ck_SFLZUGrsG&ust=1611853918452000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJDH8_PNvO4CFQAAAAAdAAAAABAI",
+    granof = Profile(userId=9, firstName="Granof", lastName="Johnson", imageUrl="https://upload.wikimedia.org/wikipedia/commons/5/50/Green_Bay_Packers_logo.svg",
                      bio="Bucks && Packers", locationId=None, inPerson=False, level=2, frequencyId=3,  mentorship=True, morning=False, personality=None)
     db.session.add(granof)
     granof.languages.append(ruby_lang)

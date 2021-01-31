@@ -1,6 +1,39 @@
 .messagebox {
+    border-color: rgba(204, 204, 204, 0.664);
+    background-color: rgba(169, 169, 169, 0.082);
+    width: 100%;
+}
+
+.messagebutton {
+    color: #778585;
+    font: 18px "Source Code Pro", monospace;
+    background: #252526;
+    margin: 5px 17.2118px;
+    padding: 1px 6px;
+}
+
+.messagebutton:hover {
+    color: white;
+    cursor: pointer;
 
 }
 
+.inputbox {
+  padding: 10px;
+  width: 75%;
+  border: none;
+  background: rgba(128, 128, 128, 0.473);
+  resize: none;
+  min-height: 50px;
+  font: 18px "Source Code Pro", monospace;
+}
 
+.mymessage {
+    color: yellow;
+    font: 18px "Source Code Pro", monospace;
+}
 
+.othersMessage {
+    color: blue;
+    font: 18px "Source Code Pro", monospace;
+}

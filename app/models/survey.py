@@ -66,6 +66,7 @@ class Question(db.Model):
             "question": self.question,
             "options": self.options,
             "question_type": self.questionType,
+            "weight": self.weight
         }
 # This is how the file can seed everything in automatically
 # r = Request()

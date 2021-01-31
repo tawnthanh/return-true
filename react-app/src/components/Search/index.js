@@ -13,9 +13,7 @@ const Search = () => {
     const [error, setError] = useState(false)
 
     useEffect(() => {
-        // console.log(searchResults)
         setResult([])
-        // setError(false)
 
         if (Array.isArray(searchResults)) {
             setResult(searchResults)
@@ -28,7 +26,6 @@ const Search = () => {
         } else {
             setResult([])
         }
-        // console.log(result)
     }, [searchResults])
 
     useEffect(() => {
