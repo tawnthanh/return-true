@@ -45,31 +45,30 @@ function User() {
               </div>
               <br />
               <div>
-                introvert:{" "}
-                {profiles.personality == true &&
-                  profiles.personality.toString()}
-                {profiles.personality == false &&
-                  profiles.personality.toString()}
-                ,
+                {profiles.personality !== undefined &&
+                  `personalityType: ${
+                    profiles.personality ? "introvert" : "extrovert"
+                  },`}
               </div>
               <br />
               <div>
                 mentor:{" "}
-                {profiles.mentorship == true && profiles.mentorship.toString()}
-                {profiles.mentorship == false && profiles.mentorship.toString()}
+                {profiles.mentorship === true && profiles.mentorship.toString()}
+                {profiles.mentorship === false &&
+                  profiles.mentorship.toString()}
                 ,
               </div>
               <br />
               <div>
-                in_person:{" "}
-                {profiles.in_person == true && profiles.in_person.toString()}
-                {profiles.in_person == false && profiles.in_person.toString()},
+                inPerson:{" "}
+                {profiles.in_person === true && profiles.in_person.toString()}
+                {profiles.in_person === false && profiles.in_person.toString()},
               </div>
               <br />
               <div>
                 morning:{" "}
-                {profiles.morning == true && profiles.morning.toString()}
-                {profiles.morning == false && profiles.morning.toString()},
+                {profiles.morning === true && profiles.morning.toString()}
+                {profiles.morning === false && profiles.morning.toString()},
               </div>
               <p>languages: {"["}</p>
               <ul className="profile-ul">
