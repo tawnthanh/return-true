@@ -44,7 +44,7 @@ const Message = () => {
             dispatch(addMessage(dialogueId,message))
 
 
-          }}>Send Message</button>
+          }}>sendMessage()</button>
 
         </form>
 
