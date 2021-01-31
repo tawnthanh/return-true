@@ -59,20 +59,20 @@ export const getProfileFields = (username) => async (dispatch) => {
   }
 }
 
-export const createProfile = (profileObj) => async (dispatch) => {
-  const res = await fetch(`/api/users/${profileObj.username}/edit-profile`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(profileObj)
-  });
-  if (res.ok) {
-    console.log("Post went through ok");
-    dispatch(editProfile(profileObj))
-    return profileObj;
-  }
-}
+// export const createProfile = (profileObj) => async (dispatch) => {
+//   const res = await fetch(`/api/users/${profileObj.username}/edit-profile`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json"
+//     },
+//     body: JSON.stringify(profileObj)
+//   });
+//   if (res.ok) {
+//     console.log("Post went through ok");
+//     dispatch(editProfile(profileObj))
+//     return profileObj;
+//   }
+// }
 
 const initState = {};
 const profileReducer = (state = initState, action) => {

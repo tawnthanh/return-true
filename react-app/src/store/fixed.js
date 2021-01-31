@@ -18,7 +18,6 @@ export const pullFixed = () => async dispatch => {
   let frequencies =[]
   let expertise = []
   let states = []
-  let locations = []
 
   let res = await fetch('/api/options/questions')
   res = await res.json();
