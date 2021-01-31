@@ -10,10 +10,10 @@ import sessionReducer from "./session";
 import searchReducer from "./search";
 import tabsReducer from "./tabs";
 import messageReducer from "./message";
+import fixedReducer from "./fixed";
 import profileReducer from "./profile";
 import requestsReducer from "./requests";
 import currentRequestsReducer from "./currentRequest";
-import fixedReducer from "./fixed";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
@@ -21,10 +21,10 @@ const rootReducer = combineReducers({
   tabs: tabsReducer,
   requests: requestsReducer,
   search: searchReducer,
-  profile: profileReducer,
-  message: messageReducer,
   fixed: fixedReducer,
+  profile: profileReducer,
   currentRequest: currentRequestsReducer,
+  message: messageReducer,
 });
 
 let enhancer;

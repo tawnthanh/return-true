@@ -40,7 +40,15 @@ export const getProfileFields = (username) => async (dispatch) => {
   const res = await fetch(`/api/users/${username}/edit-profile`)
   if (res.ok) {
     let profileFields = await res.json()
-    dispatch(setProfileFields(profileFields));
+    let location;
+    if (profileFields.profile.location_id === 0) {
+      dispatch(setProfileFields({...profileFields.profile}))
+    } else {
+      location = await fetch(`/api/options/locations/${profileFields.profile.location_id}`)
+      location = await location.json()
+      const profile = { ...profileFields.profile, ...location.locations }
+      dispatch(setProfileFields(profile));
+    };
     return profileFields;
   }
 }

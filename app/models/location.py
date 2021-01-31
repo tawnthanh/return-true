@@ -34,6 +34,7 @@ class Location(db.Model):
     city = db.Column(db.String(150), nullable=False)
 
     state = db.relationship("State", back_populates="locations", cascade="all")
+    profile = db.relationship("Profile", back_populates="location")
 
     def to_dict(self):
         return {

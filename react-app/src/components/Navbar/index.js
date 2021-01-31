@@ -77,9 +77,9 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             </NavLink>
           </li>}
           {authenticated && <li>
-            <a href={`/${username}/edit-profile`} exact={true} className="active">
-              <div onClick={()=>console.log(username)}>Edit Profile</div>
-            </a>
+            <NavLink to={`/${username}/edit-profile`} exact={true} className="active">
+              <div>Edit Profile</div>
+            </NavLink>
           </li>}
           {authenticated && <li className="logoutbutton">
             <LogoutButton setAuthenticated={setAuthenticated}/>

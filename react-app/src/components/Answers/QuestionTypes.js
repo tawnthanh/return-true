@@ -7,7 +7,7 @@ export function QuestionMultipleChoice ({question, setAnswers, answers}) {
     const [isLoaded, setIsLoaded] = useState(false);
     const languages_list = useSelector(state=>state.fixed.languages)
     const expertise_list = useSelector(state=>state.fixed.expertise)
-    
+
     useEffect(()=>{
         if (question.options === "languages") {
             setOptions(languages_list)
@@ -27,29 +27,29 @@ export function QuestionMultipleChoice ({question, setAnswers, answers}) {
     return isLoaded && <span className="question-multiple-choice">
         {question.question} IN [ <span className="select-grid">
             {Object.values(options).map(o=>{
-                return <label 
-                            htmlFor={`q${question.id}-o${o.id}`} 
-                            className="checkbox-container" 
+                return <label
+                            htmlFor={`q${question.id}-o${o.id}`}
+                            className="checkbox-container"
                             key={`q${question.id}-o${o.id}-multichoice`}>
                     {o.type}
-                    <input type="checkbox" 
+                    <input type="checkbox"
                         onChange={e=>{
                             let new_answers = new Set(answers)
                             if (new_answers.has(e.target.value))
                                 new_answers.delete(e.target.value)
                             else new_answers.add(e.target.value)
-                                
+
                             // console.log(new_answers)
                             setAnswers(new_answers)
-                        }} 
-                        value={o.id} 
+                        }}
+                        value={o.id}
                         id={`q${question.id}-o${o.id}`}
                         name={`q${question.id}`}
                     />
                     <span className="checkmark"></span>
                 </label>
             })}]
-        </span> 
+        </span>
     </span>
 }
 
@@ -77,10 +77,10 @@ export function QuestionRadiobutton ({question, setAnswers, answers}) {
     },[answers,question.question])
 
     return isLoaded && <span className="question-radiobutton">
-        {question.question} = 
+        {question.question} =
             <select value={answers}
                     onChange={e=>{setAnswers(e.target.value)}}>
-                       <option value={undefined} ></option> 
+                       <option value={undefined} ></option>
             {Object.values(options).map(o=>{
                 return <option value={o.id} key={`q${question.id}-o${o.id}-select`} >{o.type}</option>
             })}
@@ -99,15 +99,15 @@ export function QuestionToggle ({question, setAnswers, answers}) {
         }
         setIsLoaded(true)
     },[question.options])
-    
+
     if (question.question_type===6){
         return isLoaded && <span className={"question-simple-toggle"+(!answers?" commented":"")}>
-            {question.question} 
+            {question.question}
             <Toggle options={options} isOn={answers} onSwitch={()=>{answers===undefined?setAnswers(true):setAnswers(!answers)}}/>
         </span>
     } else {
         return isLoaded && <span className="question-toggle">
-        {question.question} = 
+        {question.question} =
             <ExtendedToggle options={options} isOn={answers} onSwitch={()=>{answers===undefined?setAnswers(true):setAnswers(!answers)}}/>
         </span>
     }
@@ -121,13 +121,13 @@ export function QuestionReversedToggle ({question, setAnswers, answers}) {
         if (question.options.length>0) {
             let options_list = question.options.split(",")
             setOptions(options_list)
-        } 
+        }
         setIsLoaded(true)
     },[question.options])
 
 
     return isLoaded && <span className="question-toggle">
-    {question.question} = 
+    {question.question} =
         <ExtendedToggle options={options} isOn={answers===undefined?answers:!answers} onSwitch={()=>{answers===undefined?setAnswers(false):setAnswers(!answers)}}/>
     </span>
 }
@@ -140,7 +140,7 @@ export function Toggle({isOn, onSwitch}){
          if (isOn!==undefined) setStateClass(" toggle-"+(isOn?"on":"off"))
      },[isOn])
 
-    return <span className={"toggle"+stateClass} 
+    return <span className={"toggle"+stateClass}
     onClick={onSwitch} ><span></span></span>
 }
 
@@ -152,6 +152,6 @@ export function ExtendedToggle({isOn, onSwitch, options}){
          else setStateClass("")
      },[isOn])
 
-    return <span className={"toggle-extended"+stateClass} 
+    return <span className={"toggle-extended"+stateClass}
     onClick={onSwitch}>{isOn?options[1]:options[0]}<span></span></span>
 }

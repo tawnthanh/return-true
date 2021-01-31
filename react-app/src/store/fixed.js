@@ -1,6 +1,6 @@
 const GET_ALL = "fixed/get_all";
 
-const getQuestions = (questions, languages, frequencies, expertise, locations, states) => {
+const getQuestions = (questions, languages, frequencies, expertise, states) => {
   return {
     type: GET_ALL,
     questions,
@@ -8,7 +8,6 @@ const getQuestions = (questions, languages, frequencies, expertise, locations, s
     frequencies,
     expertise,
     states,
-    locations,
   };
 };
 
@@ -53,11 +52,6 @@ export const pullFixed = () => async dispatch => {
     return res;
   }
 
-  res = await fetch('/api/options/locations')
-  res = await res.json()
-  if (!res.errors) {
-    locations = res.locations
-  }
 
   res = await fetch('/api/options/states')
   res = await res.json()
@@ -65,7 +59,7 @@ export const pullFixed = () => async dispatch => {
     states = res.states
   }
 
-  dispatch(getQuestions(questions, languages, frequencies, expertise, locations, states));
+  dispatch(getQuestions(questions, languages, frequencies, expertise, states));
 }
 
 const initialState = {
@@ -99,12 +93,6 @@ const reducer = (state = initialState, action) => {
         expertise[action.expertise[i].id] = action.expertise[i]
       }
       newState.expertise=expertise
-
-      let locations = {}
-      for (let i = 0; i < action.locations.length; i++){
-        locations[action.locations[i].id] = action.locations[i]
-      }
-      newState.locations = locations
 
       let states = {}
       for (let i = 0; i < action.states.length; i++){

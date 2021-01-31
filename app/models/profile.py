@@ -68,6 +68,9 @@ class Profile(db.Model):
     user = db.relationship(
         "User", back_populates="profile")
 
+    location = db.relationship(
+        "Location", back_populates="profile")
+
     def to_dict(self):
         return {
             "id": self.id,

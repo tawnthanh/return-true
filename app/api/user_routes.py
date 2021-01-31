@@ -33,14 +33,10 @@ def messages(dialogueId):
 @login_required
 def addMessages(dialogueId):
     data = request.get_json()
-    print('!!!!!!!!!!!!!!!!!', data['text'])
     user = current_user.to_dict()
-    print('!!!!!!!!', user)
     messages = Message(dialogueId=dialogueId, message=data['text'], read=False, senderId = user['id'])
-    print('!!!!!!!!!!!!!', messages)
     db.session.add(messages)
     db.session.commit()
-    print("text=============",messages.to_dict())
     return messages.to_dict()
 
 
@@ -71,7 +67,8 @@ def profiles(id):
 def profile_form(username):
     profile = Profile.query.join(User).filter(User.username == username).first()
     if profile:
-        return {"profile": profile.to_dict()}
+        profile = profile.to_dict()
+        return {"profile": profile}
     else:
         user_info_response = User.query.filter(User.username == username).first()
         user_info = user_info_response.to_dict()
