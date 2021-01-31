@@ -1,6 +1,6 @@
 .messagebox {
-    border-color: rgba(204, 204, 204, 0.726);
-    background-color: rgba(169, 169, 169, 0.11);
+    border-color: rgba(204, 204, 204, 0.664);
+    background-color: rgba(169, 169, 169, 0.082);
     width: 100%;
 }
 
@@ -20,9 +20,9 @@
 
 .inputbox {
   padding: 10px;
-  width: 50%;
+  width: 75%;
   border: none;
-  background: grey;
+  background: rgba(128, 128, 128, 0.473);
   resize: none;
   min-height: 50px;
   font: 18px "Source Code Pro", monospace;
