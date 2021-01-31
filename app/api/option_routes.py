@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import db, Languages, Question, Expertise, Frequency
+from app.models import db, Languages, Question, Expertise, Frequency, Location, State
 
 option_routes = Blueprint('options', __name__)
 
@@ -22,7 +22,7 @@ def all_languages():
     """
 
     result = db.session.query(Languages).all()
-    
+
     languages = [l.to_dict() for l in result]
     return {"languages": languages}
 
@@ -33,7 +33,7 @@ def all_questions():
     """
 
     result = db.session.query(Question).all()
-    
+
     questions = [q.to_dict() for q in result]
     return {"questions": questions}
 
@@ -44,7 +44,7 @@ def all_frequencies():
     """
 
     result = db.session.query(Frequency).all()
-    
+
     frequencies = [f.to_dict() for f in result]
     return {"frequencies": frequencies}
 
@@ -55,6 +55,25 @@ def all_expertise():
     """
 
     result = db.session.query(Expertise).all()
-    
+
     expertise = [e.to_dict() for e in result]
     return {"expertise": expertise}
+
+@option_routes.route('/locations')
+def all_locations():
+    """
+    GET all locations
+    """
+
+    locations = Location.query.all()
+    return {"locations": [l.get_state() for l in locations]}
+
+
+@option_routes.route('/states')
+def all_states():
+    """
+    GET all states
+    """
+
+    states = State.query.all()
+    return {"states": [s.to_dict() for s in states]}

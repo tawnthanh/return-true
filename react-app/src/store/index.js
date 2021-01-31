@@ -23,6 +23,7 @@ const rootReducer = combineReducers({
   requests: requestsReducer,
   search: searchReducer,
   profile: profileReducer,
+  message: messageReducer,
   fixed: fixedReducer,
   currentRequest: currentRequestsReducer,
   matches: matchesReducer,
