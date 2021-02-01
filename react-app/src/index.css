@@ -76,11 +76,9 @@ textarea:focus {
 
 .edit-button{
   position: absolute;
-  height: auto;
-  top: 60%;
+  height: 315px;
   width: 90%;
   box-sizing: border-box;
-  padding-bottom: 30px;
   padding-top: 10px;
   background-color: hsla(0, 0%, 12%, 0);
   font-size: 20px;
@@ -92,12 +90,16 @@ textarea:focus {
 
 }
 .edit-button a {
+  position: absolute;
+  left: 0px;
+  top: 0px;
   box-sizing: border-box;
-  padding: 10px 65px;
   text-decoration: none;
   color:  hsla(0, 5%, 76%, 0);
   height: 100%;
-  width: 300px;
+  width: 315px;
+  padding: 80px;
+
 }
 
 .edit-button a:hover{
