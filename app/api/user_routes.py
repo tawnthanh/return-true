@@ -84,28 +84,29 @@ def profile_form(userId):
         return {"profile": default_info}
 
 
-@user_routes.route('/<int:id>/edit-profile', methods=["POST"])
+@user_routes.route('/<int:id>/edit-profile', methods=["POST", "PATCH"])
 # @login_required
 def profile_update(id):
     profile = request.get_json()
-    profiles = Profile.query.filter(Profile.userId == 2).first()
-    locationFound = Location.query.filter(Location.city.ilike(profile["city"]))\
-                            .filter(State.id == profile["state"]).first()
+    profiles = Profile.query.filter(Profile.userId == id).first()
+    city = Location.query.filter(Location.city.ilike(profile["city"]))\
+                         .filter(State.id == profile["state"]).first()
     location = None
 
-    if locationFound is not None:
-        location = locationFound.to_dict()["id"]
+    # print(profiles.to_dict())
+    if city is not None:
+        location = city.to_dict()["id"]
     else:
         location = profile["city"]
         new_location = Location(city=location, stateId=profile["state"])
         db.session.add(new_location)
         db.session.commit()
-        locationFound = Location.query\
-                                .filter(Location.city.ilike(profile["city"]))\
-                                .filter(State.id == profile["state"]).first()
-        location = locationFound.to_dict()["id"]
+        city = Location.query.filter(Location.city.ilike(profile["city"]))\
+                             .filter(State.id == profile["state"]).first()
+        location = city.to_dict()["id"]
 
     if profiles is not None:
+        print("it did exist")
         profiles.userId = profile["user_id"]
         profiles.firstName = profile["first_name"]
         profiles.lastName = profile["last_name"]
@@ -119,6 +120,7 @@ def profile_update(id):
         profiles.mentorship = profile["mentorship"]
         profiles.morning = profile["morning"]
         db.session.commit()
+        return {'Successful': ['Profile Updated']}, 200
     else:
         new_profile = Profile(
             userId=profile["user_id"],
