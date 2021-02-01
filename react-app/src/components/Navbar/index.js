@@ -74,19 +74,32 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
             </NavLink>
             </li> */}
-          {!authenticated && <li>
-            <NavLink to="/sign-up" exact={true} className="active">
-              <i className="fa fa-user-plus fa-3x" aria-hidden="true"></i>
-            </NavLink>
-          </li>}
-          {authenticated && <li>
-            <NavLink to="/users" exact={true} className="active">
-              <i className="fa fa-user fa-3x" aria-hidden="true"></i>
-            </NavLink>
-          </li>}
-          {authenticated && <li className="logoutbutton">
-            <LogoutButton setAuthenticated={setAuthenticated}/>
-          </li>}
+          {!authenticated && (
+            <li>
+              <NavLink to="/sign-up" exact={true} className="active">
+                <i className="fa fa-user-plus fa-3x" aria-hidden="true"></i>
+              </NavLink>
+            </li>
+          )}
+          {authenticated && (
+            <li>
+              <NavLink to={`/users/${user.id}`} exact={true} className="active">
+                <i className="fa fa-user fa-3x" aria-hidden="true"></i>
+              </NavLink>
+            </li>
+          )}
+          {authenticated && (
+            <li className="logoutbutton">
+              <LogoutButton setAuthenticated={setAuthenticated} />
+            </li>
+          )}
+          {authenticated && (
+            <li className="logoutbutton">
+              <NavLink to="/credits" exact={true} className="active">
+                <i class="fa fa-copyright fa-3x"></i>
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
       { isOpen && search &&
