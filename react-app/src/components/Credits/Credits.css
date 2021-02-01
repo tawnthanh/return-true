@@ -1,0 +1,49 @@
+.creditor-section {
+  width: auto;
+  box-sizing: border-box;
+  padding-left: 250px;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.info-section{
+  display: flex;
+  color: aliceblue;
+  box-sizing: border-box;
+  align-items: center;
+}
+
+.info-section a {
+  text-decoration: none;
+  color: rgb(102, 207, 214);
+}
+
+.color-name {
+  color: rgb(155, 90, 155);
+}
+
+.start {
+  color: rgb(20, 67, 155);
+}
+
+.end {
+  color: rgb(236, 235, 154);
+}
+
+.end.closing {
+  padding-left: 175px;
+}
+
+.credit-header{
+  display: flex;
+}
+
+h3{
+  margin: 0;
+}

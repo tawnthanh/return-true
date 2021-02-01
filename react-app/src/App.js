@@ -18,7 +18,7 @@ import ProfileForm from "./components/ProfileForm";
 import Request from "./components/Request";
 import {resetTabs} from "./store/tabs";
 // import { authenticate } from "./services/auth";
-
+import Credits from "./components/Credits";
 
 function App() {
   const dispatch = useDispatch();
@@ -114,6 +114,9 @@ function App() {
             <ProtectedRoute path="/:userId/edit-profile" exact={true} authenticated={authenticated}>
               <ProfileForm />
             </ProtectedRoute>
+            <Route path="/credits" exact={true}>
+              <Credits/>
+            </Route>
           </Switch>
         </div>
       </div>

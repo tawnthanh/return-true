@@ -97,6 +97,13 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               <LogoutButton setAuthenticated={setAuthenticated} />
             </li>
           )}
+          {authenticated && (
+            <li className="logoutbutton">
+              <NavLink to="/credits" exact={true} className="active">
+                <i class="fa fa-copyright fa-3x"></i>
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
       {isOpen && search && <Search />}
