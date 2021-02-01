@@ -10,7 +10,7 @@ export default function MatchCard ({match}) {
         <span className="username-bloc"><Link to={`/user/${match.user.userId}`}>{match.user.username}</Link></span>
         <span className="match-block">
         <span className="percentage-bloc">
-            <span className="inactive-percent" style={{width:`${100-Math.round(match.match*100)}px`}}></span>
+            <span className="inactive-percent" style={{width:`${100-Math.round(match.match*100)}%`}}></span>
             <span className="cell-blocks">
                 <span></span>
                 <span></span>
