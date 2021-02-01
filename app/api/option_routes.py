@@ -59,14 +59,14 @@ def all_expertise():
     expertise = [e.to_dict() for e in result]
     return {"expertise": expertise}
 
-@option_routes.route('/locations')
-def all_locations():
+@option_routes.route('/locations/<id>')
+def all_locations(id):
     """
     GET all locations
     """
 
-    locations = Location.query.all()
-    return {"locations": [l.get_state() for l in locations]}
+    locations = Location.query.get(id)
+    return {"locations": locations.get_state()}
 
 
 @option_routes.route('/states')

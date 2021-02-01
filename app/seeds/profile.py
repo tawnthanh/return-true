@@ -2,7 +2,7 @@ from app.models import db, Frequency, Languages, Profile, Expertise
 
 
 def seed_frequency():
-    frequency_list = ["less than 10 hour per week", "10 to 20 hours per week",
+    frequency_list = ["less than 10 hours per week", "10 to 20 hours per week",
                       "20 to 40 hours per week", "more than 40 hours per week"]
     for frequency in frequency_list:
         frequency_type = Frequency(type=frequency)
@@ -95,15 +95,27 @@ def seed_profile():
     db.session.add(dothraki_lang)
     db.session.add(valyrian_lang)
 
-    daenerys = Profile(userId=1, firstName="Daenerys", lastName="Targaryen", imageUrl="https://s2.r29static.com/bin/entry/3a8/720x864,85/2170880/image.webp",
-                   bio="Daenerys Stormborn of House Targaryen, the First of Her Name, Queen of the Andals and the First Men, Protector of the Seven Kingdoms, the Mother of Dragons, the Khaleesi of the Great Grass Sea, the Unburnt, the Breaker of Chains", 
-                   locationId=1, inPerson=True, level=1, frequencyId=1, mentorship=True, morning=False, personality=True)
+    daenerys = Profile(userId=1, firstName="Daenerys", lastName="Targaryen",
+                       imageUrl="https://s2.r29static.com/bin/entry/3a8/ \
+                       720x864,85/2170880/image.webp",
+                       bio="Daenerys Stormborn of House Targaryen, \
+                            the First of Her Name, Queen of the Andals \
+                            and the First Men, Protector of the Seven\
+                            Kingdoms, the Mother of Dragons, the Khaleesi \
+                            of the Great Grass Sea, the Unburnt, \
+                            the Breaker of Chains",
+                       locationId=1, inPerson=True, level=1, frequencyId=1,
+                       mentorship=True, morning=False, personality=True)
     db.session.add(daenerys)
     daenerys.languages.append(dothraki_lang)
     daenerys.languages.append(valyrian_lang)
 
-    anna = Profile(userId=2, firstName="Anna", lastName="Bullard", imageUrl="https://secure.gravatar.com/avatar/e4a93f356f91b40827d7c45367b8f369?secure=true&size=300",
-                   bio="app academy student", locationId=1, inPerson=True, level=1, frequencyId=4, mentorship=False, morning=False, personality=True)
+    anna = Profile(userId=2, firstName="Anna", lastName="Bullard",
+                   imageUrl="https://secure.gravatar.com/avatar/ \
+                       e4a93f356f91b40827d7c45367b8f369?secure=true&size=300",
+                   bio="app academy student", locationId=1,
+                   inPerson=True, level=1, frequencyId=4,
+                   mentorship=False, morning=False, personality=True)
     db.session.add(anna)
     anna.languages.append(python_lang)
     anna.languages.append(javascript_lang)
@@ -121,8 +133,13 @@ def seed_profile():
     anna.expertises.append(ai_expertise)
     anna.expertises.append(data_analysis_expertise)
 
-    arjun = Profile(userId=3, firstName="Arjun", lastName="Narain", imageUrl="https://ca.slack-edge.com/T03GU501J-U01A6PB6YV6-da16e7c3889a-512", bio="app academy student",
-                    locationId=2, inPerson=True, level=1, frequencyId=4,  mentorship=False, morning=False,	personality=False)
+    arjun = Profile(userId=3, firstName="Arjun", lastName="Narain",
+                    imageUrl="https://ca.slack-edge.com/ \
+                        T03GU501J - U01A6PB6YV6 - da16e7c3889a - 512 ",
+                    bio="app academy student",
+                    locationId=2, inPerson=True, level=1,
+                    frequencyId=4, mentorship=False, morning=False,
+                    personality=False)
     db.session.add(arjun)
     arjun.languages.append(python_lang)
     arjun.languages.append(javascript_lang)
@@ -140,8 +157,12 @@ def seed_profile():
     arjun.expertises.append(ai_expertise)
     arjun.expertises.append(data_analysis_expertise)
 
-    mishe = Profile(userId=4, firstName="Mishe", lastName="Yi", imageUrl="https://ca.slack-edge.com/T03GU501J-U018PAJPU6S-a0efd069413a-512",	bio="app academy student",
-                    locationId=3, inPerson=False, level=1, frequencyId=1, mentorship=False, morning=False,	personality=False)
+    mishe = Profile(userId=4, firstName="Mishe", lastName="Yi",
+                    imageUrl="https://ca.slack-edge.com/ \
+                    T03GU501J - U018PAJPU6S - a0efd069413a - 512 ",
+                    bio="app academy student",
+                    locationId=3, inPerson=False, level=1, frequencyId=1,
+                    mentorship=False, morning=False,	personality=False)
     db.session.add(mishe)
     mishe.languages.append(python_lang)
     mishe.languages.append(javascript_lang)
@@ -159,8 +180,11 @@ def seed_profile():
     mishe.expertises.append(ai_expertise)
     mishe.expertises.append(data_analysis_expertise)
 
-    thanh = Profile(userId=5, firstName="Thanh", lastName="Nguyen", imageUrl="https://ca.slack-edge.com/T03GU501J-U017YNCPZGS-8c0b5b57c2eb-512",	bio="app academy student",
-                    locationId=4, inPerson=False, level=1, frequencyId=1, mentorship=False, morning=False,	personality=True)
+    thanh = Profile(userId=5, firstName="Thanh", lastName="Nguyen",
+                    imageUrl="https://ca.slack-edge.com/T03GU501J-U017YNCPZGS-\
+                        8c0b5b57c2eb-512",	bio="app academy student",
+                    locationId=4, inPerson=False, level=1, frequencyId=1,
+                    mentorship=False, morning=False,	personality=True)
     db.session.add(thanh)
     thanh.languages.append(python_lang)
     thanh.languages.append(javascript_lang)
@@ -178,8 +202,12 @@ def seed_profile():
     thanh.expertises.append(ai_expertise)
     thanh.expertises.append(data_analysis_expertise)
 
-    joe = Profile(userId=6, firstName="Joe", lastName="Alves", imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-168bee67ba0f-512",
-                  bio="PTM at App Academy Sept. cohort. Penny furrever", locationId=5, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=True, personality=True)
+    joe = Profile(userId=6, firstName="Joe", lastName="Alves",
+                  imageUrl="https://ca.slack-edge.com/T03GU501J-U019SPWMYQG-\
+                      168bee67ba0f-512",
+                  bio="PTM at App Academy Sept. cohort. Penny furrever",
+                  locationId=5, inPerson=True, level=3, frequencyId=1,
+                  mentorship=True, morning=True, personality=True)
     db.session.add(joe)
     joe.languages.append(c_plus_plus_lang)
     joe.languages.append(ruby_lang)
@@ -205,8 +233,13 @@ def seed_profile():
     joe.expertises.append(ai_expertise)
     joe.expertises.append(data_analysis_expertise)
 
-    jesse = Profile(userId=7, firstName="Jesse", lastName="Warren", imageUrl="https://ca.slack-edge.com/T03GU501J-UMWJ7RREK-9ed96c27ad42-512",
-                    bio="Lead Instructional Assistant at App Academy. If you don't like Python you're  wrong", locationId=6, inPerson=True, level=3, frequencyId=1, mentorship=True, morning=False, personality=False)
+    jesse = Profile(userId=7, firstName="Jesse", lastName="Warren",
+                    imageUrl="https://ca.slack-edge.com/T03GU501J-UMWJ7RREK-\
+                        9ed96c27ad42-512",
+                    bio="Lead Instructional Assistant at App Academy. If you \
+                        don't like Python you're  wrong",
+                    locationId=6, inPerson=True, level=3, frequencyId=1,
+                    mentorship=True, morning=False, personality=False)
     db.session.add(jesse)
     jesse.languages.append(c_plus_plus_lang)
     jesse.languages.append(ruby_lang)
@@ -232,8 +265,10 @@ def seed_profile():
     jesse.expertises.append(ai_expertise)
     jesse.expertises.append(data_analysis_expertise)
 
-    alfredo = Profile(userId=8, firstName="Alfredo", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                      inPerson=False, level=2, frequencyId=2,   mentorship=True, morning=True, personality=None)
+    alfredo = Profile(userId=8, firstName="Alfredo", lastName="Johnson",
+                      imageUrl=None, bio=None, locationId=None,
+                      inPerson=False, level=2, frequencyId=2, mentorship=True,
+                      morning=True, personality=None)
     db.session.add(alfredo)
     alfredo.languages.append(c_plus_plus_lang)
     alfredo.languages.append(ruby_lang)
@@ -259,8 +294,12 @@ def seed_profile():
     alfredo.expertises.append(ai_expertise)
     alfredo.expertises.append(data_analysis_expertise)
 
-    granof = Profile(userId=9, firstName="Granof", lastName="Johnson", imageUrl="https://upload.wikimedia.org/wikipedia/commons/5/50/Green_Bay_Packers_logo.svg",
-                     bio="Bucks && Packers", locationId=None, inPerson=False, level=2, frequencyId=3,  mentorship=True, morning=False, personality=None)
+    granof = Profile(userId=9, firstName="Granof", lastName="Johnson",
+                     imageUrl="https://upload.wikimedia.org/wikipedia/commons/\
+                         5/50/Green_Bay_Packers_logo.svg",
+                     bio="Bucks && Packers", locationId=None, inPerson=False,
+                     level=2, frequencyId=3, mentorship=True, morning=False,
+                     personality=None)
     db.session.add(granof)
     granof.languages.append(ruby_lang)
     granof.languages.append(python_lang)
@@ -279,8 +318,10 @@ def seed_profile():
     granof.expertises.append(ai_expertise)
     granof.expertises.append(data_analysis_expertise)
 
-    juliet = Profile(userId=10, firstName="Juliet", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                     inPerson=False, level=2, frequencyId=1, mentorship=True, morning=True, personality=None)
+    juliet = Profile(userId=10, firstName="Juliet", lastName="Johnson",
+                     imageUrl=None, bio=None, locationId=None,
+                     inPerson=False, level=2, frequencyId=1, mentorship=True,
+                     morning=True, personality=None)
     db.session.add(juliet)
     juliet.languages.append(ruby_lang)
     juliet.languages.append(python_lang)
@@ -299,8 +340,10 @@ def seed_profile():
     juliet.expertises.append(ai_expertise)
     juliet.expertises.append(data_analysis_expertise)
 
-    tom = Profile(userId=11, firstName="Tom", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                  inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
+    tom = Profile(userId=11, firstName="Tom", lastName="Johnson",
+                  imageUrl=None, bio=None, locationId=None,
+                  inPerson=True, level=2, frequencyId=2,
+                  mentorship=True, morning=True, personality=None)
     db.session.add(tom)
     tom.languages.append(ruby_lang)
     tom.languages.append(python_lang)
@@ -319,35 +362,45 @@ def seed_profile():
     tom.expertises.append(ai_expertise)
     tom.expertises.append(data_analysis_expertise)
 
-    prof1 = Profile(userId=12, firstName="Dobby", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                    inPerson=False, level=1, frequencyId=1,  mentorship=False, morning=True, personality=None)
+    prof1 = Profile(userId=12, firstName="Dobby", lastName="Johnson",
+                    imageUrl=None, bio=None, locationId=None,
+                    inPerson=False, level=1, frequencyId=1,
+                    mentorship=False, morning=True, personality=None)
     db.session.add(prof1)
     prof1.languages.append(javascript_lang)
     prof1.expertises.append(data_analysis_expertise)
 
-    prof2 = Profile(userId=13, firstName="Ruth", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                    inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
+    prof2 = Profile(userId=13, firstName="Ruth", lastName="Johnson",
+                    imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=1, frequencyId=4,
+                    mentorship=True, morning=False, personality=False)
     db.session.add(prof2)
     prof2.languages.append(python_lang)
     prof2.languages.append(html_lang)
     prof2.expertises.append(ai_expertise)
 
-    prof3 = Profile(userId=14, firstName="Arlene", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                    inPerson=True, level=1, frequencyId=4,  mentorship=True, morning=False, personality=False)
+    prof3 = Profile(userId=14, firstName="Arlene", lastName="Johnson",
+                    imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=1, frequencyId=4,
+                    mentorship=True, morning=False, personality=False)
     db.session.add(prof3)
     prof3.languages.append(html_lang)
     prof3.languages.append(css_lang)
     prof3.expertises.append(frontend_expertise)
 
-    prof4 = Profile(userId=15, firstName="Billie", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                    inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
+    prof4 = Profile(userId=15, firstName="Billie", lastName="Johnson",
+                    imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=2, frequencyId=2,
+                    mentorship=True, morning=True, personality=None)
     db.session.add(prof4)
     prof4.languages.append(ruby_lang)
     prof4.languages.append(python_lang)
     prof4.languages.append(css_lang)
 
-    prof5 = Profile(userId=16, firstName="Basil", lastName="Johnson", imageUrl=None, bio=None, locationId=None,
-                    inPerson=True, level=2, frequencyId=2,  mentorship=True, morning=True, personality=None)
+    prof5 = Profile(userId=16, firstName="Basil", lastName="Johnson",
+                    imageUrl=None, bio=None, locationId=None,
+                    inPerson=True, level=2, frequencyId=2, mentorship=True,
+                    morning=True, personality=None)
     db.session.add(prof5)
     prof5.languages.append(python_lang)
     prof5.languages.append(javascript_lang)

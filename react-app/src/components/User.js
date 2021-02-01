@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile, getUser } from "../store/profile";
+import picture from "./null_profile_pic.jpg";
 
 function User() {
   const dispatch = useDispatch();
@@ -16,7 +17,10 @@ function User() {
     }
     dispatch(getUser(userId));
     dispatch(getProfile(userId));
+    // profile id instead of userid
+
   }, [dispatch]);
+
 
   if (!user) {
     return null;
@@ -28,6 +32,7 @@ function User() {
         {profiles.image_url && (
           <img id="profile-picture" src={profiles.image_url} />
         )}
+        {!profiles.image_url && <img id="profile-picture" src={picture} />}
       </div>
       <div>
         <div>

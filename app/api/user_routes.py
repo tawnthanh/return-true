@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Message, Profile
+from app.models import db, User, Message, Profile, Location, State, Languages,\
+    Expertise
 
 user_routes = Blueprint('users', __name__)
 
@@ -46,18 +47,19 @@ def addMessages(dialogueId):
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
-    profiles = Profile.query.get(id)
-    print(profiles)
+    profiles = Profile.query.filter(Profile.userId == id).first()
+    print(profiles, "!!!!!!!!!!!!!!!!!!!!!")
     return {"profile": profiles.to_dict()}
 
 
-@user_routes.route('/<username>/edit-profile')
+@user_routes.route('/<userId>/edit-profile')
 # @login_required
-def profile_form(username):
+def profile_form(userId):
     profile = Profile.query.join(User).filter(
-        User.username == username).first()
+        User.id == userId).first()
     if profile:
-        return {"profile": profile.to_dict()}
+        profile = profile.to_dict()
+        return {"profile": profile}
     else:
         user_info_response = User.query.filter(
             User.username == username).first()
@@ -81,3 +83,74 @@ def profile_form(username):
             "expertises": [],
         }
         return {"profile": default_info}
+
+
+@user_routes.route('/<int:id>/edit-profile', methods=["POST", "PATCH"])
+# @login_required
+def profile_update(id):
+    profile = request.get_json()
+    profiles = Profile.query.filter(Profile.userId == id).first()
+    city = Location.query.filter(Location.city.ilike(profile["city"]))\
+                         .filter(State.id == profile["state"]).first()
+    location = None
+    l_list = Languages.query.all()
+    lang_match = [la for la in l_list for lang in profile["languages"]
+                  if la.to_dict()["id"] == lang]
+
+    e_list = Expertise.query.all()
+    exp_match = [ex for ex in e_list for exp in profile["expertises"]
+                 if ex.to_dict()["id"] == exp]
+    # print(profile["expertises"])
+    # print(e_list)
+    # print("MATCHESSSSSSS", exp_match)
+    # print(profiles.to_dict())
+    if city is not None:
+        location = city.to_dict()["id"]
+    else:
+        location = profile["city"]
+        new_location = Location(city=location, stateId=profile["state"])
+        db.session.add(new_location)
+        db.session.commit()
+        city = Location.query.filter(Location.city.ilike(profile["city"]))\
+                             .filter(State.id == profile["state"]).first()
+        location = city.to_dict()["id"]
+
+    if profiles is not None:
+        print("it did exist")
+        profiles.userId = profile["user_id"]
+        profiles.firstName = profile["first_name"]
+        profiles.lastName = profile["last_name"]
+        profiles.imageUrl = profile["image_url"]
+        profiles.bio = profile["bio"]
+        profiles.locationId = location
+        profiles.level = profile["level"]
+        profiles.inPerson = profile["in_person"]
+        profiles.personality = profile["personality"]
+        profiles.frequencyId = profile["frequency_id"]
+        profiles.mentorship = profile["mentorship"]
+        profiles.morning = profile["morning"]
+        profiles.languages = lang_match
+        profiles.expertises = exp_match
+        db.session.commit()
+        return {'Successful': ['Profile Updated']}, 200
+    else:
+        new_profile = Profile(
+            userId=profile["user_id"],
+            firstName=profile["first_name"],
+            lastName=profile["last_name"],
+            imageUrl=profile["image_url"],
+            bio=profile["bio"],
+            locationId=location,
+            level=profile["level"],
+            inPerson=profile["in_person"],
+            personality=profile["personality"],
+            frequencyId=profile["frequency_id"],
+            mentorship=profile["mentorship"],
+            morning=profile["morning"],
+        )
+        db.session.add(new_profile)
+        new_profile.languages = lang_match
+        new_profile.expertises = exp_match
+        db.session.commit()
+    return new_profile.to_dict()
+    # return "hi"
