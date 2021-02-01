@@ -54,7 +54,7 @@ textarea:focus {
   padding-left: 60px;
   display: flex;
 }
-.profile-details {
+.profile-details{
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 .prof-pic {
@@ -73,10 +73,10 @@ textarea:focus {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 .const-color {
-  color: steelblue;
+  color: #2566ca;
 }
 .prof-name-color {
-  color: cornflowerblue;
+  color: #2ba2ff;
 }
 .brackets-color {
   color: rgb(255, 255, 0);
@@ -89,4 +89,8 @@ textarea:focus {
 }
 .booleans-color {
   color: rgba(165, 247, 124, 0.742);
+}
+.dropdown-color {
+  background-color: #1e1e1e;
+  color: rgb(206, 145, 120);
 }
