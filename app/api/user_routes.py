@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Message, Profile, Location, State, Languages,\
-                       Expertise
+    Expertise
 
 user_routes = Blueprint('users', __name__)
 
@@ -47,8 +47,8 @@ def addMessages(dialogueId):
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
-    profiles = Profile.query.get(id)
-    print(profiles)
+    profiles = Profile.query.filter(Profile.userId == id).first()
+    print(profiles, "!!!!!!!!!!!!!!!!!!!!!")
     return {"profile": profiles.to_dict()}
 
 
