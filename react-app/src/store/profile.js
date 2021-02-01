@@ -1,11 +1,13 @@
 const SET_PROFILE = "profile/set";
 const SET_USER = "user/set";
-const GET_FORM_DETAILS = "profile_form/GET_FORM_DETAILS"
+const GET_FORM_DETAILS = "profile_form/GET_FORM_DETAILS";
+const SET_FORM_DETAILS = "profile_form/SET_FORM_DETAILS";
 
 const setProfile = (payload) => ({
   type: SET_PROFILE,
   payload,
 });
+
 const setUser = (payload) => ({
   type: SET_USER,
   payload,
@@ -13,6 +15,11 @@ const setUser = (payload) => ({
 
 const setProfileFields = (payload) => ({
   type: GET_FORM_DETAILS,
+  payload
+});
+
+const updateProfileFields = (payload) => ({
+  type: SET_FORM_DETAILS,
   payload
 });
 
@@ -52,18 +59,17 @@ export const getProfileFields = (username) => async (dispatch) => {
   }
 }
 
-export const updateProfile = (profileObj, user) => async (dispatch) => {
-  // const res = await fetch(`/api/users/Demo/edit-profile`, {
-    // let profile = {...profileObj,...user}
+export const updateProfile = (profileObj) => async (dispatch) => {
     const res = await fetch(`/api/users/${profileObj.user_id}/edit-profile`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(profileObj)
-  })
-  // console.log(profile.user)
-  return "hi"
+    })
+  console.log(profileObj)
+  dispatch(setProfileFields(profileObj));
+  return profileObj;
 }
 
 const initState = {};
@@ -83,6 +89,11 @@ const profileReducer = (state = initState, action) => {
     case GET_FORM_DETAILS:
       newState = {
         ...action.payload,
+      };
+      return newState;
+    case SET_FORM_DETAILS:
+      newState = {
+        ...action.payload
       };
       return newState;
     default:

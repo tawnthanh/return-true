@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import db, User, Message, Profile
+from app.models import db, User, Message, Profile, Location, State
 
 user_routes = Blueprint('users', __name__)
 
@@ -51,11 +51,11 @@ def profiles(id):
     return {"profile": profiles.to_dict()}
 
 
-@user_routes.route('/<username>/edit-profile')
+@user_routes.route('/<userId>/edit-profile')
 # @login_required
-def profile_form(username):
+def profile_form(userId):
     profile = Profile.query.join(User).filter(
-        User.username == username).first()
+        User.id == userId).first()
     if profile:
         profile = profile.to_dict()
         return {"profile": profile}
@@ -88,36 +88,52 @@ def profile_form(username):
 # @login_required
 def profile_update(id):
     profile = request.get_json()
-    # profiles = Profile.query.filter(Profile.userId == 2).first()
-    # if profiles != []:
-    #     profiles.userId = profile["user_id"],
-    #     profiles.firstName = profile["first_name"],
-    #     profiles.lastName = profile["last_name"],
-    #     profiles.imageUrl = profile["image_url"],
-    #     profiles.bio = profile["bio"],
-    #     profiles.locationId = None,
-    #     profiles.level = profile["level"],
-    #     profiles.inPerson = profile["inPerson"],
-    #     profiles.personality = profile["personality"],
-    #     profiles.frequencyId = profile["frequency_id"],
-    #     profiles.mentorship=profile["mentorship"],
-    #     profiles.morning=profile["morning"],
+    profiles = Profile.query.filter(Profile.userId == 2).first()
+    locationFound = Location.query.filter(Location.city.ilike(profile["city"]))\
+                            .filter(State.id == profile["state"]).first()
+    location = None
 
-    new_profile = Profile(
-        userId=profile["user_id"],
-        firstName=profile["first_name"],
-        lastName=profile["last_name"],
-        imageUrl=profile["image_url"],
-        bio=profile["bio"],
-        locationId=None,
-        level=profile["level"],
-        inPerson=profile["inPerson"],
-        personality=profile["personality"],
-        frequencyId=profile["frequency_id"],
-        mentorship=profile["mentorship"],
-        morning=profile["morning"],
-    )
-    db.session.add(new_profile)
-    db.session.commit()
-    print(new_profile.to_dict())
-    return "hi"
+    if locationFound is not None:
+        location = locationFound.to_dict()["id"]
+    else:
+        location = profile["city"]
+        new_location = Location(city=location, stateId=profile["state"])
+        db.session.add(new_location)
+        db.session.commit()
+        locationFound = Location.query\
+                                .filter(Location.city.ilike(profile["city"]))\
+                                .filter(State.id == profile["state"]).first()
+        location = locationFound.to_dict()["id"]
+
+    if profiles is not None:
+        profiles.userId = profile["user_id"]
+        profiles.firstName = profile["first_name"]
+        profiles.lastName = profile["last_name"]
+        profiles.imageUrl = profile["image_url"]
+        profiles.bio = profile["bio"]
+        profiles.locationId = location
+        profiles.level = profile["level"]
+        profiles.inPerson = profile["in_person"]
+        profiles.personality = profile["personality"]
+        profiles.frequencyId = profile["frequency_id"]
+        profiles.mentorship = profile["mentorship"]
+        profiles.morning = profile["morning"]
+        db.session.commit()
+    else:
+        new_profile = Profile(
+            userId=profile["user_id"],
+            firstName=profile["first_name"],
+            lastName=profile["last_name"],
+            imageUrl=profile["image_url"],
+            bio=profile["bio"],
+            locationId=location,
+            level=profile["level"],
+            inPerson=profile["in_person"],
+            personality=profile["personality"],
+            frequencyId=profile["frequency_id"],
+            mentorship=profile["mentorship"],
+            morning=profile["morning"],
+        )
+        db.session.add(new_profile)
+        db.session.commit()
+    return new_profile.to_dict()

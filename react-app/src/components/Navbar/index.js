@@ -63,7 +63,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
           </li>}
           <li>
             <NavLink to="/messages/1" exact={true} className="message">
-            <i class="fa fa-comment fa-3x" aria-hidden="true"></i>
+            <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
             </NavLink>
             </li>
           {!authenticated && <li>
@@ -77,7 +77,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             </NavLink>
           </li>}
           {authenticated && user.username !== null && <li>
-            {<NavLink to={`/${user.username}/edit-profile`} exact={true} className="active">
+            {<NavLink to={`/${user.id}/edit-profile`} exact={true} className="active">
               <div>Edit Profile</div>
             </NavLink>}
           </li>}

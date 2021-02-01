@@ -53,7 +53,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   },[authenticated,dispatch])
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to={`/${username}/edit-profile`} />;
   }
 
   return (

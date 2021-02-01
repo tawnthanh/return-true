@@ -111,7 +111,7 @@ function App() {
             <Route path="/" exact={true}>
               <HomePage />
             </Route>
-            <ProtectedRoute path="/:username/edit-profile" exact={true} authenticated={authenticated}>
+            <ProtectedRoute path="/:userId/edit-profile" exact={true} authenticated={authenticated}>
               <ProfileForm />
             </ProtectedRoute>
           </Switch>

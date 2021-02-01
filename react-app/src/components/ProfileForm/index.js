@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useParams } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import {openTab, closeTab} from "../../store/tabs";
 import './ProfileForm.css';
@@ -9,7 +9,8 @@ import {openTab} from "../../store/tabs";
 
 const ProfileForm = () => {
   const dispatch = useDispatch();
-  const { username } = useParams()
+  const history = useHistory();
+  const { userId } = useParams()
   const confirmedUser = useSelector(state => state.session.user)
   const profile = useSelector(state => state.profile)
   const languages_list = useSelector(state => state.fixed.languages)
@@ -17,12 +18,13 @@ const ProfileForm = () => {
   const states_list = useSelector(state => state.fixed.states)
   const frequency_list = useSelector(state => state.fixed.frequencies)
 
+  const [errors, setErrors] = useState([])
   const [firstName, updateFirstName] = useState("")
   const [lastName, updateLastName] = useState("")
   const [imageUrl, updateImgUrl] = useState(null)
-  const [bio, updateBio] = useState(null)
-  const [state, updateState] = useState(0)
   const [city, updateCity] = useState("")
+  const [state, updateState] = useState(0)
+  const [bio, updateBio] = useState(null)
   const [inPerson, updateInPerson] = useState(false)
   const [level, updateLevel] = useState(0)
   const [personality, updatePersonality] = useState(false)
@@ -46,15 +48,16 @@ const ProfileForm = () => {
     let tab = {
       tab_id: `edit-profile`,
       title: "edit profile",
-      link: `/${username}/edit-profile`
+      link: `/${userId}/edit-profile`
     }
     dispatch(openTab(tab))
-    dispatch(getProfileFields(username))
+    dispatch(getProfileFields(userId))
     setIsLoaded(true)
   }, [dispatch])
 
   useEffect(() => {
     if (profile.state) {
+      console.log("when profile first loads", profile)
       let expertiseId = profile.expertises.map(e => e.id)
       let languagesId = profile.languages.map(l => l.id)
       updateFirstName(profile.first_name)
@@ -63,7 +66,7 @@ const ProfileForm = () => {
       updateBio(profile.bio)
       updateCity(profile.city)
       updateState(profile.state.id)
-      updateInPerson(profile.inPerson)
+      updateInPerson(profile.in_person)
       updateLevel(profile.level)
       updatePersonality(profile.personality)
       updateFrequency(profile.frequency_id)
@@ -103,22 +106,46 @@ const ProfileForm = () => {
       "first_name": firstName,
       "last_name": lastName,
       "image_url": imageUrl,
-      "bio": bio,
       "city": city,
       "state": state,
-      "inPerson": inPerson,
+      "bio": bio,
       "level": level,
-      "personality": personality,
       "frequency_id": frequency,
+      "in_person": inPerson,
+      "personality": personality,
       "mentorship": mentorship,
       "morning": morning,
       "languages": languages,
       "expertises": expertises,
     }
-    dispatch(updateProfile(profile, {"user": confirmedUser} ))
-    return
+
+    // let errorList = [];
+    // Object.values(profile).map((f, idx) => {
+    //   if (f === "" || f === [] || f === 0 || f === null || f.length === 0) {
+    //     if (idx === 5) {
+    //       errorList.push("Error: Please confirm your state." )
+    //     } else if (idx === 7) {
+    //       errorList.push("Error: Please confirm your coding level." )
+    //     } else if (idx === 8) {
+    //       errorList.push("Error: Please confirm how often you're coding." )
+    //     } else if (idx === 13 ) {
+    //       errorList.push("Error: Please indicate languages you know" )
+    //     } else if (idx === 14) {
+    //       errorList.push("Error: Please indicate your expertise" )
+    //     };
+    //   }
+    // })
+    // setErrors(errorList)
+    if (errors.length === 0){
+      dispatch(updateProfile(profile, { "user": confirmedUser }))
+      // history.push(`/users/${confirmedUser.id}`)
+    };
+
   }
 
+  useEffect(() => {
+    console.log(errors)
+  }, [errors])
   const handleLanguages = (e) => {
     let targetVal = parseInt(e.target.value)
     if (!languages.includes(targetVal)) {
@@ -149,7 +176,7 @@ const ProfileForm = () => {
     }
   }
 
-  // if (confirmedUser !== username) {
+  // if (confirmedUser !== userId) {
   //   return <Redirect to={`/${confirmedUser}/edit-profile`} />
   // }
 
@@ -168,6 +195,7 @@ const ProfileForm = () => {
               <input
                 type="text"
                 name="firstName"
+                required={true}
                 onChange={(e) => updateFirstName(e.target.value)}
                 value={firstName}
                 placeholder="null,"
@@ -180,6 +208,7 @@ const ProfileForm = () => {
             <input
               type="text"
               name="lastName"
+              required={true}
               onChange={(e) => updateLastName(e.target.value)}
               value={lastName}
               placeholder="null,"
@@ -205,6 +234,7 @@ const ProfileForm = () => {
               type="text"
               name="location"
               value={city}
+              required={true}
               placeholder="null"
               onChange={(e) => updateCity(e.target.value)}></input>,
               <select
@@ -231,6 +261,8 @@ const ProfileForm = () => {
           <span className={bio === null? " " : "quoted"}>
             <textarea
               name="bio"
+              required={true}
+
               onChange={(e) => updateBio(e.target.value)}
               value={bio}
               placeholder="null- please keep it under 2000 characters,"
@@ -381,7 +413,11 @@ const ProfileForm = () => {
         <div><span style={{ color: "#dcb862" }}>updateProfile</span>(<span style={{ color: "#2ba2ff" }}>profile</span>);</div>
         <button type="submit">{`> `}node profile.js</button>
       </form>
-
+      <div className="errorsLog" >
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
     </>
   )
 };
