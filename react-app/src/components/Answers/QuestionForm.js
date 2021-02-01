@@ -30,7 +30,7 @@ export default function QuestionForm () {
 
     const onSubmit = async e => {
         e.preventDefault();
-        
+
         const request_answers = []
 
         for (let key in state_list) {
@@ -78,30 +78,31 @@ export default function QuestionForm () {
             {Object.entries(questions).map(item=>{
                 const q = item[1];
                 if (q.question_type === 3) {
-                    return <QuestionRadiobutton 
-                                question={q} 
-                                setAnswers={state_list[q.id][1]} 
-                                answers={state_list[q.id][0]} 
+                    return <QuestionRadiobutton
+                                question={q}
+                                setAnswers={state_list[q.id][1]}
+                                answers={state_list[q.id][0]}
                                 key={`question-list-request${currentRequest.id}-item${q.id}`}/>
                 }
                 else if (q.question_type === 4 || q.question_type === 6) {
-                    return <QuestionToggle 
-                                question={q} 
-                                setAnswers={state_list[q.id][1]} 
-                                answers={state_list[q.id][0]} 
+                    console.log(state_list[q.id][1])
+                    return <QuestionToggle
+                                question={q}
+                                setAnswers={state_list[q.id][1]}
+                                answers={state_list[q.id][0]}
                                 key={`question-list-request${currentRequest.id}-item${q.id}`} />
                 }
                 else if (q.question_type === 5) {
-                    return <QuestionReversedToggle 
-                                question={q} 
-                                setAnswers={state_list[q.id][1]} 
-                                answers={state_list[q.id][0]} 
+                    return <QuestionReversedToggle
+                                question={q}
+                                setAnswers={state_list[q.id][1]}
+                                answers={state_list[q.id][0]}
                                 key={`question-list-request${currentRequest.id}-item${q.id}`}/>
                 }
-                else return <QuestionMultipleChoice 
-                                question={q} 
-                                setAnswers={state_list[q.id][1]} 
-                                answers={state_list[q.id][0]} 
+                else return <QuestionMultipleChoice
+                                question={q}
+                                setAnswers={state_list[q.id][1]}
+                                answers={state_list[q.id][0]}
                                 key={`question-list-request${currentRequest.id}-item${q.id}`}/>
             })}
         </span>

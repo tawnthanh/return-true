@@ -1,12 +1,13 @@
 const GET_ALL = "fixed/get_all";
 
-const getQuestions = (questions, languages, frequencies, expertise) => {
-  return { 
-    type: GET_ALL, 
+const getQuestions = (questions, languages, frequencies, expertise, states) => {
+  return {
+    type: GET_ALL,
     questions,
-    languages, 
-    frequencies, 
-    expertise
+    languages,
+    frequencies,
+    expertise,
+    states,
   };
 };
 
@@ -15,7 +16,8 @@ export const pullFixed = () => async dispatch => {
   let questions =[]
   let languages =[]
   let frequencies =[]
-  let expertise =[]
+  let expertise = []
+  let states = []
 
   let res = await fetch('/api/options/questions')
   res = await res.json();
@@ -48,7 +50,15 @@ export const pullFixed = () => async dispatch => {
   } else {
     return res;
   }
-  dispatch(getQuestions(questions, languages, frequencies, expertise));
+
+
+  res = await fetch('/api/options/states')
+  res = await res.json()
+  if (!res.errors) {
+    states = res.states
+  }
+
+  dispatch(getQuestions(questions, languages, frequencies, expertise, states));
 }
 
 const initialState = {
@@ -83,6 +93,11 @@ const reducer = (state = initialState, action) => {
       }
       newState.expertise=expertise
 
+      let states = {}
+      for (let i = 0; i < action.states.length; i++){
+        states[action.states[i].id] = action.states[i]
+      }
+      newState.states=states
       return newState;
     }
     default:

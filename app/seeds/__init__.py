@@ -23,8 +23,10 @@ def seed():
     seed_profile()
     create_dialogue()
     create_message()
+    # Add other seed functions here
 
 
+# Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
     undo_users()

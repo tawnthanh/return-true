@@ -10,10 +10,10 @@ import sessionReducer from "./session";
 import searchReducer from "./search";
 import tabsReducer from "./tabs";
 import messageReducer from "./message";
+import fixedReducer from "./fixed";
 import profileReducer from "./profile";
 import requestsReducer from "./requests";
 import currentRequestsReducer from "./currentRequest";
-import fixedReducer from "./fixed";
 import matchesReducer from "./matches";
 import dialoguesReducer from "./dialogues";
 
@@ -23,12 +23,12 @@ const rootReducer = combineReducers({
   tabs: tabsReducer,
   requests: requestsReducer,
   search: searchReducer,
-  profile: profileReducer,
   fixed: fixedReducer,
+  profile: profileReducer,
   currentRequest: currentRequestsReducer,
   matches: matchesReducer,
   messages: messageReducer,
-  dialogues: dialoguesReducer
+  dialogues: dialoguesReducer,
 });
 
 let enhancer;

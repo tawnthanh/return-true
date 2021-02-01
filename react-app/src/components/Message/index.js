@@ -13,6 +13,12 @@ const Message = () => {
 
     const dialogues = useSelector(state => state.dialogues)
 
+    const user = useSelector(state => {
+      return state.session.user
+    })
+
+    const fullStore = useSelector(state => state.message)
+
     useEffect(() => {
       dispatch(getMessages(dialogueId))
       dispatch(getDialogues())
@@ -30,10 +36,6 @@ const Message = () => {
       }
     },[dialogues, dispatch, dialogueId])
 
-    const fullStore = useSelector(state => {
-      return state.messages
-    })
-
     return (
       <div className="messagebox">
         <form className="messages">
@@ -45,11 +47,8 @@ const Message = () => {
               onChange={(e) => setMessage(e.target.value)}
           />
           <button className="messagebutton" onClick={(e) => {
-
             e.preventDefault()
             dispatch(addMessage(dialogueId,message))
-
-
           }}>sendMessage()</button>
 
         </form>
@@ -60,9 +59,9 @@ const Message = () => {
 
       </div>
       <div>
-       { fullStore.map((msg)=> {
+       {!!fullStore && fullStore.length>0 && fullStore.map((msg)=> {
 
-          return <div className="text" key={`msg_${msg.id}`}>{msg.message}</div>
+          return <div className={`${(user.id === msg.senderId)? "mymessage" : "othersMessage"}`} key={`msg_${msg.id}`}>{msg.message}</div>
 
         })}
       </div>

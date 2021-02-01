@@ -4,10 +4,12 @@ from faker import Faker
 locations = [('Jenniferland', 'WI'), ('Carolview', 'NE'), ('West Susan', 'UT'),
              ('Josephmouth', 'AL'), ('Lake Stephaniemouth', 'MA'),
              ('South Donnaville', 'KY'), ('East Matthewborough', 'NH'),
-             ('Cathyport', 'ND'), ('Sabrinaview', 'WV'), ('Port Howardview', 'RI'),
-             ('Dawnfurt', 'KY'), ('Reevesmouth', 'NE'), ('Joneston', 'CA'),
-             ('Ashleyhaven', 'FL'), ('Traciborough', 'CA'), ('Wendyberg', 'GA'),
-             ('Danielstad', 'TN'), ('Malden', 'MA'), ('North Audreyport', 'TX'),
+             ('Cathyport', 'ND'), ('Sabrinaview', 'WV'),
+             ('Port Howardview', 'RI'), ('Dawnfurt', 'KY'),
+             ('Reevesmouth', 'NE'), ('Joneston', 'CA'),
+             ('Ashleyhaven', 'FL'), ('Traciborough', 'CA'),
+             ('Wendyberg', 'GA'), ('Danielstad', 'TN'),
+             ('Malden', 'MA'), ('North Audreyport', 'TX'),
              ('New Ashley', 'NC')]
 
 # Adds a location, you can add other users here if you want

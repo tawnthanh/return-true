@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from '../auth/LogoutButton';
-import './navbar.css';
-import 'font-awesome/css/font-awesome.min.css';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import LogoutButton from "../auth/LogoutButton";
+import "./navbar.css";
+import "font-awesome/css/font-awesome.min.css";
 import Search from "../Search";
 import RequestList from "../Request/RequestList";
 import DialoguesList from "../Message/DialoguesList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
+  const user = useSelector(state => state.session.user)
   const [search, setSearch] = useState(false)
   const [requests, setRequests] = useState(false)
   const [dialogues, setDialogues] = useState(false)
@@ -19,28 +21,28 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
       "dialogues": [dialogues, setDialogues],
     }
 
-    if (sideBars[key][0]){
-      setIsOpen(!isOpen)
+    if (sideBars[key][0]) {
+      setIsOpen(!isOpen);
     } else {
       setIsOpen(true);
       sideBars[key][1](true);
       for (let bar in sideBars) {
-        if (bar !== key){
-          sideBars[bar][1](false)
+        if (bar !== key) {
+          sideBars[bar][1](false);
         }
       }
     }
-  }
+  };
 
   useEffect(() => {
     if (!authenticated) {
-      setIsOpen(false)
+      setIsOpen(false);
     }
-  },[authenticated,setIsOpen])
+  }, [authenticated, setIsOpen]);
 
   return (
     <>
-      <nav className='navbar'>
+      <nav className="navbar">
         <ul>
           <li>
             <NavLink to="/" exact={true} className="active">
@@ -69,7 +71,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
           </li>}
           {/* <li>
             <NavLink to="/messages/1" exact={true} className="message">
-            <i class="fa fa-comment fa-3x" aria-hidden="true"></i>
+            <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
             </NavLink>
             </li> */}
           {!authenticated && <li>
@@ -98,6 +100,6 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
       }
     </>
   );
-}
+};
 
 export default NavBar;

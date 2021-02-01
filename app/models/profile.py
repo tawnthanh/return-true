@@ -48,8 +48,8 @@ class Profile(db.Model):
     imageUrl = db.Column(db.String)
     bio = db.Column(db.String(2000))
     locationId = db.Column(db.Integer, db.ForeignKey("locations.id"))
-    inPerson = db.Column(db.Boolean, nullable=False)
     level = db.Column(db.Integer, nullable=False)
+    inPerson = db.Column(db.Boolean, nullable=False)
     personality = db.Column(db.Boolean, default=False)
     frequencyId = db.Column(db.Integer, db.ForeignKey(
         "frequencies.id"), nullable=False)
@@ -68,10 +68,14 @@ class Profile(db.Model):
     user = db.relationship(
         "User", back_populates="profile")
 
+    location = db.relationship(
+        "Location", back_populates="profile")
+
     def to_dict(self):
         return {
             "id": self.id,
             "user_id": self.userId,
+            "username": self.user.username,
             "first_name": self.firstName,
             "last_name": self.lastName,
             "image_url": self.imageUrl,
@@ -88,3 +92,24 @@ class Profile(db.Model):
             "expertises": [expert.to_dict() for expert in self.expertises],
             "users": self.user.to_dict(),
         }
+
+        def info(self):
+            return {
+                "id": self.id,
+                "user_id": self.userId,
+                "first_name": self.firstName,
+                "last_name": self.lastName,
+                "image_url": self.imageUrl,
+                "bio": self.bio,
+                "location_id": self.locationId,
+                "in_person": self.inPerson,
+                "level": self.level,
+                "personality": self.personality,
+                "frequency_id": self.frequencyId,
+                "frequency": self.frequency.to_dict(),
+                "mentorship": self.mentorship,
+                "morning": self.morning,
+                "languages": [la.to_dict() for la in self.languages],
+                "expertises": [e.to_dict() for e in self.expertises],
+                "users": self.user.to_dict(),
+            }

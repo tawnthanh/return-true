@@ -1,0 +1,9 @@
+#radio{
+  color: #bb86c0;
+  margin-left: 0;
+  margin-right: 5px;
+}
+
+#radio::after {
+  content: none;
+}
