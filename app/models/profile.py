@@ -72,6 +72,7 @@ class Profile(db.Model):
         return {
             "id": self.id,
             "user_id": self.userId,
+            "username": self.user.username,
             "first_name": self.firstName,
             "last_name": self.lastName,
             "image_url": self.imageUrl,

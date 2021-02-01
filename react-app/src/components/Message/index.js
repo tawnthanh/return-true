@@ -23,9 +23,7 @@ const Message = () => {
       return state.session.user
     })
 
-    const fullStore = useSelector(state => {
-      return state.messages
-    })
+    const fullStore = useSelector(state => state.message)
     // const handleSubmit = (e) => {
     //   e.preventDefault()
     //   dispatch(postMessages(message, dialogueId))
