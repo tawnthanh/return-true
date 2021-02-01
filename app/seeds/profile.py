@@ -2,7 +2,7 @@ from app.models import db, Frequency, Languages, Profile, Expertise
 
 
 def seed_frequency():
-    frequency_list = ["less than 10 hour per week", "10 to 20 hours per week",
+    frequency_list = ["less than 10 hours per week", "10 to 20 hours per week",
                       "20 to 40 hours per week", "more than 40 hours per week"]
     for frequency in frequency_list:
         frequency_type = Frequency(type=frequency)
