@@ -17,7 +17,7 @@ const Message = () => {
       return state.session.user
     })
 
-    const fullStore = useSelector(state => state.message)
+    const fullStore = useSelector(state => state.messages)
 
     useEffect(() => {
       dispatch(getMessages(dialogueId))
@@ -48,7 +48,7 @@ const Message = () => {
           />
           <button className="messagebutton" onClick={(e) => {
             e.preventDefault()
-            dispatch(addMessage(dialogueId,message))
+            dispatch(addMessage(dialogueId,message)).then(res => setMessage(""))
           }}>sendMessage()</button>
 
         </form>
