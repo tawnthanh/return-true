@@ -10,8 +10,8 @@ def create_message():
 
 
     messages = [
-        ["Violets are BLUEE!!",True,1, 1],
-        ["Roses are red",False,1, 2],
+        ["Hey, how are you?!!",True,1, 1],
+        ["I'm great! How's it going?",False,1, 2],
 
     ]
 
