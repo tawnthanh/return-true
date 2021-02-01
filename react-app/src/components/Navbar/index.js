@@ -92,11 +92,6 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               </NavLink>
             </li>
           )}
-          {authenticated && user.username !== null && <li>
-            {<NavLink to={`/${user.id}/edit-profile`} exact={true} className="active">
-              <div>Edit Profile</div>
-            </NavLink>}
-          </li>}
           {authenticated && (
             <li className="logoutbutton">
               <LogoutButton setAuthenticated={setAuthenticated} />
