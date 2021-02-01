@@ -94,61 +94,63 @@ def profile_update(id):
                          .filter(State.id == profile["state"]).first()
     location = None
     l_list = Languages.query.all()
-    l_list = [la.to_dict() for la in l_list]
-    lang_match = [la for la in l_list for lang in profile["languages"] if la["id"] == lang]
+    lang_match = [la for la in l_list for lang in profile["languages"]
+                  if la.to_dict()["id"] == lang]
 
     e_list = Expertise.query.all()
-    e_list = [ex.to_dict() for ex in e_list]
-    exp_match = [ex for ex in e_list for exp in profile["expertises"] if ex["id"] == exp]
-    print(profile["expertises"])
-    print(e_list)
-    print("MATCHESSSSSSS", exp_match)
+    exp_match = [ex for ex in e_list for exp in profile["expertises"]
+                 if ex.to_dict()["id"] == exp]
+    # print(profile["expertises"])
+    # print(e_list)
+    # print("MATCHESSSSSSS", exp_match)
     # print(profiles.to_dict())
-    # if city is not None:
-    #     location = city.to_dict()["id"]
-    # else:
-    #     location = profile["city"]
-    #     new_location = Location(city=location, stateId=profile["state"])
-    #     db.session.add(new_location)
-    #     db.session.commit()
-    #     city = Location.query.filter(Location.city.ilike(profile["city"]))\
-    #                          .filter(State.id == profile["state"]).first()
-    #     location = city.to_dict()["id"]
+    if city is not None:
+        location = city.to_dict()["id"]
+    else:
+        location = profile["city"]
+        new_location = Location(city=location, stateId=profile["state"])
+        db.session.add(new_location)
+        db.session.commit()
+        city = Location.query.filter(Location.city.ilike(profile["city"]))\
+                             .filter(State.id == profile["state"]).first()
+        location = city.to_dict()["id"]
 
-    # if profiles is not None:
-    #     print("it did exist")
-    #     profiles.userId = profile["user_id"]
-    #     profiles.firstName = profile["first_name"]
-    #     profiles.lastName = profile["last_name"]
-    #     profiles.imageUrl = profile["image_url"]
-    #     profiles.bio = profile["bio"]
-    #     profiles.locationId = location
-    #     profiles.level = profile["level"]
-    #     profiles.inPerson = profile["in_person"]
-    #     profiles.personality = profile["personality"]
-    #     profiles.frequencyId = profile["frequency_id"]
-    #     profiles.mentorship = profile["mentorship"]
-    #     profiles.morning = profile["morning"]
-    #     profiles.languages = lang_match
-    #     profiles.expertises = exp_match
-    #     db.session.commit()
-    #     return {'Successful': ['Profile Updated']}, 200
-    # else:
-    #     new_profile = Profile(
-    #         userId=profile["user_id"],
-    #         firstName=profile["first_name"],
-    #         lastName=profile["last_name"],
-    #         imageUrl=profile["image_url"],
-    #         bio=profile["bio"],
-    #         locationId=location,
-    #         level=profile["level"],
-    #         inPerson=profile["in_person"],
-    #         personality=profile["personality"],
-    #         frequencyId=profile["frequency_id"],
-    #         mentorship=profile["mentorship"],
-    #         morning=profile["morning"],
-    #     )
-    #     db.session.add(new_profile)
-    #     db.session.commit()
-    # return new_profile.to_dict()
-    return "hi"
+    if profiles is not None:
+        print("it did exist")
+        profiles.userId = profile["user_id"]
+        profiles.firstName = profile["first_name"]
+        profiles.lastName = profile["last_name"]
+        profiles.imageUrl = profile["image_url"]
+        profiles.bio = profile["bio"]
+        profiles.locationId = location
+        profiles.level = profile["level"]
+        profiles.inPerson = profile["in_person"]
+        profiles.personality = profile["personality"]
+        profiles.frequencyId = profile["frequency_id"]
+        profiles.mentorship = profile["mentorship"]
+        profiles.morning = profile["morning"]
+        profiles.languages = lang_match
+        profiles.expertises = exp_match
+        db.session.commit()
+        return {'Successful': ['Profile Updated']}, 200
+    else:
+        new_profile = Profile(
+            userId=profile["user_id"],
+            firstName=profile["first_name"],
+            lastName=profile["last_name"],
+            imageUrl=profile["image_url"],
+            bio=profile["bio"],
+            locationId=location,
+            level=profile["level"],
+            inPerson=profile["in_person"],
+            personality=profile["personality"],
+            frequencyId=profile["frequency_id"],
+            mentorship=profile["mentorship"],
+            morning=profile["morning"],
+        )
+        db.session.add(new_profile)
+        new_profile.languages = lang_match
+        new_profile.expertises = exp_match
+        db.session.commit()
+    return new_profile.to_dict()
+    # return "hi"
