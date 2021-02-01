@@ -18,7 +18,9 @@ function User() {
     dispatch(getUser(userId));
     dispatch(getProfile(userId));
     // profile id instead of userid
+
   }, [dispatch]);
+
 
   if (!user) {
     return null;

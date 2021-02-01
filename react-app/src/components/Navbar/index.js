@@ -8,13 +8,9 @@ import Search from "../Search";
 import RequestList from "../Request/RequestList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
-  // const username = useSelector((state) => state.session.user.username);
-  const [search, setSearch] = useState(false);
-  const [requests, setRequests] = useState(false);
-
-  const user = useSelector((state) => {
-    return state.session.user;
-  });
+  const user = useSelector(state => state.session.user)
+  const [search, setSearch] = useState(false)
+  const [requests, setRequests] = useState(false)
 
   const switchSideBar = (key) => {
     const sideBars = {
@@ -79,7 +75,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
           )}
           {/* <li>
             <NavLink to="/messages/1" exact={true} className="message">
-              <i class="fa fa-comment fa-3x" aria-hidden="true"></i>
+            <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li> */}
           {!authenticated && (
@@ -96,17 +92,11 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               </NavLink>
             </li>
           )}
-          {/* {authenticated && (
-            <li>
-              <a
-                href={`/${username}/edit-profile`}
-                exact={true}
-                className="active"
-              >
-                <div onClick={() => console.log(username)}>Edit Profile</div>
-              </a>
-            </li>
-          )} */}
+          {authenticated && user.username !== null && <li>
+            {<NavLink to={`/${user.id}/edit-profile`} exact={true} className="active">
+              <div>Edit Profile</div>
+            </NavLink>}
+          </li>}
           {authenticated && (
             <li className="logoutbutton">
               <LogoutButton setAuthenticated={setAuthenticated} />
