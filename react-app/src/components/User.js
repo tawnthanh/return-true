@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile, getUser } from "../store/profile";
+import picture from "./null_profile_pic.jpg";
 
 function User() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function User() {
         {profiles.image_url && (
           <img id="profile-picture" src={profiles.image_url} />
         )}
+        {!profiles.image_url && <img id="profile-picture" src={picture} />}
       </div>
       <div>
         <div>
