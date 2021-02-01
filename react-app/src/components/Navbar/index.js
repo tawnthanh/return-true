@@ -8,7 +8,7 @@ import Search from "../Search";
 import RequestList from "../Request/RequestList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
-  const username = useSelector((state) => state.session.user.username);
+  // const username = useSelector((state) => state.session.user.username);
   const [search, setSearch] = useState(false);
   const [requests, setRequests] = useState(false);
 
@@ -77,11 +77,11 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               </NavLink>
             </li>
           )}
-          <li>
+          {/* <li>
             <NavLink to="/messages/1" exact={true} className="message">
               <i class="fa fa-comment fa-3x" aria-hidden="true"></i>
             </NavLink>
-          </li>
+          </li> */}
           {!authenticated && (
             <li>
               <NavLink to="/sign-up" exact={true} className="active">
@@ -96,7 +96,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               </NavLink>
             </li>
           )}
-          {authenticated && (
+          {/* {authenticated && (
             <li>
               <a
                 href={`/${username}/edit-profile`}
@@ -106,7 +106,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
                 <div onClick={() => console.log(username)}>Edit Profile</div>
               </a>
             </li>
-          )}
+          )} */}
           {authenticated && (
             <li className="logoutbutton">
               <LogoutButton setAuthenticated={setAuthenticated} />

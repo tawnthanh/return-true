@@ -46,7 +46,7 @@ def addMessages(dialogueId):
 @user_routes.route('/<id>/profiles')
 @login_required
 def profiles(id):
-    profiles = Profile.query.get(id)
+    profiles = Profile.query.filter(Profile.id == id).first()
     print(profiles)
     return {"profile": profiles.to_dict()}
 
