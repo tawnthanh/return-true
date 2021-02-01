@@ -119,26 +119,26 @@ const ProfileForm = () => {
       "expertises": expertises,
     }
 
-    // let errorList = [];
-    // Object.values(profile).map((f, idx) => {
-    //   if (f === "" || f === [] || f === 0 || f === null || f.length === 0) {
-    //     if (idx === 5) {
-    //       errorList.push("Error: Please confirm your state." )
-    //     } else if (idx === 7) {
-    //       errorList.push("Error: Please confirm your coding level." )
-    //     } else if (idx === 8) {
-    //       errorList.push("Error: Please confirm how often you're coding." )
-    //     } else if (idx === 13 ) {
-    //       errorList.push("Error: Please indicate languages you know" )
-    //     } else if (idx === 14) {
-    //       errorList.push("Error: Please indicate your expertise" )
-    //     };
-    //   }
-    // })
-    // setErrors(errorList)
+    let errorList = [];
+    Object.values(profile).map((f, idx) => {
+      if (f === "" || f === [] || f === 0 || f === null || f.length === 0) {
+        if (idx === 5) {
+          errorList.push("Error: Please confirm your state." )
+        } else if (idx === 7) {
+          errorList.push("Error: Please confirm your coding level." )
+        } else if (idx === 8) {
+          errorList.push("Error: Please confirm how often you're coding." )
+        } else if (idx === 13 ) {
+          errorList.push("Error: Please indicate languages you know" )
+        } else if (idx === 14) {
+          errorList.push("Error: Please indicate your expertise" )
+        };
+      }
+    })
+    setErrors(errorList)
     if (errors.length === 0){
       dispatch(updateProfile(profile, { "user": confirmedUser }))
-      // history.push(`/users/${confirmedUser.id}`)
+      history.push(`/users/${confirmedUser.id}`)
     };
 
   }
