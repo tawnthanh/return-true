@@ -414,8 +414,8 @@ const ProfileForm = () => {
         <button type="submit">{`> `}node profile.js</button>
       </form>
       <div className="errorsLog" >
-          {errors.map((error) => (
-            <div>{error}</div>
+          {errors.map((error, idx) => (
+            <div key={"error-" + idx}>{error}</div>
           ))}
         </div>
     </>
