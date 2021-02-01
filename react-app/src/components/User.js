@@ -27,7 +27,7 @@ function User() {
   useEffect(() => {
     if (confirmedUser.username) {
       let tab = {
-        tab_id: `${confirmedUser.username}`,
+        tab_id: `profile`,
         title: `${confirmedUser.username}`,
         link: `/users/${userId}`
       }
