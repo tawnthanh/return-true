@@ -92,5 +92,7 @@ textarea:focus {
 }
 .dropdown-color {
   background-color: #1e1e1e;
+  border: 1px solid darkslategray;
   color: rgb(206, 145, 120);
+  font-size:large
 }
