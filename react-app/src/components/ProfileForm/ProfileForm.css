@@ -7,3 +7,18 @@
 #radio::after {
   content: none;
 }
+
+.checkbox-container.languages::after,
+.checkbox-container.expertises::after{
+  content: none;
+}
+
+.checkbox-container.languages,
+.checkbox-container.expertises {
+  color: rgb(180, 175, 175)
+}
+
+.select-grid.expertises,
+.select-grid.languages{
+  padding-top: 20px;
+}

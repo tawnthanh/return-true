@@ -397,17 +397,18 @@ const ProfileForm = () => {
             <div>
               <label>{"Language(s)_I_know"}</label>
               <span className="brackets-color">{"["}</span>
-              <span className="select-grid">
+              <span className="select-grid languages">
                 {languages_list &&
                   Object.values(languages_list).map((language) => {
                     return (
                       <label
                         htmlFor={`o${language.id}`}
-                        className="checkbox-container"
+                        className="checkbox-container languages"
                         key={`q${language.id}-multichoice`}
                       >
                         <input
                           type="checkbox"
+                          className="languages"
                           onChange={handleLanguages}
                           value={language.id}
                           id={`o${language.id}`}
@@ -430,13 +431,13 @@ const ProfileForm = () => {
             <div>
               <label>{"My_expertise(s)"}</label>
               <span className="brackets-color">{"["}</span>
-              <span className="select-grid">
+              <span className="select-grid expertises">
                 {expertises_list &&
                   Object.values(expertises_list).map((e) => {
                     return (
                       <label
                         htmlFor={`q${e.type}-o${e.id}`}
-                        className="checkbox-container"
+                        className="checkbox-container expertises"
                         key={`q${e.type}-o${e.id}-multichoice`}
                       >
                         {e.type}
