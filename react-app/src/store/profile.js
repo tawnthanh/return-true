@@ -26,7 +26,6 @@ export const getProfile = (userId) => async (dispatch) => {
 };
 
 export const getUser = (userId) => async (dispatch) => {
-  console.log(userId);
   const res = await fetch(`/api/users/${userId}`);
   if (res.ok) {
     let response = await res.json();
