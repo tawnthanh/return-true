@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getProfile, getUser } from "../store/profile";
 import picture from "../null_profile_pic.jpg";
+import {openTab} from "../store/tabs";
 
 function User() {
   const dispatch = useDispatch();
@@ -10,17 +11,29 @@ function User() {
   const { userId } = useParams();
 
   const profiles = useSelector((state) => state.profile);
+  const confirmedUser = useSelector(state => state.session.user)
 
   useEffect(() => {
     if (!userId) {
       return;
     }
+
     dispatch(getUser(userId));
     dispatch(getProfile(userId));
     // profile id instead of userid
 
   }, [dispatch]);
 
+  useEffect(() => {
+    if (confirmedUser.username) {
+      let tab = {
+        tab_id: `${confirmedUser.username}`,
+        title: `${confirmedUser.username}`,
+        link: `/users/${userId}`
+      }
+      dispatch(openTab(tab))
+    }
+  })
 
   if (!user) {
     return null;
@@ -33,10 +46,11 @@ function User() {
           <img id="profile-picture" src={profiles.image_url} />
         )}
         {!profiles.image_url && <img id="profile-picture" src={picture} />}
-        <div>
-          <a href={`/${userId}/edit-profile`}>Edit Profile</a>
-
-        </div>
+        { confirmedUser.id === parseInt(userId) &&
+          <div className="edit-button">
+            <NavLink to={`/${userId}/edit-profile`}>Edit Profile</NavLink>
+          </div>
+        }
       </div>
       <div>
         <div>

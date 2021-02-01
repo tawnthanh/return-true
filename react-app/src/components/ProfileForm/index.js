@@ -136,7 +136,7 @@ const ProfileForm = () => {
       }
     })
     setErrors(errorList)
-    if (errors.length === 0){
+    if (errorList.length === 0){
       dispatch(updateProfile(profile, { "user": confirmedUser }))
       history.push(`/users/${confirmedUser.id}`)
     };
