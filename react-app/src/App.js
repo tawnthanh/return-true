@@ -10,9 +10,9 @@ import Message from "./components/Message";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
 import { pullFixed } from "./store/fixed";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import {getDialogues} from "./store/dialogues";
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
 import TabBar from "./components/TabBar";
 import ProfileForm from "./components/ProfileForm";
 import Request from "./components/Request";
@@ -34,6 +34,7 @@ function App() {
       setAuthenticated(true)
       setLoaded(true)
       dispatch(pullFixed());
+      dispatch(getDialogues());
       }
     ).catch((err)=>{
       setAuthenticated(false)

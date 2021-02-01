@@ -35,6 +35,7 @@ def messages(dialogueId):
 @user_routes.route('/messages/<int:dialogueId>', methods=['POST'])
 @login_required
 def addMessages(dialogueId):
+    print("!!!!!!!!!!!!!!!!!!!")
     data = request.get_json()
     user = current_user.to_dict()
     messages = Message(dialogueId=dialogueId,

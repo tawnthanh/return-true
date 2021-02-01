@@ -59,8 +59,13 @@ span.toggle-extended {
   display: block;
 }
 
-.answers-query > span:first-child {
-  margin-left: 20px;
+.answers-query {  
+    /* box-shadow: inset 1px 1px 2px 0px #000; */
+    padding: 10px 0;
+}
+
+.answers-query > span:first-child{
+    margin-left: 20px;
 }
 .answers-query > span:nth-child(2),
 .answers-query > span:nth-child(3) {
