@@ -60,6 +60,7 @@
     grid-template-columns: repeat(10, 1fr);
     height: 100%;
     box-sizing: border-box;
+    box-shadow: inset 1px 1px 2px 0px #000;
 }
 
 .cell-blocks > span {
@@ -68,6 +69,7 @@
     height: 100%;
     box-sizing: border-box;
     z-index: 100;
+    /* box-shadow: inset 1px 1px 2px 0px #000; */
 }
 
 .matches-contaier {

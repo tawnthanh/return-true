@@ -1,32 +1,35 @@
 import React, {useState, useEffect,  } from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {  getMessages, addMessage } from '../../store/message';
+import { getMessages, addMessage } from '../../store/message';
+import { openTab } from '../../store/tabs';
 import './message.css'
-
-
 
 const Message = () => {
     const [message, setMessage] = useState("");
     const { dialogueId }  = useParams();
     const dispatch = useDispatch();
 
-    useEffect(() => {
-      // setInterval(() => {
-        dispatch(getMessages(dialogueId))
-      // }, 30000)
+    const dialogues = useSelector(state => state.dialogues)
 
-    }, [dispatch])
-    // const {message} = useSelector(state => state.message)
+    useEffect(() => {
+        let dialogue = dialogues.find(d => d.id === parseInt(dialogueId))
+        dispatch(getMessages(dialogueId)).then(res => {
+          if (dialogue) {
+            let tab = {
+              tab_id: `dialogue_${dialogueId}`,
+              title: dialogue.user,
+              link: `/messages/${dialogueId}`
+            }
+            dispatch(openTab(tab))
+          }
+        })
+    }, [dispatch, dialogueId, dialogues])
 
 
     const fullStore = useSelector(state => {
       return state.messages
     })
-    // const handleSubmit = (e) => {
-    //   e.preventDefault()
-    //   dispatch(postMessages(message, dialogueId))
-    // }
 
     return (
       <div className="messagebox">
@@ -56,7 +59,7 @@ const Message = () => {
       <div>
        { fullStore.map((msg)=> {
 
-          return <div className="text">{msg.message}</div>
+          return <div className="text" key={`msg_${msg.id}`}>{msg.message}</div>
 
         })}
       </div>

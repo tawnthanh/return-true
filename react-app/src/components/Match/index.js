@@ -21,6 +21,6 @@ export default function Match () {
 
 
     return isLoaded && <div className="matches-contaier">
-        {both_matches.map(match => <MatchCard match={match}/>)}
+        {both_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
     </div>
 }

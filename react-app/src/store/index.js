@@ -15,6 +15,7 @@ import requestsReducer from "./requests";
 import currentRequestsReducer from "./currentRequest";
 import fixedReducer from "./fixed";
 import matchesReducer from "./matches";
+import dialoguesReducer from "./dialogues";
 
 //Combines Reducers into one reducer
 const rootReducer = combineReducers({
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   currentRequest: currentRequestsReducer,
   matches: matchesReducer,
   messages: messageReducer,
+  dialogues: dialoguesReducer
 });
 
 let enhancer;

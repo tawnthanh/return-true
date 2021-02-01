@@ -21,13 +21,8 @@ def seed():
     seed_questions()
     seed_frequency()
     seed_profile()
-
-    # Add other seed functions here
-@seed_commands.command('msg')
-def seed_msg():
     create_dialogue()
     create_message()
-# Creates the `flask seed undo` command
 
 
 @seed_commands.command('undo')

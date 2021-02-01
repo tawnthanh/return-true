@@ -32,3 +32,15 @@
     color: yellow;
     font: 18px "Source Code Pro", monospace;
 }
+
+.sidebar-list.dialogues-list ul li a::after {
+    content: "";
+}
+
+.sidebar-list.dialogues-list ul {
+    padding-left: 5px;
+}
+
+.sidebar-list.dialogues-list ul li i{
+    margin-right: 5px;
+}

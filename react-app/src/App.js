@@ -10,6 +10,7 @@ import Message from "./components/Message";
 import HomePage from "./components/HomePage";
 import { sessionAuthenticate } from "./store/session";
 import { pullFixed } from "./store/fixed";
+import {getDialogues} from "./store/dialogues";
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from "react-redux";
 import TabBar from "./components/TabBar";
@@ -33,6 +34,7 @@ function App() {
       setAuthenticated(true)
       setLoaded(true)
       dispatch(pullFixed());
+      dispatch(getDialogues());
       }
     ).catch((err)=>{
       console.log('catch statement!!!!!')

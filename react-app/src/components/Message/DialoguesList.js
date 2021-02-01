@@ -1,0 +1,32 @@
+import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+
+export default function DialoguesList () {
+    const [isLoaded, setIsLoaded] = useState(false);
+    let dialogues = useSelector(store => store.dialogues);
+
+    useEffect(()=>{
+        if (dialogues.length > 0) {
+            setIsLoaded(true)
+        }
+    },[dialogues])
+
+    return <div className="sidebar">
+        <div className="sidebar-title">
+            <span>Dialogs</span>
+        </div>
+        {isLoaded && <div className="sidebar-list dialogues-list">
+            <ul>
+                {dialogues.map(dialogue => {
+                    return <li key={`dialogue-list-item-${dialogue.id}`}>
+                        <span>
+                            <i className="fas fa-envelope"></i>
+                            <Link to={`/messages/${dialogue.id}`}>{dialogue.user}</Link>
+                        </span>
+                    </li>
+                })}
+            </ul>
+        </div>}
+    </div>
+}
