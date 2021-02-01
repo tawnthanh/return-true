@@ -51,43 +51,43 @@ const Credits = () => {
       </span>
       <div className="creditor-section">
         <h3 className={anna ? "color-name" : " "} onClick={()=>activate(creditors[0].name)}>{creditors[0].name}, </h3>
-          { anna &&
-          <div className="info-section">
-            <img src={creditors[0].picture}></img>
-            {"["}
-            <a href={creditors[0].github}>{"github"}</a>,
-            <a href={creditors[0].linkedIn}>{"linkedIn"}</a>
-            {"]"}
-            </div>}
+        { anna &&
+        <div className="info-section">
+          <img src={creditors[0].picture}></img>
+          {" : ["}
+          <a href={creditors[0].github}>{"github"}</a>,
+          <a href={creditors[0].linkedIn}>{"linkedIn"}</a>
+          {"]"}
+          </div>}
         <h3 className={arjun ? "color-name" : " "} onClick={()=>activate(creditors[2].name)}>{creditors[2].name}, </h3>
         { arjun &&
           <div className="info-section">
-          <img src={creditors[2].picture}></img>
-          {"["}
-          <a href={creditors[2].github}>{"github"}</a>,
-          <a href={creditors[2].linkedIn}>{"linkedIn"}</a>
-          {"]"}
+            <img src={creditors[2].picture}></img>
+            {" : ["}
+            <a href={creditors[2].github}>{"github"}</a>,
+            <a href={creditors[2].linkedIn}>{"linkedIn"}</a>
+            {"]"}
           </div>}
         <h3 className={mishe ? "color-name" : " "} onClick={()=>activate(creditors[1].name)}>{creditors[1].name}, </h3>
           { mishe &&
           <div className="info-section">
-          <img src={creditors[1].picture}></img>
-          {"["}
-          <a href={creditors[1].github}>{"github"}</a>,
-          <a href={creditors[1].linkedIn}>{"linkedIn"}</a>
-          {"]"}
+            <img src={creditors[1].picture}></img>
+            {" : ["}
+            <a href={creditors[1].github}>{"github"}</a>,
+            <a href={creditors[1].linkedIn}>{"linkedIn"}</a>
+            {"]"}
           </div>}
         <h3 className={thanh ? "color-name" : " "} onClick={()=>activate(creditors[3].name)}>{creditors[3].name},</h3>
         { thanh &&
           <div className="info-section">
-          <img src={creditors[3].picture}></img>
-          {"["}
-          <a href={creditors[3].github}>{"github"}</a>,
-          <a href={creditors[3].linkedIn}>{"linkedIn"}</a>
-          {"]"}
+            <img src={creditors[3].picture}></img>
+            {" : ["}
+            <a href={creditors[3].github}>{"github"}</a>,
+            <a href={creditors[3].linkedIn}>{"linkedIn"}</a>
+            {"]"}
           </div>}
       </div>
-      <h1 className="end">{"}"}</h1>
+      <h1 className="end closing">{"}"}</h1>
     </div>
   )
 }

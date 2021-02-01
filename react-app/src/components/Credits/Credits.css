@@ -1,7 +1,7 @@
 .creditor-section {
   width: auto;
   box-sizing: border-box;
-  padding-left: 50px;
+  padding-left: 250px;
   display: flex;
   flex-direction: column;
 }
@@ -14,8 +14,9 @@ img {
 
 .info-section{
   display: flex;
-  color: aliceblue,
-
+  color: aliceblue;
+  box-sizing: border-box;
+  align-items: center;
 }
 
 .info-section a {
@@ -34,6 +35,15 @@ img {
 .end {
   color: rgb(236, 235, 154);
 }
+
+.end.closing {
+  padding-left: 175px;
+}
+
 .credit-header{
   display: flex;
+}
+
+h3{
+  margin: 0;
 }
