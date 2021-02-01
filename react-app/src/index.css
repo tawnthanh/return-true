@@ -60,12 +60,52 @@ textarea:focus {
 .prof-pic {
   padding-top: 20px;
   padding-right: 60px;
+  position: relative;
+  width: 300px;
+  height: auto;
+
 }
 #profile-picture {
   box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.7);
-  width: 300px;
+  width: 90%;
+  height: auto;
   border-radius: 50%;
+  position:absolute;
+
 }
+
+.edit-button{
+  position: absolute;
+  height: 315px;
+  width: 90%;
+  box-sizing: border-box;
+  padding-top: 10px;
+  background-color: hsla(0, 0%, 12%, 0);
+  font-size: 20px;
+  text-align: center;
+}
+
+.edit-button:hover{
+  background-color: hsla(0, 0%, 12%, 0.719);
+
+}
+.edit-button a {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color:  hsla(0, 5%, 76%, 0);
+  height: 100%;
+  width: 315px;
+  padding: 80px;
+
+}
+
+.edit-button a:hover{
+  color:  hsla(0, 5%, 76%, 0.815);
+}
+
 .profile-list {
   list-style-type: none;
 }
