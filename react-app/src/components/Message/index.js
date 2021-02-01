@@ -2,6 +2,7 @@ import React, {useState, useEffect,  } from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import { getMessages, addMessage } from '../../store/message';
+import { getDialogues } from "../../store/dialogues";
 import { openTab } from '../../store/tabs';
 import './message.css'
 
@@ -13,19 +14,21 @@ const Message = () => {
     const dialogues = useSelector(state => state.dialogues)
 
     useEffect(() => {
-        let dialogue = dialogues.find(d => d.id === parseInt(dialogueId))
-        dispatch(getMessages(dialogueId)).then(res => {
-          if (dialogue) {
-            let tab = {
-              tab_id: `dialogue_${dialogueId}`,
-              title: dialogue.user,
-              link: `/messages/${dialogueId}`
-            }
-            dispatch(openTab(tab))
-          }
-        })
-    }, [dispatch, dialogueId, dialogues])
+      dispatch(getMessages(dialogueId))
+      dispatch(getDialogues())
+    }, [dispatch, dialogueId])
 
+    useEffect(()=>{
+      let d = dialogues.find(i=>i.dialogueId === parseInt(dialogueId));
+      if (d) {
+        let tab = {
+          tab_id: `dialogue_${dialogueId}`,
+          title: d.user,
+          link: `/messages/${dialogueId}`
+        }
+        dispatch(openTab(tab));
+      }
+    },[dialogues, dispatch, dialogueId])
 
     const fullStore = useSelector(state => {
       return state.messages

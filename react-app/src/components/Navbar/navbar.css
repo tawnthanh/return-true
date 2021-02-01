@@ -79,7 +79,7 @@
     right: 7px;
   }
 
-  .tab:hover i {
+  .tab.active-tab:hover i {
     display: inline;
   }
 

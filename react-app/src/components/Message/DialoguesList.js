@@ -14,15 +14,15 @@ export default function DialoguesList () {
 
     return <div className="sidebar">
         <div className="sidebar-title">
-            <span>Dialogs</span>
+            <span>Logs</span>
         </div>
         {isLoaded && <div className="sidebar-list dialogues-list">
             <ul>
                 {dialogues.map(dialogue => {
-                    return <li key={`dialogue-list-item-${dialogue.id}`}>
+                    return <li key={`dialogue-list-item-${dialogue.dialogueId}`}>
                         <span>
                             <i className="fas fa-envelope"></i>
-                            <Link to={`/messages/${dialogue.id}`}>{dialogue.user}</Link>
+                            <Link to={`/messages/${dialogue.dialogueId}`}>{dialogue.user}</Link>
                         </span>
                     </li>
                 })}
