@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import {openTab, closeTab} from "../../store/tabs";
 import "./ProfileForm.css";
 import { getProfileFields, updateProfile } from "../../store/profile";
 import { QuestionReversedToggleProfile } from "./FormFields";
@@ -10,8 +9,8 @@ import { openTab } from "../../store/tabs";
 const ProfileForm = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { userId } = useParams();
   const confirmedUser = useSelector((state) => state.session.user);
+  const userId  = confirmedUser.id;
   const profile = useSelector((state) => state.profile);
   const languages_list = useSelector((state) => state.fixed.languages);
   const expertises_list = useSelector((state) => state.fixed.expertise);

@@ -112,7 +112,7 @@ function App() {
             <Route path="/" exact={true}>
               <HomePage />
             </Route>
-            <ProtectedRoute path="/:userId/edit-profile" exact={true} authenticated={authenticated}>
+            <ProtectedRoute path="/edit-profile" exact={true} authenticated={authenticated}>
               <ProfileForm />
             </ProtectedRoute>
             <Route path="/credits" exact={true}>
