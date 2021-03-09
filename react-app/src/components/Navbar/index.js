@@ -50,19 +50,19 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             </NavLink>
           </li>
           {authenticated && <li>
-            <div onClick={() => switchSideBar("search")} className="active search-button">
+            <button onClick={() => switchSideBar("search")}>
               <i className="fa fa-search fa-3x"></i>
-            </div>
+            </button>
           </li>}
           {authenticated && <li>
-            <div onClick={() => switchSideBar("requests")} className="active search-button">
+            <button onClick={() => switchSideBar("requests")}>
               <i className="fa fa-handshake fa-3x"></i>
-            </div>
+            </button>
           </li>}
           {authenticated && <li>
-            <div onClick={() => switchSideBar("dialogues")} className="active search-button">
+            <button onClick={() => switchSideBar("dialogues")}>
             <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
-            </div>
+            </button>
           </li>}
           {!authenticated && <li>
             <NavLink to="/login" exact={true} className="active">

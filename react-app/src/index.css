@@ -35,12 +35,12 @@ textarea:focus {
 
 .content {
   position: relative;
-  padding-left: 100px;
+  padding-left: 50px;
   padding-top: 35px;
 }
 
 .content.open {
-  padding-left: 300px;
+  padding-left: 250px;
 }
 
 .page-container h1 {

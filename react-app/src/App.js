@@ -22,7 +22,6 @@ import Credits from "./components/Credits";
 
 function App() {
   const dispatch = useDispatch();
-  // const user = useSelector((store) => store.session.user);
 
   const [isOpen, setIsOpen] = useState(false)
   const [authenticated, setAuthenticated] = useState(null);
@@ -30,19 +29,18 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionAuthenticate())
-    .then((res) => {
-      setAuthenticated(true)
-      setLoaded(true)
-      dispatch(pullFixed());
-      dispatch(getDialogues());
-      }
-    ).catch((err)=>{
-      setAuthenticated(false)
-      setLoaded(true)
+    .then(res => {
+      setAuthenticated(true);
+    })
+    .catch((err)=>{
+      setAuthenticated(false);
+    })
+    .finally(res=>{
+      setLoaded(true);
+    })
 
-    });
-
-    dispatch(pullFixed())
+    dispatch(pullFixed());
+    dispatch(getDialogues());
 
   }, [dispatch]);
 
