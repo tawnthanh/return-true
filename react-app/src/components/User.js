@@ -48,7 +48,7 @@ function User() {
         {!profiles.image_url && <img id="profile-picture" src={picture} />}
         { confirmedUser.id === parseInt(userId) &&
           <div className="edit-button">
-            <NavLink to={`/${userId}/edit-profile`}>Edit Profile</NavLink>
+            <NavLink to={`/edit-profile`}>Edit Profile</NavLink>
           </div>
         }
       </div>
