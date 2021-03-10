@@ -4,7 +4,7 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
+// import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Message from "./components/Message";
 import HomePage from "./components/HomePage";
@@ -14,7 +14,6 @@ import {getDialogues} from "./store/dialogues";
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from "react-redux";
 import TabBar from "./components/TabBar";
-import ProfileForm from "./components/ProfileForm";
 import Request from "./components/Request";
 import {resetTabs} from "./store/tabs";
 // import { authenticate } from "./services/auth";
@@ -87,14 +86,7 @@ function App() {
               <Message />
             </ProtectedRoute>
             <ProtectedRoute
-              path="/users"
-              exact={true}
-              authenticated={authenticated}
-            >
-              <UsersList />
-            </ProtectedRoute>
-            <ProtectedRoute
-              path="/users/:userId"
+              path={["/users/:userId", "/users"]}
               exact={true}
               authenticated={authenticated}
             >
@@ -110,9 +102,6 @@ function App() {
             <Route path="/" exact={true}>
               <HomePage />
             </Route>
-            <ProtectedRoute path="/edit-profile" exact={true} authenticated={authenticated}>
-              <ProfileForm />
-            </ProtectedRoute>
             <Route path="/credits" exact={true}>
               <Credits/>
             </Route>

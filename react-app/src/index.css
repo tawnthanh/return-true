@@ -58,51 +58,46 @@ textarea:focus {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 .prof-pic {
-  padding-top: 20px;
-  padding-right: 60px;
+  box-sizing: border-box;
+  margin-top: 20px;
+  margin-right: 60px;
   position: relative;
   width: 300px;
-  height: auto;
-
+  height: 300px;
 }
+
 #profile-picture {
-  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.7);
-  width: 90%;
-  height: auto;
-  border-radius: 50%;
-  position:absolute;
-
+  object-fit: cover;
+  width: 300px;
+  height: 300px
 }
 
-.edit-button{
-  position: absolute;
-  height: 315px;
-  width: 90%;
-  box-sizing: border-box;
-  padding-top: 10px;
+.edit-button {
+  align-items: center;
   background-color: hsla(0, 0%, 12%, 0);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
   font-size: 20px;
+  height: 300px;
+  justify-content: center;
+  left:0;
+  padding-top: 10px;
+  position: absolute;
   text-align: center;
+  top:0;
+  width: 300px;
 }
 
 .edit-button:hover{
   background-color: hsla(0, 0%, 12%, 0.719);
-
 }
-.edit-button a {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  box-sizing: border-box;
-  text-decoration: none;
+
+.edit-button span {
   color:  hsla(0, 5%, 76%, 0);
-  height: 100%;
-  width: 315px;
-  padding: 80px;
-
 }
 
-.edit-button a:hover{
+.edit-button:hover span{
   color:  hsla(0, 5%, 76%, 0.815);
 }
 

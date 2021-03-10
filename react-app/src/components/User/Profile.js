@@ -1,54 +1,36 @@
-import React, { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getProfile, getUser } from "../store/profile";
-import picture from "../null_profile_pic.jpg";
-import {openTab} from "../store/tabs";
+import picture from "../../null_profile_pic.jpg";
+import {openTab} from "../../store/tabs";
 
-function User() {
+export default function Profile({isCurrent, setEditMode}) {
   const dispatch = useDispatch();
-  const [user, setUser] = useState({});
-  const { userId } = useParams();
 
-  const profiles = useSelector((state) => state.profile);
-  const confirmedUser = useSelector(state => state.session.user)
+  const profile = useSelector((state) => state.profile);
 
   useEffect(() => {
-    if (!userId) {
-      return;
-    }
-
-    dispatch(getUser(userId));
-    dispatch(getProfile(userId));
-    // profile id instead of userid
-
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (confirmedUser.username) {
+    if (profile) {
       let tab = {
         tab_id: `profile`,
-        title: `${confirmedUser.username}`,
-        link: `/users/${userId}`
+        title: `${profile.first_name} ${profile.last_name}`,
+        link: `/users${isCurrent?"":"/"+profile.id}`
       }
       dispatch(openTab(tab))
     }
-  })
+  },[dispatch, profile, isCurrent]);
 
-  if (!user) {
+  if (!profile) {
     return null;
   }
 
   return (
     <div className="profile">
       <div className="prof-pic">
-        {profiles.image_url && (
-          <img id="profile-picture" src={profiles.image_url} />
-        )}
-        {!profiles.image_url && <img id="profile-picture" src={picture} />}
-        { confirmedUser.id === parseInt(userId) &&
-          <div className="edit-button">
-            <NavLink to={`/edit-profile`}>Edit Profile</NavLink>
+        {profile.image_url && <img id="profile-picture" src={profile.image_url} alt={profile.first_name+" "+profile.lastst_name}/>}
+        {!profile.image_url && <img id="profile-picture" src={picture} alt={profile.first_name+" "+profile.lastst_name} />}
+        { isCurrent &&
+          <div className="edit-button" onClick={()=>{setEditMode(true)}}>
+            <span>Edit Profile</span>
           </div>
         }
       </div>
@@ -56,71 +38,71 @@ function User() {
         <div>
           <p>
             <span className="const-color">const</span>{" "}
-            <span className="prof-name-color">{profiles.first_name}</span> =
+            <span className="prof-name-color">{profile.first_name}</span> =
             <span className="brackets-color">{" {"}</span>
           </p>
           <div className="profile-details">
             <ul>
-              {profiles.bio && (
+              {profile.bio && (
                 <>
                   <span className="keys-color">bio:</span>{" "}
                   <span className="values-color">
-                    "{!!profiles.bio && profiles.bio}"
+                    "{!!profile.bio && profile.bio}"
                   </span>
                   ,
                 </>
               )}
               <br />
               <span className="keys-color">level: </span>
-              <span className="booleans-color">{profiles.level}</span>,
+              <span className="booleans-color">{profile.level}</span>,
               <div>
                 <span className="keys-color">frequency: </span>
                 <span className="values-color">
-                  "{!!profiles.frequency && profiles.frequency.type}"
+                  "{!!profile.frequency && profile.frequency.type}"
                 </span>
                 ,
               </div>
               <div>
                 <span className="keys-color">introvert: </span>
-                {profiles.personality === true && (
+                {profile.personality === true && (
                   <span className="booleans-color">
-                    {profiles.personality.toString()}
+                    {profile.personality.toString()}
                   </span>
                 )}
-                {profiles.personality === false && (
+                {profile.personality === false && (
                   <span className="booleans-color">
-                    {profiles.personality.toString()}
+                    {profile.personality.toString()}
                   </span>
                 )}
               </div>
               <div>
                 <span className="keys-color">mentor: </span>
                 <span className="booleans-color">
-                  {profiles.mentorship === true &&
-                    profiles.mentorship.toString()}
-                  {profiles.mentorship === false &&
-                    profiles.mentorship.toString()}
+                  {profile.mentorship === true &&
+                    profile.mentorship.toString()}
+                  {profile.mentorship === false &&
+                    profile.mentorship.toString()}
                 </span>
                 ,
               </div>
               <div>
                 <span className="keys-color">inPerson: </span>
                 <span className="booleans-color">
-                  {profiles.in_person === true && profiles.in_person.toString()}
+                  {profile.in_person === true && profile.in_person.toString()}
                 </span>
                 <span className="booleans-color">
-                  {profiles.in_person === false &&
-                    profiles.in_person.toString()}
+                  {profile.in_person === false &&
+                    profile.in_person.toString()}
                 </span>
                 ,
               </div>
               <div>
                 <span className="keys-color">morning: </span>
                 <span className="booleans-color">
-                  {profiles.morning === true && profiles.morning.toString()}
+                  {profile.morning === true && profile.morning.toString()}
                 </span>
                 <span className="booleans-color">
-                  {profiles.morning === false && profiles.morning.toString()}
+                  {profile.morning === false && profile.morning.toString()}
                 </span>
                 ,
               </div>
@@ -128,9 +110,9 @@ function User() {
               <span className="brackets-color">{"["}</span>
               <ul className="profile-ul">
                 <div>
-                  {!!profiles.languages &&
-                    Object.values(profiles.languages).map((language) => (
-                      <li className="profile-list">
+                  {!!profile.languages &&
+                    Object.values(profile.languages).map((language) => (
+                      <li className="profile-list" key={`lang-${language.id}`}>
                         <span className="values-color">"{language.type}"</span>,
                       </li>
                     ))}
@@ -142,8 +124,8 @@ function User() {
               <span className="brackets-color">{"["}</span>
               <ul className="profile-ul">
                 <div>
-                  {!!profiles.expertises &&
-                    Object.values(profiles.expertises).map((expertise) => (
+                  {!!profile.expertises &&
+                    Object.values(profile.expertises).map((expertise) => (
                       <li className="profile-list">
                         <span className="values-color">"{expertise.type}"</span>
                         ,
@@ -165,4 +147,3 @@ function User() {
   );
 }
 
-export default User;

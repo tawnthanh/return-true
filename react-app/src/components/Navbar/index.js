@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 import LogoutButton from "../auth/LogoutButton";
 import "./navbar.css";
 import "font-awesome/css/font-awesome.min.css";
@@ -9,7 +8,6 @@ import RequestList from "../Request/RequestList";
 import DialoguesList from "../Message/DialoguesList";
 
 const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
-  const user = useSelector(state => state.session.user)
   const [search, setSearch] = useState(false)
   const [requests, setRequests] = useState(false)
   const [dialogues, setDialogues] = useState(false)
@@ -69,11 +67,6 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               <i className="fa fa-sign-in fa-3x" aria-hidden="true"></i>
             </NavLink>
           </li>}
-          {/* <li>
-            <NavLink to="/messages/1" exact={true} className="message">
-            <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
-            </NavLink>
-            </li> */}
           {!authenticated && (
             <li>
               <NavLink to="/sign-up" exact={true} className="active">
@@ -83,7 +76,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
           )}
           {authenticated && (
             <li>
-              <NavLink to={`/users/${user.id}`} exact={true} className="active">
+              <NavLink to={`/users`} exact={true} className="active">
                 <i className="fa fa-user fa-3x" aria-hidden="true"></i>
               </NavLink>
             </li>
@@ -96,7 +89,7 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
           {authenticated && (
             <li className="logoutbutton">
               <NavLink to="/credits" exact={true} className="active">
-                <i class="fa fa-copyright fa-3x"></i>
+                <i className="fa fa-copyright fa-3x"></i>
               </NavLink>
             </li>
           )}

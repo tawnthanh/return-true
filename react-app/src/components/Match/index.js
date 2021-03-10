@@ -14,10 +14,12 @@ export default function Match (isBoth) {
     const solo_matches = useSelector(state => state.matches.solo)
 
     useEffect(()=>{
-        dispatch(getMatches(parseInt(id))).then(res => {
-            setIsLoaded(true)
-        })
-    },[id])
+        if (!isLoaded) {
+            dispatch(getMatches(parseInt(id))).then(res => {
+                setIsLoaded(true)
+            })
+        }
+    },[id, dispatch, isLoaded])
 
 
     return isLoaded && <div className="matches-contaier">

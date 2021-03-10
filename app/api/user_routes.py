@@ -101,10 +101,7 @@ def profile_update(id):
     e_list = Expertise.query.all()
     exp_match = [ex for ex in e_list for exp in profile["expertises"]
                  if ex.to_dict()["id"] == exp]
-    # print(profile["expertises"])
-    # print(e_list)
-    # print("MATCHESSSSSSS", exp_match)
-    # print(profiles.to_dict())
+
     if city is not None:
         location = city.to_dict()["id"]
     else:
@@ -133,7 +130,8 @@ def profile_update(id):
         profiles.languages = lang_match
         profiles.expertises = exp_match
         db.session.commit()
-        return {'Successful': ['Profile Updated']}, 200
+        return profiles.to_dict()
+        # return {'Successful': ['Profile Updated']}, 200
     else:
         new_profile = Profile(
             userId=profile["user_id"],
