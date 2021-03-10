@@ -1,20 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import "./Credits.css";
 
 
 const Credits = () => {
-  const [anna, setAnna] = useState(false);
-  const [mishe, setMishe] = useState(false);
-  const [arjun, setArjun] = useState(false);
-  const [thanh, setThanh] = useState(false);
-
-  const activate = (name) => {
-    if(name === "Anna Bullard") setAnna(!anna)
-    else if(name === "Arjun Narain") setArjun(!arjun)
-    if(name === "Michelle Yi") setMishe(!mishe)
-    if (name === "Thanh Nguyen") setThanh(!thanh)
-    return;
-  }
 
   const creditors = [
     {
@@ -39,55 +27,33 @@ const Credits = () => {
       "name": "Thanh Nguyen",
       "picture": "https://avatars.githubusercontent.com/u/68927247?s=460&u=4f907d4fc48e1274271950f46a3e1879242bb6e8&v=4",
       "github": "https://github.com/tawnthanh",
-      "linkedIn": "https://www.linkedin.com/in/thanh-nguyen-15a50437/"},
+      "linkedIn": "https://www.linkedin.com/in/thanh-nguyen-15a50437/"
+    }
   ]
 
   return (
     <div className="credits-location">
-      <span className="credit-header">
-        <h1 className="start">{"const"}</h1>
-        <h1 className="end">{"team = {"}</h1>
-
-      </span>
+        <h1 className="credit-header">
+          <span className="keyword">const</span>
+          <span className="varName">team</span>
+          {" = ["}
+        </h1>
       <div className="creditor-section">
-        <h3 className={anna ? "color-name" : " "} onClick={()=>activate(creditors[0].name)}>{creditors[0].name}, </h3>
-        { anna &&
-        <div className="info-section">
-          <img src={creditors[0].picture}></img>
-          {" : ["}
-          <a href={creditors[0].github}>{"github"}</a>,
-          <a href={creditors[0].linkedIn}>{"linkedIn"}</a>
-          {"]"}
-          </div>}
-        <h3 className={arjun ? "color-name" : " "} onClick={()=>activate(creditors[2].name)}>{creditors[2].name}, </h3>
-        { arjun &&
-          <div className="info-section">
-            <img src={creditors[2].picture}></img>
-            {" : ["}
-            <a href={creditors[2].github}>{"github"}</a>,
-            <a href={creditors[2].linkedIn}>{"linkedIn"}</a>
-            {"]"}
-          </div>}
-        <h3 className={mishe ? "color-name" : " "} onClick={()=>activate(creditors[1].name)}>{creditors[1].name}, </h3>
-          { mishe &&
-          <div className="info-section">
-            <img src={creditors[1].picture}></img>
-            {" : ["}
-            <a href={creditors[1].github}>{"github"}</a>,
-            <a href={creditors[1].linkedIn}>{"linkedIn"}</a>
-            {"]"}
-          </div>}
-        <h3 className={thanh ? "color-name" : " "} onClick={()=>activate(creditors[3].name)}>{creditors[3].name},</h3>
-        { thanh &&
-          <div className="info-section">
-            <img src={creditors[3].picture}></img>
-            {" : ["}
-            <a href={creditors[3].github}>{"github"}</a>,
-            <a href={creditors[3].linkedIn}>{"linkedIn"}</a>
-            {"]"}
-          </div>}
+        {creditors.map(creditor => {
+          return <div className="member">
+            <img src={creditor.picture} alt={creditor.name} />
+            <div><span className="key">name: </span><span className="value">{creditor.name}</span></div>
+            <div>
+              <span className="key">links: </span>
+              <ul className="value">
+                <a href={creditor.github}>{"github"}</a>,
+                <a href={creditor.linkedIn}>{"linkedIn"}</a>
+              </ul>
+            </div>
+          </div>
+        })}
       </div>
-      <h1 className="end closing">{"}"}</h1>
+      <h1 className="end closing">{"]"}</h1>
     </div>
   )
 }
