@@ -50,13 +50,13 @@ const reducer = (state = initialState, action) => {
       let newState = {};
       let bothArr = action.matches.map(match => ({user: match.user, match: match.both}))
       let soloArr = action.matches.map(match => ({user: match.user, match: match.solo}))
-      bothArr.sort((a,b)=>{
-        if (a.match < b.match) return 1
-        else if (a.match > b.match || a.user.username < b.user.username) return -1
+      bothArr.sort((a,b) => {
+        if (a.match < b.match || (a.match === b.match && a.user.username > b.user.username)) return 1
+        else return -1;
       })
       soloArr.sort((a,b)=>{
-        if (a.match < b.match) return 1
-        else if (a.match > b.match || a.user.username < b.user.username) return -1
+        if (a.match < b.match || (a.match === b.match && a.user.username > b.user.username)) return 1
+        else return -1;
       })
       newState.both = bothArr
       newState.solo = soloArr

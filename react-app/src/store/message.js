@@ -1,6 +1,3 @@
-
-import thunk from "redux-thunk";
-
 const ADD_MESSAGE = "message/ADD_MESSAGE"
 const DISPLAY_MESSAGE = "message/DISPLAY_MESSAGE"
 

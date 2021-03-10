@@ -47,12 +47,12 @@ const ProfileForm = () => {
     let tab = {
       tab_id: `edit-profile`,
       title: "edit profile",
-      link: `/${userId}/edit-profile`,
+      link: `/edit-profile`,
     };
     dispatch(openTab(tab));
     dispatch(getProfileFields(userId));
     setIsLoaded(true);
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   useEffect(() => {
     if (profile.state) {
@@ -87,7 +87,7 @@ const ProfileForm = () => {
       let defaultLevelObj = levelArray.filter((l) => l.id === level);
       setDefaultLevel(...defaultLevelObj);
     }
-  }, [level]);
+  }, [level, levelArray]);
 
   useEffect(() => {
     if (frequency_list && frequency) {

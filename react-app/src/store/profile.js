@@ -18,11 +18,6 @@ const setProfileFields = (payload) => ({
   payload
 });
 
-const updateProfileFields = (payload) => ({
-  type: SET_FORM_DETAILS,
-  payload
-});
-
 export const getProfile = (userId) => async (dispatch) => {
   const res = await fetch(`/api/users/${userId}/profiles`);
   if (res.ok) {
@@ -59,16 +54,18 @@ export const getProfileFields = (username) => async (dispatch) => {
 }
 
 export const updateProfile = (profileObj) => async (dispatch) => {
-    const res = await fetch(`/api/users/${profileObj.user_id}/edit-profile`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(profileObj)
-    })
-  console.log(profileObj)
-  dispatch(setProfileFields(profileObj));
-  return profileObj;
+  const res = await fetch(`/api/users/${profileObj.user_id}/edit-profile`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(profileObj)
+  })
+
+  if (res.ok) {
+    dispatch(setProfileFields(profileObj));
+    return profileObj;
+  }
 }
 
 const initState = {};

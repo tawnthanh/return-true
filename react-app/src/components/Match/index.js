@@ -5,7 +5,7 @@ import {getMatches} from "../../store/matches";
 import MatchCard from "./MatchCard";
 import "./Match.css";
 
-export default function Match () {
+export default function Match (isBoth) {
     const dispatch = useDispatch();
     const {id} = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -21,6 +21,7 @@ export default function Match () {
 
 
     return isLoaded && <div className="matches-contaier">
-        {both_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
+        {isBoth && both_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
+        {!isBoth && solo_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
     </div>
 }

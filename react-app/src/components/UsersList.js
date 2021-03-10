@@ -14,7 +14,7 @@ function UsersList() {
 
   useEffect(() => {
     dispatch(getProfile(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   useEffect(() => {
     async function fetchData() {
