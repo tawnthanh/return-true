@@ -105,10 +105,6 @@ export default function  ProfileForm ({setEditMode}) {
 
   }
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-
   const handleLanguages = (e) => {
     let targetVal = parseInt(e.target.value);
     let targetIdx = languages.indexOf(targetVal);
@@ -154,7 +150,7 @@ export default function  ProfileForm ({setEditMode}) {
                   required={true}
                   onChange={(e) => updateFirstName(e.target.value)}
                   value={firstName}
-                  placeholder="null,"
+                  placeholder="null"
                 ></input>
               </span>
             </div>
@@ -167,7 +163,7 @@ export default function  ProfileForm ({setEditMode}) {
                   required={true}
                   onChange={(e) => updateLastName(e.target.value)}
                   value={lastName}
-                  placeholder="null,"
+                  placeholder="null"
                 ></input>
               </span>
             </div>
@@ -179,7 +175,7 @@ export default function  ProfileForm ({setEditMode}) {
                   name="imageUrl"
                   onChange={(e) => updateImgUrl(e.target.value)}
                   value={imageUrl}
-                  placeholder="null,"
+                  placeholder="null"
                 ></input>
               </span>
             </div>
@@ -194,7 +190,6 @@ export default function  ProfileForm ({setEditMode}) {
                   placeholder="null"
                   onChange={(e) => updateCity(e.target.value)}
                 ></input>
-                ,
                 <select
                   className="dropdown-color"
                   name="state"
@@ -216,11 +211,10 @@ export default function  ProfileForm ({setEditMode}) {
                     })}
                 </select>
               </span>
-              ,
             </div>
-            <div>
+            <div className="wide">
               <label>bio</label>
-              <span className={bio === null ? " " : "quoted"}>
+              <div className={bio === null ? " " : "quoted"}>
                 <textarea
                   className="dropdown-color"
                   name="bio"
@@ -229,7 +223,7 @@ export default function  ProfileForm ({setEditMode}) {
                   value={bio}
                   placeholder="null- please keep it under 2000 characters,"
                 ></textarea>
-              </span>
+              </div>
             </div>
             <div>
               <label>coding_level</label>
@@ -253,7 +247,6 @@ export default function  ProfileForm ({setEditMode}) {
                     );
                   })}
                 </select>
-                ,
               </span>
             </div>
             <div>
@@ -281,7 +274,6 @@ export default function  ProfileForm ({setEditMode}) {
                       );
                     })}
                 </select>
-                ,
               </span>
             </div>
             <div>
@@ -296,7 +288,6 @@ export default function  ProfileForm ({setEditMode}) {
                   setAnswers={() => updateInPerson(!inPerson)}
                   answers={[true, false]}
                 />
-                ,
               </span>
             </div>
             <div className="booleans-color">
@@ -310,7 +301,6 @@ export default function  ProfileForm ({setEditMode}) {
                 setAnswers={() => updatePersonality(!personality)}
                 answers={[true, false]}
               />
-              ,
             </div>
             <div>
               <span className="booleans-color">
@@ -324,7 +314,6 @@ export default function  ProfileForm ({setEditMode}) {
                   setAnswers={() => updateMentorship(!mentorship)}
                   answers={[true, false]}
                 />
-                ,
               </span>
             </div>
             <div>
@@ -339,13 +328,14 @@ export default function  ProfileForm ({setEditMode}) {
                   setAnswers={() => updateMorning(!morning)}
                   answers={[true, false]}
                 />
-                ,
               </span>
             </div>
-            <div>
-              <label>{"Language(s)_I_know"}</label>
-              <span className="brackets-color">{"["}</span>
-              <span className="select-grid languages">
+            <div className="wide">
+              <span>
+                <label>{"Language(s)_I_know"}</label>
+                <span className="brackets-color">{"["}</span>
+              </span>
+              <div className="select-grid languages">
                 {languages_list &&
                   Object.values(languages_list).map((language) => {
                     return (
@@ -373,12 +363,14 @@ export default function  ProfileForm ({setEditMode}) {
                     );
                   })}
                 <span className="brackets-color">{"]"}</span>
-              </span>
+              </div>
             </div>
-            <div>
-              <label>{"My_expertise(s)"}</label>
-              <span className="brackets-color">{"["}</span>
-              <span className="select-grid expertises">
+            <div className="wide">
+              <span>
+                <label>{"My_expertise(s)"}</label>
+                <span className="brackets-color">{"["}</span>
+              </span>
+              <div className="select-grid expertises">
                 {expertises_list &&
                   Object.values(expertises_list).map((e) => {
                     return (
@@ -401,7 +393,7 @@ export default function  ProfileForm ({setEditMode}) {
                     );
                   })}
                 <span className="brackets-color">{"],"}</span>
-              </span>
+              </div>
             </div>
           </div>
           <div>

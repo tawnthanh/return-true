@@ -16,7 +16,7 @@ const getAllDialogues = (dialogues) => {
 };
 
 
-export const createRequest = userId => async dispatch => {
+export const createDialogue = userId => async dispatch => {
   let res = await fetch('/api/dialogues/', {
     method: 'POST',
     headers: {
@@ -26,13 +26,15 @@ export const createRequest = userId => async dispatch => {
       userId
     })
   });
-
   res = await res.json();
   if (!res.errors) {
-    return dispatch(addDialogue(res));
+    dispatch(addDialogue(res));
+    return res.dialogueId;
   } else {
-    return res;
+    return res
   }
+
+
 }
 
 export const getDialogues = () => async dispatch => {

@@ -24,18 +24,17 @@ def user(id):
 @login_required
 def messages(dialogueId):
     messages = Message.query.filter(Message.dialogueId == dialogueId).all()
-    print(messages)
+
     msg = []
     for m in messages:
         msg.append(m.to_dict())
-    print(msg)
+
     return jsonify(msg)
 
 
 @user_routes.route('/messages/<int:dialogueId>', methods=['POST'])
 @login_required
 def addMessages(dialogueId):
-    print("!!!!!!!!!!!!!!!!!!!")
     data = request.get_json()
     user = current_user.to_dict()
     messages = Message(dialogueId=dialogueId,
@@ -49,7 +48,6 @@ def addMessages(dialogueId):
 @login_required
 def profiles(id):
     profiles = Profile.query.filter(Profile.userId == id).first()
-    print(profiles, "!!!!!!!!!!!!!!!!!!!!!")
     return {"profile": profiles.to_dict()}
 
 
@@ -114,7 +112,6 @@ def profile_update(id):
         location = city.to_dict()["id"]
 
     if profiles is not None:
-        print("it did exist")
         profiles.userId = profile["user_id"]
         profiles.firstName = profile["first_name"]
         profiles.lastName = profile["last_name"]

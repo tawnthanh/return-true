@@ -58,12 +58,36 @@ textarea:focus {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 .prof-pic {
+  align-items: center;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   margin-top: 20px;
   margin-right: 60px;
   position: relative;
   width: 300px;
   height: 300px;
+}
+.start-dialogue {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.start-dialogue button {
+  background-color: #252526;
+  border: 1px solid #2196f3;
+  border-radius: 0;
+  color: #2196f3;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 15px;
+}
+
+.start-dialogue button:hover {
+  background-color: #2196f3;
+  color: #fff;
 }
 
 #profile-picture {

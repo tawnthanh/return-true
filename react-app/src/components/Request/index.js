@@ -33,7 +33,6 @@ export default function Request () {
 
     useEffect(()=>{
             let curr = requests.find(item => item.id===id)
-            console.log(requests.length, curr)
             if (requests.length>0 && !curr) {
                 history.push("/")
             }

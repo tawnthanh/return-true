@@ -33,14 +33,3 @@ def undo_cities():
     db.session.execute('TRUNCATE locations;')
     db.session.commit()
 
-# fake = Faker()
-# fake_cities = []
-# for _ in range(20):
-#   address = fake.address()
-#   city = address.split("\n")[1].split(", ")[0]
-#   state = address.split("\n")[1].split(", ")[1][0:2]  # State abbr
-#   fake_cities.append((city, state))
-# # city = address.split("\n")[0]
-
-# print(fake_cities)
-# state = State.query.filter(State.abbr == (location[1])).first()

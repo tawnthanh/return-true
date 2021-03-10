@@ -157,7 +157,6 @@ def compare_request_bothway(user1, user2):
         total_match += frequency_matched / total_frequency_needed * frequency_question["weight"]
 
     # end of frequency
-    # print(user2["firstName"],": total_weight=",total_weight,", total_match=", total_match)
     total_weight = total_weight if total_weight>0 else 1
     result = total_match / total_weight
 
@@ -290,7 +289,6 @@ def compare_request_oneway(user1, user2):
             total_match += frequency_question["weight"]
 
     # end of frequency
-    print(user2["firstName"],": total_weight=",total_weight,", total_match=", total_match)
     total_weight = total_weight if total_weight>0 else 1
     result = total_match / total_weight
 

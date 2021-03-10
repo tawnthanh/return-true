@@ -91,7 +91,6 @@ export default function QuestionForm () {
                                 key={`question-list-request${currentRequest.id}-item${q.id}`}/>
                 }
                 else if (q.question_type === 4 || q.question_type === 6) {
-                    console.log(state_list[q.id][1])
                     return <QuestionToggle
                                 question={q}
                                 setAnswers={state_list[q.id][1]}

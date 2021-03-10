@@ -15,27 +15,26 @@ def new_dialogue():
     user = None
     if current_user.is_authenticated:
         user = current_user.to_dict()
+    else:
+        return {"error": "unauthorized user"}
     
     user1 = int(data["userId"]) if int(data["userId"]) < user["id"] else user["id"]
     user2 = int(data["userId"]) if int(data["userId"]) >= user["id"] else user["id"]
-    
+
     new_dialogue = Dialogue(
         user1 = user1,
         user2 = user2
     )
-    db.session.add(Dialogue)
+    db.session.add(new_dialogue)
     db.session.commit()
 
     dialogue = new_dialogue.to_dict()
     otherUser = User.query.get(int(data["userId"]))
     otherUser = otherUser.to_dict()
 
-    print ({
-        "dialogueId": dialogue["id"],
-        "user": otherUser["username"]
-    })
     return {
         "dialogueId": dialogue["id"],
+        "userId": otherUser["id"],
         "user": otherUser["username"]
     }
 
@@ -44,7 +43,6 @@ def all_dialogues():
     """
     GET all user's dialogues
     """
-    print("GET ALL DIALOOOOOOOOGUES")
     user = None
     if current_user.is_authenticated:
         user = current_user.to_dict()
@@ -66,6 +64,7 @@ def all_dialogues():
         otherUser = otherUser.to_dict()
         dialogues.append({
             "dialogueId": d["id"],
+            "userId": otherUser["id"],
             "user": otherUser["username"]
         })
     

@@ -23,8 +23,55 @@
         border-color: #fff
     }
 }
-.loginform div, .signupform div, .profile-form div {
+.loginform div, .signupform div {
     margin-left: 15px;
+}
+
+.profile-form {
+    padding-left: 15px;
+}
+
+.profile-details {
+    padding-left: 15px;
+}
+
+.profile-details > ul {
+    list-style: none;
+}
+
+.profile-details > ul > li::after {
+    content: ",";
+}
+
+.profile-details > div {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 5px;
+}
+.profile-details > div.wide {
+    box-sizing: border-box;
+    flex-direction: column;
+    width: 100%
+}
+
+.profile-details > div.wide > div {
+    padding-left: 15px;
+    width: 100%;
+    
+}
+
+.profile-details > div.wide > div.quoted {
+    align-items: flex-start;
+    display: flex;
+}
+
+.profile-details > div.wide > div.quoted textarea {
+    height: 150px;
+    max-width: 500px;
+    width: 90%;
 }
 
 .loginform input, .signupform input, .profile-form input {
@@ -56,7 +103,7 @@
     content: 'const ';
     color: #2566ca;
 }
-.signupform label, .profile-form label {
+.signupform label {
     margin-left: 20px;
 }
 

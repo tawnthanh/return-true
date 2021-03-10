@@ -24,7 +24,6 @@ export default function User () {
     },[dispatch, user, userId])
 
     useEffect(()=>{
-        console.log({user, isUserIdNOTExist : !userId, isUserIdEqualUserDotId: userId===user.id})
         if (user && (!userId || userId===user.id)) setIsCurrent(true)
         else setIsCurrent(false);
     },[user, userId])
