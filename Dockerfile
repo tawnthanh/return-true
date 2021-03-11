@@ -29,4 +29,3 @@ RUN pip install psycopg2
 
 # Run flask environment
 CMD gunicorn app:app
-ENTRYPOINT [ "CMD" ]
