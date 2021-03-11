@@ -14,7 +14,6 @@ def validation_errors_to_error_messages(validation_errors):
     for field in validation_errors:
         for error in validation_errors[field]:
             errorMessages.append(f"{field} : {error}")
-    print("!!!ERRORS: ", errorMessages)
     return errorMessages
 
 
@@ -24,7 +23,6 @@ def new_request():
     Create new request
     """
     form = RequestForm()
-    print(request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     user = None
@@ -104,7 +102,6 @@ def save_answers(id):
     """
     Save answers
     """
-    print(request.get_json())
 
     for a in request.get_json():
         new_answer = Answer(

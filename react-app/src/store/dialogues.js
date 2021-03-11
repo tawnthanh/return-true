@@ -16,7 +16,7 @@ const getAllDialogues = (dialogues) => {
 };
 
 
-export const createRequest = userId => async dispatch => {
+export const createDialogue = userId => async dispatch => {
   let res = await fetch('/api/dialogues/', {
     method: 'POST',
     headers: {
@@ -26,13 +26,15 @@ export const createRequest = userId => async dispatch => {
       userId
     })
   });
-
   res = await res.json();
   if (!res.errors) {
-    return dispatch(addDialogue(res));
+    dispatch(addDialogue(res));
+    return res.dialogueId;
   } else {
-    return res;
+    return res
   }
+
+
 }
 
 export const getDialogues = () => async dispatch => {
@@ -51,11 +53,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_DIALOGUE: {
       const newState = [...state];
-      newState.push(action.dialogue);
-      newState.sort((a,b)=>{
-        if (a.user < b.user) return -1
-        else return 1
-      })
+      if (!newState.find(d => d.dialogueId===action.dialogue.dialogueId)){
+        newState.push(action.dialogue);
+        newState.sort((a,b)=>{
+          if (a.user < b.user) return -1
+          else return 1
+        })
+      }
       return newState;
     }
     case GETALL_DIALOGUES: {

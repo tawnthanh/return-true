@@ -5,7 +5,7 @@ import {getMatches} from "../../store/matches";
 import MatchCard from "./MatchCard";
 import "./Match.css";
 
-export default function Match () {
+export default function Match (isBoth) {
     const dispatch = useDispatch();
     const {id} = useParams();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -14,13 +14,16 @@ export default function Match () {
     const solo_matches = useSelector(state => state.matches.solo)
 
     useEffect(()=>{
-        dispatch(getMatches(parseInt(id))).then(res => {
-            setIsLoaded(true)
-        })
-    },[id])
+        if (!isLoaded) {
+            dispatch(getMatches(parseInt(id))).then(res => {
+                setIsLoaded(true)
+            })
+        }
+    },[id, dispatch, isLoaded])
 
 
     return isLoaded && <div className="matches-contaier">
-        {both_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
+        {isBoth && both_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
+        {!isBoth && solo_matches.map(match => <MatchCard match={match} key={`both-match_${match.user.userId}`}/>)}
     </div>
 }

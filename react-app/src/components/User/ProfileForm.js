@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./ProfileForm.css";
-import { getProfileFields, updateProfile } from "../../store/profile";
+import { updateProfile } from "../../store/profile";
 import { QuestionReversedToggleProfile } from "./FormFields";
-import { openTab } from "../../store/tabs";
 
-const ProfileForm = () => {
+export default function  ProfileForm ({setEditMode}) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const confirmedUser = useSelector((state) => state.session.user);
-  const userId  = confirmedUser.id;
   const profile = useSelector((state) => state.profile);
   const languages_list = useSelector((state) => state.fixed.languages);
   const expertises_list = useSelector((state) => state.fixed.expertise);
@@ -18,63 +14,29 @@ const ProfileForm = () => {
   const frequency_list = useSelector((state) => state.fixed.frequencies);
 
   const [errors, setErrors] = useState([]);
-  const [firstName, updateFirstName] = useState("");
-  const [lastName, updateLastName] = useState("");
-  const [imageUrl, updateImgUrl] = useState(null);
-  const [city, updateCity] = useState("");
-  const [state, updateState] = useState(0);
-  const [bio, updateBio] = useState(null);
-  const [inPerson, updateInPerson] = useState(false);
-  const [level, updateLevel] = useState(0);
-  const [personality, updatePersonality] = useState(false);
-  const [frequency, updateFrequency] = useState(0);
-  const [mentorship, updateMentorship] = useState(false);
-  const [morning, updateMorning] = useState(false);
-  const [languages, setLanguages] = useState([]);
-  const [expertises, updateExpertises] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [firstName, updateFirstName] = useState(profile.first_name?profile.first_name:"");
+  const [lastName, updateLastName] = useState(profile.last_name?profile.last_name:"");
+  const [imageUrl, updateImgUrl] = useState(profile.image_url?profile.image_url:"");
+  const [city, updateCity] = useState(profile.city?profile.city:"");
+  const [state, updateState] = useState(profile.state?profile.state.id:0);
+  const [bio, updateBio] = useState(profile.bio?profile.bio:"");
+  const [inPerson, updateInPerson] = useState(!!profile.in_person);
+  const [level, updateLevel] = useState(profile.level?profile.level:0);
+  const [personality, updatePersonality] = useState(profile.personality?profile.personality:false);
+  const [frequency, updateFrequency] = useState(profile.frequency_id?profile.frequency_id:0);
+  const [mentorship, updateMentorship] = useState(!!profile.mentorship);
+  const [morning, updateMorning] = useState(!!profile.morning);
+  const [languages, setLanguages] = useState(profile.languages?profile.languages.map((l) => l.id):[]);
+  const [expertises, updateExpertises] = useState(profile.expertises?profile.expertises.map((e) => e.id):[]);
   const [stateName, updateStateName] = useState(null);
   const [defaultLevel, setDefaultLevel] = useState({});
   const [defaultFrequency, setDefaultFrequency] = useState({});
 
-  const levelArray = [
+  const levelArray = useMemo(()=>[
     { id: 1, name: "Beginner" },
     { id: 2, name: "Proficient" },
     { id: 3, name: "Expert" },
-  ];
-
-  useEffect(() => {
-    let tab = {
-      tab_id: `edit-profile`,
-      title: "edit profile",
-      link: `/${userId}/edit-profile`,
-    };
-    dispatch(openTab(tab));
-    dispatch(getProfileFields(userId));
-    setIsLoaded(true);
-  }, [dispatch]);
-
-  useEffect(() => {
-    if (profile.state) {
-      console.log("when profile first loads", profile);
-      let expertiseId = profile.expertises.map((e) => e.id);
-      let languagesId = profile.languages.map((l) => l.id);
-      updateFirstName(profile.first_name);
-      updateLastName(profile.last_name);
-      updateImgUrl(profile.image_url);
-      updateBio(profile.bio);
-      updateCity(profile.city);
-      updateState(profile.state.id);
-      updateInPerson(profile.in_person);
-      updateLevel(profile.level);
-      updatePersonality(profile.personality);
-      updateFrequency(profile.frequency_id);
-      updateMentorship(profile.mentorship);
-      updateMorning(profile.morning);
-      setLanguages(languagesId);
-      updateExpertises(expertiseId);
-    }
-  }, [profile]);
+  ],[]);
 
   useEffect(() => {
     if (states_list) {
@@ -87,7 +49,7 @@ const ProfileForm = () => {
       let defaultLevelObj = levelArray.filter((l) => l.id === level);
       setDefaultLevel(...defaultLevelObj);
     }
-  }, [level]);
+  }, [level, levelArray]);
 
   useEffect(() => {
     if (frequency_list && frequency) {
@@ -100,7 +62,7 @@ const ProfileForm = () => {
 
   const editProfile = (e) => {
     e.preventDefault();
-    // if()
+    
     const profile = {
       user_id: confirmedUser.id,
       first_name: firstName,
@@ -120,7 +82,7 @@ const ProfileForm = () => {
     };
 
     let errorList = [];
-    Object.values(profile).map((f, idx) => {
+    Object.values(profile).forEach((f, idx) => {
       if (f === "" || f === [] || f === 0 || f === null || f.length === 0) {
         if (idx === 5) {
           errorList.push("Error: Please confirm your state." )
@@ -138,57 +100,40 @@ const ProfileForm = () => {
     setErrors(errorList)
     if (errorList.length === 0){
       dispatch(updateProfile(profile, { "user": confirmedUser }))
-      history.push(`/users/${confirmedUser.id}`)
+      setEditMode(false);
     };
 
   }
 
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
   const handleLanguages = (e) => {
     let targetVal = parseInt(e.target.value);
-    if (!languages.includes(targetVal)) {
+    let targetIdx = languages.indexOf(targetVal);
+    if (targetIdx === -1) {
       setLanguages([...languages, targetVal]);
-    } else if (languages.includes(targetVal)) {
-      if (languages.length > 1) {
-        let targetIdx = languages.indexOf(targetVal);
+    } else {
         let newLang = [
-          ...languages.slice(0, targetIdx),
-          ...languages.slice(targetIdx + 1),
+            ...languages.slice(0, targetIdx),
+            ...languages.slice(targetIdx + 1),
         ];
         setLanguages(newLang);
-      } else if (languages.length === 1) {
-        setLanguages([]);
-      }
     }
   };
 
   const handleExpertise = (e) => {
     let targetVal = parseInt(e.target.value);
-    if (!expertises.includes(targetVal)) {
+    let targetIdx = expertises.indexOf(targetVal);
+    if (targetIdx === -1) {
       updateExpertises([...expertises, targetVal]);
-    } else if (expertises.includes(targetVal)) {
-      if (expertises.length > 1) {
-        let targetIdx = expertises.indexOf(targetVal);
-        let newLang = [
-          ...expertises.slice(0, targetIdx),
-          ...expertises.slice(targetIdx + 1),
-        ];
-        updateExpertises(newLang);
-      } else if (expertises.length === 1) {
-        updateExpertises([]);
-      }
+    } else {
+      let newLang = [
+        ...expertises.slice(0, targetIdx),
+        ...expertises.slice(targetIdx + 1),
+      ];
+      updateExpertises(newLang);
     }
   };
 
-  // if (confirmedUser !== userId) {
-  //   return <Redirect to={`/${confirmedUser}/edit-profile`} />
-  // }
-
-  return (
-    isLoaded && (
-      <>
+  return <>
         <form onSubmit={editProfile} className="profile-form">
           <div>
             <span style={{ color: "#2566ca" }}>const </span>
@@ -205,7 +150,7 @@ const ProfileForm = () => {
                   required={true}
                   onChange={(e) => updateFirstName(e.target.value)}
                   value={firstName}
-                  placeholder="null,"
+                  placeholder="null"
                 ></input>
               </span>
             </div>
@@ -218,7 +163,7 @@ const ProfileForm = () => {
                   required={true}
                   onChange={(e) => updateLastName(e.target.value)}
                   value={lastName}
-                  placeholder="null,"
+                  placeholder="null"
                 ></input>
               </span>
             </div>
@@ -230,7 +175,7 @@ const ProfileForm = () => {
                   name="imageUrl"
                   onChange={(e) => updateImgUrl(e.target.value)}
                   value={imageUrl}
-                  placeholder="null,"
+                  placeholder="null"
                 ></input>
               </span>
             </div>
@@ -245,7 +190,6 @@ const ProfileForm = () => {
                   placeholder="null"
                   onChange={(e) => updateCity(e.target.value)}
                 ></input>
-                ,
                 <select
                   className="dropdown-color"
                   name="state"
@@ -267,11 +211,10 @@ const ProfileForm = () => {
                     })}
                 </select>
               </span>
-              ,
             </div>
-            <div>
+            <div className="wide">
               <label>bio</label>
-              <span className={bio === null ? " " : "quoted"}>
+              <div className={bio === null ? " " : "quoted"}>
                 <textarea
                   className="dropdown-color"
                   name="bio"
@@ -280,7 +223,7 @@ const ProfileForm = () => {
                   value={bio}
                   placeholder="null- please keep it under 2000 characters,"
                 ></textarea>
-              </span>
+              </div>
             </div>
             <div>
               <label>coding_level</label>
@@ -304,7 +247,6 @@ const ProfileForm = () => {
                     );
                   })}
                 </select>
-                ,
               </span>
             </div>
             <div>
@@ -332,7 +274,6 @@ const ProfileForm = () => {
                       );
                     })}
                 </select>
-                ,
               </span>
             </div>
             <div>
@@ -347,7 +288,6 @@ const ProfileForm = () => {
                   setAnswers={() => updateInPerson(!inPerson)}
                   answers={[true, false]}
                 />
-                ,
               </span>
             </div>
             <div className="booleans-color">
@@ -361,7 +301,6 @@ const ProfileForm = () => {
                 setAnswers={() => updatePersonality(!personality)}
                 answers={[true, false]}
               />
-              ,
             </div>
             <div>
               <span className="booleans-color">
@@ -375,7 +314,6 @@ const ProfileForm = () => {
                   setAnswers={() => updateMentorship(!mentorship)}
                   answers={[true, false]}
                 />
-                ,
               </span>
             </div>
             <div>
@@ -390,13 +328,14 @@ const ProfileForm = () => {
                   setAnswers={() => updateMorning(!morning)}
                   answers={[true, false]}
                 />
-                ,
               </span>
             </div>
-            <div>
-              <label>{"Language(s)_I_know"}</label>
-              <span className="brackets-color">{"["}</span>
-              <span className="select-grid languages">
+            <div className="wide">
+              <span>
+                <label>{"Language(s)_I_know"}</label>
+                <span className="brackets-color">{"["}</span>
+              </span>
+              <div className="select-grid languages">
                 {languages_list &&
                   Object.values(languages_list).map((language) => {
                     return (
@@ -418,19 +357,20 @@ const ProfileForm = () => {
                         />
                         {language.type}
                         <span
-                          className="values-color"
-                          className="checkmark"
+                          className="values-color checkmark"
                         ></span>
                       </label>
                     );
                   })}
                 <span className="brackets-color">{"]"}</span>
-              </span>
+              </div>
             </div>
-            <div>
-              <label>{"My_expertise(s)"}</label>
-              <span className="brackets-color">{"["}</span>
-              <span className="select-grid expertises">
+            <div className="wide">
+              <span>
+                <label>{"My_expertise(s)"}</label>
+                <span className="brackets-color">{"["}</span>
+              </span>
+              <div className="select-grid expertises">
                 {expertises_list &&
                   Object.values(expertises_list).map((e) => {
                     return (
@@ -453,7 +393,7 @@ const ProfileForm = () => {
                     );
                   })}
                 <span className="brackets-color">{"],"}</span>
-              </span>
+              </div>
             </div>
           </div>
           <div>
@@ -470,9 +410,7 @@ const ProfileForm = () => {
             <div>{error}</div>
           ))}
         </div>
-      </>
-    )
-  );
+    </>
 };
 
-export default ProfileForm;
+

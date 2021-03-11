@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 import {useSelector, useDispatch} from "react-redux"
 import { QuestionMultipleChoice, QuestionRadiobutton, QuestionReversedToggle, QuestionToggle } from "./QuestionTypes"
 import {saveAnswers} from "../../store/requests";
@@ -16,6 +16,7 @@ export default function QuestionForm () {
     const [answer7, setAnswer7] = useState(false);
     const [answer8, setAnswer8] = useState();
     const [answer9, setAnswer9] = useState();
+    const [isLoaded, setIsLoaded] = useState(false);
     const state_list = {
         1: [answer1, setAnswer1],
         2: [answer2, setAnswer2],
@@ -27,6 +28,12 @@ export default function QuestionForm () {
         8: [answer8, setAnswer8],
         9: [answer9, setAnswer9],
     }
+
+    useEffect(()=>{
+        if(questions){
+            setIsLoaded(true)
+        }
+    },[questions])
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -70,8 +77,7 @@ export default function QuestionForm () {
         setAnswer9();
     }
 
-    return <>
-    <form onSubmit={onSubmit} className="answers-query">
+    return isLoaded && <form onSubmit={onSubmit} className="answers-query">
         <span>SELECT * </span>
         <span>FROM Users</span>
         <span className="answers-list question-list">
@@ -85,7 +91,6 @@ export default function QuestionForm () {
                                 key={`question-list-request${currentRequest.id}-item${q.id}`}/>
                 }
                 else if (q.question_type === 4 || q.question_type === 6) {
-                    console.log(state_list[q.id][1])
                     return <QuestionToggle
                                 question={q}
                                 setAnswers={state_list[q.id][1]}
@@ -111,5 +116,4 @@ export default function QuestionForm () {
             <button onClick={onReset}>RESET QUERY</button>
         </div>
     </form>
-    </>
 }

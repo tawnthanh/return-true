@@ -5,12 +5,13 @@ import {openTab} from "../../store/tabs";
 import {updateRequest, getRequests} from "../../store/requests";
 import {getCurrent} from "../../store/currentRequest";
 import Answer from "../Answers/";
-import {Toggle} from "../Answers/QuestionTypes";
+import {Toggle, ExtendedToggle} from "../Answers/QuestionTypes";
 
 export default function Request () {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
     const [editMode, setEditMode] = useState(false);
+    const [isBoth, setIsBoth] = useState(true);
     const [title, setTitle] = useState("")
     const history = useHistory();
     let {id} = useParams();
@@ -28,11 +29,10 @@ export default function Request () {
 
     useEffect(()=>{
         dispatch(getRequests());
-    },[])
+    },[dispatch])
 
     useEffect(()=>{
             let curr = requests.find(item => item.id===id)
-            console.log(requests.length, curr)
             if (requests.length>0 && !curr) {
                 history.push("/")
             }
@@ -44,7 +44,7 @@ export default function Request () {
             } else {
                 setIsLoaded(false)
             }
-    },[requests,id,dispatch])
+    },[requests, id, dispatch, history])
 
     useEffect(()=>{
         if (Object.keys(request).length > 0) {
@@ -67,6 +67,8 @@ export default function Request () {
             const editedRequest = {...request,active: !request.active}
             dispatch(updateRequest(editedRequest));
         }} />}
+        {request.answers.length > 0 && request.active &&
+        <ExtendedToggle isOn={isBoth}  onSwitch={()=>{setIsBoth(!isBoth)}} options={["one way", "both ways"]} />}
     </div>}
     {editMode && <form onSubmit={onSubmitEditTitle}>
         <input
@@ -77,6 +79,6 @@ export default function Request () {
         />
     </form>}
 
-        <Answer/>
+        <Answer isBoth={isBoth} />
     </>
 }

@@ -24,18 +24,17 @@ def user(id):
 @login_required
 def messages(dialogueId):
     messages = Message.query.filter(Message.dialogueId == dialogueId).all()
-    print(messages)
+
     msg = []
     for m in messages:
         msg.append(m.to_dict())
-    print(msg)
+
     return jsonify(msg)
 
 
 @user_routes.route('/messages/<int:dialogueId>', methods=['POST'])
 @login_required
 def addMessages(dialogueId):
-    print("!!!!!!!!!!!!!!!!!!!")
     data = request.get_json()
     user = current_user.to_dict()
     messages = Message(dialogueId=dialogueId,
@@ -49,7 +48,6 @@ def addMessages(dialogueId):
 @login_required
 def profiles(id):
     profiles = Profile.query.filter(Profile.userId == id).first()
-    print(profiles, "!!!!!!!!!!!!!!!!!!!!!")
     return {"profile": profiles.to_dict()}
 
 
@@ -101,10 +99,7 @@ def profile_update(id):
     e_list = Expertise.query.all()
     exp_match = [ex for ex in e_list for exp in profile["expertises"]
                  if ex.to_dict()["id"] == exp]
-    # print(profile["expertises"])
-    # print(e_list)
-    # print("MATCHESSSSSSS", exp_match)
-    # print(profiles.to_dict())
+
     if city is not None:
         location = city.to_dict()["id"]
     else:
@@ -117,7 +112,6 @@ def profile_update(id):
         location = city.to_dict()["id"]
 
     if profiles is not None:
-        print("it did exist")
         profiles.userId = profile["user_id"]
         profiles.firstName = profile["first_name"]
         profiles.lastName = profile["last_name"]
@@ -133,7 +127,8 @@ def profile_update(id):
         profiles.languages = lang_match
         profiles.expertises = exp_match
         db.session.commit()
-        return {'Successful': ['Profile Updated']}, 200
+        return profiles.to_dict()
+        # return {'Successful': ['Profile Updated']}, 200
     else:
         new_profile = Profile(
             userId=profile["user_id"],

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import {NavLink,useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux"
 import {closeTab} from "../store/tabs";
@@ -17,16 +17,26 @@ function Tab ({tab}) {
   </NavLink>
 }
 
-export default function TabBar () {
+export default function TabBar ({setTabBarHeight}) {
     const [isLoaded, setIsLoaded] = useState(false);
+    const tb = useRef();
 
     const tabs = useSelector(store => store.tabs);
+
+    const tbHeightCheck = useCallback(() => {
+      let height = (tb.current && tb.current.offsetHeight>28)?tb.current.offsetHeight:28;
+      setTabBarHeight(height);
+
+    }, [setTabBarHeight])
 
     useEffect(()=>{
         setIsLoaded(true)
     },[])
+
+    useEffect(tbHeightCheck,[tabs, window.innerWidth]);
+    window.addEventListener('resize', tbHeightCheck)
     
-    return (isLoaded && <div className="tabbar">
+    return (isLoaded && <div className="tabbar" ref={tb}>
         {Object.entries(tabs).map((tab)=>{
           return <Tab tab={tab[1]} key={tab[0]}/>
         })}

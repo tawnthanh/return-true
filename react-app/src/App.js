@@ -4,7 +4,6 @@ import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/Navbar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
-import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Message from "./components/Message";
 import HomePage from "./components/HomePage";
@@ -14,35 +13,33 @@ import {getDialogues} from "./store/dialogues";
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch } from "react-redux";
 import TabBar from "./components/TabBar";
-import ProfileForm from "./components/ProfileForm";
 import Request from "./components/Request";
 import {resetTabs} from "./store/tabs";
-// import { authenticate } from "./services/auth";
 import Credits from "./components/Credits";
 
 function App() {
   const dispatch = useDispatch();
-  // const user = useSelector((store) => store.session.user);
 
   const [isOpen, setIsOpen] = useState(false)
   const [authenticated, setAuthenticated] = useState(null);
   const [loaded, setLoaded] = useState(false);
+  const [topPadding, setTopPadding] = useState({paddingTop: `38px`});
+  const [tabBarHeight, setTabBarHeight] = useState(28);
 
   useEffect(() => {
     dispatch(sessionAuthenticate())
-    .then((res) => {
-      setAuthenticated(true)
-      setLoaded(true)
-      dispatch(pullFixed());
-      dispatch(getDialogues());
-      }
-    ).catch((err)=>{
-      setAuthenticated(false)
-      setLoaded(true)
+    .then(res => {
+      setAuthenticated(true);
+    })
+    .catch((err)=>{
+      setAuthenticated(false);
+    })
+    .finally(res=>{
+      setLoaded(true);
+    })
 
-    });
-
-    dispatch(pullFixed())
+    dispatch(pullFixed());
+    dispatch(getDialogues());
 
   }, [dispatch]);
 
@@ -51,6 +48,10 @@ function App() {
       dispatch(resetTabs());
     }
   },[authenticated,dispatch])
+
+  useEffect(()=>{
+    setTopPadding({paddingTop: `${tabBarHeight+10}px`})
+  },[tabBarHeight])
 
   if (!loaded) {
     return null;
@@ -69,56 +70,49 @@ function App() {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
       />
-      <div className={`content${isOpen ? " open" : ""}`}>
-        <TabBar />
-        <div className="page-container">
-          <Switch>
-            <Route path="/login" exact={true}>
-              <LoginForm
+      <div className={`wrapper${isOpen ? " open" : ""}`}>
+        <div className="content" >
+          
+          <div className="page-container" style={topPadding}>
+            <Switch>
+              <Route path="/login" exact={true}>
+                <LoginForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+              <Route path="/sign-up" exact={true}>
+                <SignUpForm
+                  authenticated={authenticated}
+                  setAuthenticated={setAuthenticated}
+                />
+              </Route>
+              <ProtectedRoute path="/messages/:dialogueId" exact={true} authenticated={authenticated}>
+                <Message tabBarHeight={tabBarHeight} />
+              </ProtectedRoute>
+              <ProtectedRoute
+                path={["/users/:userId", "/users"]}
+                exact={true}
                 authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            </Route>
-            <Route path="/sign-up" exact={true}>
-              <SignUpForm
+              >
+                <User />
+              </ProtectedRoute>
+              <ProtectedRoute
+                path="/request/:id"
+                exact={true}
                 authenticated={authenticated}
-                setAuthenticated={setAuthenticated}
-              />
-            </Route>
-            <ProtectedRoute path="/messages/:dialogueId" exact={true} authenticated={authenticated}>
-              <Message />
-            </ProtectedRoute>
-            <ProtectedRoute
-              path="/users"
-              exact={true}
-              authenticated={authenticated}
-            >
-              <UsersList />
-            </ProtectedRoute>
-            <ProtectedRoute
-              path="/users/:userId"
-              exact={true}
-              authenticated={authenticated}
-            >
-              <User />
-            </ProtectedRoute>
-            <ProtectedRoute
-              path="/request/:id"
-              exact={true}
-              authenticated={authenticated}
-            >
-              <Request />
-            </ProtectedRoute>
-            <Route path="/" exact={true}>
-              <HomePage />
-            </Route>
-            <ProtectedRoute path="/edit-profile" exact={true} authenticated={authenticated}>
-              <ProfileForm />
-            </ProtectedRoute>
-            <Route path="/credits" exact={true}>
-              <Credits/>
-            </Route>
-          </Switch>
+              >
+                <Request />
+              </ProtectedRoute>
+              <Route path="/" exact={true}>
+                <HomePage />
+              </Route>
+              <Route path="/credits" exact={true}>
+                <Credits/>
+              </Route>
+            </Switch>
+          </div>
+          <TabBar setTabBarHeight={setTabBarHeight} />
         </div>
       </div>
     </BrowserRouter>

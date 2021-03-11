@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { findResults } from "../../store/search.js";
 
 import "./search.css";
@@ -14,14 +13,12 @@ const Search = () => {
 
     useEffect(() => {
         setResult([])
-
         if (Array.isArray(searchResults)) {
             setResult(searchResults)
         } else if (searchResults.username) {
             setResult([searchResults])
-
         } else if (searchResults.errors) {
-            setError(!error)
+            setError(true)
             setResult(searchResults.errors)
         } else {
             setResult([])
@@ -32,13 +29,11 @@ const Search = () => {
         if (search.length) {
             let word = search
             dispatch(findResults(word))
-            if (error) {
-                setError(!error)
-            }
+            setError(false)
         } else {
             setResult([])
         }
-    }, [search])
+    }, [search, dispatch])
 
     return (
         <div className="search-box sidebar">

@@ -9,12 +9,9 @@ function UsersList() {
   const dispatch = useDispatch();
   const { userId } = useParams();
 
-  const profiles = useSelector((state) => state.profile);
-  console.log(profiles);
-
   useEffect(() => {
     dispatch(getProfile(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
 
   useEffect(() => {
     async function fetchData() {

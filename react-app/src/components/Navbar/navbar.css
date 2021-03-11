@@ -1,6 +1,6 @@
-.navbar{
+.navbar {
     align-items: center;
-    width: 100px;
+    width: 50px;
     height: 100vh;
     background-color: #333;
     position: fixed;
@@ -22,7 +22,7 @@
   }
 
   .navbar li {
-    margin: 20px auto;
+    margin: 5px auto;
     font-family: FontAwesome;
     list-style: none;
     height: 100%;
@@ -34,7 +34,7 @@
     border: none;
   }
   .navbar li i {
-    font-size: 48px;
+    font-size: 30px;
   }
 
   .navbar li button:hover,.navbar li i:hover {
@@ -53,6 +53,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     margin: 5px 0 0 5px;
+    position: absolute;
+    top:0;
   }
 
   .tab {
@@ -96,7 +98,7 @@
     background-color:#252526;
     position: fixed;
     z-index: 100;
-    margin-left: 100px;
+    margin-left: 50px;
     box-sizing: border-box;
     padding: 35px 5px 5px 5px;
   }

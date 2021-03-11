@@ -39,8 +39,9 @@ class Location(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "city": self.city,
             "state_id": self.stateId,
-            "city": self.city
+            "state": self.state.to_dict()
         }
 
     def get_state(self):

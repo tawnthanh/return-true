@@ -33,14 +33,25 @@ textarea:focus {
   padding: 5px;
 }
 
-.content {
+.wrapper {
+  box-sizing: border-box;
+  height: 100vh;
   position: relative;
-  padding-left: 100px;
+  padding-left: 50px;
   padding-top: 35px;
+  overflow: hidden; 
 }
 
-.content.open {
-  padding-left: 300px;
+.wrapper.open {
+  padding-left: 250px;
+}
+
+.content {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
 }
 
 .page-container h1 {
@@ -58,51 +69,70 @@ textarea:focus {
   border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 .prof-pic {
-  padding-top: 20px;
-  padding-right: 60px;
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 20px;
+  margin-right: 60px;
   position: relative;
   width: 300px;
-  height: auto;
-
+  height: 300px;
 }
-#profile-picture {
-  box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.7);
-  width: 90%;
-  height: auto;
-  border-radius: 50%;
-  position:absolute;
-
+.start-dialogue {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
-.edit-button{
-  position: absolute;
-  height: 315px;
-  width: 90%;
-  box-sizing: border-box;
-  padding-top: 10px;
-  background-color: hsla(0, 0%, 12%, 0);
+.start-dialogue button {
+  background-color: #252526;
+  border: 1px solid #2196f3;
+  border-radius: 0;
+  color: #2196f3;
+  cursor: pointer;
   font-size: 20px;
+  padding: 5px 15px;
+}
+
+.start-dialogue button:hover {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+#profile-picture {
+  object-fit: cover;
+  width: 300px;
+  height: 300px
+}
+
+.edit-button {
+  align-items: center;
+  background-color: hsla(0, 0%, 12%, 0);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  font-size: 20px;
+  height: 300px;
+  justify-content: center;
+  left:0;
+  padding-top: 10px;
+  position: absolute;
   text-align: center;
+  top:0;
+  width: 300px;
 }
 
 .edit-button:hover{
   background-color: hsla(0, 0%, 12%, 0.719);
-
 }
-.edit-button a {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  box-sizing: border-box;
-  text-decoration: none;
+
+.edit-button span {
   color:  hsla(0, 5%, 76%, 0);
-  height: 100%;
-  width: 315px;
-  padding: 80px;
-
 }
 
-.edit-button a:hover{
+.edit-button:hover span{
   color:  hsla(0, 5%, 76%, 0.815);
 }
 
