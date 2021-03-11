@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch} from "react-redux";
 import "./Credits.css";
+import { openTab } from '../../store/tabs';
 
 
 const Credits = () => {
+  const dispatch = useDispatch();
+  
+  useEffect(()=>{
+      let tab = {
+        tab_id: `credits`,
+        title: `Credits`,
+        link: `/credits`
+      }
+      dispatch(openTab(tab));
+  },[dispatch])
 
   const creditors = [
     {
