@@ -21,14 +21,23 @@ def new_dialogue():
     user1 = int(data["userId"]) if int(data["userId"]) < user["id"] else user["id"]
     user2 = int(data["userId"]) if int(data["userId"]) >= user["id"] else user["id"]
 
-    new_dialogue = Dialogue(
-        user1 = user1,
-        user2 = user2
-    )
-    db.session.add(new_dialogue)
-    db.session.commit()
+    checkDialogue = Dialogue.query.filter(Dialogue.user1 == user1, Dialogue.user2 == user2).first()
 
-    dialogue = new_dialogue.to_dict()
+    dialogue = None
+
+    if checkDialogue:
+        dialogue = checkDialogue.to_dict()
+
+    else:
+        new_dialogue = Dialogue(
+            user1 = user1,
+            user2 = user2
+        )
+        db.session.add(new_dialogue)
+        db.session.commit()
+
+        dialogue = new_dialogue.to_dict()
+
     otherUser = User.query.get(int(data["userId"]))
     otherUser = otherUser.to_dict()
 

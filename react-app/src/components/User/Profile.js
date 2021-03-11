@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
 import picture from "../../null_profile_pic.jpg";
-import {openTab} from "../../store/tabs";
 import {createDialogue} from "../../store/dialogues";
 
 export default function Profile({isCurrent, setEditMode}) {
@@ -13,17 +12,6 @@ export default function Profile({isCurrent, setEditMode}) {
 
   const profile = useSelector((state) => state.profile);
   const dialogues = useSelector((state) => state.dialogues);
-
-  useEffect(() => {
-    if (profile) {
-      let tab = {
-        tab_id: `profile`,
-        title: `${profile.first_name} ${profile.last_name}`,
-        link: `/users${isCurrent?"":"/"+profile.id}`
-      }
-      dispatch(openTab(tab))
-    }
-  },[dispatch, profile, isCurrent]);
 
   useEffect(() => {
     if (!isCurrent && profile) {
@@ -70,11 +58,15 @@ export default function Profile({isCurrent, setEditMode}) {
         <div>
           <p>
             <span className="const-color">const</span>{" "}
-            <span className="prof-name-color">{profile.first_name}</span> =
+            <span className="prof-name-color">{profile.username}</span> =
             <span className="brackets-color">{" {"}</span>
           </p>
           <div className="profile-details">
             <ul>
+              <li>
+                <span className="keys-color">name:</span>{" "}
+                  <span className="values-color">"{profile.first_name} {profile.last_name}"</span>
+              </li>
               {profile.bio && (
                 <li>
                   <span className="keys-color">bio:</span>{" "}

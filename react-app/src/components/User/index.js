@@ -1,9 +1,10 @@
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
 import ProfileForm from "./ProfileForm";
 import { getProfile } from "../../store/profile";
+import {openTab} from "../../store/tabs";
 
 export default function User () {
     const dispatch = useDispatch();
@@ -15,18 +16,34 @@ export default function User () {
     const [isCurrent, setIsCurrent] = useState(false);
 
     let user = useSelector(state => state.session.user);
+    let profile = useSelector(state => state.profile);
 
     useEffect(()=>{
         let id = (userId!==undefined) ? userId : (user ? user.id : undefined)
         if (id) {
-            dispatch(getProfile(id)).then(res => {setisLoaded(true)})
+            dispatch(getProfile(id)).then(res => {
+                if (user && (!userId || userId===user.id)) setIsCurrent(true)
+                else setIsCurrent(false);
+                setisLoaded(true)
+            })
         }
     },[dispatch, user, userId])
 
-    useEffect(()=>{
-        if (user && (!userId || userId===user.id)) setIsCurrent(true)
-        else setIsCurrent(false);
-    },[user, userId])
+    useEffect(() => {
+        if (isLoaded && profile && (isCurrent || profile.id)) {
+          let tab = {
+            tab_id: `profile${isCurrent?"":"-"+profile.id}`,
+            title: `${profile.first_name} ${profile.last_name}`,
+            link: `/users${isCurrent?"":"/"+profile.id}`
+          }
+          dispatch(openTab(tab))
+        }
+    },[dispatch, profile, isCurrent, isLoaded]);
+
+
+    if (isLoaded && Object.values(profile).length===0)
+        return <Redirect to="/" />
+
 
     if (!editMode) {
         return isLoaded && <Profile isCurrent={isCurrent} setEditMode={setEditMode} />

@@ -1,50 +1,100 @@
-.messagebox {
+form.messages {
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 100%;
+}
+
+.messagebox > div {
     border-color: rgba(204, 204, 204, 0.664);
     background-color: rgba(169, 169, 169, 0.082);
     width: 100%;
 }
 
+h2 {
+    box-sizing: border-box;
+    font-size: 30px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0 15px;
+    width: 100%;
+}
+
+h2 a {
+    text-decoration: none;
+    color: #778585
+}
+
+h2 a:hover {
+    color: #fff
+}
+
+form.messages {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
 .messagebutton {
-    color: #778585;
+    color: #2196f3;
+    cursor: pointer;
     font: 18px "Source Code Pro", monospace;
-    background: #252526;
-    margin: 5px 17.2118px;
-    padding: 1px 6px;
+    background-color: #252526;
+    border: 1px solid #2196f3;
+    border-radius: 0;
+    box-sizing: border-box;
+    justify-self: stretch;
+    flex-grow: 2;
+    height: 50px;
+    margin: 0;
+    padding: 0;
 }
 
 .messagebutton:hover {
     color: white;
-    cursor: pointer;
-
+    background-color: #2196f3;
 }
 
 .inputbox {
   padding: 10px;
   width: 75%;
-  border: none;
   background: rgba(128, 128, 128, 0.473);
+  border: none;
+  box-sizing: border-box;
+  color: #fff;
   resize: none;
-  min-height: 50px;
+  height: 50px;
   font: 18px "Source Code Pro", monospace;
 }
 
+.message-result {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-result > div {
+    font: 18px "Source Code Pro", monospace;
+    margin-bottom: 7px;
+}
+
 .mymessage {
-    color: yellow;
-    font: 18px "Source Code Pro", monospace;
+    align-self: flex-end;
+    border-radius: 5px 5px 0 5px;
+    border: 1px solid rgb(215, 186, 125);
+    color: rgb(215, 186, 125);
+    margin-right: 15px;
+    padding: 7px;
 }
 
-.sidebar-list.dialogues-list ul li a::after {
-    content: "";
-}
-
-.sidebar-list.dialogues-list ul {
-    padding-left: 5px;
-}
-
-.sidebar-list.dialogues-list ul li i{
-    margin-right: 5px;
-}
 .othersMessage {
-    color: blue;
-    font: 18px "Source Code Pro", monospace;
+    align-self: flex-start;
+    border-radius: 5px 5px 5px 0;
+    border: 1px solid rgb(181, 206, 137);
+    color: rgb(181, 206, 137);
+    margin-left: 15px;
+    padding: 7px;
 }

@@ -27,6 +27,7 @@ export const addMessage = (dialogueId, text) => async(dispatch) => {
     return messages;
 
 }
+
 export const getMessages = (id) => async(dispatch) => {
     const results = await fetch(`/api/users/messages/${id}`);
 
@@ -36,19 +37,19 @@ export const getMessages = (id) => async(dispatch) => {
 }
 
 
-  const messageReducer = (state=[], action) => {
-    let newState;
-    switch (action.type) {
-        case DISPLAY_MESSAGE:
-            newState = [...action.messages];
-            return newState;
-        case ADD_MESSAGE:
-            newState = [...state, action.messages];
-            return newState;
-        default:
-            return state;
-    }
+const messageReducer = (state=[], action) => {
+let newState;
+switch (action.type) {
+    case DISPLAY_MESSAGE:
+        newState = [...action.messages];
+        return newState;
+    case ADD_MESSAGE:
+        newState = [...state, action.messages];
+        return newState;
+    default:
+        return state;
+}
 
-  }
+}
 
 export default messageReducer;

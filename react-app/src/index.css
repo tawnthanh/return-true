@@ -33,14 +33,25 @@ textarea:focus {
   padding: 5px;
 }
 
-.content {
+.wrapper {
+  box-sizing: border-box;
+  height: 100vh;
   position: relative;
   padding-left: 50px;
   padding-top: 35px;
+  overflow: hidden; 
 }
 
-.content.open {
+.wrapper.open {
   padding-left: 250px;
+}
+
+.content {
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  position: relative;
+  width: 100%;
 }
 
 .page-container h1 {

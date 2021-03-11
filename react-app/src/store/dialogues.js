@@ -53,11 +53,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case NEW_DIALOGUE: {
       const newState = [...state];
-      newState.push(action.dialogue);
-      newState.sort((a,b)=>{
-        if (a.user < b.user) return -1
-        else return 1
-      })
+      if (!newState.find(d => d.dialogueId===action.dialogue.dialogueId)){
+        newState.push(action.dialogue);
+        newState.sort((a,b)=>{
+          if (a.user < b.user) return -1
+          else return 1
+        })
+      }
       return newState;
     }
     case GETALL_DIALOGUES: {

@@ -72,7 +72,13 @@ class Profile(db.Model):
         "Location", back_populates="profile")
 
     def to_dict(self):
-        loc = self.location.to_dict()
+        loc = self.location.to_dict() if self.location != None else {
+            "city": None,
+            "state": {
+                "id": None,
+                "state": None
+            }
+        }
         return {
             "id": self.id,
             "user_id": self.userId,

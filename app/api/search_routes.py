@@ -10,7 +10,7 @@ def search():
     users = User.query.join(Profile)\
         .add_columns(User.id, User.username, User.email,
                      Profile.firstName, Profile.bio)\
-        .filter(User.username.ilike(f'%{word}%')).all()
+        .filter(User.username.ilike(f'%{word}%'), Profile.id > 0).all()
     profiles = []
     if users:
         for user in users:

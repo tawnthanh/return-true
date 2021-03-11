@@ -15,10 +15,9 @@ export const findResults = (word) => async (dispatch) => {
     },
     body: JSON.stringify(word)
   })
-  // const res = await fetch("/api/search")
+  
   const results = await res.json()
   dispatch(searchResults(results))
-  // dispatch(searchResults(word))
 }
 
 
