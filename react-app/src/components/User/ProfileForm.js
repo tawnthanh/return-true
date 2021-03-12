@@ -286,7 +286,6 @@ export default function  ProfileForm ({setEditMode}) {
                     answer: inPerson,
                   }}
                   setAnswers={() => updateInPerson(!inPerson)}
-                  answers={[true, false]}
                 />
               </span>
             </div>
@@ -299,7 +298,7 @@ export default function  ProfileForm ({setEditMode}) {
                   answer: personality,
                 }}
                 setAnswers={() => updatePersonality(!personality)}
-                answers={[true, false]}
+                isReversed={true}
               />
             </div>
             <div>
@@ -312,7 +311,6 @@ export default function  ProfileForm ({setEditMode}) {
                     answer: mentorship,
                   }}
                   setAnswers={() => updateMentorship(!mentorship)}
-                  answers={[true, false]}
                 />
               </span>
             </div>
@@ -326,7 +324,6 @@ export default function  ProfileForm ({setEditMode}) {
                     answer: morning,
                   }}
                   setAnswers={() => updateMorning(!morning)}
-                  answers={[true, false]}
                 />
               </span>
             </div>

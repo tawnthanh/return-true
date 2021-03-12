@@ -31,17 +31,21 @@ export default function User () {
 
     useEffect(() => {
         if (isLoaded && profile && (isCurrent || profile.id)) {
-          let tab = {
-            tab_id: `profile${isCurrent?"":"-"+profile.id}`,
-            title: `${profile.first_name} ${profile.last_name}`,
-            link: `/users${isCurrent?"":"/"+profile.id}`
-          }
-          dispatch(openTab(tab))
+            let tab = {
+                tab_id: `profile${isCurrent?"":"-"+profile.id}`,
+                title: `${profile.first_name} ${profile.last_name}`,
+                link: `/users${isCurrent?"":"/"+profile.id}`
+            }
+            dispatch(openTab(tab))
+            if(isLoaded && Object.values(profile).length===0 && isCurrent) {
+                setEditMode(true);
+            }
         }
+
     },[dispatch, profile, isCurrent, isLoaded]);
 
 
-    if (isLoaded && Object.values(profile).length===0)
+    if (isLoaded && Object.values(profile).length===0 && !isCurrent)
         return <Redirect to="/" />
 
 

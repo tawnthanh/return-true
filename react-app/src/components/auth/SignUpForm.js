@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { sessionSignup } from "../../store/session";
 import { useDispatch } from "react-redux";
 import './authforms.css';
@@ -7,6 +7,7 @@ import {openTab, closeTab} from "../../store/tabs";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -49,7 +50,11 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
         title: "sign-up",
         link: "/sign-up"
       }))
-    else dispatch(closeTab("signup"))
+    else {
+      dispatch(closeTab("signup"));
+      dispatch(closeTab("login"));
+      history.push("/users");
+    }
   },[authenticated,dispatch])
 
   if (authenticated) {
