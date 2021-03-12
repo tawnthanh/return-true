@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-// import {useSelector} from "react-redux";
 import { ExtendedToggle } from "../Answers/QuestionTypes";
 
 export function QuestionReversedToggleProfile ({question, setAnswers, answers}) {

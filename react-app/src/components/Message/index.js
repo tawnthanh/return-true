@@ -61,6 +61,7 @@ export default function Message ({tabBarHeight}) {
             placeholder="Message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            required
         />
         <button className="messagebutton" onClick={(e) => {
           e.preventDefault()

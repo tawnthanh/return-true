@@ -14,32 +14,6 @@ export const getProfile = (userId) => async (dispatch) => {
   }
 };
 
-export const getUser = (userId) => async (dispatch) => {
-  const res = await fetch(`/api/users/${userId}`);
-  if (res.ok) {
-    let response = await res.json();
-    dispatch(setProfile(response));
-    return response;
-  }
-};
-
-export const getProfileFields = (username) => async (dispatch) => {
-  const res = await fetch(`/api/users/${username}/edit-profile`)
-  if (res.ok) {
-    let profileFields = await res.json()
-    let location;
-    if (profileFields.profile.location_id === 0) {
-      dispatch(setProfile({...profileFields.profile}))
-    } else {
-      location = await fetch(`/api/options/locations/${profileFields.profile.location_id}`)
-      location = await location.json()
-      const profile = { ...profileFields.profile, ...location.locations }
-      dispatch(setProfile(profile));
-    };
-    return profileFields;
-  }
-}
-
 export const updateProfile = (profileObj) => async (dispatch) => {
   let res = await fetch(`/api/users/${profileObj.user_id}/edit-profile`, {
   method: "POST",

@@ -51,39 +51,6 @@ def profiles(id):
     return {"profile": profiles.to_dict()}
 
 
-@user_routes.route('/<userId>/edit-profile')
-# @login_required
-def profile_form(userId):
-    profile = Profile.query.join(User).filter(
-        User.id == userId).first()
-    if profile:
-        profile = profile.to_dict()
-        return {"profile": profile}
-    else:
-        user_info_response = User.query.filter(
-            User.username == username).first()
-        user_info = user_info_response.to_dict()
-        default_info = {
-            "user_id": user_info["id"],
-            "username": user_info["username"],
-            "first_name": "",
-            "last_name": "",
-            "image_url": "",
-            "bio": "",
-            "location_id": 0,
-            "inPerson": None,
-            "level": 0,
-            "personality": 0,
-            "frequency_id": 0,
-            "frequency": [],
-            "mentorship": None,
-            "morning": None,
-            "languages": [],
-            "expertises": [],
-        }
-        return {"profile": default_info}
-
-
 @user_routes.route('/<int:id>/edit-profile', methods=["POST", "PATCH"])
 # @login_required
 def profile_update(id):
@@ -128,7 +95,6 @@ def profile_update(id):
         profiles.expertises = exp_match
         db.session.commit()
         return profiles.to_dict()
-        # return {'Successful': ['Profile Updated']}, 200
     else:
         new_profile = Profile(
             userId=profile["user_id"],
@@ -149,4 +115,3 @@ def profile_update(id):
         new_profile.expertises = exp_match
         db.session.commit()
     return new_profile.to_dict()
-    # return "hi"

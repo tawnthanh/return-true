@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "../auth/LogoutButton";
+import DemoButton from "../auth/DemoButton";
 import "./navbar.css";
 import "font-awesome/css/font-awesome.min.css";
 import Search from "../Search";
@@ -47,6 +48,23 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
               <i className="fa fa-home fa-home fa-3x"></i>
             </NavLink>
           </li>
+          {!authenticated && <li>
+            <NavLink to="/login" exact={true} className="active">
+              <i className="fa fa-sign-in fa-3x" aria-hidden="true"></i>
+            </NavLink>
+          </li>}
+          {!authenticated && (
+            <li>
+              <NavLink to="/sign-up" exact={true} className="active">
+                <i className="fa fa-user-plus fa-3x" aria-hidden="true"></i>
+              </NavLink>
+            </li>
+          )}
+          {!authenticated && (
+            <li>
+              <DemoButton setAuthenticated={setAuthenticated} />
+            </li>
+          )}
           {authenticated && <li>
             <button onClick={() => switchSideBar("search")}>
               <i className="fa fa-search fa-3x"></i>
@@ -62,18 +80,6 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             <i className="fa fa-comment fa-3x" aria-hidden="true"></i>
             </button>
           </li>}
-          {!authenticated && <li>
-            <NavLink to="/login" exact={true} className="active">
-              <i className="fa fa-sign-in fa-3x" aria-hidden="true"></i>
-            </NavLink>
-          </li>}
-          {!authenticated && (
-            <li>
-              <NavLink to="/sign-up" exact={true} className="active">
-                <i className="fa fa-user-plus fa-3x" aria-hidden="true"></i>
-              </NavLink>
-            </li>
-          )}
           {authenticated && (
             <li>
               <NavLink to={`/users`} exact={true} className="active">
@@ -82,17 +88,15 @@ const NavBar = ({ setAuthenticated, authenticated, isOpen, setIsOpen }) => {
             </li>
           )}
           {authenticated && (
-            <li className="logoutbutton">
+            <li>
               <LogoutButton setAuthenticated={setAuthenticated} />
             </li>
           )}
-          {authenticated && (
-            <li className="logoutbutton">
-              <NavLink to="/credits" exact={true} className="active">
-                <i className="fa fa-copyright fa-3x"></i>
-              </NavLink>
-            </li>
-          )}
+          <li>
+            <NavLink to="/credits" exact={true} className="active">
+              <i className="fa fa-copyright fa-3x"></i>
+            </NavLink>
+          </li>
         </ul>
       </nav>
       { isOpen && search &&

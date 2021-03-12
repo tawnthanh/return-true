@@ -17,8 +17,21 @@ textarea:focus {
   box-shadow: none;
 }
 
+.homepage {
+  max-width: 500px;
+}
+
+.homepage a {
+  border-bottom: 2px dotted;
+  color: #fff;
+  text-decoration: none;
+}
+
+.homepage p {
+  margin-left: 40px;
+}
+
 .header {
-  /* font-family: 'PT Sans', sans-serif; */
   font-family: "Molengo", sans-serif;
   font-weight: 400;
   color: white;
@@ -83,6 +96,7 @@ textarea:focus {
 .start-dialogue {
   display: flex;
   justify-content: center;
+  margin-top: 10px;
   width: 100%;
 }
 
