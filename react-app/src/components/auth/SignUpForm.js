@@ -55,7 +55,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
       dispatch(closeTab("login"));
       history.push("/users");
     }
-  },[authenticated,dispatch])
+  },[authenticated, dispatch, history])
 
   if (authenticated) {
     return <Redirect to={`/`} />;
