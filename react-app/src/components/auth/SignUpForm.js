@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useHistory } from "react-router-dom";
 import { sessionSignup } from "../../store/session";
+import {setProfile} from "../../store/profile";
 import { useDispatch } from "react-redux";
 import './authforms.css';
 import {openTab, closeTab} from "../../store/tabs";
@@ -53,6 +54,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     else {
       dispatch(closeTab("signup"));
       dispatch(closeTab("login"));
+      dispatch(setProfile({}))
       history.push("/users");
     }
   },[authenticated, dispatch, history])
