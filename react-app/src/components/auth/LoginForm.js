@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionLogin } from "../../store/session";
+import DemoButton from "./DemoButton";
 import { useDispatch } from "react-redux";
 import "./authforms.css";
 import { openTab, closeTab } from "../../store/tabs";
@@ -20,16 +21,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         dispatch(closeTab("signup"));
       } else {
         setErrors(res.errors);
-      }
-    });
-  };
-  const onDemo = async (e) => {
-    e.preventDefault();
-    dispatch(sessionLogin("demo@aa.io", "password")).then((res) => {
-      if (!res.errors) {
-        setAuthenticated(true);
-        dispatch(closeTab("login"));
-        dispatch(closeTab("signup"));
       }
     });
   };
@@ -93,9 +84,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           <span style={{ color: "#2ba2ff" }}>password</span>);
         </div>
         <button type="submit">{`> `}node login.js</button>
-        <button onClick={onDemo} title="Demo Login">
-          {`> `}demo login
-        </button>
+        <DemoButton setAuthenticated={setAuthenticated} useText={true} />
       </form>
       <div className="errorsLog">
         {errors.map((error) => (

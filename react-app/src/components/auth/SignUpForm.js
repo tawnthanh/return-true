@@ -5,6 +5,7 @@ import {setProfile} from "../../store/profile";
 import { useDispatch } from "react-redux";
 import { sessionLogin } from "../../store/session";
 import "./authforms.css";
+import DemoButton from "./DemoButton";
 import { openTab, closeTab } from "../../store/tabs";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
@@ -27,17 +28,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
         }
       });
     }
-  };
-
-  const onDemo = async (e) => {
-    e.preventDefault();
-    dispatch(sessionLogin("demo@aa.io", "password")).then((res) => {
-      if (!res.errors) {
-        setAuthenticated(true);
-        dispatch(closeTab("login"));
-        dispatch(closeTab("signup"));
-      }
-    });
   };
 
   const updateUsername = (e) => {
@@ -147,9 +137,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           <span style={{ color: "#2ba2ff" }}>newUser</span>);
         </div>
         <button type="submit">{`> `}node signup.js</button>
-        <button onClick={onDemo} title="Demo Login">
-          {`> `}demo login
-        </button>
+        <DemoButton setAuthenticated={setAuthenticated} useText={true} />
       </form>
       <div className="errorsLog">
         {errors.map((error) => (
