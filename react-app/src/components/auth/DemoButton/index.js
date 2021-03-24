@@ -3,7 +3,7 @@ import {useDispatch} from "react-redux";
 import {closeTab} from "../../../store/tabs";
 import { sessionLogin } from "../../../store/session";
 
-export default function DemoButton ({setAuthenticated}) {
+export default function DemoButton ({setAuthenticated, useText}) {
   const dispatch = useDispatch();
 
   const onDemo = async (e) => {
@@ -19,6 +19,7 @@ export default function DemoButton ({setAuthenticated}) {
   };
   
   return <button onClick={onDemo} title="Demo Login" >
-    <i className="fas fa-id-card"></i>
+    {!useText && <i className="fas fa-id-card"></i>}
+    {useText && `> demo login`}
   </button>
 }
