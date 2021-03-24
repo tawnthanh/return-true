@@ -94,7 +94,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         </div>
         <button type="submit">{`> `}node login.js</button>
         <button onClick={onDemo} title="Demo Login">
-          {`> `}Demo Login
+          {`> `}demo login
         </button>
       </form>
       <div className="errorsLog">
