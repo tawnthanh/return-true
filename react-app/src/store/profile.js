@@ -1,6 +1,6 @@
 const SET_PROFILE = "profile/set";
 
-const setProfile = (payload) => ({
+export const setProfile = (payload) => ({
   type: SET_PROFILE,
   payload,
 });
