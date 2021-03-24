@@ -16,7 +16,7 @@ export const displayMessages = (messages) => {
 }
 
 export const addMessage = (dialogueId, text) => async(dispatch) => {
-    const results = await fetch(`/api/users/messages/1`, {
+    const results = await fetch(`/api/users/messages/${dialogueId}`, {
         method: 'POST',
         headers: { 'Content-Type': "application/json" },
         body: JSON.stringify({ text })

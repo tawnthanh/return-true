@@ -147,8 +147,8 @@ export default function Profile({isCurrent, setEditMode}) {
                 <ul className="profile-ul">
                   <div>
                     {!!profile.expertises &&
-                      Object.values(profile.expertises).map((expertise) => (
-                        <li className="profile-list">
+                      Object.values(profile.expertises).map((expertise, idx) => (
+                        <li className="profile-list" key={`expertise-${idx}`}>
                           <span className="values-color">"{expertise.type}"</span>
                           ,
                         </li>
