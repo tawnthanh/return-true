@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionLogin } from "../../store/session";
 import { useDispatch } from "react-redux";
-import './authforms.css';
-import {openTab, closeTab} from "../../store/tabs";
+import "./authforms.css";
+import { openTab, closeTab } from "../../store/tabs";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const dispatch = useDispatch();
@@ -13,16 +13,25 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
 
   const onLogin = (e) => {
     e.preventDefault();
-    dispatch(sessionLogin(email, password))
-      .then(res => {
-        if (!res.errors) {
-          setAuthenticated(true);
-          dispatch(closeTab("login"));
-          dispatch(closeTab("signup"))
-        } else {
-          setErrors(res.errors);
-        }
-      })
+    dispatch(sessionLogin(email, password)).then((res) => {
+      if (!res.errors) {
+        setAuthenticated(true);
+        dispatch(closeTab("login"));
+        dispatch(closeTab("signup"));
+      } else {
+        setErrors(res.errors);
+      }
+    });
+  };
+  const onDemo = async (e) => {
+    e.preventDefault();
+    dispatch(sessionLogin("demo@aa.io", "password")).then((res) => {
+      if (!res.errors) {
+        setAuthenticated(true);
+        dispatch(closeTab("login"));
+        dispatch(closeTab("signup"));
+      }
+    });
   };
 
   const updateEmail = (e) => {
@@ -33,58 +42,67 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     setPassword(e.target.value);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (!authenticated)
-      dispatch(openTab({
-        tab_id:"login",
-        title: "login",
-        link: "/login"
-      }))
-    else dispatch(closeTab("login"))
-  },[authenticated, dispatch])
+      dispatch(
+        openTab({
+          tab_id: "login",
+          title: "login",
+          link: "/login",
+        })
+      );
+    else dispatch(closeTab("login"));
+  }, [authenticated, dispatch]);
 
   if (authenticated) {
     return <Redirect to="/" />;
   }
 
   return (
-      <>
-        <form onSubmit={onLogin} className="loginform">
-            <div>
-              <label htmlFor="email">email</label>
-              <span className={email === ""? " " : "quoted"}>
-              <input
-                name="email"
-                type="text"
-                placeholder="null"
-                value={email}
-                onChange={updateEmail}
-                size={email.length-1}
-              />
-              </span>
-            </div>
-            <div>
-              <label htmlFor="password">password</label>
-              <span className={password === ""? " " : "quoted"}>
-              <input
-                name="password"
-                type="password"
-                placeholder="null"
-                value={password}
-                onChange={updatePassword}
-                size={password.length}
-              />
-              </span>
-            </div>
-            <div><span style={{color:"#dcb862"}}>login</span>(<span style={{color:"#2ba2ff"}}>email</span>, <span style={{color:"#2ba2ff"}}>password</span>);</div>
-            <button type="submit">{`> `}node login.js</button>
-        </form>
-        <div className="errorsLog" >
-          {errors.map((error) => (
-            <div>{error}</div>
-          ))}
+    <>
+      <form onSubmit={onLogin} className="loginform">
+        <div>
+          <label htmlFor="email">email</label>
+          <span className={email === "" ? " " : "quoted"}>
+            <input
+              name="email"
+              type="text"
+              placeholder="null"
+              value={email}
+              onChange={updateEmail}
+              size={email.length - 1}
+            />
+          </span>
         </div>
-      </>
+        <div>
+          <label htmlFor="password">password</label>
+          <span className={password === "" ? " " : "quoted"}>
+            <input
+              name="password"
+              type="password"
+              placeholder="null"
+              value={password}
+              onChange={updatePassword}
+              size={password.length}
+            />
+          </span>
+        </div>
+        <div>
+          <span style={{ color: "#dcb862" }}>login</span>(
+          <span style={{ color: "#2ba2ff" }}>email</span>,{" "}
+          <span style={{ color: "#2ba2ff" }}>password</span>);
+        </div>
+        <button type="submit">{`> `}node login.js</button>
+        <button onClick={onDemo} title="Demo Login">
+          {`> `}Demo Login
+        </button>
+      </form>
+      <div className="errorsLog">
+        {errors.map((error) => (
+          <div>{error}</div>
+        ))}
+      </div>
+    </>
   );
 };
 
