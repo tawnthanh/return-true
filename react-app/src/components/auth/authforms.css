@@ -8,22 +8,6 @@
     width:100%;
 }
 
-@-webkit-keyframes borderBlink {
-    from, to {
-        border-color: transparent
-    }
-    50% {
-        border-color: #fff
-    }
-}
-@keyframes borderBlink {
-    from, to {
-        border-color: transparent
-    }
-    50% {
-        border-color: #fff
-    }
-}
 .loginform div, .signupform div {
     margin-left: 15px;
 }
@@ -80,10 +64,9 @@
     font-size: 18px;
     background-color: #1e1e1e;
     color: rgb(206,145,120);
-    border: none;
-    border-left: 2px solid white;
-    -webkit-animation: borderBlink 1s step-end infinite;
-    animation: borderBlink 1s step-end infinite;
+    border: 1px solid white;
+    padding: 3px;
+    margin-top: 2px;
 }
 
 .loginform input::placeholder,
@@ -128,24 +111,26 @@
 }
 
 .loginform button, .signupform button, .profile-form button {
-    width: 100%;
-    background-color: #1e1e1e;
+    width: auto;
     font-family: 'Source Code Pro', monospace;
     font-size: 18px;
-    color: #ccc;
+    color: #dcb862;
     text-align: left;
-    border:none;
-    border-top: 1px solid #ccc;
-    margin-top: 15px;
+    border: 2px solid #2196f3;
+    margin: 15px;
+    background-color: transparent;
+    cursor: pointer;
 }
 
 .loginform button:hover,
 .signupform button:hover,
 .profile-form button:hover {
-    color: #fff
+    color: #fff;
+    background-color: #2196f3
 }
 .errorsLog div {
     color: #f14c4c;
+    padding-left: 15px;
 }
 .errorsLog div::before {
     content: "!> ";
