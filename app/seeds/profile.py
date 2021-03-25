@@ -15,7 +15,7 @@ def undo_frequency():
     db.session.execute('TRUNCATE frequencies;')
     db.session.commit()
 
-def seed_languages():
+def seed_profile():
     languages = [
         "Python",
         "Javascript",
@@ -74,43 +74,20 @@ def seed_languages():
     db.session.add(sql_alchemy_lang)
     db.session.add(express_lang)
     db.session.add(html_lang)
-
-def undo_languages():
-    db.session.execute('TRUNCATE languages;')
-    db.session.commit()
-
-def seed_expertise():
+    
+    
     expertises = ["Frontend", "Backend", "UX/UI Design", "AI", "Data Analysis"]
     frontend_expertise = Expertise(type="Frontend")
     backend_expertise = Expertise(type=expertises[1])
     ux_ui_expertise = Expertise(type=expertises[2])
     ai_expertise = Expertise(type=expertises[3])
     data_analysis_expertise = Expertise(type=expertises[4])
+
     db.session.add(frontend_expertise)
     db.session.add(backend_expertise)
     db.session.add(ux_ui_expertise)
     db.session.add(ai_expertise)
     db.session.add(data_analysis_expertise)
-
-def undo_languages():
-    db.session.execute('TRUNCATE expertise;')
-    db.session.commit()
-
-def seed_profile():
-    users = [
-        {
-            "firstName": "Daenerys",
-            "lastName": "Targaryen",
-            "imageUrl": "https://s2.r29static.com/bin/entry/3a8/720x864,85/2170880/image.webp",
-            "bio"="Daenerys Stormborn of House Targaryen, the First of Her Name, Queen of the Andals \
-                            and the First Men, Protector of the Seven\
-                            Kingdoms, the Mother of Dragons, the Khaleesi \
-                            of the Great Grass Sea, the Unburnt, \
-                            the Breaker of Chains"
-        }
-    ]
-    
-
     
 
     daenerys = Profile(userId=1, firstName="Daenerys", lastName="Targaryen",

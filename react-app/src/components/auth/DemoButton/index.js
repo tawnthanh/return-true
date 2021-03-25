@@ -19,7 +19,7 @@ export default function DemoButton ({setAuthenticated, useText}) {
   };
   
   return <button onClick={onDemo} title="Demo Login" >
-    {!useText && <i className="fas fa-id-card"></i>}
+    {!useText && <span>DEMO LOGIN</span>}
     {useText && `> demo login`}
   </button>
 }

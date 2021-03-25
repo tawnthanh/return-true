@@ -3,9 +3,7 @@ import { Redirect, useHistory } from "react-router-dom";
 import { sessionSignup } from "../../store/session";
 import {setProfile} from "../../store/profile";
 import { useDispatch } from "react-redux";
-import { sessionLogin } from "../../store/session";
 import "./authforms.css";
-import DemoButton from "./DemoButton";
 import { openTab, closeTab } from "../../store/tabs";
 
 const SignUpForm = ({ authenticated, setAuthenticated }) => {
@@ -137,7 +135,6 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
           <span style={{ color: "#2ba2ff" }}>newUser</span>);
         </div>
         <button type="submit">{`> `}node signup.js</button>
-        <DemoButton setAuthenticated={setAuthenticated} useText={true} />
       </form>
       <div className="errorsLog">
         {errors.map((error) => (

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { sessionLogin } from "../../store/session";
-import DemoButton from "./DemoButton";
 import { useDispatch } from "react-redux";
 import "./authforms.css";
 import { openTab, closeTab } from "../../store/tabs";
@@ -84,7 +83,6 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           <span style={{ color: "#2ba2ff" }}>password</span>);
         </div>
         <button type="submit">{`> `}node login.js</button>
-        <DemoButton setAuthenticated={setAuthenticated} useText={true} />
       </form>
       <div className="errorsLog">
         {errors.map((error) => (

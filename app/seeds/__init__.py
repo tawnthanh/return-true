@@ -3,7 +3,7 @@ from .users import seed_users, undo_users
 from .states import seed_states, undo_states
 from .locations import seed_cities, undo_cities
 from .questions import seed_questions, undo_questions
-from .profile import seed_profile, seed_frequency, undo_profile, undo_frequency, seed_languages, undo_languages
+from .profile import seed_profile, seed_frequency, undo_profile, undo_frequency
 from .messages import create_dialogue, create_message
 
 # Creates a seed group to hold our commands
@@ -20,7 +20,6 @@ def seed():
     seed_cities()
     seed_questions()
     seed_frequency()
-    seed_languages()
     seed_profile()
     create_dialogue()
     create_message()
@@ -36,5 +35,4 @@ def undo():
     undo_questions()
     undo_frequency()
     undo_profile()
-    undo_languages()
     # Add other undo functions here
