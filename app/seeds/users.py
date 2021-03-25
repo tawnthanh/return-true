@@ -16,8 +16,6 @@ def seed_users():
     for _ in range(50):
         randomUser = User(username=fake.name().replace(" ", ""), email=fake.email(),
                           password=fake.password())
-
-        db.session.add(randomUser)
         db.session.commit()
 
 
@@ -26,5 +24,5 @@ def seed_users():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_users():
-    db.session.execute('TRUNCATE users;')
+    db.session.execute('TRUNCATE users CASCADE;')
     db.session.commit()

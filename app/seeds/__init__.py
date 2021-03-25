@@ -4,7 +4,7 @@ from .states import seed_states, undo_states
 from .locations import seed_cities, undo_cities
 from .questions import seed_questions, undo_questions
 from .profile import seed_profile, seed_frequency, undo_profile, undo_frequency
-from .messages import create_dialogue, create_message
+from .messages import create_dialogue, create_message, undo_dialogue
 
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
@@ -35,4 +35,5 @@ def undo():
     undo_questions()
     undo_frequency()
     undo_profile()
+    undo_dialogue()
     # Add other undo functions here

@@ -36,5 +36,5 @@ def seed_states():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_states():
-    db.session.execute('TRUNCATE states;')
+    db.session.execute('TRUNCATE states CASCADE;')
     db.session.commit()

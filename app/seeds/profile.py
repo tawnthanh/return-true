@@ -1,4 +1,4 @@
-from app.models import db, Frequency, Languages, Profile, Expertise
+from app.models import db, Frequency, Languages, Profile, Expertise, User
 
 
 def seed_frequency():
@@ -12,7 +12,7 @@ def seed_frequency():
 
 
 def undo_frequency():
-    db.session.execute('TRUNCATE frequencies;')
+    db.session.execute('TRUNCATE frequencies CASCADE;')
     db.session.commit()
 
 def seed_profile():
@@ -74,19 +74,22 @@ def seed_profile():
     db.session.add(sql_alchemy_lang)
     db.session.add(express_lang)
     db.session.add(html_lang)
-    
+
     expertises = ["Frontend", "Backend", "UX/UI Design", "AI", "Data Analysis"]
-    frontend_expertise = Expertise(type="Frontend")
+    frontend_expertise = Expertise(type=expertises[0])
     backend_expertise = Expertise(type=expertises[1])
     ux_ui_expertise = Expertise(type=expertises[2])
     ai_expertise = Expertise(type=expertises[3])
     data_analysis_expertise = Expertise(type=expertises[4])
+    
 
     db.session.add(frontend_expertise)
     db.session.add(backend_expertise)
     db.session.add(ux_ui_expertise)
     db.session.add(ai_expertise)
     db.session.add(data_analysis_expertise)
+    
+    db.session.commit()
     
     users = [{
         "username": 'MotherofPythons',
@@ -100,7 +103,9 @@ def seed_profile():
         "frequencyId": 1,
         "mentorship": True,
         "morning": False,
-        "personality": True
+        "personality": True,
+        "languages": [html_lang],
+        "expertises": [frontend_expertise]
         },
         {
         "username": 'Minuoki',
@@ -267,6 +272,8 @@ def seed_profile():
         newUser = User(username=user["username"], email=user["firstName"]+"@"+user["lastName"]+".test",
                           password=user["username"]+"password")
         db.session.add(newUser)
+        db.session.commit()
+        
         newProfile = Profile(
             firstName=user["firstName"],
             lastName=user["lastName"],
@@ -291,9 +298,13 @@ def seed_profile():
 
         db.session.add(newProfile)
 
+        db.session.commit()
+
     db.session.commit()
 
 
 def undo_profile():
-    db.session.execute('TRUNCATE profiles;')
+    db.session.execute('TRUNCATE profiles CASCADE;')
+    db.session.execute('TRUNCATE languages CASCADE;')
+    db.session.execute('TRUNCATE expertise CASCADE;')
     db.session.commit()

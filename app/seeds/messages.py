@@ -19,3 +19,7 @@ def create_message():
                            read=message[1], senderId=message[3])
         db.session.add(message1)
     db.session.commit()
+
+def undo_dialogue():
+    db.session.execute('TRUNCATE dialogues CASCADE;')
+    db.session.commit()

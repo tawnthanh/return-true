@@ -30,6 +30,6 @@ def seed_cities():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_cities():
-    db.session.execute('TRUNCATE locations;')
+    db.session.execute('TRUNCATE locations CASCADE;')
     db.session.commit()
 

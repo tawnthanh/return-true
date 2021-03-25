@@ -35,5 +35,5 @@ def seed_questions():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_questions():
-    db.session.execute('TRUNCATE questions;')
+    db.session.execute('TRUNCATE questions CASCADE;')
     db.session.commit()
