@@ -27,7 +27,7 @@ const Search = () => {
 
     useEffect(() => {
         if (search.length) {
-            let word = search
+            let word = search.trim();
             dispatch(findResults(word))
             setError(false)
         } else {
