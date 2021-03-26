@@ -92,7 +92,7 @@ def seed_profile():
     db.session.commit()
     
     users = [{
-        "username": 'MotherofPythons',
+        "username": 'Demo',
         "firstName": 'Daenerys',
         "lastName": 'Snow',
         "imageUrl": 'https://s2.r29static.com/bin/entry/3a8/720x864,85/2170880/image.webp',
@@ -268,12 +268,17 @@ def seed_profile():
         "expertises": [ai_expertise, data_analysis_expertise]
         }
     ]
+
     for user in users:
-        newUser = User(username=user["username"], email=user["firstName"]+"@"+user["lastName"]+".test",
-                          password=user["username"]+"password")
+        newUser = None
+        if user["username"]=="Demo":
+            newUser = User.query.filter(User.username=="Demo").first()
+        else:
+            newUser = User(username=user["username"], email=user["firstName"]+"@"+user["lastName"]+".test", 
+            password=user["username"]+"password")
         db.session.add(newUser)
         db.session.commit()
-        
+
         newProfile = Profile(
             firstName=user["firstName"],
             lastName=user["lastName"],
